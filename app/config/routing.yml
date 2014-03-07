@@ -1,0 +1,18 @@
+engage360d_user_api:
+    resource: "@Engage360dSecurityBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
+engage360d_user_security:
+    resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
+    prefix:   /admin
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /admin
+
