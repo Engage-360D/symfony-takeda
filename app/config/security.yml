@@ -14,31 +14,39 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
+        facebook_user_provider:
+          id: engage360d_security.facebook.provider
+        security_chain_provider:
+           chain:
+               providers: [fos_userbundle, facebook_user_provider]
 
     firewalls:
         oauth_token:
             pattern:    ^/oauth/v2/token
             security:   false
 
-        admin:
-            pattern:    ^/admin|^/oauth/v2/auth|^/api
-            provider:   fos_userbundle
-            fos_oauth:  true
+        main:
+            pattern: ^/|^/oauth/v2/auth|^/api
             anonymous:  true
+            fos_oauth:  true
             form_login:
-                login_path: /admin.html
-                check_path:  /admin/login_check
-                default_target_path: /admin/login_success
+                login_path: engage360d_takeda_user_login
+                check_path:  engage360d_takeda_user_login_check
+                default_target_path: /user
                 provider: fos_userbundle
-                use_referer: false
-                use_forward: false
-                failure_path: /admin.html
+                use_referer: true
+                use_forward: true
+                failure_path: /user/login
                 failure_forward: true
-                always_use_default_target_path: true
                 post_only: true
+            fos_facebook:
+                login_path: /user/facebook_login
+                check_path: /user/facebook_check
+                provider: facebook_user_provider
+                default_target_path: /user
             logout:
-                path:   /admin/logout
-                target: /admin.html
+                path:   /user/logout
+                target: /user/login
                 invalidate_session: true
 
     access_control:

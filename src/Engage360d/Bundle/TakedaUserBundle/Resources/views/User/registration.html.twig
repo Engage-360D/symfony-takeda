@@ -1,0 +1,61 @@
+<form action="{{ path('engage360d_takeda_user_registration') }}" {{ form_enctype(form) }} method="POST">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="Регистрация" />
+    </div>
+</form>
+
+<a href="#" id="facebook">Войти через Фейсбук</a>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+  config = {FB_APP_ID: 245182945513174};
+  $.ajaxSetup({cache: true})
+  $.getScript("//connect.facebook.net/en_UK/all.js", function () {
+      FB.init({appId: config.FB_APP_ID, status: true});
+  });
+
+  $( document ).ready(function () {
+    $('input[type="submit"]').on("click", function (event) {
+      event.preventDefault();
+      
+      var data = {
+        firstname: $("#user_firstname").val(),
+        lastname: $("#user_lastname").val(),
+        username: $("#user_username").val(),
+        email: $("#user_email").val(),
+        plainPassword: {
+          first: $("#user_plainPassword_first").val(),
+          second: $("#user_plainPassword_second").val()
+        }
+      };
+      
+      $.post("/api/users", data)
+        .success(function (response) {
+          
+        });
+    });
+
+    var facebookLogin = function (accessToken, callback) {
+      var data = {access_token: accessToken};
+      $.post("/user/facebook_check", data, callback);
+    };
+
+    $("#facebook").on("click", function (event) {
+      event.preventDefault();
+
+      FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+          facebookLogin(accessToken, function () {
+            window.location.href = "/user";
+          });
+        } else if (response.status === 'not_authorized') {
+        } else {
+        }
+      });
+    });
+  });
+</script>

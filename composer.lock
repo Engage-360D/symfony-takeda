@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e32ded20b5bdbf765bff348e548e01ad",
+    "hash": "39b5144bda1271922e90de2fa258a04e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -553,12 +553,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "667f20875f0dd3f3fce3e5a7d97cceac92a8e9d1"
+                "reference": "bf9bcb39506047de069066ec63f57978f0d7b135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/667f20875f0dd3f3fce3e5a7d97cceac92a8e9d1",
-                "reference": "667f20875f0dd3f3fce3e5a7d97cceac92a8e9d1",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/bf9bcb39506047de069066ec63f57978f0d7b135",
+                "reference": "bf9bcb39506047de069066ec63f57978f0d7b135",
                 "shasum": ""
             },
             "require": {
@@ -605,7 +605,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2014-01-02 21:27:15"
+            "time": "2014-03-16 11:00:13"
         },
         {
             "name": "doctrine/inflector",
@@ -729,12 +729,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "4837b4afac4469c8740f33eae6bdcd8bd1545d2e"
+                "reference": "46a031ddaea47d0685200027cfe8c83b02aee6f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/4837b4afac4469c8740f33eae6bdcd8bd1545d2e",
-                "reference": "4837b4afac4469c8740f33eae6bdcd8bd1545d2e",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/46a031ddaea47d0685200027cfe8c83b02aee6f6",
+                "reference": "46a031ddaea47d0685200027cfe8c83b02aee6f6",
                 "shasum": ""
             },
             "require": {
@@ -781,7 +781,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2014-03-04 01:42:11"
+            "time": "2014-03-16 19:02:43"
         },
         {
             "name": "doctrine/orm",
@@ -900,12 +900,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Engage-360D/SecurityBundle.git",
-                "reference": "ae1156389fb388ceefa99574e0b1a433c87eaf57"
+                "reference": "fe69469a7736f3fd653f0d1de2fdcc76b8e29743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Engage-360D/SecurityBundle/zipball/ae1156389fb388ceefa99574e0b1a433c87eaf57",
-                "reference": "ae1156389fb388ceefa99574e0b1a433c87eaf57",
+                "url": "https://api.github.com/repos/Engage-360D/SecurityBundle/zipball/fe69469a7736f3fd653f0d1de2fdcc76b8e29743",
+                "reference": "fe69469a7736f3fd653f0d1de2fdcc76b8e29743",
                 "shasum": ""
             },
             "require": {
@@ -975,7 +975,116 @@
                 "source": "https://github.com/Engage-360D/SecurityBundle/tree/master",
                 "issues": "https://github.com/Engage-360D/SecurityBundle/issues"
             },
-            "time": "2014-03-07 11:20:56"
+            "time": "2014-03-11 09:18:54"
+        },
+        {
+            "name": "facebook/php-sdk",
+            "version": "v3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/facebook-php-sdk.git",
+                "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
+                "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk/contributors"
+                }
+            ],
+            "description": "Facebook PHP SDK",
+            "homepage": "https://github.com/facebook/facebook-php-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2013-11-19 23:11:14"
+        },
+        {
+            "name": "friendsofsymfony/facebook-bundle",
+            "version": "dev-master",
+            "target-dir": "FOS/FacebookBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSFacebookBundle.git",
+                "reference": "2c327ca3148f32f14a9b891e52fe61453d7446bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSFacebookBundle/zipball/2c327ca3148f32f14a9b891e52fe61453d7446bf",
+                "reference": "2c327ca3148f32f14a9b891e52fe61453d7446bf",
+                "shasum": ""
+            },
+            "require": {
+                "facebook/php-sdk": "3.2.*",
+                "php": ">=5.3.2",
+                "symfony/http-foundation": "~2.2",
+                "symfony/security": "~2.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "symfony/browser-kit": "~2.2",
+                "symfony/finder": "~2.2",
+                "symfony/form": "~2.2",
+                "symfony/framework-bundle": "~2.2",
+                "symfony/security-bundle": "~2.2",
+                "symfony/twig-bundle": "~2.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\FacebookBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSFacebookBundle/contributors"
+                }
+            ],
+            "description": "Integrate the Facebook Platform into your Symfony2 application.",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "facebook"
+            ],
+            "time": "2014-03-04 00:10:21"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -1041,12 +1150,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSOAuthServerBundle.git",
-                "reference": "29fe331e12c11ae33511715d686f2a2d5d01e92b"
+                "reference": "c8545d985fb89eae1385b1e0cccd526e4e1b7c31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/29fe331e12c11ae33511715d686f2a2d5d01e92b",
-                "reference": "29fe331e12c11ae33511715d686f2a2d5d01e92b",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/c8545d985fb89eae1385b1e0cccd526e4e1b7c31",
+                "reference": "c8545d985fb89eae1385b1e0cccd526e4e1b7c31",
                 "shasum": ""
             },
             "require": {
@@ -1101,7 +1210,7 @@
                 "oauth2",
                 "server"
             ],
-            "time": "2014-01-21 16:22:11"
+            "time": "2014-03-08 11:10:34"
         },
         {
             "name": "friendsofsymfony/oauth2-php",
@@ -1211,12 +1320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "e443de2a62472d64415f2cfa6ab496c4d98c6038"
+                "reference": "ed28a056225d911de4be4686326339a1a51b7fa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/e443de2a62472d64415f2cfa6ab496c4d98c6038",
-                "reference": "e443de2a62472d64415f2cfa6ab496c4d98c6038",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/ed28a056225d911de4be4686326339a1a51b7fa9",
+                "reference": "ed28a056225d911de4be4686326339a1a51b7fa9",
                 "shasum": ""
             },
             "require": {
@@ -1224,8 +1333,8 @@
                 "php": ">=5.3.2",
                 "psr/log": "~1.0",
                 "symfony/framework-bundle": "~2.2",
-                "willdurand/jsonp-callback-validator": "~1.0.0",
-                "willdurand/negotiation": "~1.2.0"
+                "willdurand/jsonp-callback-validator": "~1.0",
+                "willdurand/negotiation": "~1.2"
             },
             "conflict": {
                 "jms/serializer": "<0.12",
@@ -1248,7 +1357,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -1280,7 +1389,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-03-05 19:43:05"
+            "time": "2014-03-11 15:28:34"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1289,12 +1398,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9"
+                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7867dfc7aa67969a24fec7f8aa1051eda23098e9",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
+                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
                 "shasum": ""
             },
             "require": {
@@ -1349,7 +1458,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-03-04 23:23:39"
+            "time": "2014-03-16 19:14:47"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2178,12 +2287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "eca9d25ca7541b5522fde1d3640d3c22b43504d6"
+                "reference": "eddba56c66dd740b541d3f4f80dc16b6ab8b098f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/eca9d25ca7541b5522fde1d3640d3c22b43504d6",
-                "reference": "eca9d25ca7541b5522fde1d3640d3c22b43504d6",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/eddba56c66dd740b541d3f4f80dc16b6ab8b098f",
+                "reference": "eddba56c66dd740b541d3f4f80dc16b6ab8b098f",
                 "shasum": ""
             },
             "require": {
@@ -2244,7 +2353,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2014-02-19 21:34:43"
+            "time": "2014-03-12 13:46:04"
         },
         {
             "name": "nikic/php-parser",
@@ -3071,16 +3180,16 @@
         },
         {
             "name": "willdurand/jsonp-callback-validator",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
-                "reference": "58c0a6c76718794856f7049cf066fdda4e984c49"
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/58c0a6c76718794856f7049cf066fdda4e984c49",
-                "reference": "58c0a6c76718794856f7049cf066fdda4e984c49",
+                "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
                 "shasum": ""
             },
             "require": {
@@ -3101,26 +3210,26 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com",
                     "homepage": "http://www.willdurand.fr"
                 }
             ],
             "description": "JSONP callback validator.",
-            "time": "2013-10-21 12:01:32"
+            "time": "2014-01-20 22:35:06"
         },
         {
             "name": "willdurand/negotiation",
-            "version": "1.2.3",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "d1347ba8208a449c5aa0bf13cd7b65298c59257e"
+                "reference": "cda64e26a980f433ce98200ba1b2301850489aab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/d1347ba8208a449c5aa0bf13cd7b65298c59257e",
-                "reference": "d1347ba8208a449c5aa0bf13cd7b65298c59257e",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/cda64e26a980f433ce98200ba1b2301850489aab",
+                "reference": "cda64e26a980f433ce98200ba1b2301850489aab",
                 "shasum": ""
             },
             "require": {
@@ -3129,7 +3238,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -3157,7 +3266,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2014-02-28 14:39:44"
+            "time": "2014-02-26 13:56:25"
         }
     ],
     "packages-dev": [
@@ -3178,6 +3287,7 @@
         "doctrine/doctrine-migrations-bundle": 20,
         "nelmio/api-doc-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
+        "friendsofsymfony/facebook-bundle": 20,
         "friendsofsymfony/oauth-server-bundle": 20,
         "friendsofsymfony/jsrouting-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,

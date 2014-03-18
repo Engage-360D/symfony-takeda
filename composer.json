@@ -29,6 +29,7 @@
         "doctrine/doctrine-migrations-bundle":  "dev-master",
         "nelmio/api-doc-bundle":                "dev-master",
         "friendsofsymfony/user-bundle":         "dev-master",
+        "friendsofsymfony/facebook-bundle":     "dev-master",
         "friendsofsymfony/oauth-server-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle":    "dev-master",
         "friendsofsymfony/rest-bundle":         "dev-master",

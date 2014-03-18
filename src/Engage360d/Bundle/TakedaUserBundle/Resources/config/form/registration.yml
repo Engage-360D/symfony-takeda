@@ -1,0 +1,12 @@
+services:
+    engage360d_takeda_user.form.registration:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_user_registration", null, { }]
+
+    engage360d_takeda_user.form.registration.type:
+        class: Engage360d\Bundle\TakedaUserBundle\Form\Type\RegistrationUserFormType
+        arguments: [%engage360d_security.entity.user.class%]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_user_registration }

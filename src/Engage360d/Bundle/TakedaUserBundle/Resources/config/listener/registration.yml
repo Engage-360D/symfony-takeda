@@ -1,0 +1,11 @@
+services:
+    engage360d_takeda_user.listener.email_confirmation:
+        class: Engage360d\Bundle\TakedaUserBundle\EventListener\EmailConfirmationListener
+        arguments:
+            - @mailer
+            - @fos_user.util.token_generator
+            - @router
+            - @session
+            - @templating
+        tags:
+            - { name: kernel.event_subscriber }

@@ -27,12 +27,14 @@ class AppKernel extends Kernel
             
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\FacebookBundle\FOSFacebookBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
 
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
+            new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
