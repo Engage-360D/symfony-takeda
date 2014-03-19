@@ -1,3 +1,7 @@
+engage360d_search_api:
+    resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
 engage360d_user_api:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/api.yml"
     prefix:   /api

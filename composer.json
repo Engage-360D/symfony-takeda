@@ -34,8 +34,10 @@
         "friendsofsymfony/jsrouting-bundle":    "dev-master",
         "friendsofsymfony/rest-bundle":         "dev-master",
         "friendsofsymfony/rest":                "dev-master",
+        "friendsofsymfony/elastica-bundle":     "dev-master",
         "engage360d/rest-bundle":               "dev-master",
-        "engage360d/security-bundle":           "dev-master"
+        "engage360d/security-bundle":           "dev-master",
+        "engage360d/search-bundle":             "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -64,6 +66,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Engage-360D/SecurityBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Engage-360D/SearchBundle.git"
         }
     ],
     "minimum-stability": "stable",

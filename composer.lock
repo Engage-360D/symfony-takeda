@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "39b5144bda1271922e90de2fa258a04e",
+    "hash": "2018f6c0f854b6ea9eb77446ee4a6b56",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -894,18 +894,90 @@
             "time": "2014-03-05 09:59:46"
         },
         {
+            "name": "engage360d/search-bundle",
+            "version": "dev-master",
+            "target-dir": "Engage360d/Bundle/SearchBundle",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Engage-360D/SearchBundle.git",
+                "reference": "aa1d0b21760d7ab3d3172c2447acdc8daeaa8c39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Engage-360D/SearchBundle/zipball/aa1d0b21760d7ab3d3172c2447acdc8daeaa8c39",
+                "reference": "aa1d0b21760d7ab3d3172c2447acdc8daeaa8c39",
+                "shasum": ""
+            },
+            "require": {
+                "friendsofsymfony/elastica-bundle": "dev-master",
+                "symfony/symfony": "2.3.*"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "1.2.*",
+                "doctrine/doctrine-fixtures-bundle": "2.2.*",
+                "doctrine/orm": ">=2.2.3,<2.4-dev",
+                "nelmio/api-doc-bundle": "dev-master",
+                "sensio/distribution-bundle": "dev-master",
+                "symfony/monolog-bundle": "2.3.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony-app-dir": "Tests/app",
+                "symfony-web-dir": "Tests/app"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Engage360d\\Bundle\\SearchBundle": ""
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ],
+                "post-update-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vyacheslav Slinko",
+                    "email": "vyacheslav.slinko@gmail.com"
+                }
+            ],
+            "description": "Engage360dSearchBundle",
+            "homepage": "http://github.com/engage-360d",
+            "keywords": [
+                "360D",
+                "Engage"
+            ],
+            "support": {
+                "source": "https://github.com/Engage-360D/SearchBundle/tree/master",
+                "issues": "https://github.com/Engage-360D/SearchBundle/issues"
+            },
+            "time": "2014-03-06 18:09:20"
+        },
+        {
             "name": "engage360d/security-bundle",
             "version": "dev-master",
             "target-dir": "Engage360d/Bundle/SecurityBundle",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Engage-360D/SecurityBundle.git",
-                "reference": "fe69469a7736f3fd653f0d1de2fdcc76b8e29743"
+                "reference": "6ea3919ad5e850dd2bf79c23213632cbd4aa566e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Engage-360D/SecurityBundle/zipball/fe69469a7736f3fd653f0d1de2fdcc76b8e29743",
-                "reference": "fe69469a7736f3fd653f0d1de2fdcc76b8e29743",
+                "url": "https://api.github.com/repos/Engage-360D/SecurityBundle/zipball/6ea3919ad5e850dd2bf79c23213632cbd4aa566e",
+                "reference": "6ea3919ad5e850dd2bf79c23213632cbd4aa566e",
                 "shasum": ""
             },
             "require": {
@@ -914,6 +986,7 @@
                 "doctrine/doctrine-migrations-bundle": "dev-master",
                 "doctrine/orm": ">=2.2.3,<2.4-dev",
                 "engage360d/rest-bundle": "dev-master",
+                "friendsofsymfony/facebook-bundle": "dev-master",
                 "friendsofsymfony/jsrouting-bundle": "dev-master",
                 "friendsofsymfony/oauth-server-bundle": "dev-master",
                 "friendsofsymfony/rest": "dev-master",
@@ -975,7 +1048,7 @@
                 "source": "https://github.com/Engage-360D/SecurityBundle/tree/master",
                 "issues": "https://github.com/Engage-360D/SecurityBundle/issues"
             },
-            "time": "2014-03-11 09:18:54"
+            "time": "2014-03-18 14:35:19"
         },
         {
             "name": "facebook/php-sdk",
@@ -1022,6 +1095,89 @@
                 "sdk"
             ],
             "time": "2013-11-19 23:11:14"
+        },
+        {
+            "name": "friendsofsymfony/elastica-bundle",
+            "version": "dev-master",
+            "target-dir": "FOS/ElasticaBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
+                "reference": "514e63f26f10748356fd009e6b4c96eb834ea547"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/514e63f26f10748356fd009e6b4c96eb834ea547",
+                "reference": "514e63f26f10748356fd009e6b4c96eb834ea547",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "psr/log": "~1.0",
+                "ruflin/elastica": ">=0.20, <1.1-dev",
+                "symfony/console": "~2.1",
+                "symfony/form": "~2.1",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/property-access": "~2.2"
+            },
+            "require-dev": {
+                "doctrine/mongodb-odm": "1.0.*@dev",
+                "doctrine/orm": ">=2.2,<2.5-dev",
+                "knplabs/knp-components": "1.2.*",
+                "pagerfanta/pagerfanta": "1.0.*@dev",
+                "propel/propel1": "1.6.*",
+                "symfony/expression-language": "2.4.*@dev"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "1.0.*@dev",
+                "doctrine/orm": ">=2.2,<2.5-dev",
+                "knplabs/knp-components": "1.2.*",
+                "pagerfanta/pagerfanta": "1.0.*@dev",
+                "propel/propel1": "1.6.*",
+                "symfony/expression-language": "2.4.*@dev"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\ElasticaBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com",
+                    "homepage": "http://jmikola.net"
+                },
+                {
+                    "name": "Richard Miller",
+                    "email": "richard.miller@limethinking.co.uk"
+                }
+            ],
+            "description": "Elasticsearch PHP integration for your Symfony2 project using Elastica",
+            "homepage": "https://github.com/FriendsOfSymfony/FOSElasticaBundle",
+            "keywords": [
+                "doctrine2",
+                "elastica",
+                "elasticsearch",
+                "mongodb",
+                "propel",
+                "search"
+            ],
+            "time": "2014-03-19 01:32:48"
         },
         {
             "name": "friendsofsymfony/facebook-bundle",
@@ -1398,12 +1554,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42"
+                "reference": "f8e9255eedc91bc53195de288c9fe640719b2817"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
-                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f8e9255eedc91bc53195de288c9fe640719b2817",
+                "reference": "f8e9255eedc91bc53195de288c9fe640719b2817",
                 "shasum": ""
             },
             "require": {
@@ -1458,7 +1614,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-03-16 19:14:47"
+            "time": "2014-03-18 08:55:34"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2537,6 +2693,58 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "ruflin/elastica",
+            "version": "v1.0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruflin/Elastica.git",
+                "reference": "6297d827be2f4c589eee846e26f67a7ab213bcf6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/6297d827be2f4c589eee846e26f67a7ab213bcf6",
+                "reference": "6297d827be2f4c589eee846e26f67a7ab213bcf6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "munkie/elasticsearch-thrift-php": "1.4.*",
+                "psr/log": "~1.0",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "suggest": {
+                "monolog/monolog": "Logging request",
+                "munkie/elasticsearch-thrift-php": "Allow using thrift transport",
+                "psr/log": "for logging"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Elastica": "lib/",
+                    "Elastica\\Test": "test/lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Ruflin",
+                    "homepage": "http://ruflin.com/"
+                }
+            ],
+            "description": "Elasticsearch Client",
+            "homepage": "http://elastica.io/",
+            "keywords": [
+                "client",
+                "search"
+            ],
+            "time": "2014-03-08 12:13:09"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v2.3.4",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -3292,8 +3500,10 @@
         "friendsofsymfony/jsrouting-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "friendsofsymfony/rest": 20,
+        "friendsofsymfony/elastica-bundle": 20,
         "engage360d/rest-bundle": 20,
-        "engage360d/security-bundle": 20
+        "engage360d/security-bundle": 20,
+        "engage360d/search-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

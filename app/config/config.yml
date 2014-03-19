@@ -105,3 +105,22 @@ fos_facebook:
     cookie: true
     permissions: [email, user_birthday, user_location]
 
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        website:
+            client: default
+            types:
+                test:
+                    mappings:
+                        firstname: ~
+                        lastname: ~
+                    persistence:
+                        driver: orm
+                        model: Engage360d\Bundle\SecurityBundle\Entity\User\User
+                        provider: ~
+                        listener:
+                            insert: true
+                            update: true
+                            delete: true

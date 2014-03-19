@@ -31,10 +31,12 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
             new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
+            new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
