@@ -8,9 +8,12 @@
         "coffee-script": "^1.7",
         "gulp": "^3.5",
         "gulp-rename": "^1.2",
+        "gulp-concat": "^2.2",
         "gulp-browserify": "^0.5",
+        "gulp-stylus": "^0.1",
         "coffeeify": "^0.6",
-        "reactify": "^0.10"
+        "reactify": "^0.10",
+        "nib": "^1.0"
     },
     "private": true
 }
