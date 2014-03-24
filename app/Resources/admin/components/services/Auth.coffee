@@ -9,13 +9,14 @@ class Auth
 
   configure: (clientId) ->
     $.jStorage.set "clientId", clientId
+    $.jStorage.setTTL "clientId", 3600
 
     jso_configure
       engage360d: 
         client_id: clientId
         redirect_uri: location.pathname
         authorization: "/oauth/v2/auth"
-        presenttoken: "qs"
+        presenttoken: "header"
 
     unless jso_getToken "engage360d"
       jso_ensureTokens engage360d: []

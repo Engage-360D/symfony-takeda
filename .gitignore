@@ -9,6 +9,7 @@
 /vendor/
 /bin/
 /composer.phar
-/web/admin.html
+/composer.lock
 /app/Resources/admin/node_modules/
 /app/Resources/client/node_modules/
+

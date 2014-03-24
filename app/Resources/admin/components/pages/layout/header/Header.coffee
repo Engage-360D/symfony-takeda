@@ -15,7 +15,7 @@ Header = React.createClass
 
   componentWillMount: ->
     $.oajax
-      url: "/api/me"
+      url: "/api/users/me"
       jso_provider: "engage360d",
       jso_allowia: true
       dataType: "json"

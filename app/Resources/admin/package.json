@@ -36,7 +36,10 @@
     "components-jquery": "git://github.com/components/jquery.git#1.10.2",
     "react-tools": "~0.5",
     "moment": "~2.4",
-    "font-awesome": "~4.0"
+    "font-awesome": "~4.0",
+    "underscore": "~1.6",
+    "Eventable": "git://github.com/madebymany/eventable.git",
+    "sir-trevor": "git://github.com/madebymany/sir-trevor-js.git"
   },
   "shim": {
     "jquery": {
@@ -67,6 +70,23 @@
       "exports": null,
       "depends": {
         "jquery": "jQuery"
+      }
+    },
+    "underscore": {
+      "path": "./node_modules/underscore/underscore.js",
+      "exports": null
+    },
+    "Eventable": {
+      "path": "./node_modules/Eventable/eventable.js",
+      "exports": "Eventable"
+    },
+    "sirTrevor": {
+      "path": "./node_modules/sir-trevor/sir-trevor.js",
+      "exports": null,
+      "depends": {
+        "underscore": "_",
+        "jquery": "jQuery",
+        "Eventable": "Eventable"
       }
     }
   }

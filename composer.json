@@ -27,6 +27,7 @@
         "doctrine/migrations":                  "dev-master",
         "doctrine/doctrine-fixtures-bundle":    "dev-master",
         "doctrine/doctrine-migrations-bundle":  "dev-master",
+        "stof/doctrine-extensions-bundle":      "dev-master",
         "nelmio/api-doc-bundle":                "dev-master",
         "friendsofsymfony/user-bundle":         "dev-master",
         "friendsofsymfony/facebook-bundle":     "dev-master",
@@ -37,7 +38,8 @@
         "friendsofsymfony/elastica-bundle":     "dev-master",
         "engage360d/rest-bundle":               "dev-master",
         "engage360d/security-bundle":           "dev-master",
-        "engage360d/search-bundle":             "dev-master"
+        "engage360d/search-bundle":             "dev-master",
+        "engage360d/pages-bundle":              "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -70,6 +72,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Engage-360D/SearchBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Engage-360D/PagesBundle.git"
         }
     ],
     "minimum-stability": "stable",

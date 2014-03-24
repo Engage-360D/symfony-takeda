@@ -39,18 +39,19 @@ class AppKernel extends Kernel
             // other bundles
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
-            // our shared bundles
-            new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
-            new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
-            new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             // our project bundles
+
+            new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
+            new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
+            new Engage360d\Bundle\PagesBundle\Engage360dPagesBundle(),
+            new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
             new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
             new Engage360d\Bundle\TakedaTestBundle\Engage360dTakedaTestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
