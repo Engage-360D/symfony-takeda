@@ -1,0 +1,16 @@
+{
+    "name": "takeda",
+    "version": "0.1.0",
+    "dependencies": {
+        "react": "^0.10"
+    },
+    "devDependencies": {
+        "coffee-script": "^1.7",
+        "gulp": "^3.5",
+        "gulp-rename": "^1.2",
+        "gulp-browserify": "^0.5",
+        "coffeeify": "^0.6",
+        "reactify": "^0.10"
+    },
+    "private": true
+}

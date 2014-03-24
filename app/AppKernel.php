@@ -8,35 +8,45 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // basic bundles
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            
+            // doctrine bundles
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
+            // jsm bundles
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
-            
             new JMS\SerializerBundle\JMSSerializerBundle($this),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            // fos bundles
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
+            
+            // other bundles
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
+            // our shared bundles
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
-            new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
+
+            // our project bundles
+            new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
+            new Engage360d\Bundle\TakedaTestBundle\Engage360dTakedaTestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

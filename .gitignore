@@ -11,3 +11,4 @@
 /composer.phar
 /web/admin.html
 /app/Resources/admin/node_modules/
+/app/Resources/client/node_modules/

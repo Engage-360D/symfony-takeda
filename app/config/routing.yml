@@ -22,3 +22,6 @@ fos_user_security:
 
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"
+
+engage360d_takeda_test:
+  resource: "@Engage360dTakedaTestBundle/Resources/config/routing/routing.yml"
