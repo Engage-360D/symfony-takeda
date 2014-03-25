@@ -11,7 +11,7 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: false
-    validation:      { enable_annotations: true }
+    validation:      { enable_annotations: true, enabled: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -93,15 +93,15 @@ fos_oauth_server:
     service:
         user_provider: engage360d_security.manager.user
     db_driver: orm
-    client_class:        Engage360d\Bundle\SecurityBundle\Entity\OAuth\Client
-    access_token_class:  Engage360d\Bundle\SecurityBundle\Entity\OAuth\AccessToken
-    refresh_token_class: Engage360d\Bundle\SecurityBundle\Entity\OAuth\RefreshToken
-    auth_code_class:     Engage360d\Bundle\SecurityBundle\Entity\OAuth\AuthCode
+    client_class:        Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\Client
+    access_token_class:  Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\AccessToken
+    refresh_token_class: Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\RefreshToken
+    auth_code_class:     Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\AuthCode
 
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Engage360d\Bundle\SecurityBundle\Entity\User\User
+    user_class: Engage360d\Bundle\TakedaUserBundle\Entity\User\User
 
 fos_facebook:
     alias:  facebook
@@ -123,7 +123,7 @@ fos_elastica:
                         lastname: ~
                     persistence:
                         driver: orm
-                        model: Engage360d\Bundle\SecurityBundle\Entity\User\User
+                        model: Engage360d\Bundle\TakedaUserBundle\Entity\User\User
                         provider: ~
                         listener:
                             insert: true
