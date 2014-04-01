@@ -2,7 +2,7 @@
 
 React = require "React"
 
-ModsMixin = require "./../../mixins/ModsMixin"
+ModsMixin = require "Engage360d/mixins/ModsMixin"
 
 DropDown = React.createClass
   mixins: [ModsMixin]

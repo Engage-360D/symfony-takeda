@@ -1,0 +1,39 @@
+.NavigationSubItem
+  position relative
+  font-size 12px
+  color #94989d
+  display block
+  padding 5px 0 5px 27px
+  text-decoration none
+  cursor pointer
+
+  a
+    font-size 12px
+    color #94989d
+    text-decoration none
+
+  &:hover
+    background rgba(255, 255, 255, 0.1)
+    border-radius 4px
+
+    a
+      color #1caf9a
+    
+    .NavigationSubItemActions
+      display block
+
+  &-Active
+    a
+      color #1caf9a
+    
+    &:hover
+      background-color rgba(255, 255, 255, 0.1)
+
+  .NavigationSubItemActions
+    display none
+    position absolute
+    top 10px
+    right 2px
+
+  .fa
+    margin-right 5px

@@ -22,5 +22,6 @@ class Engage360dTakedaUserExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('listener/registration.yml');
         $loader->load('form/registration.yml');
+        $loader->load('form/user.yml');
     }
 }

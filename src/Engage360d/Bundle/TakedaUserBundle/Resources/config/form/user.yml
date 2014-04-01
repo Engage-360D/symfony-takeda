@@ -1,0 +1,15 @@
+services:
+    engage360d_takeda_user.form.user.post:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_user_post_user", null, { }]
+        tags:
+            - { name: rest.form, route: post_users }
+            - { name: rest.manager, route: post_users }
+
+    engage360d_takeda_user.form.security.post.type:
+        class: Engage360d\Bundle\TakedaUserBundle\Form\Type\PostUserFormType
+        arguments: [Engage360d\Bundle\TakedaUserBundle\Entity\User\User]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_user_post_user }

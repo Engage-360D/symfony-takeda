@@ -2,11 +2,10 @@
 
 React = require "React"
 
-Field = require "./../form/Field"
-Input = require "./../form/field/Input"
-Button = require "./../button/Button"
-
-Auth = require "./../../services/Auth"
+Ctx = require "Engage360d/services/Context"
+Field = require "Engage360d/components/form/Field"
+Input = require "Engage360d/components/form/field/Input"
+Button = require "Engage360d/components/button/Button"
 
 Login = React.createClass
   getInitialState: ->
@@ -20,7 +19,7 @@ Login = React.createClass
       @setState state
 
   submit: ->
-    Auth.login @state.username, @state.password
+    Ctx.get("auth").login @state.username, @state.password
 
   render: ->
     `(

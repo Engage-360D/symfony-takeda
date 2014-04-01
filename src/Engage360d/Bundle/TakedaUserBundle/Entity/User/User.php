@@ -26,4 +26,52 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @var date $birthday
+     *
+     * @ORM\Column(name="birthday", type="date", nullable=true)
+     */
+    private $birthday;
+
+    /**
+     * @var date $registration
+     *
+     * @ORM\Column(name="registration", type="date", nullable=false)
+     */
+    private $registration;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->registration = new \DateTime();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+        if (!$this->username) {
+            $this->username = $firstname;
+        }
+    }
+
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    }
+  
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    public function getRegistration()
+    {
+        return $this->registration;
+    }
 }

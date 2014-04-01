@@ -1,6 +1,6 @@
 html(lang='ru-RU')
   head
-    meta(charset='utf-8')
+    meta(charset='utf-8', ng-app="Engage360D")
     title Engage360D Admin
     link(rel='stylesheet', media='screen', href='/bundles/admin.css')
 
@@ -8,7 +8,7 @@ html(lang='ru-RU')
     
     script(type='text/javascript').
       document.addEventListener('DOMContentLoaded', function () {
-        init();
+        require("admin")();
       });
 
   body

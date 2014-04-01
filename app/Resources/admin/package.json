@@ -31,20 +31,79 @@
     "reactify": "~0.4",
     "coffeeify": "~0.5",
     "through2": "~0.4.0",
-    "browserify-shim": "~2.0.10",
-    "browserify": "~3.24",
+    "vinyl-fs": "~0.1",
+    "merge": "~1.1",
+    "browserify-shim": "~2",
+    "browserify": "~3",
     "components-jquery": "git://github.com/components/jquery.git#1.10.2",
+    "jquery-ui": "git://github.com/jquery/jquery-ui#1.10.3",
     "react-tools": "~0.5",
     "moment": "~2.4",
     "font-awesome": "~4.0",
     "underscore": "~1.6",
     "Eventable": "git://github.com/madebymany/eventable.git",
-    "sir-trevor": "git://github.com/madebymany/sir-trevor-js.git"
+    "sir-trevor": "git://github.com/madebymany/sir-trevor-js.git",
+    "route-recognizer": "git://github.com/tildeio/route-recognizer.git",
+    "di-lite": "~0.3",
+    "sifter": "~0.3",
+  	"microplugin": "~0.0",
+  	"selectize": "git://github.com/vslinko/selectize.js#master",
+  	"jstree": "git://github.com/vakata/jstree.git",
+  	"blueimp-md5": "~1.1"
   },
   "shim": {
     "jquery": {
       "path": "./node_modules/components-jquery/jquery.js",
       "exports": "$"
+    },
+    "jquery.ui.core": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.core.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
+      }
+    },
+    "jquery.ui.widget": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.widget.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
+      }
+    },
+    "jquery.ui.position": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.position.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
+      }
+    },
+    "jquery.ui.menu": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.menu.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery",
+        "jquery.ui.core": null,
+        "jquery.ui.widget": null,
+        "jquery.ui.position": null
+      }
+    },
+    "jquery.ui.autocomplete": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.autocomplete.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery",
+        "jquery.ui.core": null,
+        "jquery.ui.position": null,
+        "jquery.ui.widget": null,
+        "jquery.ui.menu": null
+      }
+    },
+    "jquery.ui.datepicker": {
+      "path": "./node_modules/jquery-ui/ui/jquery.ui.datepicker.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
+      }
     },
     "React": {
       "path": "./node_modules/react-tools/build/modules/React.js",
@@ -87,6 +146,44 @@
         "underscore": "_",
         "jquery": "jQuery",
         "Eventable": "Eventable"
+      }
+    },
+    "di": {
+      "path": "./node_modules/di-lite/di-lite.js",
+      "exports": "di"
+    },
+    "route-recognizer": {
+      "path": "./node_modules/route-recognizer/dist/route-recognizer.js",
+      "exports": "RouteRecognizer"
+    },
+    "sifter": {
+      "path": "./node_modules/sifter/lib/sifter.js",
+      "exports": null
+    },
+    "microplugin": {
+      "path": "./node_modules/microplugin/src/microplugin.js",
+      "exports": null
+    },
+    "selectize": {
+      "path": "./node_modules/selectize/dist/js/selectize.js",
+      "exports": "selectize",
+      "depends": {
+        "sifter": "Sifter",
+        "microplugin": "MicroPlugin"
+      }
+    },
+    "jstree": {
+      "path": "./node_modules/jstree/dist/jstree.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
+      }
+    },
+    "md5": {
+      "path": "./node_modules/blueimp-md5/js/md5.js",
+      "exports": null,
+      "depends": {
+        "jquery": "jQuery"
       }
     }
   }

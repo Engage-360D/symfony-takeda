@@ -7,8 +7,10 @@ Icon = React.createClass
     name: null
 
   render: ->
-    `(
-      <i className={"fa fa-" + this.props.name}/>
-    )`
+    @transferPropsTo(
+      `(
+        <i className={"fa fa-" + this.props.name}/>
+      )`
+    )
 
 module.exports = Icon

@@ -36,7 +36,9 @@ class LoadAdminData
         $user->setLastname('admin');
         $user->setEmail('test@test.ru');
         $user->setPlainPassword('password');
+        $user->setBirthday(new \DateTime());
         $user->setEnabled(true);
+        $user->addRole("ROLE_ADMIN");
 
         $manager->persist($user);
         $manager->flush();

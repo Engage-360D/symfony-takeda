@@ -1,7 +1,7 @@
 `/** @jsx React.DOM */`
 
 React = require "React"
-ModsMixin = require "./../../mixins/ModsMixin"
+ModsMixin = require "Engage360d/mixins/ModsMixin"
 
 Button = React.createClass
   mixins: [ModsMixin]
@@ -16,7 +16,7 @@ Button = React.createClass
   render: ->
     @transferPropsTo(
       `(
-        <button onClick={this.onClick} className={this.getClassName("Button")}>{this.props.children}</button>
+        <button disabled={this.props.disabled} onClick={this.onClick} className={this.getClassName("Button")}>{this.props.children}</button>
       )`
     )
 

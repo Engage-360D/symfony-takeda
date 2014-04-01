@@ -2,10 +2,10 @@
 
 React = require "React"
 
-ModsMixin = require "./../../mixins/ModsMixin"
+ModsMixin = require "Engage360d/mixins/ModsMixin"
 
-Button = require "./Button"
-DropDown = require "./../dropdown/DropDown"
+Button = require "Engage360d/components/button/Button"
+DropDown = require "Engage360d/components/dropdown/DropDown"
 
 ButtonGroup = React.createClass
   mixins: [ModsMixin]

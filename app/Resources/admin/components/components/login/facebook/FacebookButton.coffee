@@ -3,7 +3,7 @@
 React = require "React"
 $ = require "jquery"
 
-Button = require "./../../button/Button"
+Button = require "Engage360d/components/button/Button"
 
 FacebookButton = React.createClass
   componentWillMount: ->
