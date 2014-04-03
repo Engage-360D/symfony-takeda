@@ -14,15 +14,15 @@ RadioGroup = React.createClass
         @props.onChange event
 
     `(
-      <label className="RadioGroup-Value">
-        <input className="RadioGroup-Input" type="radio" checked={checked} onChange={onChange} />
+      <label className="radio">
+        <input type="radio" checked={checked} onChange={onChange} />
         <span>{value.text}</span>
       </label>
     )`
 
   render: ->
     @transferPropsTo `(
-      <span className="RadioGroup">
+      <span>
         {this.props.values.map(this.renderValue)}
       </span>
     )`

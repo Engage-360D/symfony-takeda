@@ -9,6 +9,8 @@ Field = require "../form/Field"
 Label = require "../form/Label"
 Checkbox = require "../form/Checkbox"
 RadioGroup = require "../form/RadioGroup"
+BooleanRadioGroup = require "../form/BooleanRadioGroup"
+Visibility = require "../helpers/Visibility"
 
 
 Test = React.createClass
@@ -27,44 +29,61 @@ Test = React.createClass
 
   getValidationConfig: ->
     children:
-      doctor:
-        isTrue: validationConstraints.isTrue()
       sex:
         notBlank: validationConstraints.notBlank()
     component:
       firstStep: (state, childrenValidity) ->
-        childrenValidity.doctor.valid and childrenValidity.sex.valid
+        childrenValidity.sex.valid
 
-  componentDidValidated: (prevValidity) ->
-    if prevValidity.component.firstStep.invalid and @validity.component.firstStep.valid
+  openSecondStep: ->
+    if @validity.component.firstStep.valid
       @setState step: "second"
 
   render: ->
     `(
       <div>
-        <h2>Анализ риска</h2>
-        <div>
-          <div style={{display: this.state.step == 'first' ? 'block' : 'none'}}>
-            <h3>Шаг 1. Данные пациента</h3>
-            <fieldset>
-              <legend>Личные данные</legend>
-              <Field mods="OneLine">
-                <Label>Вы являетесь врачом?</Label>
-                <Checkbox checkedLink={this.linkState('doctor')} />
-              </Field>
-            </fieldset>
-            <fieldset>
-              <legend>Данные пациента</legend>
-              <Field mods="OneLine">
-                <Label>Пол</Label>
-                <RadioGroup values={Test.sexValues} valueLink={this.linkState('sex')} />
-              </Field>
-            </fieldset>
+        <Visibility show={this.state.step == 'first'}>
+          <div className="page">
+            <div className="title title_level-2 title_center">Шаг 1. Данные пациента</div>
+            <div className="layout">
+              <div className="layout__column">
+                <div className="data">
+                  <div className="data__title">Личные данные</div>
+                  <div className="data__row">
+                    <div className="data__label">Вы являетесь врачом?</div>
+                    <div className="data__content">
+                      <div className="data__fieldset">
+                        <BooleanRadioGroup valueLink={this.linkState('doctor')} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="data">
+                  <div className="data__title">Данные пациента</div>
+                  <div className="data__row">
+                    <div className="data__label">Пол</div>
+                    <div className="data__content">
+                      <div className="data__fieldset">
+                        <RadioGroup values={Test.sexValues} valueLink={this.linkState('sex')} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div style={{display: this.state.step == 'second' ? 'block' : 'none'}}>
-            <h3>Шаг 2. Дневной рацион</h3>
+          <div className="step-title" onClick={this.openSecondStep}>
+            <div className="step-title__in">
+              <span>Шаг 2. Дневной рацион</span>
+              <i className="ico-arrow-down"></i>
+            </div>
           </div>
-        </div>
+        </Visibility>
+        <Visibility show={this.state.step == 'second'}>
+          <div className="page">
+            <div className="title title_level-2 title_center">Шаг 2. Дневной рацион</div>
+          </div>
+        </Visibility>
       </div>
     )`
 

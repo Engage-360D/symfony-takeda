@@ -43,6 +43,13 @@ process.browser = true;
 process.env = {};
 process.argv = [];
 
+function noop() {}
+
+process.on = noop;
+process.once = noop;
+process.off = noop;
+process.emit = noop;
+
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
 }
@@ -17555,6 +17562,45 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":25}],139:[function(require,module,exports){
 /** @jsx React.DOM */;
+var BooleanRadioGroup, RadioGroup, React;
+
+React = require("react");
+
+RadioGroup = require("./RadioGroup");
+
+BooleanRadioGroup = React.createClass({displayName: 'BooleanRadioGroup',
+  statics: {
+    values: [
+      {
+        value: "yes",
+        text: "Да"
+      }, {
+        value: "no",
+        text: "Нет"
+      }
+    ]
+  },
+  render: function() {
+    var link;
+    link = {
+      value: this.props.valueLink.value ? "yes" : "no",
+      requestChange: (function(_this) {
+        return function(value) {
+          return _this.props.valueLink.requestChange(value === "yes");
+        };
+      })(this)
+    };
+    return this.transferPropsTo((
+      RadioGroup( {values:BooleanRadioGroup.values, valueLink:link} )
+    ));
+  }
+});
+
+module.exports = BooleanRadioGroup;
+
+
+},{"./RadioGroup":143,"react":138}],140:[function(require,module,exports){
+/** @jsx React.DOM */;
 var Checkbox, React;
 
 React = require("react");
@@ -17570,7 +17616,7 @@ Checkbox = React.createClass({displayName: 'Checkbox',
 module.exports = Checkbox;
 
 
-},{"react":138}],140:[function(require,module,exports){
+},{"react":138}],141:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Field, ModsMixin, React;
 
@@ -17592,7 +17638,7 @@ Field = React.createClass({displayName: 'Field',
 module.exports = Field;
 
 
-},{"../../mixins/ModsMixin":146,"react":138}],141:[function(require,module,exports){
+},{"../../mixins/ModsMixin":148,"react":138}],142:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Label, React;
 
@@ -17611,7 +17657,7 @@ Label = React.createClass({displayName: 'Label',
 module.exports = Label;
 
 
-},{"react":138}],142:[function(require,module,exports){
+},{"react":138}],143:[function(require,module,exports){
 /** @jsx React.DOM */;
 var LinkedValueUtils, RadioGroup, React;
 
@@ -17633,15 +17679,15 @@ RadioGroup = React.createClass({displayName: 'RadioGroup',
       };
     })(this);
     return (
-      React.DOM.label( {className:"RadioGroup-Value"}, 
-        React.DOM.input( {className:"RadioGroup-Input", type:"radio", checked:checked, onChange:onChange} ),
-        React.DOM.span(null, value.text)
-      )
+			React.DOM.label( {className:"radio"}, 
+			  React.DOM.input( {type:"radio", checked:checked, onChange:onChange} ),
+			  React.DOM.span(null, value.text)
+		  )
     );
   },
   render: function() {
     return this.transferPropsTo((
-      React.DOM.span( {className:"RadioGroup"}, 
+      React.DOM.span(null, 
         this.props.values.map(this.renderValue)
       )
     ));
@@ -17651,9 +17697,53 @@ RadioGroup = React.createClass({displayName: 'RadioGroup',
 module.exports = RadioGroup;
 
 
-},{"react":138,"react/lib/LinkedValueUtils":22}],143:[function(require,module,exports){
+},{"react":138,"react/lib/LinkedValueUtils":22}],144:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Checkbox, Field, Label, LinkedStateMixin, RadioGroup, React, Test, ValidationMixin, validationConstraints;
+var React, Visibility;
+
+React = require("react");
+
+Visibility = React.createClass({displayName: 'Visibility',
+  getDefaultProps: function() {
+    return {
+      show: null,
+      hide: null,
+      inline: false
+    };
+  },
+  isVisible: function() {
+    if (this.props.show !== null) {
+      return Boolean(this.props.show);
+    } else if (this.props.hide !== null) {
+      return !Boolean(this.props.hide);
+    } else {
+      return true;
+    }
+  },
+  render: function() {
+    var style;
+    style = {};
+    if (this.isVisible()) {
+      if (this.props.inline) {
+        style.display = 'inline';
+      } else {
+        style.display = 'block';
+      }
+    } else {
+      style.display = 'none';
+    }
+    return this.transferPropsTo((
+      React.DOM.div( {style:style}, this.props.children)
+    ));
+  }
+});
+
+module.exports = Visibility;
+
+
+},{"react":138}],145:[function(require,module,exports){
+/** @jsx React.DOM */;
+var BooleanRadioGroup, Checkbox, Field, Label, LinkedStateMixin, RadioGroup, React, Test, ValidationMixin, Visibility, validationConstraints;
 
 React = require("react");
 
@@ -17670,6 +17760,10 @@ Label = require("../form/Label");
 Checkbox = require("../form/Checkbox");
 
 RadioGroup = require("../form/RadioGroup");
+
+BooleanRadioGroup = require("../form/BooleanRadioGroup");
+
+Visibility = require("../helpers/Visibility");
 
 Test = React.createClass({displayName: 'Test',
   mixins: [LinkedStateMixin, ValidationMixin],
@@ -17694,22 +17788,19 @@ Test = React.createClass({displayName: 'Test',
   getValidationConfig: function() {
     return {
       children: {
-        doctor: {
-          isTrue: validationConstraints.isTrue()
-        },
         sex: {
           notBlank: validationConstraints.notBlank()
         }
       },
       component: {
         firstStep: function(state, childrenValidity) {
-          return childrenValidity.doctor.valid && childrenValidity.sex.valid;
+          return childrenValidity.sex.valid;
         }
       }
     };
   },
-  componentDidValidated: function(prevValidity) {
-    if (prevValidity.component.firstStep.invalid && this.validity.component.firstStep.valid) {
+  openSecondStep: function() {
+    if (this.validity.component.firstStep.valid) {
       return this.setState({
         step: "second"
       });
@@ -17718,30 +17809,49 @@ Test = React.createClass({displayName: 'Test',
   render: function() {
     return (
       React.DOM.div(null, 
-        React.DOM.h2(null, "Анализ риска"),
-        React.DOM.div(null, 
-          React.DOM.div( {style:{display: this.state.step == 'first' ? 'block' : 'none'}}, 
-            React.DOM.h3(null, "Шаг 1. Данные пациента"),
-            React.DOM.fieldset(null, 
-              React.DOM.legend(null, "Личные данные"),
-              Field( {mods:"OneLine"}, 
-                Label(null, "Вы являетесь врачом?"),
-                Checkbox( {checkedLink:this.linkState('doctor')} )
-              )
-            ),
-            React.DOM.fieldset(null, 
-              React.DOM.legend(null, "Данные пациента"),
-              Field( {mods:"OneLine"}, 
-                Label(null, "Пол"),
-                RadioGroup( {values:Test.sexValues, valueLink:this.linkState('sex')} )
-              )
-            )
+        Visibility( {show:this.state.step == 'first'}, 
+          React.DOM.div( {className:"page"}, 
+    		    React.DOM.div( {className:"title title_level-2 title_center"}, "Шаг 1. Данные пациента"),
+        		React.DOM.div( {className:"layout"}, 
+        			React.DOM.div( {className:"layout__column"}, 
+        				React.DOM.div( {className:"data"}, 
+        					React.DOM.div( {className:"data__title"}, "Личные данные"),
+        					React.DOM.div( {className:"data__row"}, 
+        						React.DOM.div( {className:"data__label"}, "Вы являетесь врачом?"),
+        						React.DOM.div( {className:"data__content"}, 
+        							React.DOM.div( {className:"data__fieldset"}, 
+        							  BooleanRadioGroup( {valueLink:this.linkState('doctor')} )
+        							)
+        						)
+        					)
+        				),
+        				React.DOM.div( {className:"data"}, 
+        					React.DOM.div( {className:"data__title"}, "Данные пациента"),
+        					React.DOM.div( {className:"data__row"}, 
+        						React.DOM.div( {className:"data__label"}, "Пол"),
+        						React.DOM.div( {className:"data__content"}, 
+        							React.DOM.div( {className:"data__fieldset"}, 
+        							  RadioGroup( {values:Test.sexValues, valueLink:this.linkState('sex')} )
+        							)
+        						)
+        					)
+      					)
+      				)
+    				)
           ),
-          React.DOM.div( {style:{display: this.state.step == 'second' ? 'block' : 'none'}}, 
-            React.DOM.h3(null, "Шаг 2. Дневной рацион")
-          )
+        	React.DOM.div( {className:"step-title", onClick:this.openSecondStep}, 
+        		React.DOM.div( {className:"step-title__in"}, 
+        			React.DOM.span(null, "Шаг 2. Дневной рацион"),
+        			React.DOM.i( {className:"ico-arrow-down"})
+        		)
+        	)
+        ),
+        Visibility( {show:this.state.step == 'second'}, 
+          React.DOM.div( {className:"page"}, 
+    		    React.DOM.div( {className:"title title_level-2 title_center"}, "Шаг 2. Дневной рацион")
+  		    )
         )
-      )
+    	)
     );
   }
 });
@@ -17749,7 +17859,7 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":145,"../../mixins/ValidationMixin":147,"../../services/validationConstraints":148,"../form/Checkbox":139,"../form/Field":140,"../form/Label":141,"../form/RadioGroup":142,"react":138}],144:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":147,"../../mixins/ValidationMixin":149,"../../services/validationConstraints":150,"../form/BooleanRadioGroup":139,"../form/Checkbox":140,"../form/Field":141,"../form/Label":142,"../form/RadioGroup":143,"../helpers/Visibility":144,"react":138}],146:[function(require,module,exports){
 var React, getNodes, sharedComponents;
 
 React = require("react");
@@ -17795,7 +17905,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-},{"./components/modules/Test":143,"react":138}],145:[function(require,module,exports){
+},{"./components/modules/Test":145,"react":138}],147:[function(require,module,exports){
 var LinkedStateMixin, ReactLink, ReactStateSetters;
 
 ReactStateSetters = require("react/lib/ReactStateSetters");
@@ -17818,7 +17928,7 @@ LinkedStateMixin = {
 module.exports = LinkedStateMixin;
 
 
-},{"react/lib/ReactLink":55,"react/lib/ReactStateSetters":72}],146:[function(require,module,exports){
+},{"react/lib/ReactLink":55,"react/lib/ReactStateSetters":72}],148:[function(require,module,exports){
 var ModsMixin,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -17841,7 +17951,7 @@ ModsMixin = {
 module.exports = ModsMixin;
 
 
-},{}],147:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 var ValidationMixin, validateState, validateValue,
   __slice = [].slice;
 
@@ -17916,7 +18026,7 @@ ValidationMixin = {
 module.exports = ValidationMixin;
 
 
-},{}],148:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 var validationConstraints;
 
 validationConstraints = {
@@ -17935,4 +18045,4 @@ validationConstraints = {
 module.exports = validationConstraints;
 
 
-},{}]},{},[144])
+},{}]},{},[146])

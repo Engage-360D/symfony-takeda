@@ -6,16 +6,3 @@
   display: block;
   margin-bottom: 5px;
 }
-
-.RadioGroup-Value {
-  display: inline-block;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.RadioGroup-Value:last-child {
-  margin-right: 0;
-}
-.RadioGroup-Input {
-  margin-right: 5px;
-  cursor: pointer;
-}
