@@ -1,0 +1,136 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+<!-- main -->
+<div class="main">
+	<div class="main__nav">
+		<div class="main__nav-in">
+			<i></i>
+			<ul>
+				<li><button class="is-active"></button></li>
+				<li><button></button></li>
+				<li><button></button></li>
+			</ul>
+		</div>
+	</div>
+	<div class="main__blocks">
+		<!-- 1 -->
+		<div class="main__item main__item_1">
+			<!-- city -->
+			<div class="city">
+				<a href="#"><i></i><span>Москва</span></a>
+			</div>
+			<div class="main__in">
+				<div class="title">Кардиомагнил Yomana</div>
+				<div class="main__text">Это единственная в России  комбинация ацетилсалициловой кислоты и гидроксида магния для первичной и вторичной профилактики тромбообразования.</div>
+			</div>
+			<div class="main__item-in">
+				<div class="main__product" style="background-image: url(img/main-product.jpg)">
+					<a class="link" href="#"><span>Подробнее</span><i></i></a>
+				</div>
+				<div class="main__info">
+					<div class="main__info-in">
+						<div class="title title_lvl-2">Как жить с инфарктом и инсультом?</div>
+						<ul class="main__info-links">
+							<li><a class="link" href="#"><span>Оценка риска повторного тромбоза</span><i></i></a></li>
+							<li><a class="link" href="#"><span>Рекомендации по изменению образа жизни</span><i></i></a></li>
+							<li><a class="link" href="#"><span>Публикации по теме тромбоза</span><i></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="main__app">
+					<div class="main__app-in">
+						<div class="title title_lvl-2">Персональный анализ рисков и рекоммендации</div>
+						<div class="main__text-in">Бесплатное приложение для профилактики СС заболеваний</div>
+						<div class="main__app-list">
+							<div class="main__app-item main__app-item_desctop">
+								<div class="main__app-pic">
+									<a href="#"><img src="img/main-app-desctop.png" alt=""></a>
+								</div>
+								<a class="link" href="#"><span>На сайте</span><i></i></a>
+							</div>
+							<div class="main__app-item main__app-item_mobile">
+								<div class="main__app-pic">
+									<a href="#"><img src="img/main-app-mobile.png" alt=""></a>
+								</div>
+								<a class="link" href="#"><span>Мобильное приложение</span><i></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 2 -->
+		<div class="main__item main__item_2" style="display: none">
+			<div class="main__in">
+				<div class="title">Статистика по заболевениям сердечно-сосудистой системы</div>
+				<div class="main__stats">
+					<div class="main__stats-item">
+						<div class="main__stats-title">Группы риска сердечно-сосудистых заболеваний:</div>
+						<div class="main__stats-fieldset">
+							<label class="radio"><input type="radio" name="type1" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
+							<label class="radio"><input type="radio" name="type1"><span>Мужчины в возрасте 50- 60 лет</span></label>
+							<label class="radio"><input type="radio" name="type1"><span>Женщины в возрасте 50 - 60 лет</span></label>
+						</div>
+					</div>
+					<div class="main__stats-item">
+						<div class="main__stats-title">Статистика по вторичной<br>профилактике:</div>
+						<div class="main__stats-fieldset">
+							<label class="radio"><input type="radio" name="type2" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
+							<label class="radio"><input type="radio" name="type2"><span>Мужчины в возрасте 50- 60 лет</span></label>
+							<label class="radio"><input type="radio" name="type2"><span>Женщины в возрасте 50 - 60 лет</span></label>
+						</div>
+					</div>
+				</div>
+				<div class="main__graph">
+					<img src="img/main-stats.png" alt="">
+				</div>
+			</div>
+		</div>
+		<!-- 3 -->
+		<div class="main__item main__item_3" style="display: none">
+			<div class="main__in">
+				<div class="title">Карта учреждений в регионе</div>
+				<div class="main__city">
+					<a class="main__city-current" href="#">Санкт-Петербург</a>
+					<a class="link" href="#"><span>Полный список</span><i></i></a>
+				</div>
+				<!-- map -->
+				<div class="map">
+					<div class="map__panel">
+						<button class="map__circle"><i></i></button>
+						<button class="map__plus"><i></i></button>
+						<ul class="map__zoom">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li class="map__zoom-drag" style="top: 47px"></li>
+						</ul>
+						<button class="map__minus"><i></i></button>
+					</div>
+					<div class="map__container">
+						<div class="map__container-in">
+							<div class="point" style="top: 200px; left: 200px;">
+								<i class="point__mark"></i>
+								<div class="point__tooltip">
+									<div class="point__title">Профилактика</div>
+									<div class="point__type">больница высшей категории</div>
+									<div class="point__address">Москва, ул. Тверская, д.1.</div>
+									<div class="point__phone">+7 (495) 555-55-55</div>
+									<div class="point__mail"><a href="mailto:mail@mail.mail">mail@mail.mail</a></div>
+								</div>
+							</div>
+						</div>
+						<i class="map__shadow"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

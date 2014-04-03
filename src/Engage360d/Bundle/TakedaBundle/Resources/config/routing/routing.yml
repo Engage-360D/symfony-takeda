@@ -1,0 +1,4 @@
+engage360d_takeda_main_mainpage:
+    path: /
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }

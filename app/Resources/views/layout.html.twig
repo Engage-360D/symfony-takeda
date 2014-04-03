@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<!-- wrapper-->
+<div class="wrapper">
+	<!-- aside -->
+	<div class="aside">
+		<!-- logo -->
+		<div class="logo">
+			<div class="logo__pic"></div>
+		</div>
+		<!-- nav -->
+		<nav class="nav">
+			<ul>
+				<li class="nav__cabina is-active"><a href="#"><span>Личный кабинет</span><i></i></a></li>
+				<li><a href="#">Препарат</a></li>
+				<li><a href="#">Болезни группы риска</a></li>
+				<li class="is-active"><a href="#">Полезно знать</a></li>
+				<li><a href="#">Анализ рисков</a></li>
+				<li><a href="#">Поиск учереждений</a></li>
+				<li><a href="#">Пресс-центр</a></li>
+			</ul>
+		</nav>
+		<!-- search-form -->
+		<div class="search-form">
+			<input type="text" placeholder="Поиск">
+			<button><i></i></button>
+		</div>
+		<!-- links -->
+		<ul class="links">
+			<li><a href="#">О компании</a></li>
+			<li><a href="#">Контакты</a></li>
+		</ul>
+		<!-- app -->
+		<div class="link-app">
+			<a href="#">
+				<span>Мобильное приложение</span>
+				<i></i>
+			</a>
+		</div>
+		<!-- social -->
+		<ul class="social">
+			<li><a class="socail__vk" href="#"><i></i></a></li>
+			<li><a class="socail__fb" href="#"><i></i></a></li>
+			<li><a class="socail__ok" href="#"><i></i></a></li>
+		</ul>
+		<!-- subscribe -->
+		<div class="subscribe">
+			<label>
+				<input type="text" placeholder="Подписка на обновления">
+				<i></i>
+			</label>
+		</div>
+		<div class="aside__info">Имеются противопоказания. Необходимо ознакомиться с инструкцией или проконсуль- тироватся со специалистом.</div>
+		<!-- footer -->
+		<footer class="footer">
+			<a class="takeda" href="#"></a>
+			<div class="copyright">© 2013 Takeda</div>
+		</footer>
+	</div>
+	<!-- section -->
+	<div class="section">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+{% endblock %}

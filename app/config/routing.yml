@@ -24,6 +24,9 @@ fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
     prefix: /admin
 
+engage360d_takeda:
+  resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
+
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"
 

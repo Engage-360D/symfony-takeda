@@ -49,6 +49,7 @@ class AppKernel extends Kernel
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
             new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
             new Engage360d\Bundle\TakedaTestBundle\Engage360dTakedaTestBundle(),
+            new Engage360d\Bundle\TakedaBundle\Engage360dTakedaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

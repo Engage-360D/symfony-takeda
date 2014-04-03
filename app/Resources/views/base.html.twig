@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if gt IE 8]><!--><html><!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="initial-scale=1"/>
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/screen.css') }}" />
             <link rel="stylesheet" href="{{ asset('frontend.css') }}" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
