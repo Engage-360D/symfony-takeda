@@ -14,11 +14,6 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
-        facebook_user_provider:
-          id: engage360d_security.facebook.provider
-        security_chain_provider:
-           chain:
-               providers: [fos_userbundle, facebook_user_provider]
 
     firewalls:
         oauth_token:
@@ -40,11 +35,13 @@ security:
                 failure_path: /user/login
                 failure_forward: true
                 post_only: true
-            fos_facebook:
-                login_path: /user/facebook_login
-                check_path: /user/facebook_check
-                provider: facebook_user_provider
-                default_target_path: /user
+            oauth:
+                resource_owners:
+                    facebook:      /user/login_facebook
+                login_path:        /user/login
+                failure_path:      /user/login
+                oauth_user_provider:
+                    service: engage360d_security.oauth.provider
             logout:
                 path:   /user/logout
                 target: /user/login

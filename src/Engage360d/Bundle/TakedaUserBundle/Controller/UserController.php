@@ -47,11 +47,11 @@ class UserController extends Controller
         $user = $userManager->createUser();
         $user->setEnabled(true);
 
-        $form = $this->container->get("engage360d_takeda_user.form.registration");
-        $form->setData($user);
+        //$form = $this->container->get("engage360d_takeda_user.form.registration");
+        //$form->setData($user);
 
         return $this->container->get('templating')->renderResponse('Engage360dTakedaUserBundle:User:registration.html.twig', array(
-            'form' => $form->createView(),
+            //'form' => $form->createView(),
         ));
     }
 

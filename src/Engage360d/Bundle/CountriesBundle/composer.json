@@ -1,0 +1,24 @@
+{
+    "name": "engage360d/countries-bundle",
+    "type": "symfony-bundle",
+    "description": "Engage360dCountriesBundle",
+    "keywords": ["Engage", "360D"],
+    "homepage": "http://github.com/engage-360d",
+
+    "authors": [
+        {
+            "name": "Andrey Linko",
+            "email": "AndreyLinko@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "Engage360d\\Bundle\\CountriesBundle": ""
+        }
+    },
+
+    "minimum-stability": "dev",
+
+    "target-dir": "Engage360d/Bundle/CountriesBundle"
+}

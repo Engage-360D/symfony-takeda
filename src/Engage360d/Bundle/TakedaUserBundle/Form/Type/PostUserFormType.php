@@ -23,11 +23,9 @@ class PostUserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('firstname', 'text', array('description' => 'User firstname'))
             ->add('lastname', 'text', array('description' => 'User lastname'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
@@ -35,8 +33,18 @@ class PostUserFormType extends AbstractType
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-            ->add('birthday', 'date', array('description' => 'User birthday'))
-            ->add('facebookId', 'text', array('description' => 'User Facebook profile id'))
+            ->add('birthday', 'date', array('description' => 'User birthday', 'widget' => 'single_text'))
+            ->add('region', 'text', array('description' => 'User region'))
+            ->add('doctor', 'checkbox', array('description' => 'User doctor label'))
+            ->add('specialization', 'text', array('description' => 'User doctor specialization'))
+            ->add('experience', 'number', array('description' => 'User doctor experience'))
+            ->add('address', 'text', array('description' => 'User doctor address'))
+            ->add('phone', 'text', array('description' => 'User doctor phone'))
+            ->add('institution', 'text', array('description' => 'User doctor institution'))
+            ->add('graduation', 'date', array(
+                'description' => 'User doctor graduation',
+                'widget' => 'single_text'
+            ))
         ;
     }
 

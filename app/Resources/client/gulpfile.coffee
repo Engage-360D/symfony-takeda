@@ -9,6 +9,7 @@ reactify = require "reactify"
 
 
 webDirectory = path.join __dirname, "..", "..", "..", "web"
+pkg = require "./package.json"
 
 
 gulp.task "scripts", ->
@@ -18,7 +19,8 @@ gulp.task "scripts", ->
         coffeeify
         reactify
       ]
-      extensions: [".coffee"]
+      extensions: [".coffee"],
+      shim: pkg.shim
     ))
     .pipe(rename("frontend.js"))
     .pipe(gulp.dest(webDirectory))
@@ -28,6 +30,10 @@ gulp.task "styles", ->
   gulp.src("src/**/*.styl")
     .pipe(stylus(
       use: ["nib"]
+      set: ["include css", true]
+      paths:[
+        "./node_modules/"
+      ]
     ))
     .pipe(concat("frontend.css"))
     .pipe(gulp.dest(webDirectory))

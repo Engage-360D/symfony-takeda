@@ -10,6 +10,10 @@ engage360d_pages_api:
     resource: "@Engage360dPagesBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
+engage360d_countries_api:
+    resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
 engage360d_user_security:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
     prefix:   /user
@@ -26,6 +30,13 @@ fos_user_security:
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /user/connect
+
+facebook_login:
+    pattern: /user/login_facebook
 
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"

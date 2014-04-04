@@ -13,7 +13,36 @@
         "gulp-stylus": "^0.1",
         "coffeeify": "^0.6",
         "reactify": "^0.10",
-        "nib": "^1.0"
+        "nib": "^1.0",
+        "reqwest": "^1.1",
+        "pikaday": "^1.2",
+        "moment": "^2.5",
+        "components-jquery": "git://github.com/components/jquery.git#1.10.2",
+        "sifter": "~0.3",
+      	"microplugin": "~0.0",
+      	"selectize": "git://github.com/vslinko/selectize.js#master"
     },
-    "private": true
+    "private": true,
+    "shim": {
+      "jquery": {
+        "path": "./node_modules/components-jquery/jquery.js",
+        "exports": "$"
+      },
+      "sifter": {
+        "path": "./node_modules/sifter/lib/sifter.js",
+        "exports": null
+      },
+      "microplugin": {
+        "path": "./node_modules/microplugin/src/microplugin.js",
+        "exports": null
+      },
+      "selectize": {
+        "path": "./node_modules/selectize/dist/js/selectize.js",
+        "exports": "selectize",
+        "depends": {
+          "sifter": "Sifter",
+          "microplugin": "MicroPlugin"
+        }
+      }
+    }
 }

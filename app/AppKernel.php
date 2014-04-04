@@ -30,14 +30,14 @@ class AppKernel extends Kernel
             
             // fos bundles
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
-            
+
             // other bundles
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
             new Engage360d\Bundle\PagesBundle\Engage360dPagesBundle(),
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
+            new Engage360d\Bundle\CountriesBundle\Engage360dCountriesBundle(),
             new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
             new Engage360d\Bundle\TakedaTestBundle\Engage360dTakedaTestBundle(),
             new Engage360d\Bundle\TakedaBundle\Engage360dTakedaBundle(),

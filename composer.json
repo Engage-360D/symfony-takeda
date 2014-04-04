@@ -36,6 +36,7 @@
         "friendsofsymfony/rest-bundle":         "dev-master",
         "friendsofsymfony/rest":                "dev-master",
         "friendsofsymfony/elastica-bundle":     "dev-master",
+        "hwi/oauth-bundle":                     "dev-master",
         "engage360d/rest-bundle":               "dev-master",
         "engage360d/security-bundle":           "dev-master",
         "engage360d/search-bundle":             "dev-master",

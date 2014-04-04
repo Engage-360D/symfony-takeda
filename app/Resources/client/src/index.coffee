@@ -3,6 +3,7 @@ React = require "react"
 
 sharedComponents =
   Test: require "./components/modules/Test"
+  Registration: require "./components/modules/Registration"
 
 
 getNodes = ->

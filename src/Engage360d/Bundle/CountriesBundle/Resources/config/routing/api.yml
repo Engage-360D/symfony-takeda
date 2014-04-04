@@ -1,0 +1,3 @@
+engage360d_api_countries:
+    type:     rest
+    resource: Engage360d\Bundle\CountriesBundle\Controller\Api\CountryController
