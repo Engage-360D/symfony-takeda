@@ -97,6 +97,20 @@ class User extends BaseUser
      */
     private $graduation;
 
+    /**
+     * @var string $vkontakteId
+     *
+     * @ORM\Column(name="vkontakte_id", type="string", nullable=true)
+     */
+    protected $vkontakteId;
+
+    /**
+     * @var string $vkontakteAccessToken
+     *
+     * @ORM\Column(name="vkontakte_access_token", type="string", nullable=true)
+     */
+    protected $vkontakteAccessToken;
+
     public function __construct()
     {
         parent::__construct();
@@ -217,5 +231,29 @@ class User extends BaseUser
     public function getGraduation()
     {
         return $this->graduation;
+    }
+
+    public function setVkontakteId($vkontakteId)
+    {
+        $this->vkontakteId = $vkontakteId;
+    }
+
+    public function getVkontaktekId()
+    {
+        return $this->vkontakteId;
+    }
+
+    public function setVkontakteData($bdata)
+    {
+    }
+
+    public function setVkontakteAccessToken($token)
+    {
+        $this->vkontakteAccessToken = $token;
+    }
+
+    public function getVkontakteAccessToken()
+    {
+        return $this->vkontakteAccessToken;
     }
 }
