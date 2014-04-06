@@ -5,8 +5,6 @@ LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
 
-Field = require "../form/Field"
-Label = require "../form/Label"
 Checkbox = require "../form/Checkbox"
 RadioGroup = require "../form/RadioGroup"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"

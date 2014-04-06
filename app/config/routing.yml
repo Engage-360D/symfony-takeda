@@ -33,10 +33,33 @@ engage360d_takeda:
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /user/connect
+    prefix:   /connect
+
+#hwi_oauth_connect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+#    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /connect
+
+hwi_oauth_connect_service:
+  pattern: /connect/service/{service}
+  defaults:  { _controller: HWIOAuthBundle:Connect:connectService }
+
+hwi_oauth_connect_registration:
+  pattern: /registration/{key}
+  defaults:  { _controller: Engage360dSecurityBundle:Security:connectRegistration }
+
+engage360d_account_not_linked:
+  pattern: /connet/failure
+  defaults:  { _controller: Engage360dSecurityBundle:Security:accountNotLinked }
 
 facebook_login:
     pattern: /user/login_facebook
+
+vkontakte_login:
+    pattern: /user/login_vkontakte
 
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"

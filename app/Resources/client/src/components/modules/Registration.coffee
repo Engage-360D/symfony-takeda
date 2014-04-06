@@ -8,7 +8,7 @@ RegistrationMixin = require "../../mixins/RegistrationMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
 
-Label = require "../form/Label"
+
 Checkbox = require "../form/Checkbox"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
@@ -18,6 +18,7 @@ RegionsInput = require "../registration/RegionsInput"
 NumberSelect = require "../registration/NumberSelect"
 Switch = require "../registration/Switch"
 FacebookButton = require "../social/login/FacebookButton"
+VkontakteButton = require "../social/login/VkontakteButton"
 
 
 Registration = React.createClass
@@ -29,10 +30,19 @@ Registration = React.createClass
       doctor: 1
       registration: 2
 
+  getDefaultProps: ->
+    context: Registration.context.base
+    user: null
+
   getInitialState: ->
+    console.log @props.user
     showValidation: false
     showDoctorValidation: false
-    context: Registration.context.base
+    context: parseInt @props.context
+
+  componentWillMount: ->
+    if @props.user
+      @setState JSON.parse @props.user
 
   getValidationConfig: ->
     children:
@@ -232,7 +242,7 @@ Registration = React.createClass
     			    invalid={this.state.showValidation && this.validity.children.confirmPassword.invalid}/>
     			</Field>
   			</div>
-        <Label>Подтверждение</Label>
+        <div>Подтверждение</div>
         <Field>
           <Checkbox checkedLink={this.linkState('confirmPersonalization')}>
             согласен на обработку персональных данных
@@ -266,8 +276,8 @@ Registration = React.createClass
 				<div className="data__row data__row_social">
 					<div className="data__label">Использовать аккаунт социальных сетей:</div>
 					<ul className="social social_gray">
-						<li><a className="socail__vk" href="#"><i></i></a></li>
-						<li><a className="socail__fb" href="#"><i></i></a></li>
+						<li><VkontakteButton/></li>
+						<li><FacebookButton/></li>
 						<li><a className="socail__ok" href="#"><i></i></a></li>
 					</ul>
 				</div>

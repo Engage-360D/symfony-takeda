@@ -21,14 +21,16 @@ FacebookButton = React.createClass
   onClick: ->
     FB.getLoginStatus (response) ->
       if response.status is "connected"
-        window.open("/user/connect/facebook", "", "width=800,height=650")
+        window.open("/connect/facebook", "", "width=800,height=650")
       else
         FB.login (response) ->
-          window.open("/user/connect/facebook", "", "width=800,height=650")
+          window.open("/connect/facebook", "", "width=800,height=650")
 
   render: ->
     @transferPropsTo `(
-      <button onClick={this.onClick}>Фейсбук</button>
+      <a onClick={this.onClick} className="socail__fb" href="#">
+        <i></i>
+      </a>
     )`
 
 

@@ -37,9 +37,10 @@ security:
                 post_only: true
             oauth:
                 resource_owners:
-                    facebook:      /user/login_facebook
+                    facebook:      facebook_login
+                    vkontakte:     vkontakte_login
                 login_path:        /user/login
-                failure_path:      /user/login
+                failure_path:      engage360d_security_user_connect
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
             logout:
@@ -49,4 +50,5 @@ security:
 
     access_control:
         - { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/user/connect, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: ^/oauth/v2/auth, roles: [ IS_AUTHENTICATED_FULLY ] }
