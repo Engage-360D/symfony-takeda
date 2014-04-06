@@ -35972,7 +35972,7 @@ reqwest = require("reqwest");
 
 moment = require("moment");
 
-fields = ["firstname", "email", "region", "specialization", "experience", "address", "phone", "institution"];
+fields = ["firstname", "email", "region", "specialization", "experience", "address", "phone", "institution", "facebookId", "vkontakteId"];
 
 extractFields = function(data) {
   var field, user, _i, _len;
@@ -36009,6 +36009,28 @@ RegistrationMixin = {
         };
       })(this),
       success: callback
+    });
+  },
+  login: function(username, password) {
+    return reqwest({
+      url: "/user/check",
+      type: "json",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        _username: username,
+        _password: password
+      }),
+      error: (function(_this) {
+        return function(err) {
+          return console.log(err);
+        };
+      })(this),
+      success: (function(_this) {
+        return function(response) {
+          return console.log(response);
+        };
+      })(this)
     });
   }
 };
