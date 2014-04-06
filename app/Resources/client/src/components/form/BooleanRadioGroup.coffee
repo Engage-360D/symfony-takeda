@@ -12,8 +12,13 @@ BooleanRadioGroup = React.createClass
     ]
 
   render: ->
+    if typeof @props.valueLink.value is "boolean"
+      value = if @props.valueLink.value then "yes" else "no"
+    else
+      value = ""
+    
     link =
-      value: if @props.valueLink.value then "yes" else "no"
+      value: value
       requestChange: (value) =>
         @props.valueLink.requestChange value is "yes"
 
