@@ -49,22 +49,11 @@ Pages = React.createClass
       category = result[0].params.id
       @setState category: category, active: true
           
-      $.oajax
-        url: "/api/categories/#{category}/pages"
-        jso_provider: "engage360d"
-        jso_allowia: true
-        dataType: "json"
-        success: (pages) =>
-          @setState pages: pages
+      Ctx.get("ajax").get "/api/categories/#{category}/pages", (pages) =>
+        @setState pages: pages
 
   removePage: (id) ->
-    $.oajax
-      url: "/api/pages/#{id}"
-      method: "DELETE"
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
-      success: =>
+    Ctx.get("ajax").get "/api/pages/#{id}", =>
         pages = @state.pages
         updated = []
         for page, index in pages

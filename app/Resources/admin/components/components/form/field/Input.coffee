@@ -10,10 +10,12 @@ Input = React.createClass
 
   componentDidMount: ->
     if @props.autocomplete
-      $(@refs.input.getDOMNode())
+      ac = $(@refs.input.getDOMNode())
         .autocomplete(@props.autocomplete)
-        .autocomplete("widget")
+      ac.autocomplete("widget")
         .addClass("InputAutocomplete")
+      if @props.autocomplete.render
+        ac.data("ui-autocomplete")._renderItem = @props.autocomplete.render
 
   render: ->
     `(

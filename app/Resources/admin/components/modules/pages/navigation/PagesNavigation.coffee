@@ -45,25 +45,34 @@ PagesNavigation = React.createClass
 
   extractLinks: (categories, active) ->
     state = Ctx.get("router").state()
-    links = categories.map (category) ->
+    links = categories.map (category) =>
+      id: category.id
       title: category.name
       url: "#!/categories/#{category.id}"
       active: state is "#!/categories/#{category.id}"
       actions: [{
         icon: "edit"
         url: "#!/categories/#{category.id}/edit"
+      },{
+        icon: "trash-o"
+        onClick: @removeCategory
       }]
 
     links.concat @props.links
 
   loadCategories: ->
-    $.oajax
-      url: "/api/categories"
-      jso_provider: "engage360d",
-      jso_allowia: true
-      dataType: "json"
-      success: (data) =>
-        @setState categories: data, links: @extractLinks data
+    Ctx.get("ajax").get "/api/categories", (data) =>
+      @setState categories: data, links: @extractLinks data
+
+  removeCategory: (category) ->
+    return unless confirm "Вы уверены что хотите удалить?"
+    Ctx.get("ajax").get "/api/categories/#{category}/pages", (pages) =>
+      return alert "Невозможно удалить. Содержит дочерние элементы." if pages.length > 0
+      Ctx.get("ajax").remove "/api/categories/#{category}", =>
+        updated = []
+        for cat in @state.categories
+          updated.push cat unless cat.id is category
+        @setState categories: updated, links: @extractLinks updated
 
   render: ->
     `(

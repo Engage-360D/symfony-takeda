@@ -1,0 +1,12 @@
+services:
+    engage360d_takeda.twig.menu_extension:
+        class: Engage360d\Bundle\TakedaBundle\Twig\MenuExtension
+        arguments: [@engage360d_pages.manager.menu, @router]
+        tags:
+            - { name: twig.extension }
+
+    engage360d_takeda.twig.page_extension:
+        class: Engage360d\Bundle\TakedaBundle\Twig\PageExtension
+        arguments: [@router, @engage360d_pages.blocks.converter]
+        tags:
+            - { name: twig.extension }

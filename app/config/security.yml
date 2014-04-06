@@ -44,8 +44,8 @@ security:
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
             logout:
-                path:   /user/logout
-                target: /user/login
+                path:   /account/logout
+                target: /account
                 invalidate_session: true
 
     access_control:

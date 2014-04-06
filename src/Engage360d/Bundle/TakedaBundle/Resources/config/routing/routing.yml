@@ -2,3 +2,13 @@ engage360d_takeda_main_mainpage:
     path: /
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }
+
+engage360d_takeda_main_category:
+    path: /category/{url}
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Page:category }
+
+engage360d_takeda_main_category_page:
+    path: /category/{category}/{url}
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Page:page }

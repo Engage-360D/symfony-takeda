@@ -45,6 +45,12 @@ class PostUserFormType extends AbstractType
                 'description' => 'User doctor graduation',
                 'widget' => 'single_text'
             ))
+            ->add('confirmInformation', 'checkbox', array('description' => 'User confirm information'))
+            ->add('confirmPersonalization', 'checkbox', array('description' => 'User confirm personalization'))
+            ->add('confirmSubscription', 'checkbox', array(
+                'description' => 'User confirm subscription',
+                'required' => false
+            ))
         ;
     }
 

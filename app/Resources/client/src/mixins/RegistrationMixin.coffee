@@ -29,8 +29,7 @@ RegistrationMixin =
       data:  extractFields @state
       error: (err) =>
         console.log err
-      success: (response) =>
-        console.log response
+      success: callback
 
 
 module.exports = RegistrationMixin

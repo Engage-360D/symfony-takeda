@@ -108,6 +108,14 @@ Page = React.createClass
                   <Container/>
                   <Field>
                     <Column mods={["Size3"]}>
+                      <Label>Страница категории</Label>
+                    </Column>
+                    <Column mods={["Size6"]}>
+                      <Input type="checkbox" value={this.state.page.main} onChange={this.createChangeHandler("main")}/>
+                    </Column>
+                  </Field>
+                  <Field>
+                    <Column mods={["Size3"]}>
                       <Label>Заголовок</Label>
                     </Column>
                     <Column mods={["Size6"]}>

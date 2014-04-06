@@ -16,52 +16,46 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class EmailConfirmationListener implements EventSubscriberInterface
+class ResetPasswordListener implements EventSubscriberInterface
 {
     private $mailer;
     private $tokenGenerator;
     private $router;
-    private $session;
     private $templating;
 
-    public function __construct($mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session, $templating)
+    public function __construct($mailer, UrlGeneratorInterface $router, $templating)
     {
         $this->mailer = $mailer;
-        $this->tokenGenerator = $tokenGenerator;
         $this->router = $router;
-        $this->session = $session;
         $this->templating = $templating;
     }
 
     public static function getSubscribedEvents()
     {
         return array(
-            Engage360dSecurityEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
+            Engage360dSecurityEvents::RESETTING_USER_PASSWORD => 'onResettingUserPassword',
         );
     }
 
-    public function onRegistrationSuccess(UserEvent $event)
+    public function onResettingUserPassword(UserEvent $event)
     {
         $user = $event->getUser();
-
-        $this->sendConfirmationEmailMessage($user);
-
-        $this->session->set('engage360d_takeda_user_send_confirmation_email/email', $user->getEmail());
+        $this->sendResetPasswordEmailMessage($user);
     }
 
-    public function sendConfirmationEmailMessage(UserInterface $user)
+    public function sendResetPasswordEmailMessage(UserInterface $user)
     {
-        $confirmationUrl = $this->router->generate(
-          'engage360d_takeda_user_registration_confirm',
+        $resettingUrl = $this->router->generate(
+          'engage360d_takeda_user_reset_password',
           array('token' => $user->getConfirmationToken()),
           true
         );
 
         $renderedTemplate = $this->templating
           ->render(
-            'Engage360dTakedaUserBundle:Account:confirmation_email.txt.twig',
+            'Engage360dTakedaUserBundle:Account:resetting_email.txt.twig',
             array(
-              'confirmationUrl' => $confirmationUrl,
+              'resettingUrl' => $resettingUrl,
               'user' => $user,
             )
         );

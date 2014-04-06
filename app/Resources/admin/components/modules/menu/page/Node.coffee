@@ -74,20 +74,28 @@ Node = React.createClass
 
   filterUrls: (term) ->
     @state.urls.filter (url) ->
-      url.label.indexOf(term) isnt -1
+      url.url.indexOf(term) isnt -1
 
   urlSource: (request, response) ->
-    if @state.urls.length > 0
-      return response @filterUrls request.term
-
-    Ctx.get("ajax").get "/api/pages", (pages) =>
+    Ctx.get("ajax").get "/api/urls/#{request.term}", (data) =>
       urls = []
-      for page in pages
+      for url in data
         urls.push
-          label: page.url
-          id: page.id
+          url: url.url
+          type: if url.type is "category" then "Категория" else "Страница"
       @setState urls: urls
       response @filterUrls request.term
+
+  onSelectUrl: (event, ui) ->
+    event.preventDefault()
+    node = @state.node
+    node.url = ui.item.url
+    @setState node: node
+
+  renderAutocomplete: (ul, item) ->
+    $("<li>")
+      .append("<a>" + item.url + "<span>" + item.type + "</span></a>")
+      .appendTo(ul)
 
   render: ->
     return `(<div/>)` unless @state.active
@@ -110,9 +118,9 @@ Node = React.createClass
               </Column>
               <Column mods={["Size6"]}>
                 <Input
-                  value={this.state.node.slug}
+                  value={this.state.node.url}
                   onChange={this.createChangeHandler("url")}
-                  autocomplete={{source: this.urlSource}}
+                  autocomplete={{select: this.onSelectUrl,source: this.urlSource, render: this.renderAutocomplete}}
                   />
               </Column>
             </Field>

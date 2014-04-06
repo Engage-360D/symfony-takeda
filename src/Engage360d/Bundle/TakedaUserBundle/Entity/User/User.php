@@ -98,6 +98,27 @@ class User extends BaseUser
     private $graduation;
 
     /**
+     * @var boolean $confirmInformation
+     *
+     * @ORM\Column(name="confirm_information", type="boolean", nullable=true)
+     */
+    private $confirmInformation;
+
+    /**
+     * @var boolean $confirmPersonalization
+     *
+     * @ORM\Column(name="confirm_personalization", type="boolean", nullable=true)
+     */
+    private $confirmPersonalization;
+
+    /**
+     * @var date $confirmSubscription
+     *
+     * @ORM\Column(name="confirm_subscription", type="boolean", nullable=true)
+     */
+    private $confirmSubscription;
+
+    /**
      * @var string $vkontakteId
      *
      * @ORM\Column(name="vkontakte_id", type="string", nullable=true)
@@ -231,6 +252,36 @@ class User extends BaseUser
     public function getGraduation()
     {
         return $this->graduation;
+    }
+
+    public function isConfirmInformation()
+    {
+        return $this->confirmInformation;
+    }
+
+    public function setConfirmInformation($confirmInformation)
+    {
+        $this->confirmInformation = $confirmInformation;
+    }
+
+    public function isConfirmPersonalization()
+    {
+        return $this->confirmPersonalization;
+    }
+
+    public function setConfirmPersonalization($confirmPersonalization)
+    {
+        $this->confirmPersonalization = $confirmPersonalization;
+    }
+
+    public function isConfirmSubscription()
+    {
+        return $this->confirmSubscription;
+    }
+
+    public function setConfirmSubscription($confirmSubscription)
+    {
+        $this->confirmSubscription = $confirmSubscription;
     }
 
     public function setVkontakteId($vkontakteId)

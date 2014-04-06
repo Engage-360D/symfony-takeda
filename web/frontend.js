@@ -31428,6 +31428,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -34211,8 +34213,8 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -34668,8 +34670,6 @@ module.exports=require('iECS2l');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
 },{}],151:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -34812,7 +34812,48 @@ module.exports = Visibility;
 
 },{"react":145}],155:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Checkbox, DateInput, FacebookButton, Field, Input, LinkedStateMixin, NumberSelect, React, RegionsInput, Registration, RegistrationMixin, Switch, ValidationMixin, VkontakteButton, moment, reqwest, validationConstraints;
+var Modal, React;
+
+React = require("react");
+
+Modal = React.createClass({displayName: 'Modal',
+  getDefaultProps: function() {
+    return {
+      title: null
+    };
+  },
+  getInitialState: function() {
+    return {
+      show: true
+    };
+  },
+  onClose: function() {
+    if (this.props.onClose) {
+      return this.props.onClose();
+    }
+  },
+  render: function() {
+    if (!this.state.show) {
+      return (React.DOM.div(null));
+    }
+    return (
+      React.DOM.div( {className:"Modal"}, 
+        React.DOM.button( {className:"ModalClose", onClick:this.onClose}),
+        React.DOM.div( {className:"ModalTitle"}, this.props.title),
+        React.DOM.div( {className:"ModalBody"}, 
+          this.props.children
+        )
+      )
+    );
+  }
+});
+
+module.exports = Modal;
+
+
+},{"react":145}],156:[function(require,module,exports){
+/** @jsx React.DOM */;
+var Checkbox, DateInput, FacebookButton, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, NumberSelect, React, RegionsInput, Registration, RegistrationMixin, Switch, ValidationMixin, VkontakteButton, moment, reqwest, validationConstraints;
 
 React = require("react");
 
@@ -34824,9 +34865,13 @@ LinkedStateMixin = require("../../mixins/LinkedStateMixin");
 
 RegistrationMixin = require("../../mixins/RegistrationMixin");
 
+HTMLElementContainerMixin = require("../../mixins/HTMLElementContainerMixin");
+
 ValidationMixin = require("../../mixins/ValidationMixin");
 
 validationConstraints = require("../../services/validationConstraints");
+
+Modal = require("../modal/Modal");
 
 Checkbox = require("../form/Checkbox");
 
@@ -34849,7 +34894,7 @@ FacebookButton = require("../social/login/FacebookButton");
 VkontakteButton = require("../social/login/VkontakteButton");
 
 Registration = React.createClass({displayName: 'Registration',
-  mixins: [LinkedStateMixin, ValidationMixin, RegistrationMixin],
+  mixins: [LinkedStateMixin, ValidationMixin, RegistrationMixin, HTMLElementContainerMixin],
   statics: {
     context: {
       base: 0,
@@ -34864,11 +34909,13 @@ Registration = React.createClass({displayName: 'Registration',
     };
   },
   getInitialState: function() {
-    console.log(this.props.user);
     return {
       showValidation: false,
       showDoctorValidation: false,
-      context: parseInt(this.props.context)
+      context: parseInt(this.props.context),
+      confirmPersonalization: true,
+      confirmSubscription: true,
+      confirmInformation: true
     };
   },
   componentWillMount: function() {
@@ -34914,12 +34961,18 @@ Registration = React.createClass({displayName: 'Registration',
         },
         graduation: {
           notBlank: validationConstraints.notBlank()
+        },
+        confirmInformation: {
+          isTrue: validationConstraints.isTrue()
+        },
+        confirmPersonalization: {
+          isTrue: validationConstraints.isTrue()
         }
       },
       component: {
         main: function(state, childrenValidity) {
           var field, fields, _i, _len;
-          fields = ["firstname", "email", "region", "birthday", "password", "confirmPassword"];
+          fields = ["firstname", "email", "region", "birthday", "password", "confirmPassword", "confirmInformation", "confirmPersonalization"];
           for (_i = 0, _len = fields.length; _i < _len; _i++) {
             field = fields[_i];
             if (!((childrenValidity[field] != null) && childrenValidity[field].valid)) {
@@ -34978,7 +35031,51 @@ Registration = React.createClass({displayName: 'Registration',
         showValidation: true
       });
     }
-    return this.register();
+    return this.register((function(_this) {
+      return function(response) {
+        var key, state, value, _ref, _ref1;
+        _this.showSuccess();
+        state = {};
+        _ref = _this.state;
+        for (key in _ref) {
+          value = _ref[key];
+          state[key] = null;
+        }
+        _ref1 = _this.getInitialState();
+        for (key in _ref1) {
+          value = _ref1[key];
+          state[key] = value;
+        }
+        return _this.setState(state);
+      };
+    })(this));
+  },
+  showSuccess: function() {
+    var modal, props;
+    modal = null;
+    props = {
+      onClose: function() {
+        return modal.setState({
+          show: false
+        });
+      },
+      title: "Регистрация",
+      children: this.renderModalBody()
+    };
+    return modal = React.renderComponent(Modal(props), this.createContainer());
+  },
+  renderModalBody: function() {
+    return (
+      React.DOM.div(null, 
+        Field( {className:"field_mod"}
+        ),
+        Field( {className:"field_mod"}, 
+          React.DOM.span(null, "Для подтверждения регистрации на почтовый ящик " ),
+          React.DOM.strong(null, this.state.email), 
+          React.DOM.span(null,  " отправлено письмо.")
+        )
+      )
+    );
   },
   renderDoctorForm: function() {
     return (
@@ -35180,7 +35277,92 @@ Registration = React.createClass({displayName: 'Registration',
 module.exports = Registration;
 
 
-},{"../../mixins/LinkedStateMixin":167,"../../mixins/RegistrationMixin":169,"../../mixins/ValidationMixin":170,"../../services/validationConstraints":171,"../form/Checkbox":152,"../registration/Checkbox":157,"../registration/DateInput":158,"../registration/Field":159,"../registration/Input":160,"../registration/NumberSelect":161,"../registration/RegionsInput":162,"../registration/Switch":163,"../social/login/FacebookButton":164,"../social/login/VkontakteButton":165,"moment":6,"react":145,"reqwest":146}],156:[function(require,module,exports){
+},{"../../mixins/HTMLElementContainerMixin":169,"../../mixins/LinkedStateMixin":170,"../../mixins/RegistrationMixin":172,"../../mixins/ValidationMixin":174,"../../services/validationConstraints":175,"../form/Checkbox":152,"../modal/Modal":155,"../registration/Checkbox":159,"../registration/DateInput":160,"../registration/Field":161,"../registration/Input":162,"../registration/NumberSelect":163,"../registration/RegionsInput":164,"../registration/Switch":165,"../social/login/FacebookButton":166,"../social/login/VkontakteButton":167,"moment":6,"react":145,"reqwest":146}],157:[function(require,module,exports){
+/** @jsx React.DOM */;
+var Field, HTMLElementContainerMixin, Input, Modal, React, ResetPassword, ResetPasswordMixin;
+
+React = require("react");
+
+ResetPasswordMixin = require("../../mixins/ResetPasswordMixin");
+
+HTMLElementContainerMixin = require("../../mixins/HTMLElementContainerMixin");
+
+Modal = require("../modal/Modal");
+
+Field = require("../registration/Field");
+
+Input = require("../registration/Input");
+
+ResetPassword = React.createClass({displayName: 'ResetPassword',
+  mixins: [ResetPasswordMixin, HTMLElementContainerMixin],
+  getInitialState: function() {
+    return {
+      username: null
+    };
+  },
+  createModal: function() {
+    var props;
+    props = {
+      onClose: this.onClose,
+      title: "Восстановление пароля",
+      children: this.renderModalBody()
+    };
+    return this.modal = React.renderComponent(Modal(props), this.createContainer());
+  },
+  onShow: function(event) {
+    event.preventDefault();
+    if (this.modal) {
+      return this.modal.setState({
+        show: true
+      });
+    } else {
+      return this.createModal();
+    }
+  },
+  onClose: function() {
+    return this.modal.setState({
+      show: false
+    });
+  },
+  onChange: function(event) {
+    return this.setState({
+      username: event.target.value
+    });
+  },
+  onSubmit: function() {
+    return this.reset(this.state.username, function(response) {
+      return console.log(response);
+    });
+  },
+  renderModalBody: function() {
+    return (
+      React.DOM.div( {className:"enter"}, 
+        Field( {className:"field_mod field_mod_middle"}, 
+          React.DOM.div(null, "Введите email для восстановлени пароля")
+        ),
+        Field( {className:"field_mod"}, 
+          Input( {onChange:this.onChange})
+        ),
+        React.DOM.div(null, 
+				  React.DOM.button( {className:"btn", onClick:this.onSubmit}, "Прислать ссылку для восстановления")
+				)
+      )
+    );
+  },
+  render: function() {
+    return (
+      React.DOM.a( {className:"link link_black", href:"#", onClick:this.onShow}, 
+        React.DOM.span(null, "Забыли пароль"),
+        React.DOM.i(null)
+      )
+    );
+  }
+});
+
+module.exports = ResetPassword;
+
+
+},{"../../mixins/HTMLElementContainerMixin":169,"../../mixins/ResetPasswordMixin":173,"../modal/Modal":155,"../registration/Field":161,"../registration/Input":162,"react":145}],158:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, Checkbox, LinkedStateMixin, RadioGroup, React, Test, ValidationMixin, Visibility, validationConstraints;
 
@@ -35294,7 +35476,7 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":167,"../../mixins/ValidationMixin":170,"../../services/validationConstraints":171,"../form/BooleanRadioGroup":151,"../form/Checkbox":152,"../form/RadioGroup":153,"../helpers/Visibility":154,"react":145}],157:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":170,"../../mixins/ValidationMixin":174,"../../services/validationConstraints":175,"../form/BooleanRadioGroup":151,"../form/Checkbox":152,"../form/RadioGroup":153,"../helpers/Visibility":154,"react":145}],159:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 
@@ -35324,7 +35506,7 @@ Checkbox = React.createClass({displayName: 'Checkbox',
 module.exports = Checkbox;
 
 
-},{"../../mixins/ModsMixin":168,"react":145}],158:[function(require,module,exports){
+},{"../../mixins/ModsMixin":171,"react":145}],160:[function(require,module,exports){
 /** @jsx React.DOM */;
 var DateInput, Pikaday, React;
 
@@ -35382,7 +35564,7 @@ DateInput = React.createClass({displayName: 'DateInput',
 module.exports = DateInput;
 
 
-},{"pikaday":8,"react":145}],159:[function(require,module,exports){
+},{"pikaday":8,"react":145}],161:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Field, ModsMixin, React;
 
@@ -35404,7 +35586,7 @@ Field = React.createClass({displayName: 'Field',
 module.exports = Field;
 
 
-},{"../../mixins/ModsMixin":168,"react":145}],160:[function(require,module,exports){
+},{"../../mixins/ModsMixin":171,"react":145}],162:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Input, React;
 
@@ -35439,7 +35621,7 @@ Input = React.createClass({displayName: 'Input',
 module.exports = Input;
 
 
-},{"react":145}],161:[function(require,module,exports){
+},{"react":145}],163:[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, NumberSelect, React, moment;
 
@@ -35505,7 +35687,7 @@ NumberSelect = React.createClass({displayName: 'NumberSelect',
 module.exports = NumberSelect;
 
 
-},{"jquery":"6StMfs","moment":6,"react":145,"selectize":"iECS2l"}],162:[function(require,module,exports){
+},{"jquery":"6StMfs","moment":6,"react":145,"selectize":"iECS2l"}],164:[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, React, RegionsInput;
 
@@ -35590,7 +35772,7 @@ RegionsInput = React.createClass({displayName: 'RegionsInput',
 module.exports = RegionsInput;
 
 
-},{"jquery":"6StMfs","react":145,"selectize":"iECS2l"}],163:[function(require,module,exports){
+},{"jquery":"6StMfs","react":145,"selectize":"iECS2l"}],165:[function(require,module,exports){
 /** @jsx React.DOM */;
 var LinkedValueUtils, React, Switch;
 
@@ -35616,39 +35798,15 @@ Switch = React.createClass({displayName: 'Switch',
 module.exports = Switch;
 
 
-},{"react":145,"react/lib/LinkedValueUtils":29}],164:[function(require,module,exports){
+},{"react":145,"react/lib/LinkedValueUtils":29}],166:[function(require,module,exports){
 /** @jsx React.DOM */;
 var FacebookButton, React;
 
 React = require("react");
 
 FacebookButton = React.createClass({displayName: 'FacebookButton',
-  statics: {
-    FB_APP_ID: 245182945513174
-  },
-  componentWillMount: function() {
-    var script;
-    script = document.createElement("script");
-    script.setAttribute("src", "//connect.facebook.net/ru_RU/all.js");
-    script.onload = this.onLoad;
-    return document.head.appendChild(script);
-  },
-  onLoad: function() {
-    return FB.init({
-      appId: FacebookButton.FB_APP_ID,
-      status: true
-    });
-  },
   onClick: function() {
-    return FB.getLoginStatus(function(response) {
-      if (response.status === "connected") {
-        return window.open("/connect/facebook", "", "width=800,height=650");
-      } else {
-        return FB.login(function(response) {
-          return window.open("/connect/facebook", "", "width=800,height=650");
-        });
-      }
-    });
+    return window.open("/connect/facebook", "", "width=800,height=650");
   },
   render: function() {
     return this.transferPropsTo((
@@ -35662,7 +35820,7 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
 module.exports = FacebookButton;
 
 
-},{"react":145}],165:[function(require,module,exports){
+},{"react":145}],167:[function(require,module,exports){
 /** @jsx React.DOM */;
 var React, VkontakteButton;
 
@@ -35684,14 +35842,15 @@ VkontakteButton = React.createClass({displayName: 'VkontakteButton',
 module.exports = VkontakteButton;
 
 
-},{"react":145}],166:[function(require,module,exports){
+},{"react":145}],168:[function(require,module,exports){
 var React, getNodes, sharedComponents;
 
 React = require("react");
 
 sharedComponents = {
   Test: require("./components/modules/Test"),
-  Registration: require("./components/modules/Registration")
+  Registration: require("./components/modules/Registration"),
+  ResetPassword: require("./components/modules/ResetPassword")
 };
 
 getNodes = function() {
@@ -35731,7 +35890,36 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-},{"./components/modules/Registration":155,"./components/modules/Test":156,"react":145}],167:[function(require,module,exports){
+},{"./components/modules/Registration":156,"./components/modules/ResetPassword":157,"./components/modules/Test":158,"react":145}],169:[function(require,module,exports){
+var HTMLElementContainerMixin;
+
+HTMLElementContainerMixin = {
+  createContainer: function() {
+    var body, container;
+    body = this.getBody();
+    container = document.createElement("div");
+    body.appendChild(container);
+    return container;
+  },
+  getBody: function() {
+    var body;
+    if (document.querySelectorAll) {
+      body = document.querySelectorAll("body");
+    } else {
+      body = document.getElementsByTagName("body");
+    }
+    if (body[0]) {
+      return body[0];
+    } else {
+      return body;
+    }
+  }
+};
+
+module.exports = HTMLElementContainerMixin;
+
+
+},{}],170:[function(require,module,exports){
 var LinkedStateMixin, ReactLink, ReactStateSetters;
 
 ReactStateSetters = require("react/lib/ReactStateSetters");
@@ -35754,7 +35942,7 @@ LinkedStateMixin = {
 module.exports = LinkedStateMixin;
 
 
-},{"react/lib/ReactLink":62,"react/lib/ReactStateSetters":79}],168:[function(require,module,exports){
+},{"react/lib/ReactLink":62,"react/lib/ReactStateSetters":79}],171:[function(require,module,exports){
 var ModsMixin,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -35777,7 +35965,7 @@ ModsMixin = {
 module.exports = ModsMixin;
 
 
-},{}],169:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 var RegistrationMixin, extractFields, fields, moment, reqwest;
 
 reqwest = require("reqwest");
@@ -35820,6 +36008,36 @@ RegistrationMixin = {
           return console.log(err);
         };
       })(this),
+      success: callback
+    });
+  }
+};
+
+module.exports = RegistrationMixin;
+
+
+},{"moment":6,"reqwest":146}],173:[function(require,module,exports){
+var ResetPasswordMixin, reqwest;
+
+reqwest = require("reqwest");
+
+ResetPasswordMixin = {
+  reset: function(username, callback) {
+    var data;
+    data = JSON.stringify({
+      username: username
+    });
+    return reqwest({
+      url: "/api/users/resets",
+      type: "json",
+      method: "POST",
+      contentType: "application/json",
+      data: data,
+      error: (function(_this) {
+        return function(err) {
+          return console.log(err);
+        };
+      })(this),
       success: (function(_this) {
         return function(response) {
           return console.log(response);
@@ -35829,10 +36047,10 @@ RegistrationMixin = {
   }
 };
 
-module.exports = RegistrationMixin;
+module.exports = ResetPasswordMixin;
 
 
-},{"moment":6,"reqwest":146}],170:[function(require,module,exports){
+},{"reqwest":146}],174:[function(require,module,exports){
 var ValidationMixin, validateState, validateValue,
   __slice = [].slice;
 
@@ -35907,7 +36125,7 @@ ValidationMixin = {
 module.exports = ValidationMixin;
 
 
-},{}],171:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 var moment, validationConstraints;
 
 moment = require("moment");
@@ -35938,4 +36156,4 @@ validationConstraints = {
 module.exports = validationConstraints;
 
 
-},{"moment":6}]},{},[166])
+},{"moment":6}]},{},[168])
