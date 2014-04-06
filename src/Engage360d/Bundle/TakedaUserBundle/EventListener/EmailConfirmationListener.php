@@ -15,6 +15,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 
 class EmailConfirmationListener implements EventSubscriberInterface
 {
@@ -23,14 +26,16 @@ class EmailConfirmationListener implements EventSubscriberInterface
     private $router;
     private $session;
     private $templating;
+    private $container;
 
-    public function __construct($mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session, $templating)
+    public function __construct($mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session, $templating, Container $container)
     {
         $this->mailer = $mailer;
         $this->tokenGenerator = $tokenGenerator;
         $this->router = $router;
         $this->session = $session;
         $this->templating = $templating;
+        $this->container = $container;
     }
 
     public static function getSubscribedEvents()
@@ -45,7 +50,7 @@ class EmailConfirmationListener implements EventSubscriberInterface
         $user = $event->getUser();
 
         $this->sendConfirmationEmailMessage($user);
-
+        $this->authenticateUser($user);
         $this->session->set('engage360d_takeda_user_send_confirmation_email/email', $user->getEmail());
     }
 
@@ -77,5 +82,15 @@ class EmailConfirmationListener implements EventSubscriberInterface
             ->setBody($body);
 
         $this->mailer->send($message);
+    }
+
+    protected function authenticateUser(UserInterface $user)
+    {
+        $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($token);
+     
+        $request = $this->container->get("request");
+        $event = new InteractiveLoginEvent($request, $token);
+        $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);
     }
 }

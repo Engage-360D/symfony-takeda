@@ -13,31 +13,7 @@
 				<div class="layout__column">
 					<div class="title title_level-2">Вход</div>
 					<!-- data -->
-					<div class="data">
-						<div class="data__title">Личные данные</div>
-						<!-- enter -->
-						<div class="enter">
-						  <form action="/user/check" method="post">
-  							<div class="field field_mod">
-  								<div class="field__in">
-  									<input type="text" placeholder="Email" id="username" name="_username">
-  								</div>
-  							</div>
-  							<div class="field">
-  								<div class="field__in">
-  									<input type="password" placeholder="Пароль" id="password" name="_password">
-  								</div>
-  							</div>
-  							<div class="enter__link">
-  							  <div data-react-component="ResetPassword"></div>
-  							</div>
-  							<div class="enter__btn">
-  							  <input type="hidden" name="_target_path" value="/account" />
-  								<button class="btn">Войти</button>
-  							</div>
-  						</form>
-						</div>
-					</div>
+					<div data-react-component="Login"></div> 
 				</div>
 				<div class="layout__column">
 					<div class="title title_level-2">Регистрация</div>

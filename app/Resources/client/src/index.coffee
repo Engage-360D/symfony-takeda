@@ -5,6 +5,7 @@ sharedComponents =
   Test: require "./components/modules/Test"
   Registration: require "./components/modules/Registration"
   ResetPassword: require "./components/modules/ResetPassword"
+  Login: require "./components/modules/Login"
 
 
 getNodes = ->

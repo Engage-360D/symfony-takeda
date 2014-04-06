@@ -1,7 +1,7 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
-
+reqwest = require "reqwest"
 
 FacebookButton = React.createClass
   onClick: ->

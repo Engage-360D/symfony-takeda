@@ -7,5 +7,6 @@ services:
             - @router
             - @session
             - @templating
+            - @service_container
         tags:
             - { name: kernel.event_subscriber }

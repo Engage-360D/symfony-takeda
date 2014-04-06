@@ -38,6 +38,8 @@ Registration = React.createClass
       registration: 2
 
   getDefaultProps: ->
+    showDoctor: true
+    reloadOnRegister: true
     context: Registration.context.base
     user: null
 
@@ -50,35 +52,44 @@ Registration = React.createClass
     confirmInformation: true
 
   componentWillMount: ->
+    window.addEventListener "registrationSuccess", =>
+      unless @isChildrenWindow()
+        @props.valueLink.requestChange true if @props.valueLink
+        @props.onRegistrationSuccess() if @props.onRegistrationSuccess
     if @props.user
-      @setState JSON.parse @props.user
+      if typeof(@props.user) is "object"
+        @setState @props.user
+      else
+        try
+          @setState JSON.parse @props.user
+        catch e then ->
 
   getValidationConfig: ->
     children:
       firstname:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       email:
         email: validationConstraints.email()
       region:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       birthday:
         date: validationConstraints.date()
       password:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       confirmPassword:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       specialization:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       experience:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       address:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       phone:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       institution:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       graduation:
-        notBlank: validationConstraints.notBlank()
+        notEmpty: validationConstraints.notEmpty()
       confirmInformation:
         isTrue: validationConstraints.isTrue()
       confirmPersonalization:
@@ -132,11 +143,22 @@ Registration = React.createClass
   showSuccess: ->
     modal = null
     props =
-      onClose: ->
+      onClose: =>
         modal.setState show: false
+        if @isChildrenWindow()
+          event = new Event "registrationSuccess"
+          window.opener.dispatchEvent event
+          window.close()
+        else
+          @props.valueLink.requestChange true if @props.valueLink
+          @props.onRegistrationSuccess() if @props.onRegistrationSuccess
+          window.location.reload() if @props.reloadOnRegister
       title: "Регистрация"
       children: @renderModalBody()
     modal = React.renderComponent Modal(props), @createContainer()
+
+  isChildrenWindow: ->
+    location.href.indexOf("connect") isnt -1
 
   renderModalBody: ->
     `(
@@ -152,6 +174,8 @@ Registration = React.createClass
     )`
 
   renderDoctorForm: ->
+    return unless @props.showDoctor
+
     `(
       <div>
         <div className="data__title">
