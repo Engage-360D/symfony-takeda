@@ -53,7 +53,7 @@ Pages = React.createClass
         @setState pages: pages
 
   removePage: (id) ->
-    Ctx.get("ajax").get "/api/pages/#{id}", =>
+    Ctx.get("ajax").remove "/api/pages/#{id}", =>
         pages = @state.pages
         updated = []
         for page, index in pages
