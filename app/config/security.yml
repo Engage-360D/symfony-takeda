@@ -19,9 +19,15 @@ security:
         oauth_token:
             pattern:    ^/oauth/v2/token
             security:   false
+            
+        api:
+          pattern: ^/api
+          fos_oauth:  true
+          http_basic: ~
+          anonymous:  true
 
         main:
-            pattern: ^/|^/oauth/v2/auth|^/api
+            pattern: ^/
             anonymous:  true
             fos_oauth:  true
             http_basic: ~
