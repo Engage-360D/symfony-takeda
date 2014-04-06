@@ -31,13 +31,8 @@ Category = React.createClass
       if result[0].handler is "categories.edit"
         id = result[0].params.id
         if id > 0
-          $.oajax
-            url: "/api/categories/#{id}"
-            jso_provider: "engage360d"
-            jso_allowia: true
-            dataType: "json"
-            success: (category) =>
-              @setState active: true, category: category
+          Ctx.get("ajax").get "/api/categories/#{id}", (category) =>
+            @setState active: true, category: category
         else
           @setState active: true, category: {}
       else
