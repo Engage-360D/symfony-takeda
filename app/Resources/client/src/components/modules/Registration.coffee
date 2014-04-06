@@ -5,10 +5,12 @@ moment = require "moment"
 reqwest = require "reqwest"
 LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 RegistrationMixin = require "../../mixins/RegistrationMixin"
+HTMLElementContainerMixin = require "../../mixins/HTMLElementContainerMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
 
 
+Modal = require "../modal/Modal"
 Checkbox = require "../form/Checkbox"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
@@ -22,7 +24,12 @@ VkontakteButton = require "../social/login/VkontakteButton"
 
 
 Registration = React.createClass
-  mixins: [LinkedStateMixin, ValidationMixin, RegistrationMixin]
+  mixins: [
+    LinkedStateMixin,
+    ValidationMixin,
+    RegistrationMixin,
+    HTMLElementContainerMixin
+  ]
 
   statics:
     context:
@@ -35,10 +42,12 @@ Registration = React.createClass
     user: null
 
   getInitialState: ->
-    console.log @props.user
     showValidation: false
     showDoctorValidation: false
     context: parseInt @props.context
+    confirmPersonalization: true
+    confirmSubscription: true
+    confirmInformation: true
 
   componentWillMount: ->
     if @props.user
@@ -70,11 +79,15 @@ Registration = React.createClass
         notBlank: validationConstraints.notBlank()
       graduation:
         notBlank: validationConstraints.notBlank()
+      confirmInformation:
+        isTrue: validationConstraints.isTrue()
+      confirmPersonalization:
+        isTrue: validationConstraints.isTrue()
     component:
       main: (state, childrenValidity) ->
-        #"confirmInformation", "confirmPersonalization", "confirmSubscription"
         fields = [
-          "firstname", "email", "region", "birthday", "password", "confirmPassword"
+          "firstname", "email", "region", "birthday", "password", "confirmPassword",
+          "confirmInformation", "confirmPersonalization"
         ]
         for field in fields
           return false unless (childrenValidity[field]? and childrenValidity[field].valid)
@@ -107,7 +120,36 @@ Registration = React.createClass
   handleRegistrationClick: ->
     if @validity.component.main.invalid
       return @setState showValidation: true
-    @register()
+    @register (response) =>
+      @showSuccess()
+      state = {}
+      for key, value of @state
+        state[key] = null
+      for key, value of @getInitialState()
+        state[key] = value
+      @setState state
+  
+  showSuccess: ->
+    modal = null
+    props =
+      onClose: ->
+        modal.setState show: false
+      title: "Регистрация"
+      children: @renderModalBody()
+    modal = React.renderComponent Modal(props), @createContainer()
+
+  renderModalBody: ->
+    `(
+      <div>
+        <Field className="field_mod">
+        </Field>
+        <Field className="field_mod">
+          <span>Для подтверждения регистрации на почтовый ящик </span>
+          <strong>{this.state.email}</strong> 
+          <span> отправлено письмо.</span>
+        </Field>
+      </div>
+    )`
 
   renderDoctorForm: ->
     `(

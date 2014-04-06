@@ -65,6 +65,9 @@ facebook_login:
 vkontakte_login:
     pattern: /user/login_vkontakte
 
+engage360d_takeda_user_logout:
+    pattern: /account/logout
+
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"
 

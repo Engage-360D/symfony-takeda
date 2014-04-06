@@ -36,13 +36,8 @@ Page = React.createClass
       if result[0].handler is "categories.pages.edit"
         id = result[0].params.pageId
         if id > 0
-          $.oajax
-            url: "/api/pages/#{id}"
-            jso_provider: "engage360d"
-            jso_allowia: true
-            dataType: "json"
-            success: (page) =>
-              @setState active: true, category: result[0].params.id, page: page
+          Ctx.get("ajax").get "/api/pages/#{id}", (page) =>
+            @setState active: true, category: result[0].params.id, page: page
         else
           @setState active: true, category: result[0].params.id, page: {}
       else
@@ -67,24 +62,11 @@ Page = React.createClass
   onSave: ->
     page = $.extend @state.page, category: @state.category
     if page.id
-      action = "/api/pages/#{page.id}"
-      method = "PUT"
-      data =
-        title: page.title
-        blocks: page.blocks
+      delete page.slug
+      Ctx.get("ajax").put "/api/pages/#{page.id}", page, (response) =>
+        Ctx.get("router").handle "#!/categories/#{@state.category}"
     else
-      action = "/api/pages"
-      method = "POST"
-      data = page
-
-    $.oajax
-      url: action
-      type: method
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
-      data: data
-      success: (response) =>
+      Ctx.get("ajax").post "/api/pages", page, (response) =>
         Ctx.get("router").handle "#!/categories/#{@state.category}"
 
   onCancel: ->
@@ -106,6 +88,14 @@ Page = React.createClass
               <TabPanel>
                 <Tab title="Общая информация">
                   <Container/>
+                  <Field>
+                    <Column mods={["Size3"]}>
+                      <Label>Страница категории</Label>
+                    </Column>
+                    <Column mods={["Size6"]}>
+                      <Input type="checkbox" value={this.state.page.main} onChange={this.createChangeHandler("main")}/>
+                    </Column>
+                  </Field>
                   <Field>
                     <Column mods={["Size3"]}>
                       <Label>Заголовок</Label>
@@ -136,7 +126,7 @@ Page = React.createClass
                       <Label>Keywords</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.keywords} onChange={this.createChangeHandler("seoKeywords")}/>
+                      <Input value={this.state.page.seoKeywords} onChange={this.createChangeHandler("seoKeywords")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -144,7 +134,7 @@ Page = React.createClass
                       <Label>Description</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.description} onChange={this.createChangeHandler("seoDescription")}/>
+                      <Input value={this.state.page.seoDescription} onChange={this.createChangeHandler("seoDescription")}/>
                     </Column>
                   </Field>
                 </Tab>

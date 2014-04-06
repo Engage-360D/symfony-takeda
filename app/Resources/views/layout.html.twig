@@ -12,13 +12,10 @@
 		<!-- nav -->
 		<nav class="nav">
 			<ul>
-				<li class="nav__cabina is-active"><a href="#"><span>Личный кабинет</span><i></i></a></li>
-				<li><a href="#">Препарат</a></li>
-				<li><a href="#">Болезни группы риска</a></li>
-				<li class="is-active"><a href="#">Полезно знать</a></li>
-				<li><a href="#">Анализ рисков</a></li>
-				<li><a href="#">Поиск учереждений</a></li>
-				<li><a href="#">Пресс-центр</a></li>
+				<li class="nav__cabina is-active"><a href="{{ path('engage360d_takeda_user_account') }}"><span>Личный кабинет</span><i></i></a></li>
+				{% for menu in takeda_menu("Главное меню") %}
+			    <li class=""><a href="{{ takeda_menu_url(menu) }}"><span>{{ menu.name|e }}</span><i></i></a></li>
+			  {% endfor %}
 			</ul>
 		</nav>
 		<!-- search-form -->

@@ -24,6 +24,7 @@ class Ajax
       success: callback
 
   put: (url, data, callback) ->
+    delete data.id if data.id
     $.oajax
       url: url
       type: "PUT"

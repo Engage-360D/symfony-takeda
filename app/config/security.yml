@@ -34,24 +34,24 @@ security:
             form_login:
                 login_path: engage360d_takeda_user_login
                 check_path:  engage360d_takeda_user_login_check
-                default_target_path: /user
+                default_target_path: /account
                 provider: fos_userbundle
                 use_referer: true
                 use_forward: true
-                failure_path: /user/login
+                failure_path: /account
                 failure_forward: true
                 post_only: true
             oauth:
                 resource_owners:
                     facebook:      facebook_login
                     vkontakte:     vkontakte_login
-                login_path:        /user/login
+                login_path:        /account
                 failure_path:      engage360d_security_user_connect
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
             logout:
-                path:   /user/logout
-                target: /user/login
+                path:   /account/logout
+                target: /account
                 invalidate_session: true
 
     access_control:

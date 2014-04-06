@@ -7,7 +7,7 @@ require "sirTrevor"
 Editor = React.createClass
   getDefaultProps: ->
     blocks: []
-    blockTypes: ["Text", "List", "Video", "Quote", "Iframe"]
+    blockTypes: ["Text"]
 
   getInitialState: ->
     id: null
