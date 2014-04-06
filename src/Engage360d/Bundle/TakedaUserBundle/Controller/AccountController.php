@@ -15,14 +15,14 @@ class AccountController extends Controller
 {
     public function accountAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $token = $this->container->get('security.context')->getToken();
 
-        if (null === $user || false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if (null === $token || null === $token->getUser() || false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
           return $this->render('Engage360dTakedaUserBundle:Account:login.html.twig');
         }
 
         return $this->render('Engage360dTakedaUserBundle:Account:account.html.twig', array(
-            'user' => $user,
+            'user' => $token->getUser(),
         ));
     }
 
