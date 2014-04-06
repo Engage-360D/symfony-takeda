@@ -25,12 +25,14 @@ security:
           fos_oauth:  true
           http_basic: ~
           anonymous:  true
+          context: auth
 
         main:
             pattern: ^/
             anonymous:  true
             fos_oauth:  true
             http_basic: ~
+            context: auth
             form_login:
                 login_path: engage360d_takeda_user_login
                 check_path:  engage360d_takeda_user_login_check

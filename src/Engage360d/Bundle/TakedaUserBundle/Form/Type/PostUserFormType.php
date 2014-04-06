@@ -51,6 +51,8 @@ class PostUserFormType extends AbstractType
                 'description' => 'User confirm subscription',
                 'required' => false
             ))
+            ->add('facebookId', 'text', array('description' => 'User facebook ID'))
+            ->add('vkontakteId', 'text', array('description' => 'User vkontakte ID'))
         ;
     }
 

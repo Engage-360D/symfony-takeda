@@ -13,6 +13,8 @@ DateInput = require "../form/DateInput"
 Range = require "../form/Range"
 Input = require "../registration/Input"
 Visibility = require "../helpers/Visibility"
+Registration = require "./Registration"
+Login = require "./Login"
 
 
 Test = React.createClass
@@ -362,6 +364,16 @@ Test = React.createClass
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="layout__column">
+                <Registration
+                  user={{}}
+                  showDoctor={false}
+                  reloadOnRegister={false}
+                  valueLink={this.linkState('registered')}/>
+                <Login
+                  reloadOnSuccess={false}
+                  valueLink={this.linkState('logged')}/>
               </div>
             </div>
           </div>

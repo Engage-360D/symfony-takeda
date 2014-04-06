@@ -290,12 +290,23 @@ class User extends BaseUser
         $this->confirmSubscription = $confirmSubscription;
     }
 
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+        if (!$this->username) {
+            $this->username = $facebookId;
+        }
+    }
+
     public function setVkontakteId($vkontakteId)
     {
         $this->vkontakteId = $vkontakteId;
+        if (!$this->username) {
+            $this->username = $vkontakteId;
+        }
     }
 
-    public function getVkontaktekId()
+    public function getVkontakteId()
     {
         return $this->vkontakteId;
     }

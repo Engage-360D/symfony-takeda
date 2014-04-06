@@ -3,7 +3,8 @@ moment = require "moment"
 
 fields = [
   "firstname", "email", "region", "specialization",
-  "experience", "address", "phone", "institution"
+  "experience", "address", "phone", "institution",
+  "facebookId", "vkontakteId"
 ]
 
 extractFields = (data) ->
@@ -30,6 +31,18 @@ RegistrationMixin =
       error: (err) =>
         console.log err
       success: callback
+
+  login: (username, password) ->
+    reqwest
+      url: "/user/check"
+      type: "json"
+      method: "POST"
+      contentType: "application/json"
+      data:  JSON.stringify _username: username, _password: password
+      error: (err) =>
+        console.log err
+      success: (response) =>
+        console.log response
 
 
 module.exports = RegistrationMixin

@@ -39,6 +39,7 @@ class AccountController extends Controller
 
         $user->setConfirmationToken(null);
         $user->setEnabled(true);
+        $user->addRole("ROLE_CONFIRMED");
 
         $userManager->updateUser($user);
 
@@ -46,6 +47,29 @@ class AccountController extends Controller
 
         $url = $this->container->get('router')->generate('engage360d_takeda_user_account');
         return new RedirectResponse($url);
+    }
+
+    public function successTokenAuthAction(Request $request)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $clientManager = $this->container->get('fos_oauth_server.client_manager.default');
+        $client = $clientManager->createClient();
+        $client->setRedirectUris(array("/"));
+        $client->setAllowedGrantTypes(array("token"));
+        $clientManager->updateClient($client);
+
+        $params = $request->query->all(); 
+        $params['client_id'] = $client->getPublicId();
+        $params['client_secret'] = $client->getSecret();
+        $params['grant_type'] = 'client_credentials';
+        $params['redirect_uri'] = '/';
+        $params['response_type'] = 'token';
+        $request->query->replace($params);
+
+        return $this->container
+            ->get('fos_oauth_server.server')
+            ->finishClientAuthorization(true, $user, $request, null);
     }
 
     protected function authenticateUser(UserInterface $user)
