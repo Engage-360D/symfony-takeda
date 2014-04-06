@@ -2,20 +2,7 @@
 
 namespace Engage360d\Bundle\TakedaTestBundle\Score;
 
-
-function roundToNearest($value, $points) {
-    $distances = array_map(function ($point) use ($value) {
-        return array(
-            "distance" => abs($point - $value),
-            "point" => $point,
-        );
-    }, $points);
-    usort($distances, function($a, $b) {
-        return $a["distance"] - $b["distance"];
-    });
-    return $distances[0]["point"];
-}
-
+use Engage360d\Bundle\TakedaTestBundle\Helpers;
 
 class Calculator
 {
@@ -648,10 +635,10 @@ class Calculator
   
     public static function calculate($sex, $age, $smoking, $systolicPressure, $cholesterol)
     {
-        $age = roundToNearest($age, array(40, 50, 55, 60, 65));
+        $age = Helpers::roundToNearest($age, array(40, 50, 55, 60, 65));
         $smoking = (int)(bool) $smoking;
-        $systolicPressure = roundToNearest($systolicPressure, array(120, 140, 160, 180));
-        $cholesterol = roundToNearest($cholesterol, array(4, 5, 6, 7, 8));
+        $systolicPressure = Helpers::roundToNearest($systolicPressure, array(120, 140, 160, 180));
+        $cholesterol = Helpers::roundToNearest($cholesterol, array(4, 5, 6, 7, 8));
 
         return self::$scoreMatrix[$sex][$age][$smoking][$systolicPressure][$cholesterol];
     }

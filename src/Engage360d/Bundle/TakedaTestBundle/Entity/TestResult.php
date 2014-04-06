@@ -6,6 +6,7 @@ use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Engage360d\Bundle\TakedaTestBundle\Score\Calculator as ScoreCalculator;
+use Engage360d\Bundle\TakedaTestBundle\Recommendations;
 
 /**
  * @ORM\Entity
@@ -306,7 +307,20 @@ class TestResult
             $this->getCholesterolLevel()
         );
     }
-    
+
+    public function getRecommendations()
+    {
+        return Recommendations::match(
+            $this->getId(),
+            $this->isSmoking(),
+            $this->getArterialPressure(),
+            $this->isExtraSalt(),
+            $this->getCholesterolLevel(),
+            $this->getPhysicalActivity(),
+            $this->getBmi()
+        );
+    }
+
     public function validateSugarProblemsOrDrugs(ExecutionContextInterface $context)
     {
         if ($this->diabetes) {
