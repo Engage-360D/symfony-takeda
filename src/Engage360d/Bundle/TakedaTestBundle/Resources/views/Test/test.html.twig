@@ -9,6 +9,7 @@
 </div>
 <div data-react-component="Test"></div>
 
+{#
 <hr />
 <hr />
 <hr />
@@ -16,492 +17,197 @@
 <hr />
 
 <!-- page -->
-<div class="page">
-  <!-- city -->
-  <div class="city">
-    <a href="#"><i></i><span>Москва</span></a>
-  </div>
-  <div class="title">Анализ риска</div>
-  <div class="title title_level-2 title_center">Шаг 1. Данные пациента</div>
-  <!-- layout -->
-  <div class="layout">
-    <div class="layout__column">
-      <!-- data -->
-      <div class="data">
-        <div class="data__title">Личные данные</div>
-        <div class="data__row">
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item1" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item1"><span>Нет</span></label>
-            </div>
-          </div>
-          <div class="data__label">Вы являетесь врачом?</div>
-        </div>
-      </div>
-      <!-- data -->
-      <div class="data">
-        <div class="data__title">Данные пациента</div>
-        <div class="data__row">
-          <div class="data__label">Данные пациента</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item2" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item2"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Возраст</div>
-          <div class="data__content">
-            <div class="field">
-              <div class="field__in">
-                <input type="text" value="46">
-              </div>
-              <div class="field__label">лет</div>
-            </div>
-            <!-- calendar -->
-            <div class="calendar is-open">
-              <div class="calendar__ico"></div>
-              <div class="calendar__in">
-                <button class="calendar__close"></button>
-                <div class="calendar__title">Дата рождения</div>
-                <div class="calendar__date">
-                  <div class="calendar__row">
-                    <div class="calendar__cell">
-                      <button class="calendar__up"></button>
-                    </div>
-                    <div class="calendar__cell">
-                      <button class="calendar__up"></button>
-                    </div>
-                    <div class="calendar__cell">
-                      <button class="calendar__up"></button>
-                    </div>
-                  </div>
-                  <div class="calendar__row">
-                    <div class="calendar__cell calendar__cell_left">Июль</div>
-                    <div class="calendar__cell">28</div>
-                    <div class="calendar__cell">1999</div>
-                  </div>
-                  <div class="calendar__row is-active">
-                    <div class="calendar__cell calendar__cell_left">Август</div>
-                    <div class="calendar__cell">29</div>
-                    <div class="calendar__cell">2000</div>
-                  </div>
-                  <div class="calendar__row">
-                    <div class="calendar__cell calendar__cell_left">Сентябрь</div>
-                    <div class="calendar__cell">30</div>
-                    <div class="calendar__cell">2001</div>
-                  </div>
-                  <div class="calendar__row">
-                    <div class="calendar__cell">
-                      <button class="calendar__down"></button>
-                    </div>
-                    <div class="calendar__cell">
-                      <button class="calendar__down"></button>
-                    </div>
-                    <div class="calendar__cell">
-                      <button class="calendar__down"></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="calendar__footer">
-                  <button class="btn">Выбрать</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Рост</div>
-          <div class="data__content">
-            <div class="field">
-              <div class="field__in">
-                <input type="text" value="184">
-              </div>
-              <div class="field__label">см</div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Вес</div>
-          <div class="data__content">
-            <div class="field">
-              <div class="field__in">
-                <input type="text" value="64">
-              </div>
-              <div class="field__label">кг</div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Вы курите?</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item3" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item3"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__content">
-            <div class="data__label">Уровень общего холестирина</div>
-            <!-- range -->
-            <div class="range">
-              <div class="range__from"><span>3</span><i></i></div>
-              <div class="range__to"><span>9</span><i></i></div>
-              <div class="range__in">
-                <div class="range__line"></div>
-                <div class="range__val" style="left: 60%">7.5</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Принимаете лекарства для снижения уровня холестерина</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item4"><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item4" checked=""><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="layout__column">
-      <!-- data -->
-      <div class="data">
-        <div class="data__title">История пациента</div>
-        <div class="data__row">
-          <div class="data__label">Страдаете ли вы диабетом</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item5" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item5"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Отмечалось ли повышение уровня сахара в крови</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item6" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item6"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="data__row data__row_wide">
-          <div class="data__label">Артериальное давление в мм рт. ст.</div>
-          <div class="data__content">
-            <!-- range -->
-            <div class="range">
-              <div class="range__from"><span>80</span><i></i></div>
-              <div class="range__to"><span>200</span><i></i></div>
-              <div class="range__in">
-                <div class="range__line"></div>
-                <div class="range__val" style="left: 60%">120</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Принимаете ли препараты для понижения давления?</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item7" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item7"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="data__row data__row_wide">
-          <div class="data__label">Сколько минут в неделю занимаетесь физической активностью</div>
-          <div class="data__content">
-            <!-- range -->
-            <div class="range is-revert">
-              <div class="range__from"><span>80</span><i></i></div>
-              <div class="range__to"><span>200</span><i></i></div>
-              <div class="range__in">
-                <div class="range__line"></div>
-                <div class="range__val" style="left: 60%">120</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Был ли у вас инфаркт/инсульт?</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item8" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item8"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="page page_step_3">
+	<!-- result -->
+	<div class="result">
+		<div class="result__top">
+			<div class="result__send is-active">
+				<i class="result__send-ico"></i>
+				<div class="result__send-in">
+					<div class="field">
+						<div class="field__label">Отправить результат тестирования по электронной почте</div>
+						<div class="field__in">
+							<input type="text" placeholder="email получателя"> 
+						</div>
+					</div>
+					<button class="btn">Отправить</button>
+				</div>
+			</div>
+			<div class="help help_white">
+				<div class="help__ico"></div>
+			</div>
+		</div>
+		<div class="result__val">
+			<div class="result__val-blue" style="width: 32%"><span>32</span></div>
+			<div class="result__val-red"></div>
+		</div>
+		<div class="result__diagnosis">Вероятность тяжелых сердечно-сосудистых заболеваний в ближайшие 10 лет</div>
+		<div class="result__text"><i class="result__attention-big"></i>Не соответствует норме. Воспользуйтесь нашими рекомендациями</div>
+		<!-- layout -->
+		<div class="layout">
+			<div class="layout__column">
+				<!-- recomm -->
+				<div class="recomm">
+					<div class="recomm__item">
+						<div class="recomm__title">Курение</div>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Группа риска</div>
+							</div>
+						</a>
+					</div>
+					<div class="recomm__item">
+						<div class="recomm__title">Физическая активность</div>
+						<a class="recomm__content" href="#">
+							<i class="recomm__bell"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Физическая активность</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы 10%</p>
+									<p>Необходимо улучшение</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__ok"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Вес</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы: 2%</p>
+									<p>Все хорошо</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="recomm__item">
+						<div class="recomm__title">Диета</div>
+						<a class="recomm__content" href="#">
+							<i class="recomm__bell is-active"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление соли</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы 10%</p>
+									<p>Необходимо улучшение</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы: 30%</p>
+									<p>Группа риска</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы: 30%</p>
+									<p>Группа риска</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__ask"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Дополнительная корректировка диеты</div>
+								<div class="recomm__text">
+									<p>Пройти опрос</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="layout__column">
+				<!-- recomm -->
+				<div class="recomm">
+					<div class="recomm__item">
+						<div class="recomm__title">Рекомендации по SCORE</div>
+						<a class="recomm__content" href="#">
+							<i class="recomm__bell is-active"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление соли</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы: 30%</p>
+									<p>Группа риска</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__ask"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Дополнительная корректировка диеты</div>
+								<div class="recomm__text">
+									<p>Пройти опрос</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="recomm__item">
+						<div class="recomm__title">Основные риски</div>
+						<a class="recomm__content" href="#">
+							<i class="recomm__bell is-active"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление соли</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__attention"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__doctor"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Потребление мучных изделий</div>
+								<div class="recomm__text">
+									<p>Отклонение от нормы: 30%</p>
+									<p>Группа риска</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__ask"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Дополнительная корректировка диеты</div>
+								<div class="recomm__text">
+									<p>Пройти опрос</p>
+								</div>
+							</div>
+						</a>
+						<a class="recomm__content" href="#">
+							<i class="recomm__doctor is-active"></i>
+							<div class="recomm__item-sub">
+								<div class="recomm__title-sub">Дополнительная корректировка диеты</div>
+								<div class="recomm__text">
+									<p>Пройти опрос</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<!-- step-title -->
-<div class="step-title">
-  <div class="step-title__in">
-    <span>Шаг 2. Дневной рацион</span>
-    <i class="ico-arrow-down"></i>
-  </div>
-</div>
-<!-- page -->
-<div class="page">
-  <!-- layout -->
-  <div class="layout">
-    <div class="layout__column">
-      <!-- data -->
-      <div class="data">
-        <div class="data__title">Дневной рацион</div>
-        <div class="data__row">
-          <div class="data__label">Сколько соли в день употребляете?</div>
-          <div class="data__content">
-            <div class="field">
-              <div class="field__in">
-                <input type="text" value="">
-              </div>
-              <div class="field__label">грамм</div>
-            </div>
-          </div>
-          <div class="data__description">*одна чайная ложка соли «с горочкой» ~ 12 грамм</div>
-        </div>
-        <div class="data__row data__row_wide">
-          <div class="data__label">Сколько сладкого-мучного употребляете</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item9" checked=""><span>1 раз</span></label>
-              <label class="radio"><input type="radio" name="item9"><span>2 раза</span></label>
-              <label class="radio"><input type="radio" name="item9"><span>3 раза</span></label>
-            </div>
-            <div class="data__info"></div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Cколько красного мяса еммиммфупотребляете?</div>
-          <div class="data__content">
-            <div class="field">
-              <div class="field__in">
-                <input type="text" value="350">
-              </div>
-              <div class="field__label">грамм</div>
-            </div>
-          </div>
-        </div>
-        <div class="data__row">
-          <div class="data__label">Принимаете ли припараты на основе ацетилсалициловой кислоты для профилактики риска тромбозов</div>
-          <div class="data__content">
-            <div class="data__fieldset">
-              <label class="radio"><input type="radio" name="item10" checked=""><span>Да</span></label>
-              <label class="radio"><input type="radio" name="item10"><span>Нет</span></label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="layout__column">
-      <div class="data">
-        <div class="data__title">Сохранить данные и зарегистрироваться</div>
-        <div class="data__row data__row_social">
-          <div class="data__label">Использовать аккаунт социальных сетей:</div>
-          <!-- social -->
-          <ul class="social social_gray">
-            <li><a class="socail__vk" href="#"><i></i></a></li>
-            <li><a class="socail__fb" href="#"><i></i></a></li>
-            <li><a class="socail__ok" href="#"><i></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <button class="btn btn_arrow">Зарегистрироваться<i class="ico-arrow-down"></i></button>
-    </div>
-  </div>
-</div>
-<!-- step-title -->
-<div class="step-title step-title_mod">
-  <div class="step-title__in">
-    <span>Шаг 3. Результаты</span>
-    <i class="ico-arrow-down"></i>
-  </div>
-</div>
-<!-- page -->
-<div class="page page_violet">
-  <!-- result -->
-  <div class="result">
-    <div class="result__top">
-      <div class="result__info"></div>
-      <div class="result__arrow"></div>
-    </div>
-    <div class="result__val">
-      <div class="result__val-blue" style="width: 32%"><span>32</span></div>
-      <div class="result__val-red"></div>
-    </div>
-    <div class="result__diagnosis">Вероятность тяжелых сердечно-сосудистых заболеваний в ближайшие 10 лет</div>
-    <div class="result__text"><i class="result__attention-big"></i>Не соответствует норме. Воспользуйтесь нашими рекомендациями</div>
-    <!-- layout -->
-    <div class="layout">
-      <div class="layout__column">
-        <!-- recomm -->
-        <div class="recomm">
-          <div class="recomm__item">
-            <div class="recomm__title">Курение</div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Группа риска</div>
-              </div>
-            </div>
-          </div>
-          <div class="recomm__item">
-            <div class="recomm__title">Физическая активность</div>
-            <div class="recomm__content">
-              <i class="recomm__bell"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Физическая активность</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы 10%</p>
-                  <p>Необходимо улучшение</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__ok"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Вес</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы: 2%</p>
-                  <p>Все хорошо</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="recomm__item">
-            <div class="recomm__title">Диета</div>
-            <div class="recomm__content">
-              <i class="recomm__bell is-active"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub"><a href="#">Потребление соли</a></div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы 10%</p>
-                  <p>Необходимо улучшение</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы: 30%</p>
-                  <p>Группа риска</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы: 30%</p>
-                  <p>Группа риска</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__ask"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Дополнительная корректировка диеты</div>
-                <div class="recomm__text">
-                  <p>Пройти опрос</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="layout__column">
-        <!-- recomm -->
-        <div class="recomm">
-          <div class="recomm__item">
-            <div class="recomm__title">Рекомендации по SCORE</div>
-            <div class="recomm__content">
-              <i class="recomm__bell is-active"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub"><a href="#">Потребление соли</a></div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы: 30%</p>
-                  <p>Группа риска</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__ask"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Дополнительная корректировка диеты</div>
-                <div class="recomm__text">
-                  <p>Пройти опрос</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="recomm__item">
-            <div class="recomm__title">Основные риски</div>
-            <div class="recomm__content">
-              <i class="recomm__bell is-active"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub"><a href="#">Потребление соли</a></div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__attention"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__doctor"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Потребление мучных изделий</div>
-                <div class="recomm__text">
-                  <p>Отклонение от нормы: 30%</p>
-                  <p>Группа риска</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__ask"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Дополнительная корректировка диеты</div>
-                <div class="recomm__text">
-                  <p>Пройти опрос</p>
-                </div>
-              </div>
-            </div>
-            <div class="recomm__content">
-              <i class="recomm__doctor is-active"></i>
-              <div class="recomm__item-sub">
-                <div class="recomm__title-sub">Дополнительная корректировка диеты</div>
-                <div class="recomm__text">
-                  <p>Пройти опрос</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+#}
 {% endblock %}

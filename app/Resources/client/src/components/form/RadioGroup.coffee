@@ -21,8 +21,13 @@ RadioGroup = React.createClass
     )`
 
   render: ->
+    style = {}
+    
+    if @props.invalid
+      style.color = 'red'
+    
     @transferPropsTo `(
-      <span>
+      <span style={style}>
         {this.props.values.map(this.renderValue)}
       </span>
     )`

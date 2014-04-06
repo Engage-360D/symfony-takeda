@@ -10,6 +10,10 @@ engage360d_pages_api:
     resource: "@Engage360dPagesBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
+engage360d_takeda_test_api:
+    resource: "@Engage360dTakedaTestBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
 engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api

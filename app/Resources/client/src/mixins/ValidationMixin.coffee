@@ -25,7 +25,7 @@ validateState = (config, state) ->
 
   if config.children
     for key in Object.keys(config.children)
-      childrenValidity = validateValue config.children[key], state[key]
+      childrenValidity = validateValue config.children[key], state[key], state
 
       validity.children[key] = childrenValidity
 

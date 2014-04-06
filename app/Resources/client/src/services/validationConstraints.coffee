@@ -1,16 +1,43 @@
 moment = require "moment"
 
+
+isNullOrUndefined = (value) ->
+  value is null or value is undefined
+
+
 validationConstraints =
-  notBlank: ->
-    (value) -> value?.length > 0
+  notNull: ->
+    (value) ->
+      not isNullOrUndefined value
+
+  notEmpty: ->
+    (value) ->
+      return true if isNullOrUndefined value
+      value.length > 0
 
   isTrue: ->
-    (value) -> value is true
+    (value) ->
+      return true if isNullOrUndefined value
+      value is true
 
   email: ->
-    (value) -> /^.+@.+\..+$/.test value
+    (value) ->
+      return true if isNullOrUndefined value
+      /^.+@.+\..+$/.test value
 
   date: (format) ->
-    (value) -> moment(value, format or "DD.MM.YYYY").isValid()
+    (value) ->
+      return true if isNullOrUndefined value
+      moment(value, format or "DD.MM.YYYY").isValid()
+
+  min: (min) ->
+    (value) ->
+      return true if isNullOrUndefined value
+      value >= min
+
+  max: (max) ->
+    (value) ->
+      return true if isNullOrUndefined value
+      value <= max
 
 module.exports = validationConstraints
