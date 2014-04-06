@@ -80,6 +80,9 @@ jms_serializer:
             FOSUB:
                 namespace_prefix: FOS\UserBundle
                 path: @Engage360dSecurityBundle/Resources/config/serializer/fos
+    property_naming:
+        separator:  ~
+        lower_case: false
 
 fos_rest:
     param_fetcher_listener: force
@@ -88,6 +91,11 @@ fos_rest:
         jsonp_handler: ~
     routing_loader:
         default_format: json
+        include_format: false
+    format_listener:
+      rules:
+        - { path: '^/api', priorities: ['json'] }
+        - { path: '^/', priorities: ['html'] }
 
 fos_oauth_server:
     service:

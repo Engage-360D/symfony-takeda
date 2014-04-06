@@ -22,6 +22,7 @@
         "jms/aop-bundle":                       "dev-master",
         "jms/di-extra-bundle":                  "dev-master",
         "jms/serializer-bundle":                "dev-master",
+        "jms/serializer":                       "dev-master",
         "jms/translation-bundle":               "dev-master",
         "jms/security-extra-bundle":            "dev-master",
         "doctrine/migrations":                  "dev-master",
@@ -77,6 +78,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Engage-360D/PagesBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/vslinko/serializer.git"
         }
     ],
     "minimum-stability": "stable",
