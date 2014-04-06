@@ -1,0 +1,8 @@
+Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
+    properties:
+        user: { exclude: true }
+    virtual_properties:
+        getBmi:
+            serialized_name: bmi
+        getScoreValue:
+            serialized_name: scoreValue

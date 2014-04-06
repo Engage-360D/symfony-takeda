@@ -96,6 +96,11 @@ class User extends BaseUser
      * @ORM\Column(name="graduation", type="date", nullable=true)
      */
     private $graduation;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaTestBundle\Entity\TestResult", mappedBy="user")
+     */
+    protected $testResults;
 
     /**
      * @var string $vkontakteId
@@ -114,6 +119,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->testResults = new ArrayCollection();
         $this->registration = new \DateTime();
     }
 
@@ -255,5 +261,15 @@ class User extends BaseUser
     public function getVkontakteAccessToken()
     {
         return $this->vkontakteAccessToken;
+    }
+    
+    public function getTestResults()
+    {
+        return $this->testResults;
+    }
+    
+    public function addTestResult($testResult)
+    {
+        $this->testResults[] = $testResult;
     }
 }
