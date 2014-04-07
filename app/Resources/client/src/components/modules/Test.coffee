@@ -328,7 +328,7 @@ Test = React.createClass
                           </div>
                           <div className="mainspec__item mainspec__date">
                             <div className="field">
-                              <div className="field__label">Учебное заведение</div>
+                              <div className="field__label">Год окончания</div>
                               <DateInput valueLink={this.linkState('doctorGraduation')} minDate={Test.doctorGraduationMinDate} maxDate={Test.doctorGraduationMaxDate} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
                             </div>
                           </div>
