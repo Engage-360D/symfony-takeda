@@ -34,9 +34,10 @@ class Recommendations
         
         foreach (array_keys($res) as $key) {
             if ($res[$key]) {
-                $res[$key]['url'] = "/tests/" . $id . "/" . preg_replace_callback('/([A-Z])/', function ($matches) {
-                    return '-' . strtolower($matches[0]);
-                }, $key);
+                // $res[$key]['url'] = "/tests/" . $id . "/" . preg_replace_callback('/([A-Z])/', function ($matches) {
+                //     return '-' . strtolower($matches[0]);
+                // }, $key);
+                $res[$key]['url'] = "/test-results/" . $id . "/" . $key;
 
                 $res[$key]['pageTitle'] = str_replace('?', $$key, $res[$key]['pageTitle']);
                 $res[$key]['pageSubtitle'] = str_replace('?', $$key, $res[$key]['pageSubtitle']);
