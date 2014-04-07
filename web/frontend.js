@@ -34935,13 +34935,13 @@ mouseMoveHandler = null;
 
 mouseUpHandler = null;
 
-$(document).on('mousemove', function(event) {
+$(document).on('mousemove touchmove', function(event) {
   if (mouseMoveHandler) {
     return mouseMoveHandler(event);
   }
 });
 
-$(document).on('mouseup', function(event) {
+$(document).on('mouseup touchend', function(event) {
   if (mouseUpHandler) {
     return mouseUpHandler(event);
   }
@@ -34952,17 +34952,20 @@ Range = React.createClass({displayName: 'Range',
     var pointNode;
     this.catched = false;
     pointNode = this.refs.point.getDOMNode();
-    return $(pointNode).on('mousedown', this.handleMouseDown);
+    return $(pointNode).on('mousedown touchstart', this.handleMouseDown);
   },
   handleMouseDown: function(event) {
     event.preventDefault();
     this.startValue = this.props.valueLink.value;
     this.currentValue = this.props.valueLink.value;
     mouseMoveHandler = this.handleMouseMove;
-    return mouseUpHandler = this.handleMouseUp;
+    mouseUpHandler = this.handleMouseUp;
+    if (event.type === "touchstart") {
+      return $(this.refs.point.getDOMNode()).addClass('touch');
+    }
   },
   handleMouseMove: function(event) {
-    var $lineNode, $pointNode, currentStep, currentStepOffset, currentValue, lineOffset, lineWidth, maxValue, minValue, position, stepSize, stepWidth;
+    var $lineNode, $pointNode, currentStep, currentStepOffset, currentValue, lineOffset, lineWidth, maxValue, minValue, pageX, position, stepSize, stepWidth;
     stepSize = Number(this.props.step);
     minValue = Number(this.props.min);
     maxValue = Number(this.props.max);
@@ -34970,7 +34973,8 @@ Range = React.createClass({displayName: 'Range',
     $pointNode = $(this.refs.point.getDOMNode());
     lineWidth = $lineNode.width();
     lineOffset = $lineNode.offset().left;
-    position = event.pageX - lineOffset;
+    pageX = event.originalEvent ? event.originalEvent.pageX : event.pageX;
+    position = pageX - lineOffset;
     if (position < 0) {
       position = 0;
     }
@@ -34995,7 +34999,10 @@ Range = React.createClass({displayName: 'Range',
     mouseUpHandler = null;
     if (this.currentValue && this.currentValue !== this.startValue) {
       this.props.valueLink.requestChange(this.currentValue);
-      return this.currentValue = null;
+      this.currentValue = null;
+    }
+    if (event.type === "touchend") {
+      return $(this.refs.point.getDOMNode()).removeClass('touch');
     }
   },
   render: function() {
@@ -35013,7 +35020,7 @@ Range = React.createClass({displayName: 'Range',
 			React.DOM.div( {className:classes}, 
 				React.DOM.div( {className:"range__from"}, React.DOM.span(null, this.props.min),React.DOM.i(null)),
 				React.DOM.div( {className:"range__to"}, React.DOM.span(null, this.props.max),React.DOM.i(null)),
-				React.DOM.div( {className:"range__val", ref:"line"}, React.DOM.span( {style:{left: offset + '%'}, ref:"point"}, this.props.valueLink.value)),
+				React.DOM.div( {className:"range__val", ref:"line"}, React.DOM.a( {href:"#", style:{left: offset + '%'}, ref:"point"}, this.props.valueLink.value)),
 				React.DOM.div( {className:"range__in"}, 
 					React.DOM.div( {className:"range__line"})
 			  )

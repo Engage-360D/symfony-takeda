@@ -8,11 +8,11 @@ $ = require "jquery"
 mouseMoveHandler = null
 mouseUpHandler = null
 
-$(document).on 'mousemove', (event) ->
+$(document).on 'mousemove touchmove', (event) ->
   if mouseMoveHandler
     mouseMoveHandler event
 
-$(document).on 'mouseup', (event) ->
+$(document).on 'mouseup touchend', (event) ->
   if mouseUpHandler
     mouseUpHandler event
 
@@ -21,7 +21,7 @@ Range = React.createClass
   componentDidMount: ->
     @catched = false
     pointNode = @refs.point.getDOMNode()
-    $(pointNode).on 'mousedown', @handleMouseDown
+    $(pointNode).on 'mousedown touchstart', @handleMouseDown
 
   handleMouseDown: (event) ->
     event.preventDefault()
@@ -29,6 +29,9 @@ Range = React.createClass
     @currentValue = this.props.valueLink.value
     mouseMoveHandler = @handleMouseMove
     mouseUpHandler = @handleMouseUp
+    
+    if event.type is "touchstart"
+      $(@refs.point.getDOMNode()).addClass 'touch'
 
   handleMouseMove: (event) ->
     stepSize = Number @props.step
@@ -41,7 +44,8 @@ Range = React.createClass
     lineWidth = $lineNode.width()
     lineOffset = $lineNode.offset().left
 
-    position = event.pageX - lineOffset
+    pageX = if event.originalEvent then event.originalEvent.pageX else event.pageX
+    position = pageX - lineOffset
     position = 0 if position < 0
     position = lineWidth if position > lineWidth
 
@@ -66,6 +70,9 @@ Range = React.createClass
       @props.valueLink.requestChange @currentValue
       @currentValue = null
 
+    if event.type is "touchend"
+      $(@refs.point.getDOMNode()).removeClass 'touch'
+
   render: ->
     stepSize = Number @props.step
     minValue = Number @props.min
@@ -81,7 +88,7 @@ Range = React.createClass
 			<div className={classes}>
 				<div className="range__from"><span>{this.props.min}</span><i></i></div>
 				<div className="range__to"><span>{this.props.max}</span><i></i></div>
-				<div className="range__val" ref="line"><span style={{left: offset + '%'}} ref="point">{this.props.valueLink.value}</span></div>
+				<div className="range__val" ref="line"><a href="#" style={{left: offset + '%'}} ref="point">{this.props.valueLink.value}</a></div>
 				<div className="range__in">
 					<div className="range__line"></div>
 			  </div>
