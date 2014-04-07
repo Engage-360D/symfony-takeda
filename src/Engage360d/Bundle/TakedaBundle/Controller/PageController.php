@@ -30,6 +30,10 @@ class PageController extends Controller
             ->get('engage360d_pages.manager.page')
             ->findByUrl($url);
 
+        if (null === $page) {
+            return new NotFoundHttpException();
+        }
+
         return $this->render('Engage360dTakedaBundle:Page:page.html.twig', array(
           'category' => $page->getCategory(),
           'page' => $page,

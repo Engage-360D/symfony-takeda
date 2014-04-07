@@ -21,6 +21,7 @@ NumberSelect = require "../registration/NumberSelect"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"
 FacebookButton = require "../social/login/FacebookButton"
 VkontakteButton = require "../social/login/VkontakteButton"
+OdnoklassnikiButton = require "../social/login/OdnoklassnikiButton"
 
 
 Registration = React.createClass
@@ -342,7 +343,7 @@ Registration = React.createClass
 					<ul className="social social_gray">
 						<li><VkontakteButton/></li>
 						<li><FacebookButton/></li>
-						<li><a className="socail__ok" href="#"><i></i></a></li>
+						<li><OdnoklassnikiButton/></li>
 					</ul>
 				</div>
 				<button className="btn btn_arrow is-active" onClick={this.handleRegistrationChange}>

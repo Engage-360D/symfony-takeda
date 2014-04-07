@@ -7,6 +7,10 @@ sharedComponents =
   Registration: require "./components/modules/Registration"
   ResetPassword: require "./components/modules/ResetPassword"
   Login: require "./components/modules/Login"
+  WindowLoaded: require "./components/modal/WindowLoaded"
+  FacebookButton: require "./components/social/login/FacebookButton"
+  VkontakteButton: require "./components/social/login/VkontakteButton"
+  OdnoklassnikiButton: require "./components/social/login/OdnoklassnikiButton"
 
 
 getNodes = ->

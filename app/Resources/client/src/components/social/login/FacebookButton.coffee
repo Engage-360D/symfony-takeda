@@ -4,6 +4,14 @@ React = require "react"
 reqwest = require "reqwest"
 
 FacebookButton = React.createClass
+  getDefaultProps: ->
+    reloadOnSuccess: false
+
+  componentDidMount: ->
+    return unless @props.reloadOnSuccess
+    window.addEventListener "loadSuccess", =>
+      window.location.reload()
+
   onClick: ->
     window.open("/connect/facebook", "", "width=800,height=650")
 
