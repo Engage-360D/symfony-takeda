@@ -34878,15 +34878,17 @@ module.exports = DateInput;
 
 },{"moment":6,"pikaday":7,"react":145}],154:[function(require,module,exports){
 /** @jsx React.DOM */;
-var LinkedValueUtils, RadioGroup, React;
+var LinkedValueUtils, RadioGroup, React, cx;
 
 React = require("react");
+
+cx = require("react/lib/cx");
 
 LinkedValueUtils = require("react/lib/LinkedValueUtils");
 
 RadioGroup = React.createClass({displayName: 'RadioGroup',
   renderValue: function(value) {
-    var checked, onChange;
+    var checked, classes, onChange;
     checked = LinkedValueUtils.getValue(this) === value.value;
     onChange = (function(_this) {
       return function(event) {
@@ -34897,21 +34899,20 @@ RadioGroup = React.createClass({displayName: 'RadioGroup',
         }
       };
     })(this);
+    classes = cx({
+      "radio": true,
+      "is-error": this.props.invalid
+    });
     return (
-      React.DOM.label( {className:"radio"}, 
+      React.DOM.label( {className:classes}, 
         React.DOM.input( {type:"radio", checked:checked, onChange:onChange} ),
         React.DOM.span(null, value.text)
       )
     );
   },
   render: function() {
-    var style;
-    style = {};
-    if (this.props.invalid) {
-      style.color = 'red';
-    }
     return this.transferPropsTo((
-      React.DOM.span( {style:style}, 
+      React.DOM.span(null, 
         this.props.values.map(this.renderValue)
       )
     ));
@@ -34921,7 +34922,7 @@ RadioGroup = React.createClass({displayName: 'RadioGroup',
 module.exports = RadioGroup;
 
 
-},{"react":145,"react/lib/LinkedValueUtils":28}],155:[function(require,module,exports){
+},{"react":145,"react/lib/LinkedValueUtils":28,"react/lib/cx":104}],155:[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, Range, React, cx, mouseMoveHandler, mouseUpHandler;
 

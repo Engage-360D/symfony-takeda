@@ -1,6 +1,7 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
+cx = require "react/lib/cx"
 LinkedValueUtils = require "react/lib/LinkedValueUtils"
 
 
@@ -12,22 +13,21 @@ RadioGroup = React.createClass
         @props.valueLink.requestChange value.value
       else if @props.onChange
         @props.onChange event
+        
+    classes = cx
+      "radio": true
+      "is-error": @props.invalid
 
     `(
-      <label className="radio">
+      <label className={classes}>
         <input type="radio" checked={checked} onChange={onChange} />
         <span>{value.text}</span>
       </label>
     )`
 
   render: ->
-    style = {}
-    
-    if @props.invalid
-      style.color = 'red'
-    
     @transferPropsTo `(
-      <span style={style}>
+      <span>
         {this.props.values.map(this.renderValue)}
       </span>
     )`
