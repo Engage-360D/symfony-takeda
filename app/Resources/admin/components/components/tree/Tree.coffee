@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 require "jstree"
 
 Tree = React.createClass
@@ -15,8 +15,9 @@ Tree = React.createClass
     return unless @props.rootNode.id
     tree.jstree core: data: [@props.rootNode]
 
-  componentDidUpdate: (props, state, domNode) ->
+  componentDidUpdate: (props, state) ->
     if props.rootNode isnt @props.rootNode
+      domNode = @getDOMNode()
       $(domNode).jstree(true).destroy() if $(domNode).jstree(true)
       $(domNode).jstree core: data: [@props.rootNode]
       $(domNode).on "select_node.jstree", (event, data) =>

@@ -1,7 +1,8 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 $ = require "jquery"
+require "moment"
 require "md5"
 
 Ctx = require "Engage360d/services/Context"
@@ -61,7 +62,7 @@ User = React.createClass
         Ctx.get("router").handle "#!/users"
     else
       data = user
-      data.username = user.firstname
+      data.birthday = moment(user.birthday, "DD.MM.YYYY").format "YYYY-MM-DD"
 
       password = window.md5()
       data.plainPassword =
@@ -90,14 +91,6 @@ User = React.createClass
               <TabPanel>
                 <Tab title="Общая информация">
                   <Container/>
-                  <Field>
-                    <Column mods={["Size3"]}>
-                      <Label>Фамилия</Label>
-                    </Column>
-                    <Column mods={["Size6"]}>
-                      <Input value={this.state.user.lastname} onChange={this.createChangeHandler("lastname")}/>
-                    </Column>
-                  </Field>
                   <Field>
                     <Column mods={["Size3"]}>
                       <Label>Имя</Label>

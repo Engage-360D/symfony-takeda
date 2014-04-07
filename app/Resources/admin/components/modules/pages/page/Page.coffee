@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 $ = require "jquery"
 
 Ctx = require "Engage360d/services/Context"

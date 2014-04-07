@@ -16,7 +16,7 @@ class PageController extends Controller
         if (null === $category) {
             return new NotFoundHttpException();
         }
-        //var_dump($this->container->get('request')); die;
+
         return $this->render('Engage360dTakedaBundle:Page:category.html.twig', array(
           'category' => $category,
           'pages' => $category->getPages(),

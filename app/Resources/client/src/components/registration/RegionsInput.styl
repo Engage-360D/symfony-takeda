@@ -22,23 +22,42 @@
   &:hover
     border-color #2269c8
 
-  &:after
-    right 7px !important
-    
-    position absolute
-    top 9px
-    right 7px
-
-    background url('../img/icons-s7d7eb2614d.png') 0 -846px no-repeat
-    width 14px
-    height 8px
-
   &.focus
     border-color #2269c8
-    box-shadow none
+    box-shadow none !important
+    border-radius 0px
 
   .item
     line-height 26px
+
+.selectize-control.single .selectize-input
+  &:after
+    right 7px !important
+    border-width 0px
+
+    position absolute
+    top 13px
+    right 7px
+
+    background url("../img/icons/select-arrow.png") no-repeat
+    width 14px
+    height 8px
+
+  &:hover
+    &:after
+      background url("../img/icons/select-arrow-blue.png") no-repeat
+
+  &.focus
+    &:after
+      border-width 0px
+      background url("../img/icons/calendar-up-hover.png") no-repeat
+
+.selectize-dropdown
+  margin-top 0px
+  box-shadow none
+  border solid #424549
+  border-width 0px 1px 1px 1px
+  border-radius 0px
 
 .field__in_invalid
   .selectize-input

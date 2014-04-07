@@ -4,6 +4,7 @@ events = require "events"
 
 class Router extends events.EventEmitter
   constructor: ->
+    @setMaxListeners 20
     @history = history
     @routeRecognizer = new RouteRecognizer()
 

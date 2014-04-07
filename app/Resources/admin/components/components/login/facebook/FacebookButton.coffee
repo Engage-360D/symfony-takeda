@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 $ = require "jquery"
 
 Button = require "Engage360d/components/button/Button"
