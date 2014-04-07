@@ -77,6 +77,9 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+.mainspec__item.mainspec__date .field__in {
+  width: 120px;
+}
 
 .field_birthday .field__in {
   width: 115px;
