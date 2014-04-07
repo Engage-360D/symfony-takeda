@@ -3,6 +3,7 @@ React = require "react"
 
 sharedComponents =
   Test: require "./components/modules/Test"
+  TestResultRecommendations: require "./components/modules/TestResultRecommendations"
   Registration: require "./components/modules/Registration"
   ResetPassword: require "./components/modules/ResetPassword"
   Login: require "./components/modules/Login"

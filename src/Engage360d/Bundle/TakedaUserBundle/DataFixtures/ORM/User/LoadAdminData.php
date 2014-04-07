@@ -38,6 +38,7 @@ class LoadAdminData
         $user->setPlainPassword('password');
         $user->setBirthday(new \DateTime());
         $user->setEnabled(true);
+        $user->setDoctor(true);
         $user->addRole("ROLE_ADMIN");
 
         $manager->persist($user);

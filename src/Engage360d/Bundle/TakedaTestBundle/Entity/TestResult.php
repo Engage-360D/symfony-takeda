@@ -294,7 +294,12 @@ class TestResult
     
     public function getBmi()
     {
-        return $this->weight / pow($this->growth / 100, 2);
+        return round($this->weight / pow($this->growth / 100, 2), 1);
+    }
+    
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
     
     public function getScoreValue()

@@ -325,6 +325,14 @@ class User extends BaseUser
         return $this->vkontakteAccessToken;
     }
     
+    public function getFullName()
+    {
+        return implode(' ', array(
+            $this->getFirstname(),
+            $this->getLastname(),
+        ));
+    }
+    
     public function getTestResults()
     {
         return $this->testResults;

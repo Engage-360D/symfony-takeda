@@ -335,7 +335,7 @@ Registration = React.createClass
     `(
       <div>
         <div className="data__title">
-          Сохранить данные и зарегистрироваться
+          Сохранить данные
         </div>
 				<div className="data__row data__row_social">
 					<div className="data__label">Использовать аккаунт социальных сетей:</div>
