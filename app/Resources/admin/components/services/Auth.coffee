@@ -16,13 +16,13 @@ class Auth
         isDefault: true
 
   login: (username, password) ->
-    $.post("/user/check", {_username: username, _password: password, _target_path: "/user/admin_success"})
+    $.post("/account/check", {_username: username, _password: password, _target_path: "/account/admin_success"})
       .success (response) =>
         jso_ensureTokens engage360d: []
 
   logout: ->
     jso_wipe()
-    window.location.href = "/user/logout"
+    window.location.href = "/account/logout"
 
   isAuthorized: ->
     jso_getToken("engage360d")?

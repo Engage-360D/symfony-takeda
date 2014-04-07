@@ -1,5 +1,9 @@
 {% extends "::layout.html.twig" %}
 
+{% block title %}{% if page %}{{ page.seoTitle }}{% endif %}{% endblock %}
+{% block description %}{% if page %}{{ page.seoDescription }}{% endif %}{% endblock %}
+{% block keywords %}{% if page %}{{ page.seoKeywords }}{% endif %}{% endblock %}
+
 {% block content %}
 <!-- main -->
 <div class="main">
@@ -23,9 +27,11 @@
 			<div class="main__in">
 				<div class="title">{{ category.name }}</div>
 				<div class="main__text">Это единственная в России  комбинация ацетилсалициловой кислоты и гидроксида магния для первичной и вторичной профилактики тромбообразования.</div>
-				{% for data in takeda_page_blocks(page) %}
-				  <div class="main__text">{{ data|raw }}</div>
-				{% endfor %}
+				{% if page %}
+  				{% for data in takeda_page_blocks(page) %}
+  				  <div class="main__text">{{ data|raw }}</div>
+  				{% endfor %}
+  			{% endif %}
 				{% for item in pages %}
 				  {% if page != item %}
   				  <div>

@@ -1,4 +1,6 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"6StMfs":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"jquery":[function(require,module,exports){
+module.exports=require('6StMfs');
+},{}],"6StMfs":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
@@ -9796,8 +9798,6 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"jquery":[function(require,module,exports){
-module.exports=require('6StMfs');
 },{}],3:[function(require,module,exports){
 // shim for using process in browser
 
@@ -9860,8 +9860,6 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"microplugin":[function(require,module,exports){
-module.exports=require('edEggf');
 },{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10003,6 +10001,8 @@ module.exports=require('edEggf');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"microplugin":[function(require,module,exports){
+module.exports=require('edEggf');
 },{}],6:[function(require,module,exports){
 //! moment.js
 //! version : 2.5.1
@@ -31474,8 +31474,6 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
-},{}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -34259,7 +34257,9 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
+},{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -35100,7 +35100,7 @@ Modal = React.createClass({displayName: 'Modal',
     }
     return (
       React.DOM.div( {className:"Modal"}, 
-        React.DOM.button( {className:"ModalClose", onClick:this.onClose}),
+        React.DOM.button( {className:"ModalClose help__close", onClick:this.onClose}),
         React.DOM.div( {className:"ModalTitle"}, this.props.title),
         React.DOM.div( {className:"ModalBody"}, 
           this.props.children
@@ -35315,7 +35315,10 @@ Registration = React.createClass({displayName: 'Registration',
             _this.props.valueLink.requestChange(true);
           }
           if (_this.props.onRegistrationSuccess) {
-            return _this.props.onRegistrationSuccess();
+            _this.props.onRegistrationSuccess();
+          }
+          if (_this.props.reloadOnRegister) {
+            return window.location.reload();
           }
         }
       };
@@ -36760,7 +36763,7 @@ extractFields = function(data) {
     first: data.password,
     second: data.confirmPassword
   };
-  user.doctor = data.doctor ? 1 : 0;
+  user.doctor = data.doctor ? true : false;
   if (data.graduation) {
     user.graduation = moment(data.graduation, "YYYY").format("YYYY-MM-DD");
   }

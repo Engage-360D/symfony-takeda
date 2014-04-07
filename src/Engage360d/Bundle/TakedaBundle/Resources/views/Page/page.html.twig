@@ -1,5 +1,9 @@
 {% extends "::layout.html.twig" %}
 
+{% block title %}{% if page %}{{ page.seoTitle }}{% endif %}{% endblock %}
+{% block description %}{% if page %}{{ page.seoDescription }}{% endif %}{% endblock %}
+{% block keywords %}{% if page %}{{ page.seoKeywords }}{% endif %}{% endblock %}
+
 {% block content %}
 <!-- main -->
 <div class="main">

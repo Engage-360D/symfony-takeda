@@ -20,7 +20,7 @@ engage360d_countries_api:
 
 engage360d_user_security:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
-    prefix:   /user
+    prefix:   /account
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"

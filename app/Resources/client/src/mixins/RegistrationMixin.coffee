@@ -14,7 +14,7 @@ extractFields = (data) ->
   user.plainPassword =
     first: data.password
     second: data.confirmPassword
-  user.doctor = if data.doctor then 1 else 0
+  user.doctor = if data.doctor then true else false
   if data.graduation
     user.graduation = moment(data.graduation, "YYYY").format "YYYY-MM-DD"
   JSON.stringify user

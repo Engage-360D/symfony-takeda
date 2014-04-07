@@ -18,7 +18,7 @@ Modal = React.createClass
 
     `(
       <div className="Modal">
-        <button className="ModalClose" onClick={this.onClose}></button>
+        <button className="ModalClose help__close" onClick={this.onClose}></button>
         <div className="ModalTitle">{this.props.title}</div>
         <div className="ModalBody">
           {this.props.children}

@@ -4,6 +4,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="keywords" content="{% block keywords %}{% endblock %}">
         <meta name="viewport" content="initial-scale=1"/>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/screen.css') }}" />

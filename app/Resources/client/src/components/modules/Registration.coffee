@@ -57,6 +57,7 @@ Registration = React.createClass
       unless @isChildrenWindow()
         @props.valueLink.requestChange true if @props.valueLink
         @props.onRegistrationSuccess() if @props.onRegistrationSuccess
+        window.location.reload() if @props.reloadOnRegister
     if @props.user
       if typeof(@props.user) is "object"
         @setState @props.user
