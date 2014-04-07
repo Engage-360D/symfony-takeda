@@ -1,4 +1,4 @@
 engage360d_takeda_test_get_test:
-    path: /test
+    path: /category/test
     methods: [GET]
     defaults: { _controller: Engage360dTakedaTestBundle:Test:getTest }
