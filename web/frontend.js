@@ -36143,9 +36143,9 @@ Test = React.createClass({displayName: 'Test',
                           React.DOM.div( {className:"mainspec__item mainspec__experience"}, 
                             React.DOM.div( {className:"field"}, 
                               React.DOM.div( {className:"field__label"}, "Стаж"),
-                  						NumberSelect(
-                  					    {valueLink:this.linkState('doctorExperience'),
-                  					    invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}),
+                              NumberSelect(
+                                {valueLink:this.linkState('doctorExperience'),
+                                invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}),
                               React.DOM.div( {className:"field__label"}, "лет")
                             )
                           ),

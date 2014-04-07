@@ -305,9 +305,9 @@ Test = React.createClass
                           <div className="mainspec__item mainspec__experience">
                             <div className="field">
                               <div className="field__label">Стаж</div>
-                  						<NumberSelect
-                  					    valueLink={this.linkState('doctorExperience')}
-                  					    invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}/>
+                              <NumberSelect
+                                valueLink={this.linkState('doctorExperience')}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}/>
                               <div className="field__label">лет</div>
                             </div>
                           </div>
