@@ -15,8 +15,8 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    facebook_client_id: ~
-    facebook_client_secret: ~
-    
-    vkontakte_client_id: ~
-    vkontakte_client_secret: ~
+    facebook_client_id: 245182945513174
+    facebook_client_secret: e045e253cdb441ede774a11ddc9866b6
+
+    vkontakte_client_id: 4062540
+    vkontakte_client_secret: jFWCe3jFCkJ9E3fA2ndH

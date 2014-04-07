@@ -10,4 +10,24 @@ class TestController extends Controller
     {
         return $this->render('Engage360dTakedaTestBundle:Test:test.html.twig');
     }
+    
+    public function getTestResultRecommendationAction($id, $type)
+    {
+        if (!in_array($type, array('arterialPressure', 'bmi', 'cholesterolLevel', 'extraSalt', 'physicalActivity', 'smoking'))) {
+            throw $this->createNotFoundException();
+        }
+      
+        $testResult = $this->getDoctrine()->getManager()->getRepository('Engage360dTakedaTestBundle:TestResult')->find($id);
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+
+        $recommendations = $testResult->getRecommendations();
+
+        return $this->render('Engage360dTakedaTestBundle:Test:test_result_recommendation.html.twig', array(
+            'testResult' => $testResult,
+            'recommendation' => $recommendations[$type],
+        ));
+    }
 }
