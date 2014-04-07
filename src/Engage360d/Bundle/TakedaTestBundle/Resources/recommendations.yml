@@ -22,7 +22,6 @@ smoking:
 
 
 arterialPressure:
-  119: ~
   139:
     state: ok
     stateTitle: ~
@@ -71,7 +70,6 @@ extraSalt:
 
 
 cholesterolLevel:
-  3: ~
   4.9:
     state: ok
     stateTitle: ~
@@ -101,7 +99,6 @@ cholesterolLevel:
 
 
 physicalActivity:
-  300: ~
   299:
     state: ok
     stateTitle: ~
@@ -134,7 +131,6 @@ physicalActivity:
 
 
 bmi:
-  19: ~
   24:
     state: ok
     stateTitle: ~

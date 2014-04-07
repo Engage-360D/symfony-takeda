@@ -7,11 +7,27 @@
 			<div class="city">
 				<a href="#"><i></i><span>Москва</span></a>
 			</div>
-			<div class="title">Личный кабинет</div>
-			<!-- layout -->
-			<div class="layout">
-				<div class="layout__column">
-				</div>
-			</div>
+			<div class="title">
+			  {{ app.user.fullName }}
+			  &nbsp;&nbsp;&nbsp;&nbsp;
+			  <a href="{{ path('engage360d_takeda_user_logout') }}"><span style="font-size: 20px">выход</span></a>  
+		  </div>
 		</div>
+
+		{% for testResult in app.user.testResults %}
+	    <div class="page">
+			  <h2>Тест от {{ testResult.createdAt|date('d.m.Y H:i:s') }}</h2>
+	    </div>
+
+			<script>
+			  window._test_result_recommendations_{{ testResult.id }} = {{ testResult.recommendations|json_encode|raw }};
+			</script>
+      <div data-react-component="TestResultRecommendations"
+           data-score-value="{{ testResult.scoreValue }}"
+           data-sex="{{ testResult.sex }}"
+           data-recommendations="_test_result_recommendations_{{ testResult.id }}"></div>
+
+      <br />
+      <br />
+    {% endfor %}
 {% endblock %}

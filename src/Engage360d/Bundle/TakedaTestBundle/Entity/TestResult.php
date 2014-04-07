@@ -297,6 +297,11 @@ class TestResult
         return $this->weight / pow($this->growth / 100, 2);
     }
     
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+    
     public function getScoreValue()
     {
         return ScoreCalculator::calculate(
