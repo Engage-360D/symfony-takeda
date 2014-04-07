@@ -27,6 +27,10 @@ Test = React.createClass
       {value: "male", text: "муж."}
       {value: "female", text: "жен."}
     ]
+    authTypeValues: [
+      {value: "login", text: "Войти на сайт"}
+      {value: "registration", text: "Зарегистрироваться"}
+    ]
     birthdayMinDate: moment().subtract("years", 100)
     birthdayMaxDate: moment().subtract("years", 22)
     doctorGraduationMinDate: moment([1940, 0, 1])
@@ -48,6 +52,7 @@ Test = React.createClass
     showDoctorPopup: false
     showDoctorPopupValidation: false
     user: user
+    authType: "login"
     recommendations: null
     registered: false
     logined: logined
@@ -81,6 +86,7 @@ Test = React.createClass
     #showDoctorPopup: false
     #showDoctorPopupValidation: false
     #user: user
+    #authType: "login"
     #recommendations: null
     #registered: false
     #logined: logined
@@ -510,14 +516,24 @@ Test = React.createClass
               </div>
               <div className="layout__column">
                 <Visibility hide={this.state.registered || this.state.logined}>
-                  <Registration
-                    user={user}
-                    showDoctor={false}
-                    reloadOnRegister={false}
-                    valueLink={this.linkState('registered', this.handleRegisteredOrLogined)} />
-                  <Login
-                    reloadOnSuccess={false}
-                    valueLink={this.linkState('logined', this.handleRegisteredOrLogined)} />
+                  <div className="data">
+                    <div className="data__title">Авторизация</div>
+                    <div className="data__row">
+                      <RadioGroup values={Test.authTypeValues} valueLink={this.linkState('authType')} />
+                    </div>
+                  </div>
+                  <Visibility show={this.state.authType == 'registration'}>
+                    <Registration
+                      user={user}
+                      showDoctor={false}
+                      reloadOnRegister={false}
+                      valueLink={this.linkState('registered', this.handleRegisteredOrLogined)} />
+                  </Visibility>
+                  <Visibility show={this.state.authType == 'login'}>
+                    <Login
+                      reloadOnSuccess={false}
+                      valueLink={this.linkState('logined', this.handleRegisteredOrLogined)} />
+                  </Visibility>
                 </Visibility>
                 <Visibility show={!!this.state.user}>
                   <div className="data">

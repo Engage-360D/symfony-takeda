@@ -35847,6 +35847,15 @@ Test = React.createClass({displayName: 'Test',
         text: "жен."
       }
     ],
+    authTypeValues: [
+      {
+        value: "login",
+        text: "Войти на сайт"
+      }, {
+        value: "registration",
+        text: "Зарегистрироваться"
+      }
+    ],
     birthdayMinDate: moment().subtract("years", 100),
     birthdayMaxDate: moment().subtract("years", 22),
     doctorGraduationMinDate: moment([1940, 0, 1]),
@@ -35871,6 +35880,7 @@ Test = React.createClass({displayName: 'Test',
       showDoctorPopup: false,
       showDoctorPopupValidation: false,
       user: user,
+      authType: "login",
       recommendations: null,
       registered: false,
       logined: logined,
@@ -36355,14 +36365,24 @@ Test = React.createClass({displayName: 'Test',
               ),
               React.DOM.div( {className:"layout__column"}, 
                 Visibility( {hide:this.state.registered || this.state.logined}, 
-                  Registration(
-                    {user:user,
-                    showDoctor:false,
-                    reloadOnRegister:false,
-                    valueLink:this.linkState('registered', this.handleRegisteredOrLogined)} ),
-                  Login(
-                    {reloadOnSuccess:false,
-                    valueLink:this.linkState('logined', this.handleRegisteredOrLogined)} )
+                  React.DOM.div( {className:"data"}, 
+                    React.DOM.div( {className:"data__title"}, "Авторизация"),
+                    React.DOM.div( {className:"data__row"}, 
+                      RadioGroup( {values:Test.authTypeValues, valueLink:this.linkState('authType')} )
+                    )
+                  ),
+                  Visibility( {show:this.state.authType == 'registration'}, 
+                    Registration(
+                      {user:user,
+                      showDoctor:false,
+                      reloadOnRegister:false,
+                      valueLink:this.linkState('registered', this.handleRegisteredOrLogined)} )
+                  ),
+                  Visibility( {show:this.state.authType == 'login'}, 
+                    Login(
+                      {reloadOnSuccess:false,
+                      valueLink:this.linkState('logined', this.handleRegisteredOrLogined)} )
+                  )
                 ),
                 Visibility( {show:!!this.state.user}, 
                   React.DOM.div( {className:"data"}, 
