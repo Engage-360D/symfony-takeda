@@ -6,3 +6,5 @@ Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
             serialized_name: bmi
         getScoreValue:
             serialized_name: scoreValue
+        getRecommendations:
+            serialized_name: recommendations
