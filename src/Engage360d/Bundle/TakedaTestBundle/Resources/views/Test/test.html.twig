@@ -7,7 +7,14 @@
   </div>
   <div class="title">Анализ риска</div>
 </div>
+
+{% if app.user and not app.user.doctor and app.user.testResults|length > 0 %}
+<p>Вы уже прошли тест</p>
+{% elseif app.user %}
+<div data-react-component="Test" data-firstname="{{ app.user.firstname }}" data-lastname="{{ app.user.lastname }}"></div>
+{% else %}
 <div data-react-component="Test"></div>
+{% endif %}
 
 {#
 <hr />

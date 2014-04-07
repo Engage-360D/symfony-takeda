@@ -1,6 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"jquery":[function(require,module,exports){
-module.exports=require('6StMfs');
-},{}],"6StMfs":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"6StMfs":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
@@ -9798,6 +9796,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"jquery":[function(require,module,exports){
+module.exports=require('6StMfs');
 },{}],3:[function(require,module,exports){
 // shim for using process in browser
 
@@ -9860,6 +9860,8 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
+},{}],"microplugin":[function(require,module,exports){
+module.exports=require('edEggf');
 },{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10001,8 +10003,6 @@ process.chdir = function (dir) {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"microplugin":[function(require,module,exports){
-module.exports=require('edEggf');
 },{}],6:[function(require,module,exports){
 //! moment.js
 //! version : 2.5.1
@@ -31474,6 +31474,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -34257,9 +34259,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -34821,7 +34821,6 @@ DateInput = React.createClass({displayName: 'DateInput',
       maxDate: this.props.maxDate.toDate(),
       onSelect: (function(_this) {
         return function() {
-          console.log(_this.picker.getMoment().format(DateInput.dateFormat));
           return _this.props.valueLink.requestChange(_this.picker.getMoment());
         };
       })(this)
@@ -35840,14 +35839,38 @@ Test = React.createClass({displayName: 'Test',
       }
     ],
     birthdayMinDate: moment().subtract("years", 100),
-    birthdayMaxDate: moment().subtract("years", 18)
+    birthdayMaxDate: moment().subtract("years", 18),
+    doctorGraduationMinDate: moment([1940, 0, 1]),
+    doctorGraduationMaxDate: moment().subtract("days", 1)
   },
   getInitialState: function() {
+    var logined, user;
+    if (this.props.firstname || this.props.lastname) {
+      user = {
+        firstname: this.props.firstname,
+        lastname: this.props.lastname
+      };
+      logined = true;
+    } else {
+      user = null;
+      logined = false;
+    }
     return {
       step: "first",
       showValidation: false,
       loading: false,
+      showDoctorPopup: false,
+      showDoctorPopupValidation: false,
+      user: user,
+      registered: false,
+      logined: logined,
       doctor: false,
+      doctorSpecialization: null,
+      doctorExperience: null,
+      doctorAddress: null,
+      doctorPhone: null,
+      doctorInstitution: null,
+      doctorGraduation: null,
       sex: null,
       birthday: null,
       growth: null,
@@ -35869,6 +35892,24 @@ Test = React.createClass({displayName: 'Test',
   getValidationConfig: function() {
     return {
       children: {
+        doctorSpecialization: {
+          notNull: validationConstraints.notNull()
+        },
+        doctorExperience: {
+          notNull: validationConstraints.notNull()
+        },
+        doctorAddress: {
+          notNull: validationConstraints.notNull()
+        },
+        doctorPhone: {
+          notNull: validationConstraints.notNull()
+        },
+        doctorInstitution: {
+          notNull: validationConstraints.notNull()
+        },
+        doctorGraduation: {
+          notNull: validationConstraints.notNull()
+        },
         sex: {
           notNull: validationConstraints.notNull()
         },
@@ -35931,17 +35972,61 @@ Test = React.createClass({displayName: 'Test',
         },
         acetylsalicylicDrugs: {
           notNull: validationConstraints.notNull()
+        },
+        user: {
+          notNull: validationConstraints.notNull()
         }
       },
       component: {
+        doctorInfo: function(state, childrenValidity) {
+          if (!state.doctor) {
+            return true;
+          }
+          return childrenValidity.doctorSpecialization.valid && childrenValidity.doctorExperience.valid && childrenValidity.doctorAddress.valid && childrenValidity.doctorPhone.valid && childrenValidity.doctorInstitution.valid && childrenValidity.doctorGraduation.valid;
+        },
         firstStep: function(state, childrenValidity) {
-          return childrenValidity.sex.valid && childrenValidity.birthday.valid && childrenValidity.growth.valid && childrenValidity.weight.valid && childrenValidity.smoking.valid && childrenValidity.cholesterolDrugs.valid && childrenValidity.diabetes.valid && childrenValidity.sugarProblems.valid && childrenValidity.sugarDrugs.valid && childrenValidity.heartAttackOrStroke.valid;
+          var doctorInfoValid;
+          doctorInfoValid = childrenValidity.doctorSpecialization.valid && childrenValidity.doctorExperience.valid && childrenValidity.doctorAddress.valid && childrenValidity.doctorPhone.valid && childrenValidity.doctorInstitution.valid && childrenValidity.doctorGraduation.valid;
+          return ((state.doctor && doctorInfoValid) || !state.doctor) && childrenValidity.sex.valid && childrenValidity.birthday.valid && childrenValidity.growth.valid && childrenValidity.weight.valid && childrenValidity.smoking.valid && childrenValidity.cholesterolDrugs.valid && childrenValidity.diabetes.valid && childrenValidity.sugarProblems.valid && childrenValidity.sugarDrugs.valid && childrenValidity.heartAttackOrStroke.valid;
         },
         secondStep: function(state, childrenValidity) {
-          return childrenValidity.extraSalt.valid && childrenValidity.acetylsalicylicDrugs.valid;
+          return childrenValidity.extraSalt.valid && childrenValidity.acetylsalicylicDrugs.valid && childrenValidity.user.valid;
         }
       }
     };
+  },
+  handleDoctorChange: function(doctor) {
+    return this.setState({
+      showDoctorPopup: doctor
+    });
+  },
+  handleRegisteredOrLogined: function(registeredOrLogined) {
+    if (registeredOrLogined) {
+      return $.ajax({
+        cache: false,
+        dataType: "json",
+        success: (function(_this) {
+          return function(user) {
+            return _this.setState({
+              user: user
+            });
+          };
+        })(this),
+        url: "/api/users/me"
+      });
+    }
+  },
+  saveDoctorInfo: function() {
+    if (this.validity.component.doctorInfo.valid) {
+      return this.setState({
+        showDoctorPopup: false,
+        showDoctorPopupValidation: false
+      });
+    } else {
+      return this.setState({
+        showDoctorPopupValidation: true
+      });
+    }
   },
   openSecondStep: function() {
     if (this.validity.component.firstStep.valid) {
@@ -36010,12 +36095,29 @@ Test = React.createClass({displayName: 'Test',
     });
   },
   render: function() {
-    var maxScoreValue, scoreOffset;
+    var maxScoreValue, scoreOffset, user;
     maxScoreValue = this.state.sex === "male" ? 47 : 20;
     scoreOffset = 0;
     if (this.state.scoreValue) {
       scoreOffset = this.state.scoreValue / (maxScoreValue / 100);
     }
+    user = this.state.doctor ? {
+      doctor: true,
+      doctorSpecialization: this.state.doctorSpecialization,
+      doctorExperience: this.state.doctorExperience,
+      doctorAddress: this.state.doctorAddress,
+      doctorPhone: this.state.doctorPhone,
+      doctorInstitution: this.state.doctorInstitution,
+      doctorGraduation: this.state.doctorGraduation
+    } : {
+      doctor: false,
+      doctorSpecialization: null,
+      doctorExperience: null,
+      doctorAddress: null,
+      doctorPhone: null,
+      doctorInstitution: null,
+      doctorGraduation: null
+    };
     return (
       React.DOM.div(null, 
         Visibility( {show:this.state.step == 'first'}, 
@@ -36029,7 +36131,51 @@ Test = React.createClass({displayName: 'Test',
                     React.DOM.div( {className:"data__label"}, "Вы являетесь врачом?"),
                     React.DOM.div( {className:"data__content"}, 
                       React.DOM.div( {className:"data__fieldset"}, 
-                        BooleanRadioGroup( {valueLink:this.linkState('doctor')} )
+                        BooleanRadioGroup( {valueLink:this.linkState('doctor', this.handleDoctorChange), invalid:this.state.showValidation && this.validity.component.doctorInfo.invalid} )
+                      ),
+                      Visibility( {show:this.state.showDoctorPopup}, 
+                        React.DOM.div( {className:"mainspec mainspec_popup"}, 
+                          React.DOM.div( {className:"mainspec__title"}, "Основная специализация"),
+                          React.DOM.div( {className:"mainspec__item mainspec__add"}, 
+                            React.DOM.div( {className:"field"}, 
+                              Input( {placeholder:"Введите название", valueLink:this.linkState('doctorSpecialization'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorSpecialization.invalid} )
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__item mainspec__experience"}, 
+                            React.DOM.div( {className:"field"}, 
+                              React.DOM.div( {className:"field__label"}, "Стаж"),
+                              Input( {valueLink:this.linkState('doctorExperience'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid} ),
+                              React.DOM.div( {className:"field__label"}, "лет")
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__item mainspec__address"}, 
+                            React.DOM.div( {className:"field"}, 
+                              React.DOM.div( {className:"field__label"}, "Адрес"),
+                              Input( {valueLink:this.linkState('doctorAddress'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorAddress.invalid} )
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__item mainspec__phone"}, 
+                            React.DOM.div( {className:"field"}, 
+                              React.DOM.div( {className:"field__label"}, "Телефон"),
+                              Input( {valueLink:this.linkState('doctorPhone'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorPhone.invalid} )
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__item mainspec__school"}, 
+                            React.DOM.div( {className:"field"}, 
+                              React.DOM.div( {className:"field__label"}, "Учебное заведение"),
+                              Input( {valueLink:this.linkState('doctorInstitution'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorInstitution.invalid} )
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__item mainspec__date"}, 
+                            React.DOM.div( {className:"field"}, 
+                              React.DOM.div( {className:"field__label"}, "Учебное заведение"),
+                              DateInput( {valueLink:this.linkState('doctorGraduation'), minDate:Test.doctorGraduationMinDate, maxDate:Test.doctorGraduationMaxDate, invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} )
+                            )
+                          ),
+                          React.DOM.div( {className:"mainspec__btn"}, 
+                            React.DOM.button( {className:"btn", onClick:this.saveDoctorInfo}, "Продолжить")
+                          )
+                        )
                       )
                     )
                   )
@@ -36200,14 +36346,24 @@ Test = React.createClass({displayName: 'Test',
                 )
               ),
               React.DOM.div( {className:"layout__column"}, 
-                Registration(
-                  {user:{},
-                  showDoctor:false,
-                  reloadOnRegister:false,
-                  valueLink:this.linkState('registered')}),
-                Login(
-                  {reloadOnSuccess:false,
-                  valueLink:this.linkState('logged')})
+                Visibility( {hide:this.state.registered || this.state.logined}, 
+                  Registration(
+                    {user:user,
+                    showDoctor:false,
+                    reloadOnRegister:false,
+                    valueLink:this.linkState('registered', this.handleRegisteredOrLogined)} ),
+                  Login(
+                    {reloadOnSuccess:false,
+                    valueLink:this.linkState('logined', this.handleRegisteredOrLogined)} )
+                ),
+                Visibility( {show:!!this.state.user}, 
+                  React.DOM.div( {className:"data"}, 
+                    React.DOM.div( {className:"data__title"}, "Авторизация"),
+                    React.DOM.div( {className:"data__row"}, 
+                      "Здравствуйте, ", this.state.user ? [this.state.user.firstname, this.state.user.lastname].join(' ') : '',"!"
+                    )
+                  )
+                )
               )
             )
           ),

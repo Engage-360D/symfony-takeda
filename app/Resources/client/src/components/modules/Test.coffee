@@ -27,12 +27,34 @@ Test = React.createClass
     ]
     birthdayMinDate: moment().subtract("years", 100)
     birthdayMaxDate: moment().subtract("years", 18)
+    doctorGraduationMinDate: moment([1940, 0, 1])
+    doctorGraduationMaxDate: moment().subtract("days", 1)
 
   getInitialState: ->
+    if @props.firstname or @props.lastname
+      user = 
+        firstname: @props.firstname
+        lastname: @props.lastname
+      logined = true
+    else
+      user = null
+      logined = false
+    
     step: "first"
     showValidation: false
     loading: false
+    showDoctorPopup: false
+    showDoctorPopupValidation: false
+    user: user
+    registered: false
+    logined: logined
     doctor: false
+    doctorSpecialization: null
+    doctorExperience: null
+    doctorAddress: null
+    doctorPhone: null
+    doctorInstitution: null
+    doctorGraduation: null
     sex: null
     birthday: null
     growth: null
@@ -50,13 +72,23 @@ Test = React.createClass
     extraSalt: null
     acetylsalicylicDrugs: null
 
-  #getInitialState: ->
     #step: "second"
     #showValidation: false
     #loading: false
+    #showDoctorPopup: false
+    #showDoctorPopupValidation: false
+    #user: user
+    #registered: false
+    #logined: logined
     #doctor: false
+    #doctorSpecialization: null
+    #doctorExperience: null
+    #doctorAddress: null
+    #doctorPhone: null
+    #doctorInstitution: null
+    #doctorGraduation: null
     #sex: "male"
-    #birthday: moment().subtract("years", 65)
+    #birthday: moment().subtract("years", 100)
     #growth: 185
     #weight: 95
     #smoking: true
@@ -74,6 +106,18 @@ Test = React.createClass
 
   getValidationConfig: ->
     children:
+      doctorSpecialization:
+        notNull: validationConstraints.notNull()
+      doctorExperience:
+        notNull: validationConstraints.notNull()
+      doctorAddress:
+        notNull: validationConstraints.notNull()
+      doctorPhone:
+        notNull: validationConstraints.notNull()
+      doctorInstitution:
+        notNull: validationConstraints.notNull()
+      doctorGraduation:
+        notNull: validationConstraints.notNull()
       sex:
         notNull: validationConstraints.notNull()
       birthday:
@@ -112,8 +156,26 @@ Test = React.createClass
         notNull: validationConstraints.notNull()
       acetylsalicylicDrugs:
         notNull: validationConstraints.notNull()
+      user:
+        notNull: validationConstraints.notNull()
     component:
+      doctorInfo: (state, childrenValidity) ->
+        return true unless state.doctor
+        childrenValidity.doctorSpecialization.valid and \
+        childrenValidity.doctorExperience.valid and \
+        childrenValidity.doctorAddress.valid and \
+        childrenValidity.doctorPhone.valid and \
+        childrenValidity.doctorInstitution.valid and \
+        childrenValidity.doctorGraduation.valid
       firstStep: (state, childrenValidity) ->
+        doctorInfoValid =
+          childrenValidity.doctorSpecialization.valid and \
+          childrenValidity.doctorExperience.valid and \
+          childrenValidity.doctorAddress.valid and \
+          childrenValidity.doctorPhone.valid and \
+          childrenValidity.doctorInstitution.valid and \
+          childrenValidity.doctorGraduation.valid
+        ((state.doctor and doctorInfoValid) or not state.doctor) and \
         childrenValidity.sex.valid and \
         childrenValidity.birthday.valid and \
         childrenValidity.growth.valid and \
@@ -126,7 +188,26 @@ Test = React.createClass
         childrenValidity.heartAttackOrStroke.valid
       secondStep: (state, childrenValidity) ->
         childrenValidity.extraSalt.valid and \
-        childrenValidity.acetylsalicylicDrugs.valid
+        childrenValidity.acetylsalicylicDrugs.valid and \
+        childrenValidity.user.valid
+        
+  handleDoctorChange: (doctor) ->
+    @setState showDoctorPopup: doctor
+
+  handleRegisteredOrLogined: (registeredOrLogined) ->
+    if registeredOrLogined
+      $.ajax
+        cache: false
+        dataType: "json"
+        success: (user) =>
+          @setState user: user
+        url: "/api/users/me"
+
+  saveDoctorInfo: ->
+    if @validity.component.doctorInfo.valid
+      @setState showDoctorPopup: false, showDoctorPopupValidation: false
+    else
+      @setState showDoctorPopupValidation: true
 
   openSecondStep: ->
     if @validity.component.firstStep.valid
@@ -181,6 +262,23 @@ Test = React.createClass
 
     if @state.scoreValue
       scoreOffset = @state.scoreValue / (maxScoreValue / 100)
+      
+    user = if @state.doctor
+      doctor: true
+      doctorSpecialization: @state.doctorSpecialization
+      doctorExperience: @state.doctorExperience
+      doctorAddress: @state.doctorAddress
+      doctorPhone: @state.doctorPhone
+      doctorInstitution: @state.doctorInstitution
+      doctorGraduation: @state.doctorGraduation
+    else
+      doctor: false
+      doctorSpecialization: null
+      doctorExperience: null
+      doctorAddress: null
+      doctorPhone: null
+      doctorInstitution: null
+      doctorGraduation: null
 
     `(
       <div>
@@ -195,8 +293,52 @@ Test = React.createClass
                     <div className="data__label">Вы являетесь врачом?</div>
                     <div className="data__content">
                       <div className="data__fieldset">
-                        <BooleanRadioGroup valueLink={this.linkState('doctor')} />
+                        <BooleanRadioGroup valueLink={this.linkState('doctor', this.handleDoctorChange)} invalid={this.state.showValidation && this.validity.component.doctorInfo.invalid} />
                       </div>
+                      <Visibility show={this.state.showDoctorPopup}>
+                        <div className="mainspec mainspec_popup">
+                          <div className="mainspec__title">Основная специализация</div>
+                          <div className="mainspec__item mainspec__add">
+                            <div className="field">
+                              <Input placeholder="Введите название" valueLink={this.linkState('doctorSpecialization')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorSpecialization.invalid} />
+                            </div>
+                          </div>
+                          <div className="mainspec__item mainspec__experience">
+                            <div className="field">
+                              <div className="field__label">Стаж</div>
+                              <Input valueLink={this.linkState('doctorExperience')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid} />
+                              <div className="field__label">лет</div>
+                            </div>
+                          </div>
+                          <div className="mainspec__item mainspec__address">
+                            <div className="field">
+                              <div className="field__label">Адрес</div>
+                              <Input valueLink={this.linkState('doctorAddress')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorAddress.invalid} />
+                            </div>
+                          </div>
+                          <div className="mainspec__item mainspec__phone">
+                            <div className="field">
+                              <div className="field__label">Телефон</div>
+                              <Input valueLink={this.linkState('doctorPhone')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorPhone.invalid} />
+                            </div>
+                          </div>
+                          <div className="mainspec__item mainspec__school">
+                            <div className="field">
+                              <div className="field__label">Учебное заведение</div>
+                              <Input valueLink={this.linkState('doctorInstitution')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorInstitution.invalid} />
+                            </div>
+                          </div>
+                          <div className="mainspec__item mainspec__date">
+                            <div className="field">
+                              <div className="field__label">Учебное заведение</div>
+                              <DateInput valueLink={this.linkState('doctorGraduation')} minDate={Test.doctorGraduationMinDate} maxDate={Test.doctorGraduationMaxDate} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
+                            </div>
+                          </div>
+                          <div className="mainspec__btn">
+                            <button className="btn" onClick={this.saveDoctorInfo}>Продолжить</button>
+                          </div>
+                        </div>
+                      </Visibility>
                     </div>
                   </div>
                 </div>
@@ -366,14 +508,24 @@ Test = React.createClass
                 </div>
               </div>
               <div className="layout__column">
-                <Registration
-                  user={{}}
-                  showDoctor={false}
-                  reloadOnRegister={false}
-                  valueLink={this.linkState('registered')}/>
-                <Login
-                  reloadOnSuccess={false}
-                  valueLink={this.linkState('logged')}/>
+                <Visibility hide={this.state.registered || this.state.logined}>
+                  <Registration
+                    user={user}
+                    showDoctor={false}
+                    reloadOnRegister={false}
+                    valueLink={this.linkState('registered', this.handleRegisteredOrLogined)} />
+                  <Login
+                    reloadOnSuccess={false}
+                    valueLink={this.linkState('logined', this.handleRegisteredOrLogined)} />
+                </Visibility>
+                <Visibility show={!!this.state.user}>
+                  <div className="data">
+                    <div className="data__title">Авторизация</div>
+                    <div className="data__row">
+                      Здравствуйте, {this.state.user ? [this.state.user.firstname, this.state.user.lastname].join(' ') : ''}!
+                    </div>
+                  </div>
+                </Visibility>
               </div>
             </div>
           </div>

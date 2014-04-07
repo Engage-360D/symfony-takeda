@@ -32,9 +32,6 @@ fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
     prefix: /admin
 
-engage360d_takeda:
-  resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
-
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
@@ -73,3 +70,6 @@ engage360d_takeda_user:
 
 engage360d_takeda_test:
   resource: "@Engage360dTakedaTestBundle/Resources/config/routing/routing.yml"
+
+engage360d_takeda:
+  resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"

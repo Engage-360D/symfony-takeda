@@ -31,7 +31,6 @@ DateInput = React.createClass
       minDate: @props.minDate.toDate()
       maxDate: @props.maxDate.toDate()
       onSelect: =>
-        console.log @picker.getMoment().format(DateInput.dateFormat)
         @props.valueLink.requestChange @picker.getMoment()
 
   componentWillReceiveProps: (nextProps) ->
