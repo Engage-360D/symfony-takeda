@@ -413,7 +413,7 @@ Test = React.createClass
               </div>
               <div className="layout__column">
                 <div className="data">
-                  <div className="data__title">Личные данные</div>
+                  <div className="data__title">История пациента</div>
                   <div className="data__row">
                     <div className="data__label">Страдаете ли вы диабетом?</div>
                     <div className="data__content">

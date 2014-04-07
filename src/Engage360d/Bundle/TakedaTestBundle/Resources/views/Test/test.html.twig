@@ -1,12 +1,10 @@
 {% extends "::layout.html.twig" %}
 
 {% block content %}
-  <div class="page">
     <div class="city">
       <a href="#"><i></i><span>Москва</span></a>
     </div>
-    <div class="title">Анализ риска</div>
-  </div>
+    <div class="title title_out">Анализ риска</div>
 
   {% if app.user and not app.user.doctor and app.user.testResults|length > 0 %}
     <p>Вы уже прошли тест</p>
