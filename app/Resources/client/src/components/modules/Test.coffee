@@ -12,6 +12,7 @@ BooleanRadioGroup = require "../form/BooleanRadioGroup"
 DateInput = require "../form/DateInput"
 Range = require "../form/Range"
 Input = require "../registration/Input"
+NumberSelect = require "../registration/NumberSelect"
 Visibility = require "../helpers/Visibility"
 Registration = require "./Registration"
 Login = require "./Login"
@@ -304,7 +305,9 @@ Test = React.createClass
                           <div className="mainspec__item mainspec__experience">
                             <div className="field">
                               <div className="field__label">Стаж</div>
-                              <Input valueLink={this.linkState('doctorExperience')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid} />
+                  						<NumberSelect
+                  					    valueLink={this.linkState('doctorExperience')}
+                  					    invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}/>
                               <div className="field__label">лет</div>
                             </div>
                           </div>

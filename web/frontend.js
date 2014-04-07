@@ -35794,7 +35794,7 @@ module.exports = ResetPassword;
 
 },{"../../mixins/HTMLElementContainerMixin":172,"../../mixins/ResetPasswordMixin":177,"../modal/Modal":157,"../registration/Field":165,"../registration/Input":166,"react":145}],161:[function(require,module,exports){
 /** @jsx React.DOM */;
-var $, BooleanRadioGroup, DateInput, Input, LinkedStateMixin, Login, RadioGroup, Range, React, Registration, Test, TestResultRecommendations, ValidationMixin, Visibility, moment, validationConstraints;
+var $, BooleanRadioGroup, DateInput, Input, LinkedStateMixin, Login, NumberSelect, RadioGroup, Range, React, Registration, Test, TestResultRecommendations, ValidationMixin, Visibility, moment, validationConstraints;
 
 React = require("react");
 
@@ -35817,6 +35817,8 @@ DateInput = require("../form/DateInput");
 Range = require("../form/Range");
 
 Input = require("../registration/Input");
+
+NumberSelect = require("../registration/NumberSelect");
 
 Visibility = require("../helpers/Visibility");
 
@@ -36141,7 +36143,9 @@ Test = React.createClass({displayName: 'Test',
                           React.DOM.div( {className:"mainspec__item mainspec__experience"}, 
                             React.DOM.div( {className:"field"}, 
                               React.DOM.div( {className:"field__label"}, "Стаж"),
-                              Input( {valueLink:this.linkState('doctorExperience'), invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid} ),
+                  						NumberSelect(
+                  					    {valueLink:this.linkState('doctorExperience'),
+                  					    invalid:this.state.showDoctorPopupValidation && this.validity.children.doctorExperience.invalid}),
                               React.DOM.div( {className:"field__label"}, "лет")
                             )
                           ),
@@ -36384,7 +36388,7 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":173,"../../mixins/ValidationMixin":178,"../../services/validationConstraints":179,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":166,"./Login":158,"./Registration":159,"./TestResultRecommendations":162,"jquery":"6StMfs","moment":6,"react":145}],162:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":173,"../../mixins/ValidationMixin":178,"../../services/validationConstraints":179,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":166,"../registration/NumberSelect":167,"./Login":158,"./Registration":159,"./TestResultRecommendations":162,"jquery":"6StMfs","moment":6,"react":145}],162:[function(require,module,exports){
 /** @jsx React.DOM */;
 var React, TestResultRecommendations;
 
