@@ -9860,6 +9860,8 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
+},{}],"microplugin":[function(require,module,exports){
+module.exports=require('edEggf');
 },{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10001,8 +10003,6 @@ process.chdir = function (dir) {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"microplugin":[function(require,module,exports){
-module.exports=require('edEggf');
 },{}],6:[function(require,module,exports){
 //! moment.js
 //! version : 2.5.1
@@ -31474,6 +31474,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -34257,11 +34259,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -34716,6 +34714,8 @@ module.exports=require('fsZITE');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],152:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -35115,7 +35115,7 @@ module.exports = Modal;
 
 },{"react":146}],159:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Checkbox, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Login, LoginMixin, Modal, React, RegistrationMixin, ResetPassword, ValidationMixin, validationConstraints;
+var Checkbox, FacebookButton, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Login, LoginMixin, Modal, React, RegistrationMixin, ResetPassword, ValidationMixin, VkontakteButton, validationConstraints;
 
 React = require("react");
 
@@ -35140,6 +35140,10 @@ Field = require("../registration/Field");
 Input = require("../registration/Input");
 
 ResetPassword = require("./ResetPassword");
+
+FacebookButton = require("../social/login/FacebookButton");
+
+VkontakteButton = require("../social/login/VkontakteButton");
 
 Login = React.createClass({displayName: 'Login',
   mixins: [LinkedStateMixin, ValidationMixin, HTMLElementContainerMixin, LoginMixin],
@@ -35214,7 +35218,15 @@ Login = React.createClass({displayName: 'Login',
   					React.DOM.div( {className:"enter__btn"}, 
   							React.DOM.button( {className:"btn", onClick:this.onLogin}, "Войти")
   					)
-    			)
+    			),
+    			React.DOM.div( {className:"data__row data__row_social"}, 
+  					React.DOM.div( {className:"data__label"}, "Использовать аккаунт социальных сетей:"),
+  					React.DOM.ul( {className:"social social_gray"}, 
+  						React.DOM.li(null, VkontakteButton(null)),
+  						React.DOM.li(null, FacebookButton(null)),
+  						React.DOM.li(null, React.DOM.a( {className:"socail__ok", href:"#"}, React.DOM.i(null)))
+  					)
+  				)
         )
 			)
     );
@@ -35224,9 +35236,9 @@ Login = React.createClass({displayName: 'Login',
 module.exports = Login;
 
 
-},{"../../mixins/HTMLElementContainerMixin":173,"../../mixins/LinkedStateMixin":174,"../../mixins/LoginMixin":175,"../../mixins/RegistrationMixin":177,"../../mixins/ValidationMixin":179,"../../services/validationConstraints":180,"../form/Checkbox":153,"../modal/Modal":158,"../registration/Field":165,"../registration/Input":166,"./ResetPassword":161,"react":146}],160:[function(require,module,exports){
+},{"../../mixins/HTMLElementContainerMixin":172,"../../mixins/LinkedStateMixin":173,"../../mixins/LoginMixin":174,"../../mixins/RegistrationMixin":176,"../../mixins/ValidationMixin":178,"../../services/validationConstraints":179,"../form/Checkbox":153,"../modal/Modal":158,"../registration/Field":165,"../registration/Input":166,"../social/login/FacebookButton":169,"../social/login/VkontakteButton":170,"./ResetPassword":161,"react":146}],160:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Checkbox, DateInput, FacebookButton, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, NumberSelect, React, RegionsInput, Registration, RegistrationMixin, Switch, ValidationMixin, VkontakteButton, moment, reqwest, validationConstraints;
+var BooleanRadioGroup, Checkbox, DateInput, FacebookButton, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, NumberSelect, React, RegionsInput, Registration, RegistrationMixin, ValidationMixin, VkontakteButton, moment, reqwest, validationConstraints;
 
 React = require("react");
 
@@ -35260,7 +35272,7 @@ RegionsInput = require("../registration/RegionsInput");
 
 NumberSelect = require("../registration/NumberSelect");
 
-Switch = require("../registration/Switch");
+BooleanRadioGroup = require("../form/BooleanRadioGroup");
 
 FacebookButton = require("../social/login/FacebookButton");
 
@@ -35285,6 +35297,7 @@ Registration = React.createClass({displayName: 'Registration',
   },
   getInitialState: function() {
     return {
+      doctor: false,
       showValidation: false,
       showDoctorValidation: false,
       context: parseInt(this.props.context),
@@ -35332,9 +35345,6 @@ Registration = React.createClass({displayName: 'Registration',
         region: {
           notEmpty: validationConstraints.notEmpty()
         },
-        birthday: {
-          date: validationConstraints.date()
-        },
         password: {
           notEmpty: validationConstraints.notEmpty()
         },
@@ -35369,7 +35379,7 @@ Registration = React.createClass({displayName: 'Registration',
       component: {
         main: function(state, childrenValidity) {
           var field, fields, _i, _len;
-          fields = ["firstname", "email", "region", "birthday", "password", "confirmPassword", "confirmInformation", "confirmPersonalization"];
+          fields = ["firstname", "email", "region", "password", "confirmPassword", "confirmInformation", "confirmPersonalization"];
           for (_i = 0, _len = fields.length; _i < _len; _i++) {
             field = fields[_i];
             if (!((childrenValidity[field] != null) && childrenValidity[field].valid)) {
@@ -35396,6 +35406,7 @@ Registration = React.createClass({displayName: 'Registration',
     };
   },
   handleDoctorChange: function(value) {
+    console.log(value);
     if (value) {
       return this.setState({
         context: Registration.context.doctor
@@ -35496,62 +35507,63 @@ Registration = React.createClass({displayName: 'Registration',
     );
   },
   renderDoctorForm: function() {
-    if (!this.props.showDoctor) {
-      return;
-    }
     return (
       React.DOM.div(null, 
         React.DOM.div( {className:"data__title"}, 
-          "Ваши данные"
+          "Сохранить данные и зарегистрироваться"
         ),
-        React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Основная специализация"),
-					React.DOM.div( {className:"data__content"}, 
-					   Input(
-					    {valueLink:this.linkState('specialization'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.specialization.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Стаж"),
-					React.DOM.div( {className:"data__content"}, 
-					   NumberSelect(
-					    {valueLink:this.linkState('experience'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.experience.invalid})
-					)
-				),
-        React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Адрес"),
-					React.DOM.div( {className:"data__content"}, 
-					   Input(
-					    {valueLink:this.linkState('address'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.address.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Телефон"),
-					React.DOM.div( {className:"data__content"}, 
-					   Input(
-					    {valueLink:this.linkState('phone'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.phone.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Учебное заведение"),
-					React.DOM.div( {className:"data__content"}, 
-					   Input(
-					    {valueLink:this.linkState('institution'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.institution.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Год окончания"),
-					React.DOM.div( {className:"data__content"}, 
-					   NumberSelect(
-					    {min:1950,
-					    max:parseInt(moment().format("YYYY")),
-					    valueLink:this.linkState('graduation'),
-					    invalid:this.state.showDoctorValidation && this.validity.children.graduation.invalid})
+        React.DOM.div( {className:"mainspec"}, 
+					React.DOM.div( {className:"mainspec__title"}, "Основная специализация"),
+					React.DOM.div( {className:"mainspec__item mainspec__add"}, 
+						Field(null, 
+							Input(
+							  {placeholder:"Введите название",
+  					    valueLink:this.linkState('specialization'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.specialization.invalid})
+						)
+					),
+					React.DOM.div( {className:"mainspec__item mainspec__experience"}, 
+  					React.DOM.div( {className:"field"}, 
+  						React.DOM.div( {className:"field__label"}, "Стаж"),
+  						NumberSelect(
+  					    {valueLink:this.linkState('experience'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.experience.invalid}),
+  						React.DOM.div( {className:"field__label"}, "лет")
+  					)
+  				),
+  				React.DOM.div( {className:"mainspec__item mainspec__address"}, 
+						React.DOM.div( {className:"field"}, 
+							React.DOM.div( {className:"field__label"}, "Адрес"),
+							Input(
+  					    {valueLink:this.linkState('address'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.address.invalid})
+						)
+					),
+					React.DOM.div( {className:"mainspec__item mainspec__phone"}, 
+						React.DOM.div( {className:"field"}, 
+							React.DOM.div( {className:"field__label"}, "Телефон"),
+							Input(
+  					    {valueLink:this.linkState('phone'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.phone.invalid})
+						)
+					),
+					React.DOM.div( {className:"mainspec__item mainspec__school"}, 
+						React.DOM.div( {className:"field"}, 
+							React.DOM.div( {className:"field__label"}, "Учебное заведение"),
+							Input(
+  					    {valueLink:this.linkState('institution'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.institution.invalid})
+						)
+					),
+					React.DOM.div( {className:"mainspec__item mainspec__date"}, 
+						React.DOM.div( {className:"field"}, 
+							React.DOM.div( {className:"field__label"}, "Год окончания"),
+							NumberSelect(
+  					    {min:1950,
+  					    max:parseInt(moment().format("YYYY")),
+  					    valueLink:this.linkState('graduation'),
+  					    invalid:this.state.showDoctorValidation && this.validity.children.graduation.invalid})
+						)
 					)
 				),
         React.DOM.div( {className:"enter__btn"}, 
@@ -35560,99 +35572,96 @@ Registration = React.createClass({displayName: 'Registration',
       )
     );
   },
+  renderDoctor: function() {
+    if (!this.props.showDoctor) {
+      return;
+    }
+    return (
+      React.DOM.div( {className:"data__row data__row_border"}, 
+				React.DOM.div( {className:"data__label"}, "Вы являетесь врачом?"),
+				React.DOM.div( {className:"data__content"}, 
+				  React.DOM.div( {className:"data__fieldset"}, 
+				    BooleanRadioGroup( {valueLink:this.linkState('doctor', this.handleDoctorChange)} )
+				  )
+				)
+			)
+		);
+  },
+  renderSocialButton: function() {
+    if (this.isChildrenWindow()) {
+      return;
+    }
+    return (
+  	  React.DOM.button( {className:"btn btn_arrow is-active", onClick:this.handleBackClick}, 
+  		  "Через соц. сети",
+  		  React.DOM.i( {className:"ico-arrow-down"})
+  		)
+		);
+  },
   renderRegistration: function() {
     return (
-      React.DOM.div(null, 
+      React.DOM.div( {className:"reg"}, 
         React.DOM.div( {className:"data__title"}, 
           "Ваши данные"
         ),
-        React.DOM.div( {className:"data__row data__row_border"}, 
-					React.DOM.div( {className:"data__label"}, "Вы являетесь врачом?"),
-					React.DOM.div( {className:"data__content"}, 
-					  React.DOM.div( {className:"data__fieldset"}, 
-					    React.DOM.label( {className:"radio"}, 
-					      React.DOM.input( {type:"radio", name:"item1", valueLink:this.linkState('doctor', this.handleDoctorChange)}),
-					      React.DOM.span(null, "Да")
-					     ),
-					    React.DOM.label( {className:"radio"}, 
-					      React.DOM.input( {type:"radio", name:"item1"}),
-					      React.DOM.span(null, "Нет")
-					     )
+        this.renderDoctor(),
+        React.DOM.p( {style:{height: "10px"}}),
+				this.renderSocialButton(),
+				React.DOM.div( {className:"reg__in"}, 
+  				React.DOM.div( {className:"reg__title"}, "Ваши данные"),
+      		Field( {className:"field_mod"}, 
+      		  Input(
+      		    {placeholder:"Имя",
+      		    valueLink:this.linkState('firstname'),
+      		    invalid:this.state.showValidation && this.validity.children.firstname.invalid})
+      		),
+      		Field( {className:"field_mod"}, 
+      		  Input(
+      		    {placeholder:"Email",
+      		    valueLink:this.linkState('email'),
+      		    invalid:this.state.showValidation && this.validity.children.email.invalid})
+      		),
+      		React.DOM.div( {className:"reg__region"}, 
+      		  Field(null, 
+      		    React.DOM.div( {className:"field__label"}, "Регион"),
+      		    React.DOM.div( {className:"select"}, 
+      		      RegionsInput(
+    					    {valueLink:this.linkState('region'),
+    					    invalid:this.state.showValidation && this.validity.children.region.invalid})
+      		    )
+      		  )
+      		),
+    			Field(null, 
+      			 Input(
+      			  {type:"password",
+      			  placeholder:"Пароль",
+      			  valueLink:this.linkState('password'),
+      			  invalid:this.state.showValidation && this.validity.children.password.invalid})
+      		),
+      		Field(null, 
+      		  Input(
+      		    {type:"password",
+      		    placeholder:"Подтвердить пароль",
+      		    valueLink:this.linkState('confirmPassword'),
+      		    invalid:this.state.showValidation && this.validity.children.confirmPassword.invalid})
+      		),
+          React.DOM.div( {className:"reg__fieldset"}, 
+						Checkbox( {checkedLink:this.linkState('confirmPersonalization')}, 
+              "Согласен на обработку персональных данных"
+            ),
+            Checkbox( {checkedLink:this.linkState('confirmSubscription')}, 
+              "Согласен получать информацию по email"
+            ),
+            Checkbox( {checkedLink:this.linkState('confirmInformation')}, 
+              "Согласен с тем, что вся информация носит рекомендательный характер"
+            )
+					),
+          React.DOM.div( {className:"reg__btn"}, 
+					  React.DOM.button( {className:"btn", onClick:this.handleRegistrationClick}, 
+					    "Зарегистрироваться" 
 					  )
 					)
-				),
-				React.DOM.p( {style:{height: "10px"}}),
-				React.DOM.div( {className:"enter"}, 
-    			Field( {className:"field_mod"}, 
-    			  Input(
-    			    {placeholder:"Имя",
-    			    valueLink:this.linkState('firstname'),
-    			    invalid:this.state.showValidation && this.validity.children.firstname.invalid})
-    			),
-    			Field( {className:"field_mod"}, 
-    			  Input(
-    			    {placeholder:"Email",
-    			    valueLink:this.linkState('email'),
-    			    invalid:this.state.showValidation && this.validity.children.email.invalid})
-    			)
-  			),
-  			React.DOM.div( {className:"data__row data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Регион"),
-					React.DOM.div( {className:"data__content"}, 
-					   RegionsInput(
-					    {valueLink:this.linkState('region'),
-					    invalid:this.state.showValidation && this.validity.children.region.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_border data__row_registration"}, 
-					React.DOM.div( {className:"data__label"}, "Дата рождения"),
-					React.DOM.div( {className:"data__content"}, 
-					   DateInput(
-					    {valueLink:this.linkState('birthday'),
-					    invalid:this.state.showValidation && this.validity.children.birthday.invalid})
-					)
-				),
-				React.DOM.div( {className:"data__row"}, 
-					React.DOM.div( {className:"data__label"}, "Создание пароля")
-				),
-				React.DOM.div( {className:"enter"}, 
-    			Field( {className:"field_mod"}, 
-    			  Input(
-    			    {type:"password",
-    			    placeholder:"Пароль",
-    			    valueLink:this.linkState('password'),
-    			    invalid:this.state.showValidation && this.validity.children.password.invalid})
-    			),
-    			Field( {className:"field_mod"}, 
-    			  Input(
-    			    {type:"password",
-    			    placeholder:"Подтвердить пароль",
-    			    valueLink:this.linkState('confirmPassword'),
-    			    invalid:this.state.showValidation && this.validity.children.confirmPassword.invalid})
-    			)
-  			),
-        React.DOM.div(null, "Подтверждение"),
-        Field(null, 
-          Checkbox( {checkedLink:this.linkState('confirmPersonalization')}, 
-            "согласен на обработку персональных данных"
-          )
-        ),
-        Field(null, 
-          Checkbox( {checkedLink:this.linkState('confirmSubscription')}, 
-            "согласен получать информацию по email"
-          )
-        ),
-        Field(null, 
-          Checkbox( {checkedLink:this.linkState('confirmInformation')}, 
-            "согласен с тем, что вся информация носит рекомендательный характер"
-          )
-        ),
-        React.DOM.p( {style:{height: "20px"}}),
-        React.DOM.div( {className:"enter__btn"}, 
-				  React.DOM.button( {className:"btn", onClick:this.handleRegistrationClick}, 
-					  "Зарегистрироваться"
-				  )
-				)
+  			)
       )
     );
   },
@@ -35670,7 +35679,7 @@ Registration = React.createClass({displayName: 'Registration',
 						React.DOM.li(null, React.DOM.a( {className:"socail__ok", href:"#"}, React.DOM.i(null)))
 					)
 				),
-				React.DOM.button( {className:"btn btn_arrow", onClick:this.handleRegistrationChange}, 
+				React.DOM.button( {className:"btn btn_arrow is-active", onClick:this.handleRegistrationChange}, 
 				  "Зарегистрироваться",
 				  React.DOM.i( {className:"ico-arrow-down"})
 				)
@@ -35698,7 +35707,7 @@ Registration = React.createClass({displayName: 'Registration',
 module.exports = Registration;
 
 
-},{"../../mixins/HTMLElementContainerMixin":173,"../../mixins/LinkedStateMixin":174,"../../mixins/RegistrationMixin":177,"../../mixins/ValidationMixin":179,"../../services/validationConstraints":180,"../form/Checkbox":153,"../modal/Modal":158,"../registration/Checkbox":163,"../registration/DateInput":164,"../registration/Field":165,"../registration/Input":166,"../registration/NumberSelect":167,"../registration/RegionsInput":168,"../registration/Switch":169,"../social/login/FacebookButton":170,"../social/login/VkontakteButton":171,"moment":6,"react":146,"reqwest":147}],161:[function(require,module,exports){
+},{"../../mixins/HTMLElementContainerMixin":172,"../../mixins/LinkedStateMixin":173,"../../mixins/RegistrationMixin":176,"../../mixins/ValidationMixin":178,"../../services/validationConstraints":179,"../form/BooleanRadioGroup":152,"../form/Checkbox":153,"../modal/Modal":158,"../registration/Checkbox":163,"../registration/DateInput":164,"../registration/Field":165,"../registration/Input":166,"../registration/NumberSelect":167,"../registration/RegionsInput":168,"../social/login/FacebookButton":169,"../social/login/VkontakteButton":170,"moment":6,"react":146,"reqwest":147}],161:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Field, HTMLElementContainerMixin, Input, Modal, React, ResetPassword, ResetPasswordMixin;
 
@@ -35783,7 +35792,7 @@ ResetPassword = React.createClass({displayName: 'ResetPassword',
 module.exports = ResetPassword;
 
 
-},{"../../mixins/HTMLElementContainerMixin":173,"../../mixins/ResetPasswordMixin":178,"../modal/Modal":158,"../registration/Field":165,"../registration/Input":166,"react":146}],162:[function(require,module,exports){
+},{"../../mixins/HTMLElementContainerMixin":172,"../../mixins/ResetPasswordMixin":177,"../modal/Modal":158,"../registration/Field":165,"../registration/Input":166,"react":146}],162:[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, BooleanRadioGroup, DateInput, Input, LinkedStateMixin, Login, RadioGroup, Range, React, Registration, Test, ValidationMixin, Visibility, moment, validationConstraints;
 
@@ -36232,7 +36241,7 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":174,"../../mixins/ValidationMixin":179,"../../services/validationConstraints":180,"../form/BooleanRadioGroup":152,"../form/DateInput":154,"../form/RadioGroup":155,"../form/Range":156,"../helpers/Visibility":157,"../registration/Input":166,"./Login":159,"./Registration":160,"jquery":"6StMfs","moment":6,"react":146}],163:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":173,"../../mixins/ValidationMixin":178,"../../services/validationConstraints":179,"../form/BooleanRadioGroup":152,"../form/DateInput":154,"../form/RadioGroup":155,"../form/Range":156,"../helpers/Visibility":157,"../registration/Input":166,"./Login":159,"./Registration":160,"jquery":"6StMfs","moment":6,"react":146}],163:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 
@@ -36249,7 +36258,7 @@ Checkbox = React.createClass({displayName: 'Checkbox',
   },
   render: function() {
     return (
-      React.DOM.label( {className:"radio radio__mod_checkbox"}, 
+      React.DOM.label( {className:"checkbox"}, 
         this.renderInput(),
         React.DOM.span(null, 
           this.props.children
@@ -36262,7 +36271,7 @@ Checkbox = React.createClass({displayName: 'Checkbox',
 module.exports = Checkbox;
 
 
-},{"../../mixins/ModsMixin":176,"react":146}],164:[function(require,module,exports){
+},{"../../mixins/ModsMixin":175,"react":146}],164:[function(require,module,exports){
 /** @jsx React.DOM */;
 var DateInput, Pikaday, React;
 
@@ -36342,7 +36351,7 @@ Field = React.createClass({displayName: 'Field',
 module.exports = Field;
 
 
-},{"../../mixins/ModsMixin":176,"react":146}],166:[function(require,module,exports){
+},{"../../mixins/ModsMixin":175,"react":146}],166:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Input, React;
 
@@ -36530,32 +36539,6 @@ module.exports = RegionsInput;
 
 },{"jquery":"6StMfs","react":146,"selectize":"iECS2l"}],169:[function(require,module,exports){
 /** @jsx React.DOM */;
-var LinkedValueUtils, React, Switch;
-
-React = require("react");
-
-LinkedValueUtils = require("react/lib/LinkedValueUtils");
-
-Switch = React.createClass({displayName: 'Switch',
-  onClick: function() {
-    return this.props.valueLink.requestChange(!LinkedValueUtils.getValue(this));
-  },
-  render: function() {
-    var checked;
-    checked = LinkedValueUtils.getValue(this);
-    return (
-      React.DOM.span( {className:"Switch", onClick:this.onClick}, 
-        React.DOM.small( {className:checked ? "SwitchButton SwitchButton-Checked" : "SwitchButton"})
-      )
-    );
-  }
-});
-
-module.exports = Switch;
-
-
-},{"react":146,"react/lib/LinkedValueUtils":29}],170:[function(require,module,exports){
-/** @jsx React.DOM */;
 var FacebookButton, React, reqwest;
 
 React = require("react");
@@ -36578,7 +36561,7 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
 module.exports = FacebookButton;
 
 
-},{"react":146,"reqwest":147}],171:[function(require,module,exports){
+},{"react":146,"reqwest":147}],170:[function(require,module,exports){
 /** @jsx React.DOM */;
 var React, VkontakteButton;
 
@@ -36600,7 +36583,7 @@ VkontakteButton = React.createClass({displayName: 'VkontakteButton',
 module.exports = VkontakteButton;
 
 
-},{"react":146}],172:[function(require,module,exports){
+},{"react":146}],171:[function(require,module,exports){
 var React, getNodes, sharedComponents;
 
 React = require("react");
@@ -36649,7 +36632,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-},{"./components/modules/Login":159,"./components/modules/Registration":160,"./components/modules/ResetPassword":161,"./components/modules/Test":162,"react":146}],173:[function(require,module,exports){
+},{"./components/modules/Login":159,"./components/modules/Registration":160,"./components/modules/ResetPassword":161,"./components/modules/Test":162,"react":146}],172:[function(require,module,exports){
 var HTMLElementContainerMixin;
 
 HTMLElementContainerMixin = {
@@ -36678,7 +36661,7 @@ HTMLElementContainerMixin = {
 module.exports = HTMLElementContainerMixin;
 
 
-},{}],174:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 var LinkedStateMixin, ReactLink, ReactStateSetters;
 
 ReactStateSetters = require("react/lib/ReactStateSetters");
@@ -36701,7 +36684,7 @@ LinkedStateMixin = {
 module.exports = LinkedStateMixin;
 
 
-},{"react/lib/ReactLink":62,"react/lib/ReactStateSetters":79}],175:[function(require,module,exports){
+},{"react/lib/ReactLink":62,"react/lib/ReactStateSetters":79}],174:[function(require,module,exports){
 var LoginMixin, reqwest;
 
 reqwest = require("reqwest");
@@ -36732,7 +36715,7 @@ LoginMixin = {
 module.exports = LoginMixin;
 
 
-},{"reqwest":147}],176:[function(require,module,exports){
+},{"reqwest":147}],175:[function(require,module,exports){
 var ModsMixin,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -36755,7 +36738,7 @@ ModsMixin = {
 module.exports = ModsMixin;
 
 
-},{}],177:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 var RegistrationMixin, extractFields, fields, moment, reqwest;
 
 reqwest = require("reqwest");
@@ -36777,7 +36760,6 @@ extractFields = function(data) {
     first: data.password,
     second: data.confirmPassword
   };
-  user.birthday = moment(data.birthday, "DD.MM.YYYY").format("YYYY-MM-DD");
   user.doctor = data.doctor ? 1 : 0;
   if (data.graduation) {
     user.graduation = moment(data.graduation, "YYYY").format("YYYY-MM-DD");
@@ -36828,7 +36810,7 @@ RegistrationMixin = {
 module.exports = RegistrationMixin;
 
 
-},{"moment":6,"reqwest":147}],178:[function(require,module,exports){
+},{"moment":6,"reqwest":147}],177:[function(require,module,exports){
 var ResetPasswordMixin, reqwest;
 
 reqwest = require("reqwest");
@@ -36862,7 +36844,7 @@ ResetPasswordMixin = {
 module.exports = ResetPasswordMixin;
 
 
-},{"reqwest":147}],179:[function(require,module,exports){
+},{"reqwest":147}],178:[function(require,module,exports){
 var ValidationMixin, validateState, validateValue,
   __slice = [].slice;
 
@@ -36937,7 +36919,7 @@ ValidationMixin = {
 module.exports = ValidationMixin;
 
 
-},{}],180:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 var isNullOrUndefined, moment, validationConstraints;
 
 moment = require("moment");
@@ -37005,4 +36987,4 @@ validationConstraints = {
 module.exports = validationConstraints;
 
 
-},{"moment":6}]},{},[172])
+},{"moment":6}]},{},[171])

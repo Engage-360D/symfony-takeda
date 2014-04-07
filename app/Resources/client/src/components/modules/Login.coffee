@@ -14,6 +14,8 @@ Checkbox = require "../form/Checkbox"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
 ResetPassword = require "./ResetPassword"
+FacebookButton = require "../social/login/FacebookButton"
+VkontakteButton = require "../social/login/VkontakteButton"
 
 
 Login = React.createClass
@@ -75,6 +77,14 @@ Login = React.createClass
   							<button className="btn" onClick={this.onLogin}>Войти</button>
   					</div>
     			</div>
+    			<div className="data__row data__row_social">
+  					<div className="data__label">Использовать аккаунт социальных сетей:</div>
+  					<ul className="social social_gray">
+  						<li><VkontakteButton/></li>
+  						<li><FacebookButton/></li>
+  						<li><a className="socail__ok" href="#"><i></i></a></li>
+  					</ul>
+  				</div>
         </div>
 			</div>
     )`

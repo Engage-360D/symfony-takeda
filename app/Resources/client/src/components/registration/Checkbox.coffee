@@ -14,7 +14,7 @@ Checkbox = React.createClass
 
   render: ->
     `(
-      <label className="radio radio__mod_checkbox">
+      <label className="checkbox">
         {this.renderInput()}
         <span>
           {this.props.children}
