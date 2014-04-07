@@ -55,6 +55,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.field_birthday .field__in {
+  width: 115px;
+}
+
 .radio__mod_checkbox span:before {
   border-radius: 0px;
 }

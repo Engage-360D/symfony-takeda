@@ -27,7 +27,7 @@ Test = React.createClass
       {value: "female", text: "жен."}
     ]
     birthdayMinDate: moment().subtract("years", 100)
-    birthdayMaxDate: moment().subtract("years", 18)
+    birthdayMaxDate: moment().subtract("years", 22)
     doctorGraduationMinDate: moment([1940, 0, 1])
     doctorGraduationMaxDate: moment().subtract("days", 1)
 
@@ -354,7 +354,7 @@ Test = React.createClass
                     <div className="data__label">Возраст</div>
                     <div className="data__content">
                       <div className="data__fieldset">
-                        <div className="field">
+                        <div className="field field_birthday">
                           <DateInput valueLink={this.linkState('birthday')} minDate={Test.birthdayMinDate} maxDate={Test.birthdayMaxDate} invalid={this.state.showValidation && this.validity.children.birthday.invalid} />
                         </div>
                       </div>
