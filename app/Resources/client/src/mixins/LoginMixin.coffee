@@ -3,7 +3,7 @@ reqwest = require "reqwest"
 LoginMixin =
   login: (username, password, callback) ->
     reqwest
-      url: "/user/check"
+      url: "/account/check"
       method: "POST"
       data:
         _username: username

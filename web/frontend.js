@@ -36851,7 +36851,7 @@ reqwest = require("reqwest");
 LoginMixin = {
   login: function(username, password, callback) {
     return reqwest({
-      url: "/user/check",
+      url: "/account/check",
       method: "POST",
       data: {
         _username: username,
