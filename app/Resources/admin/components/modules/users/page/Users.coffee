@@ -15,6 +15,9 @@ PanelBody = require "Engage360d/components/panel/PanelBody"
 PanelFooter = require "Engage360d/components/panel/PanelFooter"
 PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
+UserCollection = require "Engage360d/modules/users/model/UserCollection"
+User = require "Engage360d/modules/users/model/User"
+Collection = require "Engage360d/data/Collection"
 
 Users = React.createClass
   getDefaultProps: ->
@@ -46,28 +49,16 @@ Users = React.createClass
         return @setState active: false
 
       @setState active: true
-          
-      $.oajax
-        url: "/api/users"
-        jso_provider: "engage360d"
-        jso_allowia: true
-        dataType: "json"
+
+      @users = new UserCollection()
+      @users.fetch
         success: (users) =>
-          @setState users: users
+          @setState users: users.toRawJSON()
 
   removeUser: (id) ->
-    $.oajax
-      url: "/api/users/#{id}"
-      method: "DELETE"
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
+    @users.get(id).destroy
       success: =>
-        users = @state.users
-        updated = []
-        for user, index in users
-          updated.push user unless user.id is id
-        @setState users: updated
+        @setState users: @users.toRawJSON()
 
   onHandleAction: (action, row) ->
     if action is "edit"
@@ -78,33 +69,6 @@ Users = React.createClass
 
   handleCreateUser: ->
     Ctx.get("router").handle "#!/users/new/edit"
-
-  handleSaveUser: ->
-    user = @refs.detailPage.state.user
-    if user.id
-      action = "/api/users/#{user.id}"
-      method = "PUT"
-      data = user
-    else
-      action = "/api/users"
-      method = "POST"
-      data = user
-
-    $.oajax
-      url: action
-      type: method
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
-      data: data
-      success: (response) =>
-        users = @state.users
-        if user.id
-          for item, index in users
-            users[index] = response if item.id is user.id
-        else
-          users.push data
-        @setState users: users, active: null
 
   handleCancelUser: ->
     @setState active: null

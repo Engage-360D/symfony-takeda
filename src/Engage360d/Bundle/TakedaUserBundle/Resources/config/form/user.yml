@@ -13,3 +13,18 @@ services:
         arguments: [Engage360d\Bundle\TakedaUserBundle\Entity\User\User]
         tags:
             - { name: form.type, alias: engage360d_takeda_user_post_user }
+
+    engage360d_takeda_user.form.user.put:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_user_put_user", null, { }]
+        tags:
+            - { name: rest.form, route: put_users }
+            - { name: rest.manager, route: put_users }
+
+    engage360d_takeda_user.form.security.put.type:
+        class: Engage360d\Bundle\TakedaUserBundle\Form\Type\PutUserFormType
+        arguments: [Engage360d\Bundle\TakedaUserBundle\Entity\User\User]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_user_put_user }

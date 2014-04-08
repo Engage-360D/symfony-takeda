@@ -18,8 +18,8 @@
         "pikaday": "^1.2",
         "moment": "^2.5",
         "components-jquery": "git://github.com/components/jquery.git#1.10.2",
-        "sifter": "~0.3",
-      	"microplugin": "~0.0",
+        "sifter": "^0.3",
+      	"microplugin": "^0.0",
       	"selectize": "git://github.com/vslinko/selectize.js#master"
     },
     "private": true,

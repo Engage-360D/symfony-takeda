@@ -6,7 +6,7 @@ require "moment"
 require "md5"
 
 Ctx = require "Engage360d/services/Context"
-
+LinkModelMixin = require "Engage360d/mixins/LinkModelMixin"
 Editor = require "Engage360d/components/editor/Editor"
 Input = require "Engage360d/components/form/field/Input"
 DateInput = require "Engage360d/components/form/field/DateInput"
@@ -24,13 +24,12 @@ PageContent = require "Engage360d/components/page/PageContent"
 Container = require "Engage360d/components/container/Container"
 Column = require "Engage360d/components/column/Column"
 Button = require "Engage360d/components/button/Button"
+UserModel = require "Engage360d/modules/users/model/User"
 
 User = React.createClass
-  getDefaultProps: ->
-    page: null
+  mixins: [LinkModelMixin]
 
   getInitialState: ->
-    user: {}
     active: false
 
   componentWillMount: ->
@@ -38,41 +37,27 @@ User = React.createClass
       if result[0].handler is "users.edit"
         id = result[0].params.id
         if id > 0
-          Ctx.get("ajax").get "/api/users/#{id}", (user) =>
-            @setState active: true, user: user
+          @model = new UserModel id: id
+          @model.fetch
+            success: =>
+              @setState active: true
         else
-          @setState active: true, user: {}
+          @model = new UserModel
+            plainPassword: @generatePassword()
+          @setState active: true
       else
         @setState active: false
 
-  createChangeHandler: (field) ->
-    (event) =>
-      user = @state.user
-      user[field] = event.target.value
-      @setState user: user
+  generatePassword: ->
+    password = window.md5()
+    first: password
+    second: password
 
-  onSave: ->
-    user = @state.user
-    if user.id
-      data =
-        firstname: user.firstname
-        lastname: user.lastname
+  handleSave: ->
+    @model.save null, success: =>
+      Ctx.get("router").handle "#!/users"
 
-      Ctx.get("ajax").put "/api/users/#{user.id}", data, (user) =>
-        Ctx.get("router").handle "#!/users"
-    else
-      data = user
-      data.birthday = moment(user.birthday, "DD.MM.YYYY").format "YYYY-MM-DD"
-
-      password = window.md5()
-      data.plainPassword =
-        first: password
-        second: password
-
-      Ctx.get("ajax").post "/api/users", data, (user) =>
-        Ctx.get("router").handle "#!/users"
-
-  onCancel: ->
+  handleCancel: ->
     Ctx.get("router").handle "#!/users"
 
   render: ->
@@ -96,7 +81,8 @@ User = React.createClass
                       <Label>Имя</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.user.firstname} onChange={this.createChangeHandler("firstname")}/>
+                      <Input
+                        valueLink={this.linkModel("firstname")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -104,7 +90,8 @@ User = React.createClass
                       <Label>Email</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.user.email} onChange={this.createChangeHandler("email")}/>
+                      <Input
+                        valueLink={this.linkModel("email")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -112,7 +99,8 @@ User = React.createClass
                       <Label>Дата рождения</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <DateInput value={this.state.user.birthday} onChange={this.createChangeHandler("birthday")}/>
+                      <DateInput
+                        valueLink={this.linkModel("birthday")}/>
                     </Column>
                   </Field>
                 </Tab>
@@ -123,7 +111,8 @@ User = React.createClass
                       <Label>Facebook ID</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.user.facebookId} onChange={this.createChangeHandler("facebookId")}/>
+                      <Input
+                        valueLink={this.linkModel("facebookId")}/>
                     </Column>
                   </Field>
                 </Tab>
@@ -132,8 +121,8 @@ User = React.createClass
             <PanelFooter>
               <Column mods={["Size3"]}></Column>
               <Column mods={["Size6"]}>
-                <Button mods="Primary" onClick={this.onSave}>Сохранить</Button>
-                <Button onClick={this.onCancel}>Отмена</Button>
+                <Button mods="Primary" onClick={this.handleSave}>Сохранить</Button>
+                <Button onClick={this.handleCancel}>Отмена</Button>
               </Column>
             </PanelFooter>
           </Panel>

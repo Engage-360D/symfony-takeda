@@ -50,7 +50,11 @@ class EmailConfirmationListener implements EventSubscriberInterface
         $user = $event->getUser();
 
         $this->sendConfirmationEmailMessage($user);
-        $this->authenticateUser($user);
+        
+        if ($event->isAuthenticate()) {
+          $this->authenticateUser($user);
+        }
+
         $this->session->set('engage360d_takeda_user_send_confirmation_email/email', $user->getEmail());
     }
 

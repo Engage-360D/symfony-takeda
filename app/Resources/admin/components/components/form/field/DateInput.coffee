@@ -5,6 +5,7 @@ Pikaday = require "pikaday"
 
 DateInput = React.createClass
   statics:
+    dateFormat: 'DD.MM.YYYY'
     i18n:
       previousMonth : 'Назад'
       nextMonth     : 'Вперед'
@@ -15,18 +16,40 @@ DateInput = React.createClass
   getDefaultProps: ->
     invalid: false
 
+  getInitialState: ->
+    value: if @props.valueLink?.value then @props.valueLink?.value.format(DateInput.dateFormat) else ""
+
   componentDidMount: ->
-    picker = new Pikaday
+    @picker = new Pikaday
       field: @refs.input.getDOMNode()
       i18n: DateInput.i18n
-      format: "DD.MM.YYYY"
+      format: DateInput.dateFormat
       onSelect: =>
-        if @props.onChange
-          @props.onChange target: value: picker.getMoment().format("DD.MM.YYYY")
+        @props.valueLink.requestChange @picker.getMoment()
+
+  componentWillReceiveProps: (nextProps) ->
+    @setState
+      value: if nextProps.valueLink?.value then nextProps.valueLink?.value.format(DateInput.dateFormat) else ""
+
+  handleChange: (event) ->
+    value = event.target.value
+    valid = /^\d{2}\.\d{2}\.\d{4}$/.test value
+
+    @setState
+      value: value
+
+    if valid
+      @picker.setMoment moment(value, DateInput.dateFormat)
 
   renderInput: ->
     @transferPropsTo `(
-      <input className="InputElement" type="text" ref="input"/>
+      <input
+        type="text"
+        value={this.state.value}
+        onChange={this.handleChange}
+        className="InputElement"
+        valueLink={null}
+        ref="input"/>
     )`
 
   render: ->
