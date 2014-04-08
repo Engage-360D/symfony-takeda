@@ -13,7 +13,8 @@ FacebookButton = React.createClass
       window.location.reload()
 
   onClick: ->
-    window.open("/connect/facebook", "", "width=800,height=650")
+    url = "/connect/facebook?_target_path=/account/modal_success"
+    window.open(url, "", "width=800,height=650")
 
   render: ->
     @transferPropsTo `(

@@ -36903,7 +36903,9 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
     })(this));
   },
   onClick: function() {
-    return window.open("/connect/facebook", "", "width=800,height=650");
+    var url;
+    url = "/connect/facebook?_target_path=/account/modal_success";
+    return window.open(url, "", "width=800,height=650");
   },
   render: function() {
     return this.transferPropsTo((
@@ -36945,7 +36947,9 @@ React = require("react");
 
 VkontakteButton = React.createClass({displayName: 'VkontakteButton',
   onClick: function() {
-    return window.open("/connect/vkontakte", "", "width=800,height=650");
+    var url;
+    url = "/connect/vkontakte?_target_path=/account/modal_success";
+    return window.open(url, "", "width=800,height=650");
   },
   render: function() {
     return this.transferPropsTo((
