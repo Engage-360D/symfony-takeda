@@ -1,75 +1,129 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
-Pikaday = require "pikaday"
 moment = require "moment"
+require "moment/lang/ru"
+cx = require "react/lib/cx"
+
 
 DateInput = React.createClass
-  statics:
-    i18n:
-      previousMonth : 'Назад'
-      nextMonth     : 'Вперед'
-      months        : ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-      weekdays      : ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
-      weekdaysShort : ['Вск','Пнд','Вт','Ср','Чт','Пт','Сб']
-    dateFormat: 'DD.MM.YYYY'
-
-  getDefaultProps: ->
-    invalid: false
-    minDate: moment().subtract("years", 100)
-    maxDate: moment().add("years", 100)
-
   getInitialState: ->
-    invalid: @props.invalid
-    value: if @props.valueLink?.value then @props.valueLink?.value.format(DateInput.dateFormat) else ""
+    currentMoment: @readCurrentMoment @props
+    opened: false
+    minDate: @props.minDate or moment().subtract('years', 100)
+    maxDate: @props.maxDate or moment().add('years', 100)
 
-  componentDidMount: ->
-    @picker = new Pikaday
-      field: @refs.input.getDOMNode()
-      i18n: DateInput.i18n
-      format: DateInput.dateFormat
-      minDate: @props.minDate.toDate()
-      maxDate: @props.maxDate.toDate()
-      onSelect: =>
-        @props.valueLink.requestChange @picker.getMoment()
-
-  componentWillReceiveProps: (nextProps) ->
+  componentWillReceiveProps: (newProps) ->
     @setState
-      invalid: nextProps.invalid
-      value: if nextProps.valueLink?.value then nextProps.valueLink?.value.format(DateInput.dateFormat) else ""
+      currentMoment: @readCurrentMoment newProps
+      minDate: newProps.minDate or moment().subtract('years', 100)
+      maxDate: newProps.maxDate or moment().add('years', 100)
 
-  handleChange: (event) ->
-    value = event.target.value
-    valid = /^\d{2}\.\d{2}\.\d{4}$/.test value
+  readCurrentMoment: (props) ->
+    currentMoment = if props.valueLink?.value
+      moment(props.valueLink.value)
+    else
+      moment()
+      
+    if props.maxDate and currentMoment.isAfter(props.maxDate)
+      currentMoment = moment(props.maxDate)
 
+    if props.minDate and currentMoment.isBefore(props.minDate)
+      currentMoment = moment(props.minDate)
+
+    currentMoment
+
+  open: ->
     @setState
-      invalid: not valid
-      value: value
+      opened: true
 
-    if valid
-      @picker.setMoment moment(value, DateInput.dateFormat)
+  close: ->
+    @setState
+      opened: false
+      currentMoment: @readCurrentMoment @props
+      
+  formatMonth: (month) ->
+    month[0].toUpperCase() + month.slice(1).toLowerCase()
 
-  handleBlur: (event) ->
-    value = event.target.value
-    valid = /^\d{2}\.\d{2}\.\d{4}$/.test value
+  setCurrentMoment: (currentMoment) ->
+    @setState
+      currentMoment: currentMoment
 
-    unless valid
-      @setState
-        invalid: false
-        value: @props.valueLink.value.format(DateInput.dateFormat)
+  requestChange: ->
+    @props.valueLink.requestChange moment(@state.currentMoment)
+    @setState
+      opened: false
 
-  renderInput: ->
-    @transferPropsTo `(
-      <input type="text" ref="input" value={this.state.value} onChange={this.handleChange} onBlur={this.handleBlur} valueLink={null} />
-    )`
+  calculateVisibilityStyle: (date) ->
+    visibility: if date.isAfter(@state.maxDate) or date.isBefore(@state.minDate)
+      "hidden"
+    else
+      "visible"
 
   render: ->
-    classes = ["field__in"]
-    classes.push "field__in_invalid" if @state.invalid
-    `(
-      <div className={classes.join(" ")}>
-        {this.renderInput()}
-      </div>
+    currentMoment = @state.currentMoment
+    previousMonth = moment(currentMoment).subtract('months', 1)
+    previousDate = moment(currentMoment).subtract('days', 1)
+    previousYear = moment(currentMoment).subtract('years', 1)
+    nextMonth = moment(currentMoment).add('months', 1)
+    nextDate = moment(currentMoment).add('days', 1)
+    nextYear = moment(currentMoment).add('years', 1)
+
+    classes = cx
+      "calendar": true
+      "is-open": @state.opened
+      "is-error": @props.invalid
+
+    @transferPropsTo `(
+      <div className={classes}>
+  			<div className="calendar__ico" onClick={this.open}></div>
+  			<div className="calendar__in">
+  				<button className="calendar__close" onClick={this.close}></button>
+  				<div className="calendar__title">{this.props.title}</div>
+  				<div className="calendar__date">
+  					<div className="calendar__row">
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousMonth)}>
+  							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousMonth)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>
+  							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousDate)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>
+  							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousYear)}></button>
+  						</div>
+  					</div>
+  					<div className="calendar__row">
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(previousMonth.format('MMMM'))}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>{previousDate.format('DD')}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>{previousYear.format('YYYY')}</div>
+  					</div>
+  					<div className="calendar__row is-active">
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(currentMoment.format('MMMM'))}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>{currentMoment.format('DD')}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>{currentMoment.format('YYYY')}</div>
+  					</div>
+  					<div className="calendar__row">
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(nextMonth)}>{this.formatMonth(nextMonth.format('MMMM'))}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextDate)}>{nextDate.format('DD')}</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextYear)}>{nextYear.format('YYYY')}</div>
+  					</div>
+  					<div className="calendar__row">
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextMonth)}>
+  							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextMonth)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextDate)}>
+  							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextDate)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextYear)}>
+  							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextYear)}></button>
+  						</div>
+  					</div>
+  				</div>
+  				<div className="calendar__footer">
+  					<button className="btn" onClick={this.requestChange}>Выбрать</button>
+  				</div>
+  			</div>
+  		</div>
     )`
 
 

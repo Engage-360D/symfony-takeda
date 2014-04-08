@@ -17,7 +17,6 @@ Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
       - Type: { type: integer }
       - Range: { min: 30, max: 700 }
     smoking:
-      - NotBlank: ~
       - Type: { type: boolean }
     cholesterolLevel:
       - NotBlank: ~
@@ -26,7 +25,6 @@ Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
     cholesterolDrugs:
       - Type: { type: boolean }
     diabetes:
-      - NotBlank: ~
       - Type: { type: boolean }
     sugarProblems:
       - Type: { type: boolean }
@@ -43,11 +41,8 @@ Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
       - Type: { type: integer }
       - Range: { min: 80, max: 200 }
     heartAttackOrStroke:
-      - NotBlank: ~
       - Type: { type: boolean }
     extraSalt:
-      - NotBlank: ~
       - Type: { type: boolean }
     acetylsalicylicDrugs:
-      - NotBlank: ~
       - Type: { type: boolean }

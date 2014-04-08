@@ -1,3 +1,7 @@
+.calendar.is-error .calendar__ico {
+  background: url("/img/icons/calendar-ico-red.png");
+}
+
 .range__val a {
   position: absolute;
   width: 28px;
