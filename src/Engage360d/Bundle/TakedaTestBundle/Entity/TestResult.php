@@ -111,7 +111,10 @@ class TestResult
      * @ORM\Column(type="datetime", name="created_at")
      */
     protected $createdAt;
-    
+
+    private $scoreValue;
+    private $recommendations;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -302,28 +305,24 @@ class TestResult
         return $this->createdAt;
     }
     
+    public function setScoreValue($scoreValue)
+    {
+        $this->scoreValue = $scoreValue;
+    }
+    
     public function getScoreValue()
     {
-        return ScoreCalculator::calculate(
-            $this->getSex(),
-            $this->getBirthday()->diff(new \DateTime())->y,
-            $this->isSmoking(),
-            $this->getArterialPressure(),
-            $this->getCholesterolLevel()
-        );
+        return $this->scoreValue;
+    }
+    
+    public function setRecommendations($recommendations)
+    {
+        $this->recommendations = $recommendations;
     }
 
     public function getRecommendations()
     {
-        return Recommendations::match(
-            $this->getId(),
-            $this->isSmoking(),
-            $this->getArterialPressure(),
-            $this->isExtraSalt(),
-            $this->getCholesterolLevel(),
-            $this->getPhysicalActivity(),
-            $this->getBmi()
-        );
+        return $this->recommendations;
     }
 
     public function validateSugarProblemsOrDrugs(ExecutionContextInterface $context)

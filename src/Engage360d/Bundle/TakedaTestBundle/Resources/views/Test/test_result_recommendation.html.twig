@@ -4,34 +4,51 @@
 {% block description %}Анализ риска{% endblock %}
 
 {% block content %}
-  <div class="page">
-    <div class="city">
-      <a href="#"><i></i><span>Москва</span></a>
-    </div>
-    <div class="title">{{recommendation.pageTitle}}</div>
-
-    <h2>{{recommendation.pageSubtitle}}</h2>
-    <br />
-    <br />
-    
-    {{recommendation.pageText|nl2br}}
-    
-    <br />
-    <br />
-    
-    <table>
-      <tr>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'cholesterolLevel'}) }}">Холестерин</a></td>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'smoking'}) }}">Курение</a></td>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'extraSalt'}) }}">Соль</a></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'bmi'}) }}">Вес</a></td>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'arterialPressure'}) }}">Давление</a></td>
-        <td><a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: 'physicalActivity'}) }}">Физическая активность</a></td>
-        <td></td>
-      </tr>
-    </table>
+  <div class="city">
+    <a href="#"><i></i><span>Москва</span></a>
   </div>
+  <div class="title title_out">Рекомендации</div>
+  
+  <div class="back">
+		<a class="link link_back" href="{{ path('engage360d_takeda_user_account') }}#test-result-{{testResult.id}}"><i></i><span>Вернуться к результатам</span></a>
+	</div>
+
+  <div class="page">
+    <div class="info">
+			<div class="info__item">
+				<div class="info__cholesterol">
+					<div class="title title_level-2">{{page.title}}<i class="ico-bell"></i></div>
+					<ul class="info__cholesterol-info">
+						<li>{{page.subtitle}}</li>
+					</ul>
+				</div>
+			</div>
+			{#
+			<div class="info__item">
+				<div class="info__md">
+					<div class="info__md-title">Обратитесь к врачу для решения вопроса о необходимости приема лекарств, снижающих уровень холестерина<i class="ico-md"></i></div>
+					<button class="btn">Подобрать мед. учереждение по близости</button>
+				</div>
+			</div>
+			#}
+			<div class="info__item">
+				<div class="content">
+					{{page.text|nl2br}}
+				</div>
+			</div>
+		</div>
+  </div>
+
+  <div class="activity">
+		<div class="activity__table">
+			<div class="activity__row">
+        {% for key, page in pages %}
+  				<div class="activity__cell">
+            <a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: key}) }}">{{page.urlText}}</a>
+				  </div>
+          {% if loop.index == 4 and pages|length > 4 %}</div><div class="activity__row">{% endif %}
+        {% endfor %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

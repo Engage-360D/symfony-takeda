@@ -1,10 +1,11 @@
 <?php
 
-namespace Engage360d\Bundle\TakedaTestBundle\Score;
+namespace Engage360d\Bundle\TakedaTestBundle\Processing;
 
+use Engage360d\Bundle\TakedaTestBundle\Entity\TestResult;
 use Engage360d\Bundle\TakedaTestBundle\Helpers;
 
-class Calculator
+class ScoreCalculator
 {
     private static $scoreMatrix = array(
         "female" => array(
@@ -632,14 +633,15 @@ class Calculator
             ),
         ),
     );
-  
-    public static function calculate($sex, $age, $smoking, $systolicPressure, $cholesterol)
-    {
-        $age = Helpers::roundToNearest($age, array(40, 50, 55, 60, 65));
-        $smoking = (int)(bool) $smoking;
-        $systolicPressure = Helpers::roundToNearest($systolicPressure, array(120, 140, 160, 180));
-        $cholesterol = Helpers::roundToNearest($cholesterol, array(4, 5, 6, 7, 8));
 
-        return self::$scoreMatrix[$sex][$age][$smoking][$systolicPressure][$cholesterol];
+    public function calculate(TestResult $testResult)
+    {
+        $sex = $testResult->getSex();
+        $age = Helpers::roundToNearest($testResult->getBirthday()->diff(new \DateTime())->y, array(40, 50, 55, 60, 65));
+        $smoking = (int)$testResult->isSmoking();
+        $arterialPressure = Helpers::roundToNearest($testResult->getArterialPressure(), array(120, 140, 160, 180));
+        $cholesterolLevel = Helpers::roundToNearest($testResult->getCholesterolLevel(), array(4, 5, 6, 7, 8));
+
+        return self::$scoreMatrix[$sex][$age][$smoking][$arterialPressure][$cholesterolLevel];
     }
 }

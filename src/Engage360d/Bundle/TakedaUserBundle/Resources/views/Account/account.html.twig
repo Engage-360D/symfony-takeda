@@ -18,6 +18,7 @@
 		</div>
 
 		{% for testResult in app.user.testResults %}
+		  <a name="test-result-{{testResult.id}}"></a>
 	    <div class="page">
 			  <h2>Тест от {{ testResult.createdAt|date('d.m.Y H:i:s') }}</h2>
 	    </div>
