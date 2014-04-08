@@ -3,6 +3,7 @@
 React = require "react"
 moment = require "moment"
 $ = require "jquery"
+plural = require "../../util/plural"
 LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
@@ -212,6 +213,9 @@ Test = React.createClass
         success: (user) =>
           @setState user: user
         url: "/api/users/me"
+        
+  openDoctorGraduationCalendar: ->
+    @refs.doctorGraduationCalendar.open()
 
   saveDoctorInfo: ->
     if @validity.component.doctorInfo.valid
@@ -285,6 +289,8 @@ Test = React.createClass
       doctorInstitution: null
       doctorGraduation: null
 
+    age = if @state.birthday then moment().diff(@state.birthday, 'years') else "-"
+
     `(
       <div>
         <Visibility show={this.state.step == 'first'}>
@@ -338,7 +344,16 @@ Test = React.createClass
                           <div className="mainspec__item mainspec__date">
                             <div className="field">
                               <div className="field__label">Год окончания</div>
-                              <DateInput valueLink={this.linkState('doctorGraduation')} minDate={Test.doctorGraduationMinDate} maxDate={Test.doctorGraduationMaxDate} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
+                              <div className="date">
+        												<div className="date__title" onClick={this.openDoctorGraduationCalendar}>за все время</div>
+        												<DateInput
+        												  ref="doctorGraduationCalendar"
+        												  title="Год окончания"
+        												  valueLink={this.linkState('doctorGraduation')}
+        												  minDate={Test.doctorGraduationMinDate}
+        												  maxDate={Test.doctorGraduationMaxDate}
+        												  invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
+        											</div>
                             </div>
                           </div>
                           <div className="mainspec__btn">
@@ -363,9 +378,18 @@ Test = React.createClass
                     <div className="data__label">Возраст</div>
                     <div className="data__content">
                       <div className="data__fieldset">
-                        <div className="field field_birthday">
-                          <DateInput valueLink={this.linkState('birthday')} minDate={Test.birthdayMinDate} maxDate={Test.birthdayMaxDate} invalid={this.state.showValidation && this.validity.children.birthday.invalid} />
-                        </div>
+                        <div className="field">
+        									<div className="field__in">
+        										<span>{age}</span>
+        									</div>
+        									<div className="field__label">{age == '-' ? 'лет' : plural(age, "год", "года", "лет")}</div>
+        								</div>
+                        <DateInput
+                          title="Дата рождения"
+                          valueLink={this.linkState('birthday')}
+                          minDate={Test.birthdayMinDate}
+                          maxDate={Test.birthdayMaxDate}
+                          invalid={this.state.showValidation && this.validity.children.birthday.invalid} />
                       </div>
                     </div>
                   </div>
