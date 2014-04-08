@@ -1,18 +1,11 @@
 {% extends "::layout.html.twig" %}
 
+{% block title %}Главная страница{% endblock %}
+{% block description %}Главная страница{% endblock %}
+
 {% block content %}
 <!-- main -->
 <div class="main">
-	<div class="main__nav">
-		<div class="main__nav-in">
-			<i></i>
-			<ul>
-				<li><button class="is-active"></button></li>
-				<li><button></button></li>
-				<li><button></button></li>
-			</ul>
-		</div>
-	</div>
 	<div class="main__blocks">
 		<!-- 1 -->
 		<div class="main__item main__item_1">
@@ -20,21 +13,21 @@
 			<div class="city">
 				<a href="#"><i></i><span>Москва</span></a>
 			</div>
-			<div class="main__in">
-				<div class="title">Кардиомагнил Yomana</div>
+			<div class="main__item-head">
+				<div class="title">Кардиомагнил</div>
 				<div class="main__text">Это единственная в России  комбинация ацетилсалициловой кислоты и гидроксида магния для первичной и вторичной профилактики тромбообразования.</div>
 			</div>
 			<div class="main__item-in">
 				<div class="main__product" style="background-image: url(img/main-product.jpg)">
-					<a class="link" href="#"><span>Подробнее</span><i></i></a>
+					<a class="link link_white" href="/category/preparat"><span>Подробнее</span><i></i></a>
 				</div>
 				<div class="main__info">
 					<div class="main__info-in">
 						<div class="title title_lvl-2">Как жить с инфарктом и инсультом?</div>
 						<ul class="main__info-links">
-							<li><a class="link" href="#"><span>Оценка риска повторного тромбоза</span><i></i></a></li>
-							<li><a class="link" href="#"><span>Рекомендации по изменению образа жизни</span><i></i></a></li>
-							<li><a class="link" href="#"><span>Публикации по теме тромбоза</span><i></i></a></li>
+							<li><a class="link link_white" href="/category/zhizn-s-infarktom-i-insul-tom/page-ocenka_riska"><span>Оценка риска повторного тромбоза</span><i></i></a></li>
+							<li><a class="link link_white" href="/category/zhizn-s-infarktom-i-insul-tom/page-obraz_jizni"><span>Рекомендации по изменению образа жизни</span><i></i></a></li>
+							<li><a class="link link_white" href="/category/zhizn-s-infarktom-i-insul-tom/page-publikacii_po_trambozam"><span>Публикации по теме тромбоза</span><i></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -45,15 +38,15 @@
 						<div class="main__app-list">
 							<div class="main__app-item main__app-item_desctop">
 								<div class="main__app-pic">
-									<a href="#"><img src="img/main-app-desctop.png" alt=""></a>
+									<a href="/category/test"><img src="img/main-app-desctop.png" alt=""></a>
 								</div>
-								<a class="link" href="#"><span>На сайте</span><i></i></a>
+								<a class="link link_white" href="/category/test"><span>На сайте</span><i></i></a>
 							</div>
 							<div class="main__app-item main__app-item_mobile">
 								<div class="main__app-pic">
 									<a href="#"><img src="img/main-app-mobile.png" alt=""></a>
 								</div>
-								<a class="link" href="#"><span>Мобильное приложение</span><i></i></a>
+								<a class="link link_white" href="#"><span>Мобильное приложение</span><i></i></a>
 							</div>
 						</div>
 					</div>

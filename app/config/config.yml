@@ -116,6 +116,7 @@ fos_user:
 hwi_oauth:
     connect: true
     firewall_name: main
+    target_path_parameter: _target_path
     resource_owners:
         facebook:
             type:                facebook

@@ -5,7 +5,8 @@ React = require "react"
 
 VkontakteButton = React.createClass
   onClick: ->
-    window.open("/connect/vkontakte", "", "width=800,height=650")
+    url = "/connect/vkontakte?_target_path=/account/modal_success"
+    window.open(url, "", "width=800,height=650")
 
   render: ->
     @transferPropsTo `(

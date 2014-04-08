@@ -16,6 +16,7 @@ Input = require "../registration/Input"
 ResetPassword = require "./ResetPassword"
 FacebookButton = require "../social/login/FacebookButton"
 VkontakteButton = require "../social/login/VkontakteButton"
+OdnoklassnikiButton = require "../social/login/OdnoklassnikiButton"
 
 
 Login = React.createClass
@@ -82,7 +83,7 @@ Login = React.createClass
   					<ul className="social social_gray">
   						<li><VkontakteButton/></li>
   						<li><FacebookButton/></li>
-  						<li><a className="socail__ok" href="#"><i></i></a></li>
+  						<li><OdnoklassnikiButton/></li>
   					</ul>
   				</div>
         </div>

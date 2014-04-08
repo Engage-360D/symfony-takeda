@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 
 Icon = require "Engage360d/components/icon/Icon"
 Input = require "Engage360d/components/form/field/Input"

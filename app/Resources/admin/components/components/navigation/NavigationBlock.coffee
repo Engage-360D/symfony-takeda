@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 
 NavigationItem = require "Engage360d/components/navigation/NavigationItem"
 NavigationSubItem = require "Engage360d/components/navigation/NavigationSubItem"

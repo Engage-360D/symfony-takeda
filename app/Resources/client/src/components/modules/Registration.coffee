@@ -7,6 +7,7 @@ LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 RegistrationMixin = require "../../mixins/RegistrationMixin"
 HTMLElementContainerMixin = require "../../mixins/HTMLElementContainerMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
+EventsMixin = require "../../mixins/EventsMixin"
 validationConstraints = require "../../services/validationConstraints"
 
 
@@ -21,13 +22,15 @@ NumberSelect = require "../registration/NumberSelect"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"
 FacebookButton = require "../social/login/FacebookButton"
 VkontakteButton = require "../social/login/VkontakteButton"
+OdnoklassnikiButton = require "../social/login/OdnoklassnikiButton"
 
 
 Registration = React.createClass
   mixins: [
-    LinkedStateMixin,
-    ValidationMixin,
-    RegistrationMixin,
+    EventsMixin
+    LinkedStateMixin
+    ValidationMixin
+    RegistrationMixin
     HTMLElementContainerMixin
   ]
 
@@ -53,7 +56,7 @@ Registration = React.createClass
     confirmInformation: true
 
   componentWillMount: ->
-    window.addEventListener "registrationSuccess", =>
+    @addEventListener window, "registrationSuccess", =>
       unless @isChildrenWindow()
         @props.valueLink.requestChange true if @props.valueLink
         @props.onRegistrationSuccess() if @props.onRegistrationSuccess
@@ -147,8 +150,7 @@ Registration = React.createClass
       onClose: =>
         modal.setState show: false
         if @isChildrenWindow()
-          event = new Event "registrationSuccess"
-          window.opener.dispatchEvent event
+          @triggerEvent window.opener, "registrationSuccess"
           window.close()
         else
           @props.valueLink.requestChange true if @props.valueLink
@@ -342,7 +344,7 @@ Registration = React.createClass
 					<ul className="social social_gray">
 						<li><VkontakteButton/></li>
 						<li><FacebookButton/></li>
-						<li><a className="socail__ok" href="#"><i></i></a></li>
+						<li><OdnoklassnikiButton/></li>
 					</ul>
 				</div>
 				<button className="btn btn_arrow is-active" onClick={this.handleRegistrationChange}>

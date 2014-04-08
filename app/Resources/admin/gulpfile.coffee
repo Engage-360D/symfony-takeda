@@ -37,7 +37,7 @@ gulp.task "scripts", ->
   gulp.src(["./pages/**.coffee", "./admin.coffee"], read: false)
     .pipe(through.obj search, complete)
     .pipe(components())
-    .pipe(through.obj (bundle, callback) ->
+    .pipe(through.obj (bundle, enc, callback) ->
       bundle.transform "coffeeify"
       bundle.transform "reactify"
       bundle.bundle (err, content) =>

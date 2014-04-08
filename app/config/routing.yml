@@ -36,17 +36,13 @@ hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /connect
 
-#hwi_oauth_connect:
-#    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-#    prefix:   /connect
-
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /connect
 
 hwi_oauth_connect_service:
   pattern: /connect/service/{service}
-  defaults:  { _controller: HWIOAuthBundle:Connect:connectService }
+  defaults:  { _controller: Engage360dSecurityBundle:Security:connectService }
 
 hwi_oauth_connect_registration:
   pattern: /registration/{key}
@@ -64,6 +60,10 @@ vkontakte_login:
 
 engage360d_takeda_user_logout:
     pattern: /account/logout
+
+engage360d_takeda_user_modal_login_success:
+    pattern: /account/modal_success
+    defaults: { _controller: Engage360dTakedaUserBundle:Security:modalSuccess }
 
 engage360d_takeda_user:
   resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"

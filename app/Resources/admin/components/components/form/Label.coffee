@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 
 Label = React.createClass
   render: ->

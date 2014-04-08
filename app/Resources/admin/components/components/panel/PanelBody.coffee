@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 
 PanelBody = React.createClass
   render: ->

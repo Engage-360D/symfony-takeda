@@ -1,6 +1,6 @@
 `/** @jsx React.DOM */`
 
-React = require "React"
+React = require "react"
 
 ModsMixin = require "Engage360d/mixins/ModsMixin"
 

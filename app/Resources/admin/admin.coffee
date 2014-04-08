@@ -1,13 +1,13 @@
 
 module.exports = ->
-  React = require "React"
+  React = require "react"
 
   Auth = require "Engage360d/services/Auth"
   Ctx = require "Engage360d/services/Context"
   
   Ctx.register("eventBus").object require "Engage360d/services/EventBus"
   Ctx.register("router").object require "Engage360d/services/Router"
-  Ctx.register("auth").object new Auth("1_mushvkrk0k0ccgwk4gccscsw8gc4wg00s8ow0wc0swc804ogo")
+  Ctx.register("auth").object new Auth("1_569t6f9p94gs0ogg400wg8sccc448wc0owk888koo4o0gc004w")
   Ctx.register("ajax").object require "Engage360d/services/Ajax"
   
   Ctx.register "navigation", Array, [
