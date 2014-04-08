@@ -2,14 +2,17 @@
 
 React = require "react"
 reqwest = require "reqwest"
+EventsMixin = require "../../../mixins/EventsMixin"
 
 FacebookButton = React.createClass
+  mixins: [EventsMixin]
+
   getDefaultProps: ->
     reloadOnSuccess: false
 
   componentDidMount: ->
-    return unless @props.reloadOnSuccess
-    window.addEventListener "loadSuccess", =>
+    @addEventListener window, "loadSuccess", =>
+      return if location.href.indexOf("/test") isnt -1
       window.location.reload()
 
   onClick: ->
