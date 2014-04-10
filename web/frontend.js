@@ -34410,12 +34410,16 @@ React = require("react");
 
 WindowLoaded = React.createClass({displayName: 'WindowLoaded',
   componentDidMount: function() {
-    var event;
+    var error;
     if (!window.opener) {
       return;
     }
-    event = new Event("loadSuccess");
-    window.opener.dispatchEvent(event);
+    try {
+      window.opener.loadSuccess();
+    } catch (_error) {
+      error = _error;
+      window.parent.loadSuccess();
+    }
     return window.close();
   },
   render: function() {
@@ -35372,12 +35376,18 @@ Registration = React.createClass({displayName: 'Registration',
     props = {
       onClose: (function(_this) {
         return function() {
+          var error;
           modal.setState({
             show: false
           });
           if (_this.isChildrenWindow()) {
             if (window.opener) {
-              window.opener.registrationSuccess();
+              try {
+                window.opener.registrationSuccess();
+              } catch (_error) {
+                error = _error;
+                window.parent.registrationSuccess();
+              }
             }
             return window.close();
           } else {
@@ -36902,14 +36912,14 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
     };
   },
   componentDidMount: function() {
-    return this.addEventListener(window, "loadSuccess", (function(_this) {
+    return window.loadSuccess = (function(_this) {
       return function() {
         if (location.href.indexOf("/test") !== -1) {
           return;
         }
         return window.location.reload();
       };
-    })(this));
+    })(this);
   },
   onClick: function() {
     var url;

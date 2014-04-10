@@ -12,7 +12,7 @@ FacebookButton = React.createClass
     connected: false
 
   componentDidMount: ->
-    @addEventListener window, "loadSuccess", =>
+    window.loadSuccess = =>
       return if location.href.indexOf("/test") isnt -1
       window.location.reload()
 

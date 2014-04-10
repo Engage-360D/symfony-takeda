@@ -161,7 +161,11 @@ Registration = React.createClass
       onClose: =>
         modal.setState show: false
         if @isChildrenWindow()
-          window.opener.registrationSuccess() if window.opener
+          if window.opener
+            try
+              window.opener.registrationSuccess()
+            catch error
+              window.parent.registrationSuccess()
           window.close()
         else
           @props.valueLink.requestChange true if @props.valueLink
