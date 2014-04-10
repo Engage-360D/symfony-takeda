@@ -4,7 +4,7 @@ ResetPasswordMixin =
   reset: (username, callback) ->
     data = JSON.stringify username: username
     reqwest
-      url: "/api/users/resets"
+      url: "/api/users/reset"
       type: "json"
       method: "POST"
       contentType: "application/json"
