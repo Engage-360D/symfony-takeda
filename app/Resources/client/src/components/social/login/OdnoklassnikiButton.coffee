@@ -4,12 +4,20 @@ React = require "react"
 
 
 OdnoklassnikiButton = React.createClass
+  getDefaultProps: ->
+    reloadOnSuccess: false
+    connected: false
+
   onClick: ->
+    return if @props.connected
     #window.open("/connect/odnoklassniki", "", "width=800,height=650")
 
   render: ->
     @transferPropsTo `(
-      <a onClick={this.onClick} className="socail__ok" href="#">
+      <a
+        href="#"
+        onClick={this.onClick}
+        className={this.props.connected ? "socail__ok socail__connected" : "socail__ok"}>
         <i></i>
       </a>
     )`
