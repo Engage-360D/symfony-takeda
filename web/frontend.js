@@ -36893,7 +36893,8 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
   mixins: [EventsMixin],
   getDefaultProps: function() {
     return {
-      reloadOnSuccess: false
+      reloadOnSuccess: false,
+      connected: false
     };
   },
   componentDidMount: function() {
@@ -36913,7 +36914,10 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
   },
   render: function() {
     return this.transferPropsTo((
-      React.DOM.a( {onClick:this.onClick, className:"socail__fb", href:"#"}, 
+      React.DOM.a(
+        {href:"#",
+        onClick:this.onClick,
+        className:this.props.connected ? "socail__fb socail__connected" : "socail__fb"}, 
         React.DOM.i(null)
       )
     ));

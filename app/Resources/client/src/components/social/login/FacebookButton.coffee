@@ -9,6 +9,7 @@ FacebookButton = React.createClass
 
   getDefaultProps: ->
     reloadOnSuccess: false
+    connected: false
 
   componentDidMount: ->
     @addEventListener window, "loadSuccess", =>
@@ -21,7 +22,10 @@ FacebookButton = React.createClass
 
   render: ->
     @transferPropsTo `(
-      <a onClick={this.onClick} className="socail__fb" href="#">
+      <a
+        href="#"
+        onClick={this.onClick}
+        className={this.props.connected ? "socail__fb socail__connected" : "socail__fb"}>
         <i></i>
       </a>
     )`

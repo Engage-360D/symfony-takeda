@@ -52,9 +52,15 @@
 		</ul>
 		<!-- social -->
 		<ul class="social">
-		  <li data-react-component="VkontakteButton" data-reload-on-success="true"/>
-		  <li data-react-component="FacebookButton" data-reload-on-success="true"/>
-		  <li data-react-component="OdnoklassnikiButton" data-reload-on-success="true"/>
+		  <li data-react-component="VkontakteButton"
+		      data-reload-on-success="true"
+		      data-connected="{% if app.user and app.user.vkontakteId %}true{% else %}false{% endif %}"/>
+		  <li data-react-component="FacebookButton"
+		      data-reload-on-success="true"
+		      data-connected="{% if app.user and app.user.facebookId %}true{% else %}false{% endif %}"/>
+		  <li data-react-component="OdnoklassnikiButton"
+		      data-reload-on-success="true"
+		      data-connected="{% if app.user and app.user.odnoklassnikiId %}true{% else %}false{% endif %}"/>
 		</ul>
 		<!-- subscribe -->
 		<div class="subscribe">

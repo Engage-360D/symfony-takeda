@@ -324,6 +324,26 @@ class User extends BaseUser
     {
         return $this->vkontakteAccessToken;
     }
+
+    public function setOdnoklassnikiId($vkontakteId)
+    {
+    }
+
+    public function getOdnoklassnikiId()
+    {
+    }
+
+    public function setOdnoklassnikiData($bdata)
+    {
+    }
+
+    public function setOdnoklassnikiAccessToken($token)
+    {
+    }
+
+    public function getOdnoklassnikieAccessToken()
+    {
+    }
     
     public function getFullName()
     {
