@@ -36909,6 +36909,9 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
   },
   onClick: function() {
     var url;
+    if (this.props.connected) {
+      return;
+    }
     url = "/connect/facebook?_target_path=/account/modal_success";
     return window.open(url, "", "width=800,height=650");
   },
@@ -36950,7 +36953,7 @@ OdnoklassnikiButton = React.createClass({displayName: 'OdnoklassnikiButton',
       React.DOM.a(
         {href:"#",
         onClick:this.onClick,
-        className:this.props.connected ? "socail__ok socail__connected" : "socail__fb"}, 
+        className:this.props.connected ? "socail__ok socail__connected" : "socail__ok"}, 
         React.DOM.i(null)
       )
     ));
@@ -36986,7 +36989,7 @@ VkontakteButton = React.createClass({displayName: 'VkontakteButton',
       React.DOM.a(
         {href:"#",
         onClick:this.onClick,
-        className:this.props.connected ? "socail__vk socail__connected" : "socail__fb"}, 
+        className:this.props.connected ? "socail__vk socail__connected" : "socail__vk"}, 
         React.DOM.i(null)
       )
     ));

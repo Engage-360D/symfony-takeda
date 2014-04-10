@@ -17,7 +17,7 @@ OdnoklassnikiButton = React.createClass
       <a
         href="#"
         onClick={this.onClick}
-        className={this.props.connected ? "socail__ok socail__connected" : "socail__fb"}>
+        className={this.props.connected ? "socail__ok socail__connected" : "socail__ok"}>
         <i></i>
       </a>
     )`

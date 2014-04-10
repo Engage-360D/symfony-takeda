@@ -17,6 +17,7 @@ FacebookButton = React.createClass
       window.location.reload()
 
   onClick: ->
+    return if @props.connected
     url = "/connect/facebook?_target_path=/account/modal_success"
     window.open(url, "", "width=800,height=650")
 

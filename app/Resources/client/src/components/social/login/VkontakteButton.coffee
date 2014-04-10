@@ -18,7 +18,7 @@ VkontakteButton = React.createClass
       <a
         href="#"
         onClick={this.onClick}
-        className={this.props.connected ? "socail__vk socail__connected" : "socail__fb"}>
+        className={this.props.connected ? "socail__vk socail__connected" : "socail__vk"}>
         <i></i>
       </a>
     )`
