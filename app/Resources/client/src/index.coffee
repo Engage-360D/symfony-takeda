@@ -1,4 +1,5 @@
 React = require "react"
+$ = require "jquery"
 
 
 sharedComponents =
@@ -22,7 +23,7 @@ getNodes = ->
     document.getElementsByTagName "*"
 
 
-document.addEventListener "DOMContentLoaded", ->
+$ ->
   for node in getNodes()
     componentName = node.getAttribute "data-react-component"
 

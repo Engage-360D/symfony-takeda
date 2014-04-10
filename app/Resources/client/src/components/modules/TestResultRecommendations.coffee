@@ -156,7 +156,7 @@ TestResultRecommendationsBanner = React.createClass
         <i className={'recomm__' + this.props.banner.state}></i>
         <div className="recomm__item-sub">
           {title}
-          <div class="recomm__text">
+          <div className="recomm__text">
             {aberration}
             {note}
           </div>

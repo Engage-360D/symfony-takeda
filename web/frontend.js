@@ -14877,8 +14877,8 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],17:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],17:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15062,8 +15062,8 @@ var DOMPropertyOperations = {
 
 module.exports = DOMPropertyOperations;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMProperty":16,"./escapeTextForBrowser":109,"./memoizeStringOnly":131,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],18:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./DOMProperty":16,"./escapeTextForBrowser":109,"./memoizeStringOnly":131,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],18:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15253,8 +15253,8 @@ var Danger = {
 
 module.exports = Danger;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":28,"./createNodesFromMarkup":103,"./emptyFunction":107,"./getMarkupWrap":116,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],19:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ExecutionEnvironment":28,"./createNodesFromMarkup":103,"./emptyFunction":107,"./getMarkupWrap":116,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],19:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15795,8 +15795,8 @@ var EventListener = {
 
 module.exports = EventListener;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":107,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],24:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./emptyFunction":107,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],24:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16094,8 +16094,8 @@ var EventPluginHub = {
 
 module.exports = EventPluginHub;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventPluginRegistry":25,"./EventPluginUtils":26,"./ExecutionEnvironment":28,"./accumulate":97,"./forEachAccumulated":112,"./invariant":123,"./isEventSupported":124,"./monitorCodeUse":136,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],25:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./EventPluginRegistry":25,"./EventPluginUtils":26,"./ExecutionEnvironment":28,"./accumulate":97,"./forEachAccumulated":112,"./invariant":123,"./isEventSupported":124,"./monitorCodeUse":136,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],25:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16379,8 +16379,8 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],26:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],26:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16597,8 +16597,8 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":22,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],27:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./EventConstants":22,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],27:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16744,8 +16744,8 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":22,"./EventPluginHub":24,"./accumulate":97,"./forEachAccumulated":112,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],28:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./EventConstants":22,"./EventPluginHub":24,"./accumulate":97,"./forEachAccumulated":112,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],28:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16954,8 +16954,8 @@ var LinkedValueUtils = {
 
 module.exports = LinkedValueUtils;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactPropTypes":73,"./invariant":123,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],30:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactPropTypes":73,"./invariant":123,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],30:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17142,8 +17142,8 @@ var PooledClass = {
 
 module.exports = PooledClass;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],32:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],32:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17243,8 +17243,8 @@ React.version = '0.10.0';
 
 module.exports = React;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMPropertyOperations":17,"./EventPluginUtils":26,"./ExecutionEnvironment":28,"./ReactChildren":34,"./ReactComponent":35,"./ReactCompositeComponent":37,"./ReactContext":38,"./ReactCurrentOwner":39,"./ReactDOM":40,"./ReactDOMComponent":42,"./ReactDefaultInjection":52,"./ReactInstanceHandles":61,"./ReactMount":64,"./ReactMultiChild":66,"./ReactPerf":69,"./ReactPropTypes":73,"./ReactServerRendering":77,"./ReactTextComponent":80,"./onlyChild":139,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],33:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./DOMPropertyOperations":17,"./EventPluginUtils":26,"./ExecutionEnvironment":28,"./ReactChildren":34,"./ReactComponent":35,"./ReactCompositeComponent":37,"./ReactContext":38,"./ReactCurrentOwner":39,"./ReactDOM":40,"./ReactDOMComponent":42,"./ReactDefaultInjection":52,"./ReactInstanceHandles":61,"./ReactMount":64,"./ReactMultiChild":66,"./ReactPerf":69,"./ReactPropTypes":73,"./ReactServerRendering":77,"./ReactTextComponent":80,"./onlyChild":139,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],33:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17289,8 +17289,8 @@ var ReactBrowserComponentMixin = {
 
 module.exports = ReactBrowserComponentMixin;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactMount":64,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],34:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactMount":64,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],34:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17425,8 +17425,8 @@ var ReactChildren = {
 
 module.exports = ReactChildren;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./PooledClass":31,"./invariant":123,"./traverseAllChildren":144,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],35:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./PooledClass":31,"./invariant":123,"./traverseAllChildren":144,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],35:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18024,8 +18024,8 @@ var ReactComponent = {
 
 module.exports = ReactComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactCurrentOwner":39,"./ReactOwner":68,"./ReactUpdates":81,"./invariant":123,"./keyMirror":129,"./merge":132,"./monitorCodeUse":136,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],36:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactCurrentOwner":39,"./ReactOwner":68,"./ReactUpdates":81,"./invariant":123,"./keyMirror":129,"./merge":132,"./monitorCodeUse":136,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],36:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18152,8 +18152,8 @@ var ReactComponentBrowserEnvironment = {
 
 module.exports = ReactComponentBrowserEnvironment;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactDOMIDOperations":44,"./ReactMarkupChecksum":63,"./ReactMount":64,"./ReactPerf":69,"./ReactReconcileTransaction":75,"./getReactRootElementInContainer":118,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],37:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactDOMIDOperations":44,"./ReactMarkupChecksum":63,"./ReactMount":64,"./ReactPerf":69,"./ReactReconcileTransaction":75,"./getReactRootElementInContainer":118,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],37:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19743,8 +19743,8 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":35,"./ReactContext":38,"./ReactCurrentOwner":39,"./ReactErrorUtils":55,"./ReactOwner":68,"./ReactPerf":69,"./ReactPropTransferer":70,"./ReactPropTypeLocationNames":71,"./ReactPropTypeLocations":72,"./ReactUpdates":81,"./instantiateReactComponent":122,"./invariant":123,"./keyMirror":129,"./merge":132,"./mixInto":135,"./monitorCodeUse":136,"./objMap":137,"./shouldUpdateReactComponent":142,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],38:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactComponent":35,"./ReactContext":38,"./ReactCurrentOwner":39,"./ReactErrorUtils":55,"./ReactOwner":68,"./ReactPerf":69,"./ReactPropTransferer":70,"./ReactPropTypeLocationNames":71,"./ReactPropTypeLocations":72,"./ReactUpdates":81,"./instantiateReactComponent":122,"./invariant":123,"./keyMirror":129,"./merge":132,"./mixInto":135,"./monitorCodeUse":136,"./objMap":137,"./shouldUpdateReactComponent":142,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],38:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -20553,8 +20553,8 @@ mixInto(ReactDOMComponent, ReactBrowserComponentMixin);
 
 module.exports = ReactDOMComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./CSSPropertyOperations":11,"./DOMProperty":16,"./DOMPropertyOperations":17,"./ReactBrowserComponentMixin":33,"./ReactComponent":35,"./ReactEventEmitter":56,"./ReactMount":64,"./ReactMultiChild":66,"./ReactPerf":69,"./escapeTextForBrowser":109,"./invariant":123,"./keyOf":130,"./merge":132,"./mixInto":135,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],43:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./CSSPropertyOperations":11,"./DOMProperty":16,"./DOMPropertyOperations":17,"./ReactBrowserComponentMixin":33,"./ReactComponent":35,"./ReactEventEmitter":56,"./ReactMount":64,"./ReactMultiChild":66,"./ReactPerf":69,"./escapeTextForBrowser":109,"./invariant":123,"./keyOf":130,"./merge":132,"./mixInto":135,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],43:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -20839,8 +20839,8 @@ var ReactDOMIDOperations = {
 
 module.exports = ReactDOMIDOperations;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./CSSPropertyOperations":11,"./DOMChildrenOperations":15,"./DOMPropertyOperations":17,"./ReactMount":64,"./ReactPerf":69,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],45:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./CSSPropertyOperations":11,"./DOMChildrenOperations":15,"./DOMPropertyOperations":17,"./ReactMount":64,"./ReactPerf":69,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],45:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21088,8 +21088,8 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMInput;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":9,"./DOMPropertyOperations":17,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./ReactMount":64,"./invariant":123,"./merge":132,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],47:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./AutoFocusMixin":9,"./DOMPropertyOperations":17,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./ReactMount":64,"./invariant":123,"./merge":132,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],47:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -21147,8 +21147,8 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMOption;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],48:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],48:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -21331,8 +21331,8 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":9,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./invariant":123,"./merge":132,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],49:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./AutoFocusMixin":9,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./invariant":123,"./merge":132,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],49:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21670,8 +21670,8 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMTextarea;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":9,"./DOMPropertyOperations":17,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./invariant":123,"./merge":132,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],51:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./AutoFocusMixin":9,"./DOMPropertyOperations":17,"./LinkedValueUtils":29,"./ReactBrowserComponentMixin":33,"./ReactCompositeComponent":37,"./ReactDOM":40,"./invariant":123,"./merge":132,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],51:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -21876,8 +21876,8 @@ module.exports = {
   inject: inject
 };
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ChangeEventPlugin":12,"./ClientReactRootIndex":13,"./CompositionEventPlugin":14,"./DefaultDOMPropertyConfig":19,"./DefaultEventPluginOrder":20,"./EnterLeaveEventPlugin":21,"./ExecutionEnvironment":28,"./MobileSafariClickEventPlugin":30,"./ReactBrowserComponentMixin":33,"./ReactComponentBrowserEnvironment":36,"./ReactDOM":40,"./ReactDOMButton":41,"./ReactDOMForm":43,"./ReactDOMImg":45,"./ReactDOMInput":46,"./ReactDOMOption":47,"./ReactDOMSelect":48,"./ReactDOMTextarea":50,"./ReactDefaultBatchingStrategy":51,"./ReactDefaultPerf":53,"./ReactEventTopLevelCallback":58,"./ReactInjection":59,"./ReactInstanceHandles":61,"./ReactMount":64,"./SelectEventPlugin":82,"./ServerReactRootIndex":83,"./SimpleEventPlugin":84,"./createFullPageComponent":102,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],53:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ChangeEventPlugin":12,"./ClientReactRootIndex":13,"./CompositionEventPlugin":14,"./DefaultDOMPropertyConfig":19,"./DefaultEventPluginOrder":20,"./EnterLeaveEventPlugin":21,"./ExecutionEnvironment":28,"./MobileSafariClickEventPlugin":30,"./ReactBrowserComponentMixin":33,"./ReactComponentBrowserEnvironment":36,"./ReactDOM":40,"./ReactDOMButton":41,"./ReactDOMForm":43,"./ReactDOMImg":45,"./ReactDOMInput":46,"./ReactDOMOption":47,"./ReactDOMSelect":48,"./ReactDOMTextarea":50,"./ReactDefaultBatchingStrategy":51,"./ReactDefaultPerf":53,"./ReactEventTopLevelCallback":58,"./ReactInjection":59,"./ReactInstanceHandles":61,"./ReactMount":64,"./SelectEventPlugin":82,"./ServerReactRootIndex":83,"./SimpleEventPlugin":84,"./createFullPageComponent":102,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],53:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22705,8 +22705,8 @@ var ReactEventEmitter = merge(ReactEventEmitterMixin, {
 
 module.exports = ReactEventEmitter;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":22,"./EventListener":23,"./EventPluginHub":24,"./EventPluginRegistry":25,"./ExecutionEnvironment":28,"./ReactEventEmitterMixin":57,"./ViewportMetrics":96,"./invariant":123,"./isEventSupported":124,"./merge":132,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],57:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./EventConstants":22,"./EventListener":23,"./EventPluginHub":24,"./EventPluginRegistry":25,"./ExecutionEnvironment":28,"./ReactEventEmitterMixin":57,"./ViewportMetrics":96,"./invariant":123,"./isEventSupported":124,"./merge":132,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],57:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23445,8 +23445,8 @@ var ReactInstanceHandles = {
 
 module.exports = ReactInstanceHandles;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactRootIndex":76,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],62:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactRootIndex":76,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],62:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24209,8 +24209,8 @@ var ReactMount = {
 
 module.exports = ReactMount;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMProperty":16,"./ReactEventEmitter":56,"./ReactInstanceHandles":61,"./ReactPerf":69,"./containsNode":99,"./getReactRootElementInContainer":118,"./instantiateReactComponent":122,"./invariant":123,"./shouldUpdateReactComponent":142,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],65:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./DOMProperty":16,"./ReactEventEmitter":56,"./ReactInstanceHandles":61,"./ReactPerf":69,"./containsNode":99,"./getReactRootElementInContainer":118,"./instantiateReactComponent":122,"./invariant":123,"./shouldUpdateReactComponent":142,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],65:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24943,8 +24943,8 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyObject":108,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],69:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./emptyObject":108,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],69:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -25032,8 +25032,8 @@ function _noMeasure(objName, fnName, func) {
 
 module.exports = ReactPerf;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],70:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],70:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -25183,8 +25183,8 @@ var ReactPropTransferer = {
 
 module.exports = ReactPropTransferer;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":107,"./invariant":123,"./joinClasses":128,"./merge":132,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],71:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./emptyFunction":107,"./invariant":123,"./joinClasses":128,"./merge":132,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],71:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -25218,8 +25218,8 @@ if ("production" !== process.env.NODE_ENV) {
 
 module.exports = ReactPropTypeLocationNames;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],72:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],72:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25612,8 +25612,8 @@ function createChainableTypeChecker(validate) {
 
 module.exports = Props;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":35,"./ReactPropTypeLocationNames":71,"./createObjectFrom":104,"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],74:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactComponent":35,"./ReactPropTypeLocationNames":71,"./createObjectFrom":104,"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],74:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25990,8 +25990,8 @@ module.exports = {
   renderComponentToStaticMarkup: renderComponentToStaticMarkup
 };
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":35,"./ReactInstanceHandles":61,"./ReactMarkupChecksum":63,"./ReactServerRenderingTransaction":78,"./instantiateReactComponent":122,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],78:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactComponent":35,"./ReactInstanceHandles":61,"./ReactMarkupChecksum":63,"./ReactServerRenderingTransaction":78,"./instantiateReactComponent":122,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],78:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -26496,8 +26496,8 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactPerf":69,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],82:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactPerf":69,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],82:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27153,8 +27153,8 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":22,"./EventPluginUtils":26,"./EventPropagators":27,"./SyntheticClipboardEvent":85,"./SyntheticDragEvent":87,"./SyntheticEvent":88,"./SyntheticFocusEvent":89,"./SyntheticKeyboardEvent":90,"./SyntheticMouseEvent":91,"./SyntheticTouchEvent":92,"./SyntheticUIEvent":93,"./SyntheticWheelEvent":94,"./invariant":123,"./keyOf":130,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],85:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./EventConstants":22,"./EventPluginUtils":26,"./EventPropagators":27,"./SyntheticClipboardEvent":85,"./SyntheticDragEvent":87,"./SyntheticEvent":88,"./SyntheticFocusEvent":89,"./SyntheticKeyboardEvent":90,"./SyntheticMouseEvent":91,"./SyntheticTouchEvent":92,"./SyntheticUIEvent":93,"./SyntheticWheelEvent":94,"./invariant":123,"./keyOf":130,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],85:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28111,8 +28111,8 @@ var Transaction = {
 
 module.exports = Transaction;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],96:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],96:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28208,8 +28208,8 @@ function accumulate(current, next) {
 
 module.exports = accumulate;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],98:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],98:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28358,8 +28358,8 @@ function copyProperties(obj, a, b, c, d, e, f) {
 
 module.exports = copyProperties;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],101:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],101:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28518,8 +28518,8 @@ function createFullPageComponent(componentClass) {
 
 module.exports = createFullPageComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactCompositeComponent":37,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],103:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactCompositeComponent":37,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],103:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -28615,8 +28615,8 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":28,"./createArrayFrom":101,"./getMarkupWrap":116,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],104:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ExecutionEnvironment":28,"./createArrayFrom":101,"./getMarkupWrap":116,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],104:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -28680,8 +28680,8 @@ function createObjectFrom(keys, values /* = true */) {
 
 module.exports = createObjectFrom;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],105:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],105:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28861,8 +28861,8 @@ if ("production" !== process.env.NODE_ENV) {
 
 module.exports = emptyObject;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],109:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],109:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28971,8 +28971,8 @@ function flattenChildren(children) {
 
 module.exports = flattenChildren;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"./traverseAllChildren":144,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],111:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"./traverseAllChildren":144,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],111:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -29327,8 +29327,8 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":28,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],117:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ExecutionEnvironment":28,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],117:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29653,8 +29653,8 @@ function instantiateReactComponent(descriptor) {
 
 module.exports = instantiateReactComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./warning":145,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],123:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./warning":145,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],123:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -29719,8 +29719,8 @@ if ("production" !== process.env.NODE_ENV) {
 
 module.exports = invariant;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],124:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],124:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30017,8 +30017,8 @@ var keyMirror = function(obj) {
 
 module.exports = keyMirror;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],130:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],130:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30280,8 +30280,8 @@ var mergeHelpers = {
 
 module.exports = mergeHelpers;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"./keyMirror":129,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],134:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"./keyMirror":129,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],134:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30404,8 +30404,8 @@ function monitorCodeUse(eventName, data) {
 
 module.exports = monitorCodeUse;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],137:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],137:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30549,8 +30549,8 @@ function onlyChild(children) {
 
 module.exports = onlyChild;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":35,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],140:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactComponent":35,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],140:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30709,8 +30709,8 @@ function shouldUpdateReactComponent(prevComponentInstance, nextDescriptor) {
 
 module.exports = shouldUpdateReactComponent;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],143:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],143:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -30788,8 +30788,8 @@ function toArray(obj) {
 
 module.exports = toArray;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],144:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],144:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -30982,8 +30982,8 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactInstanceHandles":61,"./ReactTextComponent":80,"./invariant":123,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],145:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./ReactInstanceHandles":61,"./ReactTextComponent":80,"./invariant":123,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],145:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -31034,8 +31034,8 @@ if ("production" !== process.env.NODE_ENV) {
 
 module.exports = warning;
 
-}).call(this,require("/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":107,"/home/vagrant/c9/takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],146:[function(require,module,exports){
+}).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./emptyFunction":107,"/home/vagrant/c9/symfony-takeda/app/Resources/client/node_modules/gulp-browserify/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":3}],146:[function(require,module,exports){
 module.exports = require('./lib/React');
 
 },{"./lib/React":32}],147:[function(require,module,exports){
@@ -34422,8 +34422,6 @@ global.MicroPlugin = require("microplugin");
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
 module.exports=require('iECS2l');
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -34879,6 +34877,8 @@ module.exports=require('fsZITE');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],152:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -35091,7 +35091,7 @@ cx = require("react/lib/cx");
 LinkedValueUtils = require("react/lib/LinkedValueUtils");
 
 RadioGroup = React.createClass({displayName: 'RadioGroup',
-  renderValue: function(value) {
+  renderValue: function(value, index) {
     var checked, classes, onChange;
     checked = LinkedValueUtils.getValue(this) === value.value;
     onChange = (function(_this) {
@@ -35108,7 +35108,7 @@ RadioGroup = React.createClass({displayName: 'RadioGroup',
       "is-error": this.props.invalid
     });
     return (
-      React.DOM.label( {className:classes}, 
+      React.DOM.label( {className:classes, key:index}, 
         React.DOM.input( {type:"radio", checked:checked, onChange:onChange} ),
         React.DOM.span(null, value.text)
       )
@@ -35128,7 +35128,8 @@ module.exports = RadioGroup;
 
 },{"react":146,"react/lib/LinkedValueUtils":29,"react/lib/cx":105}],156:[function(require,module,exports){
 /** @jsx React.DOM */;
-var $, Range, React, cx, mouseMoveHandler, mouseUpHandler;
+var $, Range, React, cx, mouseMoveHandler, mouseUpHandler,
+  __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 React = require("react");
 
@@ -35171,6 +35172,7 @@ Range = React.createClass({displayName: 'Range',
   },
   handleMouseMove: function(event) {
     var $lineNode, $pointNode, currentStep, currentStepOffset, currentValue, lineOffset, lineWidth, maxValue, minValue, pageX, position, stepSize, stepWidth;
+    event.preventDefault();
     stepSize = Number(this.props.step);
     minValue = Number(this.props.min);
     maxValue = Number(this.props.max);
@@ -35178,7 +35180,7 @@ Range = React.createClass({displayName: 'Range',
     $pointNode = $(this.refs.point.getDOMNode());
     lineWidth = $lineNode.width();
     lineOffset = $lineNode.offset().left;
-    pageX = event.originalEvent ? event.originalEvent.pageX : event.pageX;
+    pageX = __indexOf.call(event, 'originalEvent') >= 0 ? event.originalEvent.pageX : __indexOf.call(event, 'pageX') >= 0 ? event.pageX : event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
     position = pageX - lineOffset;
     if (position < 0) {
       position = 0;
@@ -37504,7 +37506,7 @@ TestResultRecommendationsBanner = React.createClass({displayName: 'TestResultRec
         React.DOM.i( {className:'recomm__' + this.props.banner.state}),
         React.DOM.div( {className:"recomm__item-sub"}, 
           title,
-          React.DOM.div( {class:"recomm__text"}, 
+          React.DOM.div( {className:"recomm__text"}, 
             aberration,
             note
           )
@@ -37938,9 +37940,11 @@ module.exports = VkontakteButton;
 
 
 },{"react":146}],177:[function(require,module,exports){
-var React, getNodes, sharedComponents;
+var $, React, getNodes, sharedComponents;
 
 React = require("react");
+
+$ = require("jquery");
 
 sharedComponents = {
   Test: require("./components/modules/Test"),
@@ -37964,7 +37968,7 @@ getNodes = function() {
   }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+$(function() {
   var Component, attribute, componentName, node, propKey, props, _i, _j, _len, _len1, _ref, _ref1, _results;
   _ref = getNodes();
   _results = [];
@@ -37993,7 +37997,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-},{"./components/modal/WindowLoaded":159,"./components/modules/Account":160,"./components/modules/ChangePassword":161,"./components/modules/Login":162,"./components/modules/Registration":163,"./components/modules/ResetPassword":164,"./components/modules/Test":165,"./components/modules/TestResultRecommendations":166,"./components/social/login/FacebookButton":174,"./components/social/login/OdnoklassnikiButton":175,"./components/social/login/VkontakteButton":176,"react":146}],178:[function(require,module,exports){
+},{"./components/modal/WindowLoaded":159,"./components/modules/Account":160,"./components/modules/ChangePassword":161,"./components/modules/Login":162,"./components/modules/Registration":163,"./components/modules/ResetPassword":164,"./components/modules/Test":165,"./components/modules/TestResultRecommendations":166,"./components/social/login/FacebookButton":174,"./components/social/login/OdnoklassnikiButton":175,"./components/social/login/VkontakteButton":176,"jquery":"6StMfs","react":146}],178:[function(require,module,exports){
 var AccountMixin, extractFields, fields, moment, reqwest;
 
 reqwest = require("reqwest");
@@ -38090,30 +38094,23 @@ module.exports = ChangePasswordMixin;
 
 
 },{"reqwest":147}],180:[function(require,module,exports){
-var EventsMixin;
+var $, EventsMixin;
+
+$ = require("jquery");
 
 EventsMixin = {
   addEventListener: function(element, event, callback) {
-    var addEvent;
-    addEvent = element.attachEvent || element.addEventListener;
-    return addEvent(event, callback);
+    return $(element).on(event, callback);
   },
   triggerEvent: function(element, name) {
-    var event;
-    if (document.createEvent) {
-      event = new Event(name);
-      return element.dispatchEvent(event);
-    } else {
-      event = document.createEventObject();
-      return element.fireEvent("on" + name, event);
-    }
+    return $(element).trigger(name);
   }
 };
 
 module.exports = EventsMixin;
 
 
-},{}],181:[function(require,module,exports){
+},{"jquery":"6StMfs"}],181:[function(require,module,exports){
 var HTMLElementContainerMixin;
 
 HTMLElementContainerMixin = {
@@ -38279,14 +38276,10 @@ RegistrationMixin = {
         _password: password
       }),
       error: (function(_this) {
-        return function(err) {
-          return console.log(err);
-        };
+        return function(err) {};
       })(this),
       success: (function(_this) {
-        return function(response) {
-          return console.log(response);
-        };
+        return function(response) {};
       })(this)
     });
   }
