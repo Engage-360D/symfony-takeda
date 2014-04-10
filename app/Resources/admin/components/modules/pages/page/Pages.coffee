@@ -16,6 +16,8 @@ PanelBody = require "Engage360d/components/panel/PanelBody"
 PanelFooter = require "Engage360d/components/panel/PanelFooter"
 PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
+PageCollection = require "Engage360d/modules/pages/model/PageCollection"
+Page = require "Engage360d/modules/pages/model/Page"
 
 Pages = React.createClass
   getDefaultProps: ->
@@ -48,17 +50,17 @@ Pages = React.createClass
 
       category = result[0].params.id
       @setState category: category, active: true
-          
-      Ctx.get("ajax").get "/api/categories/#{category}/pages", (pages) =>
-        @setState pages: pages
+
+      @pages = new PageCollection 
+      @pages.fetch
+        url: "/api/categories/#{category}/pages"
+        success: (pages) =>
+          @setState pages: pages.toRawJSON()
 
   removePage: (id) ->
-    Ctx.get("ajax").remove "/api/pages/#{id}", =>
-        pages = @state.pages
-        updated = []
-        for page, index in pages
-          updated.push page unless page.id is id
-        @setState pages: updated
+    @pages.get(id).destroy
+      success: =>
+        @setState pages: @pages.toRawJSON()
 
   onHandleAction: (action, row) ->
     if action is "edit"
@@ -69,38 +71,6 @@ Pages = React.createClass
 
   handleCreatePage: ->
     Ctx.get("router").handle "#!/categories/#{@state.category}/pages/new/edit"
-
-  handleSavePage: ->
-    page = @refs.detailPage.state.page
-    if page.id
-      action = "/api/pages/#{page.id}"
-      method = "PUT"
-      data =
-        title: page.title
-        blocks: page.blocks
-    else
-      action = "/api/pages"
-      method = "POST"
-      data = page
-
-    $.oajax
-      url: action
-      type: method
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
-      data: data
-      success: (response) =>
-        pages = @state.pages
-        if page.id
-          for item, index in pages
-            pages[index] = response if item.id is page.id
-        else
-          pages.push data
-        @setState pages: pages, active: null
-
-  handleCancelPage: ->
-    @setState active: null
 
   render: ->
     return `(<div/>)` unless @state.active

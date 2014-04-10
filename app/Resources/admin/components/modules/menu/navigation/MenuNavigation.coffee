@@ -5,6 +5,7 @@ React = require "react"
 Ctx = require "Engage360d/services/Context"
 
 NavigationBlock = require "Engage360d/components/navigation/NavigationBlock"
+MenuCollection = require "Engage360d/modules/menu/model/MenuCollection"
 
 MenuNavigation = React.createClass
   getDefaultProps: ->
@@ -25,15 +26,8 @@ MenuNavigation = React.createClass
     Ctx.get("router").add [{ path: "/menu/:id/node/:nodeId", handler: "menu.node.edit" }]
 
     Ctx.get("eventBus").on "menu.update", (menu) =>
-      exists = false
-      menus = @state.menu
-      for item, index in menus
-        if item.id is menu.id
-          exists = true
-          menus[index] = menu
-      menus.push menu unless exists
-
-      @setState menu: menus, links: @extractLinks menus
+      @menus.add [menu], merge: true
+      @setState menu: @menus.toRawJSON(), links: @extractLinks @menus.toRawJSON()
 
     Ctx.get("router").on "change", (result) =>
       @setState
@@ -60,21 +54,19 @@ MenuNavigation = React.createClass
     links.concat @props.links
 
   loadMenu: ->
-    Ctx.get("ajax").get "/api/menus", (data) =>
-      @setState menu: data, links: @extractLinks data
+    @menus = new MenuCollection()
+    @menus.fetch
+      success: (menus) =>
+        @setState menu: menus.toRawJSON(), links: @extractLinks menus.toRawJSON()
 
   removeMenu: (id) ->
-    canRemove = true
-    for menu in @state.menu
-      canRemove = false if id is menu.id and menu.children.length > 0
-
-    return alert "Невозможно удалить. Содержит дочерние элементы." unless canRemove
+    menu = @menus.get id
+    return alert "Невозможно удалить. Содержит дочерние элементы." if menu.get("children").length > 0
     return unless confirm "Вы уверены что хотите удалить?"
-    Ctx.get("ajax").remove "/api/menus/#{id}", =>
-      updated = []
-      for menu in @state.menu
-        updated.push menu unless menu.id is id
-      @setState menu: updated, links: @extractLinks updated
+    menu.destroy
+      success: =>
+        @setState menu: @menus.toRawJSON(), links: @extractLinks @menus.toRawJSON()
+        Ctx.get("router").back()
 
   render: ->
     `(

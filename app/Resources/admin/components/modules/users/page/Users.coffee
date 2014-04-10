@@ -17,7 +17,6 @@ PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
 UserCollection = require "Engage360d/modules/users/model/UserCollection"
 User = require "Engage360d/modules/users/model/User"
-Collection = require "Engage360d/data/Collection"
 
 Users = React.createClass
   getDefaultProps: ->

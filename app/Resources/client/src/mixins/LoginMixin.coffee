@@ -8,8 +8,8 @@ LoginMixin =
       data:
         _username: username
         _password: password
-      error: (err) =>
-        callback err
+      error: (error) =>
+        callback JSON.parse error.response
       success: (response) =>
         callback()
 

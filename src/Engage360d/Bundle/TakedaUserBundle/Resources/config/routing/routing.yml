@@ -20,3 +20,7 @@ engage360d_takeda_user_reset_password:
 engage360d_takeda_user_account:
     path: /account
     defaults: { _controller: Engage360dTakedaUserBundle:Account:account }
+
+engage360d_takeda_user_login_failuer:
+    path: /account/failure
+    defaults: { _controller: Engage360dTakedaUserBundle:Account:failureLogin }

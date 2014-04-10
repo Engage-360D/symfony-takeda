@@ -3,10 +3,10 @@
 React = require "react"
 $ = require "jquery"
 require "sirTrevor"
+LinkedValueUtils = require "react/lib/LinkedValueUtils"
 
 Editor = React.createClass
   getDefaultProps: ->
-    blocks: []
     blockTypes: ["Text"]
 
   getInitialState: ->
@@ -20,7 +20,7 @@ Editor = React.createClass
     editor.$form.on 'keyup click focus submit', =>
       SirTrevor.onBeforeSubmit()
       data = @updateData editor.dataStore.data
-      @props.onChange data if @props.onChange
+      @props.valueLink.requestChange data if @props.valueLink
 
   updateData: (data) ->
     updated = []
@@ -32,7 +32,7 @@ Editor = React.createClass
     `(
       <form className="Editor">
         <textarea ref="editor">
-          {JSON.stringify({"data":this.props.blocks || []})}
+          {JSON.stringify({"data": LinkedValueUtils.getValue(this) || []})}
         </textarea>
       </form>
     )`

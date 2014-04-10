@@ -3,7 +3,7 @@
 React = require "react"
 
 Ctx = require "Engage360d/services/Context"
-
+LinkModelMixin = require "Engage360d/mixins/LinkModelMixin"
 Input = require "Engage360d/components/form/field/Input"
 Field = require "Engage360d/components/form/Field"
 Label = require "Engage360d/components/form/Label"
@@ -17,8 +17,11 @@ Column = require "Engage360d/components/column/Column"
 Button = require "Engage360d/components/button/Button"
 PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
+MenuModel = require "Engage360d/modules/menu/model/Menu"
 
 Node = React.createClass
+  mixins: [LinkModelMixin]
+
   getDefaultProps: ->
     title: "Новое меню"
 
@@ -34,37 +37,19 @@ Node = React.createClass
         params = result[0].params
         parent = params.id
         if params.nodeId is "new"
+          @model = new MenuModel parent: parent
           @setState active: true, parent: parent
         else
-          Ctx.get("ajax").get "/api/menus/#{params.nodeId}", (node) =>
-            @setState active: true, node: node
+          @model = new MenuModel id: params.nodeId
+          @model.fetch
+            success: =>
+              @setState active: true
       else
         @setState active: false
 
-  createChangeHandler: (field) ->
-    (event) =>
-      node = @state.node
-      node[field] = event.target.value
-      @setState node: node
-
   onSave: ->
-    node = @state.node
-    if node.id
-      data =
-        name: node.name
-        url: node.url
-        parent: node.parent.id
-      Ctx.get("ajax").put "/api/menus/#{node.id}", data, (menu) =>
-        @setState node: {}
-        Ctx.get("router").back()
-    else
-      data =
-        name: node.name
-        url: node.url
-        parent: @state.parent
-      Ctx.get("ajax").post "/api/menus", data, (menu) =>
-        @setState node: {}
-        Ctx.get("router").back()
+    @model.save null, success: =>
+      Ctx.get("router").back()
 
   onCancel: ->
     Ctx.get("router").back()
@@ -88,9 +73,7 @@ Node = React.createClass
 
   onSelectUrl: (event, ui) ->
     event.preventDefault()
-    node = @state.node
-    node.url = ui.item.url
-    @setState node: node
+    @model.set "url", ui.item.url
 
   renderAutocomplete: (ul, item) ->
     $("<li>")
@@ -109,7 +92,8 @@ Node = React.createClass
                 <Label>Название</Label>
               </Column>
               <Column mods={["Size6"]}>
-                <Input value={this.state.node.name} onChange={this.createChangeHandler("name")}/>
+                <Input
+                  valueLink={this.linkModel("name")}/>
               </Column>
             </Field>
             <Field>
@@ -118,8 +102,7 @@ Node = React.createClass
               </Column>
               <Column mods={["Size6"]}>
                 <Input
-                  value={this.state.node.url}
-                  onChange={this.createChangeHandler("url")}
+                  valueLink={this.linkModel("url")}
                   autocomplete={{select: this.onSelectUrl,source: this.urlSource, render: this.renderAutocomplete}}
                   />
               </Column>

@@ -27,28 +27,63 @@ Login = React.createClass
     LoginMixin
   ]
 
+  statics:
+    errors:
+      minLength: "Минимальная длина 3 символа"
+      email: "Некорректный email адресс"
+
   getDefaultProps: ->
     reloadOnSuccess: true
 
   getInitialState: ->
     showValidation: false
+    usernameInvalidMessage: null
+    passwordInvalidMessage: null
+    usernameInvalid: false
+    passwordInvalid: false
 
   getValidationConfig: ->
     children:
       username:
-        notNull: validationConstraints.notNull()
+        minLength: validationConstraints.minLength 3
+        email: validationConstraints.email()
       password:
-        notNull: validationConstraints.notNull()
+        minLength: validationConstraints.minLength 3
     component:
       form: (state, childrenValidity) ->
         childrenValidity.username.valid and childrenValidity.password.valid
 
-  onLogin: ->
-    if @validity.component.form.invalid
-      return @setState showDoctorValidation: true
-    @login @state.username, @state.password, (err) =>
-      @props.valueLink.requestChange true if @props.valueLink
-      window.location.reload() if @props.reloadOnSuccess
+  handleLogin: ->
+    @setState
+      showValidation: true
+      usernameInvalid: false
+      passwordInvalid: false
+
+    return if @validity.component.form.invalid
+    @login @state.username, @state.password, (error) =>
+      if error
+        if error.username
+          @setState usernameInvalidMessage: error.username, usernameInvalid: true
+        else
+          @setState passwordInvalidMessage: error.password, passwordInvalid: true
+      else
+        @props.valueLink.requestChange true if @props.valueLink
+        window.location.reload() if @props.reloadOnSuccess
+
+  getUsernameInvalidMessage: ->
+    return @state.usernameInvalidMessage if @state.usernameInvalidMessage
+    if @state.username and @state.username.length > 0
+      Login.errors.email
+    else
+      Login.errors.minLength
+
+  isUsernameInvalid: ->
+    return false unless @state.showValidation
+    @validity.children.username.invalid or @state.usernameInvalid
+
+  isPasswordInvalid: ->
+    return false unless @state.showValidation
+    @validity.children.password.invalid or @state.passwordInvalid
 
   render: ->
     `(
@@ -62,20 +97,22 @@ Login = React.createClass
       			  <Input
       			    placeholder="Email"
       			    valueLink={this.linkState('username')}
-      			    invalid={this.state.showValidation && this.validity.children.username.invalid}/>
+      			    invalid={this.isUsernameInvalid()}
+      			    invalidMessage={this.getUsernameInvalidMessage()}/>
       			</Field>
       			<Field>
       			  <Input
       			    type="password"
       			    placeholder="Пароль"
       			    valueLink={this.linkState('password')}
-      			    invalid={this.state.showValidation && this.validity.children.password.invalid}/>
+      			    invalid={this.isPasswordInvalid()}
+      			    invalidMessage={this.state.passwordInvalidMessage || Login.errors.minLength}/>
       			</Field>
       			<div className="enter__link">
   							<ResetPassword/>
   					</div>
   					<div className="enter__btn">
-  							<button className="btn" onClick={this.onLogin}>Войти</button>
+  							<button className="btn" onClick={this.handleLogin}>Войти</button>
   					</div>
     			</div>
     			<div className="data__row data__row_social">

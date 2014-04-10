@@ -4,7 +4,7 @@ React = require "react"
 $ = require "jquery"
 
 Ctx = require "Engage360d/services/Context"
-
+LinkModelMixin = require "Engage360d/mixins/LinkModelMixin"
 Editor = require "Engage360d/components/editor/Editor"
 Input = require "Engage360d/components/form/field/Input"
 Field = require "Engage360d/components/form/Field"
@@ -21,8 +21,11 @@ PageContent = require "Engage360d/components/page/PageContent"
 Container = require "Engage360d/components/container/Container"
 Column = require "Engage360d/components/column/Column"
 Button = require "Engage360d/components/button/Button"
+PageModel = require "Engage360d/modules/pages/model/Page"
 
 Page = React.createClass
+  mixins: [LinkModelMixin]
+
   getDefaultProps: ->
     page: null
 
@@ -35,42 +38,23 @@ Page = React.createClass
     Ctx.get("router").on "change", (result) =>
       if result[0].handler is "categories.pages.edit"
         id = result[0].params.pageId
+        category = result[0].params.id
         if id > 0
-          Ctx.get("ajax").get "/api/pages/#{id}", (page) =>
-            @setState active: true, category: result[0].params.id, page: page
+          @model = new PageModel id: id
+          @model.fetch
+            success: =>
+              @setState active: true
         else
-          @setState active: true, category: result[0].params.id, page: {}
+          @model = new PageModel category: category
+          @setState active: true
       else
         @setState active: false
 
-  onChangeBlocks: (data) ->
-    page = @state.page
-    page.blocks = data
-    @setState page: page
-
-  onChangeTitle: (event) ->
-    page = @state.page
-    page.title = event.target.value
-    @setState page: page
-
-  createChangeHandler: (field) ->
-    (event) =>
-      page = @state.page
-      page[field] = event.target.value
-      @setState page: page
-
   onSave: ->
-    page = $.extend @state.page, category: @state.category
-    if page.id
-      delete page.slug
-      Ctx.get("ajax").put "/api/pages/#{page.id}", page, (response) =>
-        Ctx.get("router").handle "#!/categories/#{@state.category}"
-    else
-      Ctx.get("ajax").post "/api/pages", page, (response) =>
-        Ctx.get("router").handle "#!/categories/#{@state.category}"
+    @model.save null, success: @onCancel
 
   onCancel: ->
-    Ctx.get("router").handle "#!/categories/#{@state.category}"
+    Ctx.get("router").handle "#!/categories/#{@model.getCategoryId()}"
 
   render: ->
     return `(<div/>)` unless @state.active
@@ -93,7 +77,9 @@ Page = React.createClass
                       <Label>Страница категории</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input type="checkbox" value={this.state.page.main} onChange={this.createChangeHandler("main")}/>
+                      <Input
+                        type="checkbox"
+                        valueLink={this.linkModel("main")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -101,14 +87,16 @@ Page = React.createClass
                       <Label>Заголовок</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.title} onChange={this.createChangeHandler("title")}/>
+                      <Input
+                        valueLink={this.linkModel("title")}/>
                     </Column>
                   </Field>
                   <Field>
                     <Column mods={["Size3"]}>
                       <Label>Контент</Label>
                     </Column>
-                    <Editor blocks={this.state.page.blocks} onChange={this.onChangeBlocks}/>
+                    <Editor
+                      valueLink={this.linkModel("blocks")}/>
                   </Field>
                 </Tab>
                 <Tab title="SEO">
@@ -118,7 +106,8 @@ Page = React.createClass
                       <Label>Title</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.seoTitle} onChange={this.createChangeHandler("seoTitle")}/>
+                      <Input
+                        valueLink={this.linkModel("seoTitle")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -126,7 +115,8 @@ Page = React.createClass
                       <Label>Keywords</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.seoKeywords} onChange={this.createChangeHandler("seoKeywords")}/>
+                      <Input
+                        valueLink={this.linkModel("seoKeywords")}/>
                     </Column>
                   </Field>
                   <Field>
@@ -134,7 +124,8 @@ Page = React.createClass
                       <Label>Description</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.seoDescription} onChange={this.createChangeHandler("seoDescription")}/>
+                      <Input
+                        valueLink={this.linkModel("seoDescription")}/>
                     </Column>
                   </Field>
                 </Tab>
@@ -145,7 +136,8 @@ Page = React.createClass
                       <Label>URL</Label>
                     </Column>
                     <Column mods={["Size6"]}>
-                      <Input value={this.state.page.url} onChange={this.createChangeHandler("url")}/>
+                      <Input
+                        valueLink={this.linkModel("url")}/>
                     </Column>
                   </Field>
                 </Tab>

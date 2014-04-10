@@ -105,23 +105,23 @@ class User extends BaseUser
     /**
      * @var boolean $confirmInformation
      *
-     * @ORM\Column(name="confirm_information", type="boolean", nullable=true)
+     * @ORM\Column(name="confirm_information", type="boolean")
      */
-    private $confirmInformation;
+    private $confirmInformation = true;
 
     /**
      * @var boolean $confirmPersonalization
      *
-     * @ORM\Column(name="confirm_personalization", type="boolean", nullable=true)
+     * @ORM\Column(name="confirm_personalization", type="boolean")
      */
-    private $confirmPersonalization;
+    private $confirmPersonalization = true;
 
     /**
      * @var date $confirmSubscription
      *
-     * @ORM\Column(name="confirm_subscription", type="boolean", nullable=true)
+     * @ORM\Column(name="confirm_subscription", type="boolean")
      */
-    private $confirmSubscription;
+    private $confirmSubscription = true;
 
     /**
      * @var string $vkontakteId

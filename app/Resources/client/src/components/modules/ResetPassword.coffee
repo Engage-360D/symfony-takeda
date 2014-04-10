@@ -3,16 +3,105 @@
 React = require "react"
 ResetPasswordMixin = require "../../mixins/ResetPasswordMixin"
 HTMLElementContainerMixin = require "../../mixins/HTMLElementContainerMixin"
+ValidationMixin = require "../../mixins/ValidationMixin"
+LinkedStateMixin = require "../../mixins/LinkedStateMixin"
+validationConstraints = require "../../services/validationConstraints"
 Modal = require "../modal/Modal"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
 
 
-ResetPassword = React.createClass
-  mixins: [ResetPasswordMixin, HTMLElementContainerMixin]
+ResetPasswordBody = React.createClass
+  mixins: [
+    ResetPasswordMixin
+    ValidationMixin
+    LinkedStateMixin
+  ]
+
+  statics:
+    error: "Неправильный email"
 
   getInitialState: ->
-    username: null
+    invalidMessage: ResetPasswordBody.error
+    showValidation: false
+    invalid: false
+    email: null
+    resetted: false
+
+  getValidationConfig: ->
+    children:
+      email:
+        email: validationConstraints.email()
+        notNull: validationConstraints.notNull()
+
+  handleChange: (event) ->
+    @setState email: event.target.value
+
+  handleSubmit: ->
+    @setState showValidation: true
+    return if @validity.children.email.invalid
+    @reset @state.email, (errors) =>
+      if errors
+        message = ""
+        for key, error of errors
+          message += error
+        @setState
+          invalidMessage: message
+          invalid: true
+      else
+        @setState resetted: true
+
+  handleClose: ->
+    @props.onClose() if @props.onClose
+
+  isInvalid: ->
+    if @state.showValidation
+      return @validity.children.email.invalid or @state.invalid
+    false
+
+  renderSuccess: ->
+    `(
+      <div className="enter">
+        <Field className="field_mod field_mod_middle">
+          <div>Дальнейшие инструкции отправлены на {this.state.email}.</div>
+        </Field>
+        <div>
+				  <button className="btn" onClick={this.handleClose}>Закрыть</button>
+				</div>
+      </div>
+    )`
+
+  renderReset: ->
+    `(
+      <div className="enter">
+        <Field className="field_mod field_mod_middle">
+          <div>Введите email для восстановлени пароля</div>
+        </Field>
+        <Field className="field_mod">
+          <Input
+            valueLink={this.linkState("email")}
+            invalidMessage={this.state.invalidMessage}
+            invalid={this.isInvalid()}/>
+        </Field>
+        <div>
+				  <button className="btn" onClick={this.handleSubmit}>Прислать ссылку для восстановления</button>
+				</div>
+      </div>
+    )`
+
+  render: ->
+    if @state.resetted
+      @renderSuccess()
+    else
+      @renderReset()
+
+
+ResetPassword = React.createClass
+  mixins: [
+    ResetPasswordMixin
+    HTMLElementContainerMixin
+    LinkedStateMixin
+  ]
 
   createModal: ->
     props =
@@ -31,27 +120,8 @@ ResetPassword = React.createClass
   onClose: ->
     @modal.setState show: false
 
-  onChange: (event) ->
-    @setState username: event.target.value
-
-  onSubmit: ->
-    @reset @state.username, (response) ->
-      console.log response
-
   renderModalBody: ->
-    `(
-      <div className="enter">
-        <Field className="field_mod field_mod_middle">
-          <div>Введите email для восстановлени пароля</div>
-        </Field>
-        <Field className="field_mod">
-          <Input onChange={this.onChange}/>
-        </Field>
-        <div>
-				  <button className="btn" onClick={this.onSubmit}>Прислать ссылку для восстановления</button>
-				</div>
-      </div>
-    )`
+    `(<ResetPasswordBody onClose={this.onClose}/>)`
 
   render: ->
     `(

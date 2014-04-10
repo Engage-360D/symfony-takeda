@@ -3,7 +3,7 @@
 React = require "react"
 
 Ctx = require "Engage360d/services/Context"
-
+LinkModelMixin = require "Engage360d/mixins/LinkModelMixin"
 Input = require "Engage360d/components/form/field/Input"
 Field = require "Engage360d/components/form/Field"
 Label = require "Engage360d/components/form/Label"
@@ -16,8 +16,11 @@ Column = require "Engage360d/components/column/Column"
 Button = require "Engage360d/components/button/Button"
 PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
+CategoryModel = require "Engage360d/modules/pages/model/Category"
 
 Category = React.createClass
+  mixins: [LinkModelMixin]
+
   getDefaultProps: ->
     title: "Новый раздел"
 
@@ -31,9 +34,12 @@ Category = React.createClass
       if result[0].handler is "categories.edit"
         id = result[0].params.id
         if id > 0
-          Ctx.get("ajax").get "/api/categories/#{id}", (category) =>
-            @setState active: true, category: category
+          @model = new CategoryModel id: id
+          @model.fetch
+            success: =>
+              @setState active: true
         else
+          @model = new CategoryModel
           @setState active: true, category: {}
       else
         @setState active: false
@@ -42,35 +48,10 @@ Category = React.createClass
     if state.category isnt @state.category
       @setState title: @state.category.name or @props.title
 
-  createOnChangeHandler: (field) ->
-    (event) =>
-      category = @state.category
-      category[field] = event.target.value
-      @setState category: category
-
   onSave: ->
-    category = @state.category
-    if category.id
-      action = "/api/categories/#{category.id}"
-      method = "PUT"
-      data =
-        name: category.name
-        url: category.url
-    else
-      action = "/api/categories"
-      method = "POST"
-      data = category
-
-    $.oajax
-      url: action
-      type: method
-      jso_provider: "engage360d"
-      jso_allowia: true
-      dataType: "json"
-      data: data
-      success: (category) =>
-        Ctx.get("eventBus").emit "category.update", category
-        Ctx.get("router").handle "#!/categories/#{category.id}"
+    @model.save null, success: =>
+      Ctx.get("eventBus").emit "category.update", @model
+      Ctx.get("router").handle "#!/categories/#{@model.get "id"}"
 
   onCancel: ->
     Ctx.get("router").back()
@@ -95,7 +76,9 @@ Category = React.createClass
                   <Label>Название</Label>
                 </Column>
                 <Column mods={["Size6"]}>
-                  <Input value={this.state.category.name} onChange={this.createOnChangeHandler("name")}/>
+                  <Input
+                    value={this.state.category.name}
+                    valueLink={this.linkModel("name")}/>
                 </Column>
               </Field>
               <Field>
@@ -103,7 +86,9 @@ Category = React.createClass
                   <Label>URL</Label>
                 </Column>
                 <Column mods={["Size6"]}>
-                  <Input value={this.state.category.slug} onChange={this.createOnChangeHandler("url")}/>
+                  <Input
+                    value={this.state.category.slug}
+                    valueLink={this.linkModel("url")}/>
                 </Column>
               </Field>
             </PanelBody>

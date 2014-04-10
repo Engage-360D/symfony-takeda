@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class EmailConfirmationListener implements EventSubscriberInterface
 {
@@ -28,7 +28,7 @@ class EmailConfirmationListener implements EventSubscriberInterface
     private $templating;
     private $container;
 
-    public function __construct($mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session, $templating, Container $container)
+    public function __construct($mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session, $templating, ContainerInterface $container)
     {
         $this->mailer = $mailer;
         $this->tokenGenerator = $tokenGenerator;

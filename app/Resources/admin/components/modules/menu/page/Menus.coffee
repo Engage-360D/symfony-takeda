@@ -18,6 +18,7 @@ PanelBody = require "Engage360d/components/panel/PanelBody"
 PanelFooter = require "Engage360d/components/panel/PanelFooter"
 PageHeader = require "Engage360d/components/page/PageHeader"
 PageContent = require "Engage360d/components/page/PageContent"
+MenuCollection = require "Engage360d/modules/menu/model/MenuCollection"
 
 Menus = React.createClass
   getDefaultProps: ->
@@ -48,8 +49,11 @@ Menus = React.createClass
       @loadMenu menu
 
   loadMenu: (root) ->
-    Ctx.get("ajax").get "/api/menus/#{root}/children", (children) =>
-        @setState children: @extractTree children
+    @menus = new MenuCollection()
+    @menus.fetch
+      url: "/api/menus/#{root}/children"
+      success: (menus) =>
+        @setState children: @extractTree menus.toRawJSON()
 
   extractTree: (nodes) ->
     @extractNode nodes[0]
@@ -83,8 +87,9 @@ Menus = React.createClass
 
   handleRemoveMenu: ->
     return if @state.selected.children.length > 0
-    Ctx.get("ajax").remove "/api/menus/#{@state.selected.id}", (node) =>
-      @loadMenu @state.menu
+    @menus.get(@state.selected.id).destroy
+      success: =>
+        @loadMenu @state.menu
 
   render: ->
     return `(<div/>)` unless @state.active

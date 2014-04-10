@@ -15,6 +15,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ResetPasswordListener implements EventSubscriberInterface
 {
@@ -22,18 +25,21 @@ class ResetPasswordListener implements EventSubscriberInterface
     private $tokenGenerator;
     private $router;
     private $templating;
+    private $container;
 
-    public function __construct($mailer, UrlGeneratorInterface $router, $templating)
+    public function __construct($mailer, UrlGeneratorInterface $router, $templating, ContainerInterface $container)
     {
         $this->mailer = $mailer;
         $this->router = $router;
         $this->templating = $templating;
+        $this->container = $container;
     }
 
     public static function getSubscribedEvents()
     {
         return array(
             Engage360dSecurityEvents::RESETTING_USER_PASSWORD => 'onResettingUserPassword',
+            Engage360dSecurityEvents::RESET_USER_PASSWORD_SUCCESS => 'onResetUserPasswordSuccess',
         );
     }
 
@@ -41,6 +47,11 @@ class ResetPasswordListener implements EventSubscriberInterface
     {
         $user = $event->getUser();
         $this->sendResetPasswordEmailMessage($user);
+    }
+
+    public function onResetUserPasswordSuccess(UserEvent $event)
+    {
+        $this->authenticateUser($event->getUser());
     }
 
     public function sendResetPasswordEmailMessage(UserInterface $user)
@@ -71,5 +82,15 @@ class ResetPasswordListener implements EventSubscriberInterface
             ->setBody($body);
 
         $this->mailer->send($message);
+    }
+
+    protected function authenticateUser(UserInterface $user)
+    {
+        $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($token);
+     
+        $request = $this->container->get("request");
+        $event = new InteractiveLoginEvent($request, $token);
+        $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);
     }
 }

@@ -5,6 +5,7 @@ React = require "react"
 Ctx = require "Engage360d/services/Context"
 
 NavigationBlock = require "Engage360d/components/navigation/NavigationBlock"
+CategoryCollection = require "Engage360d/modules/pages/model/CategoryCollection"
 
 PagesNavigation = React.createClass
   getDefaultProps: ->
@@ -25,16 +26,8 @@ PagesNavigation = React.createClass
     Ctx.get("router").add [{ path: "/categories/:id/pages/:pageId/edit", handler: "categories.pages.edit" }]
 
     Ctx.get("eventBus").on "category.update", (category) =>
-      # move to mixin AddOrReplace
-      categories = @state.categories
-      exists = false
-      for cat, index in categories
-        if cat.id is category.id
-          exists = true
-          categories[index] = category
-      categories.push category unless exists
-
-      @setState categories: categories, links: @extractLinks categories
+      @categories.add [category], merge: true
+      @setState categories: @categories.toRawJSON(), links: @extractLinks @categories.toRawJSON()
 
     Ctx.get("router").on "change", (result) =>
       @setState
@@ -61,18 +54,18 @@ PagesNavigation = React.createClass
     links.concat @props.links
 
   loadCategories: ->
-    Ctx.get("ajax").get "/api/categories", (data) =>
-      @setState categories: data, links: @extractLinks data
+    @categories = new CategoryCollection()
+    @categories.fetch
+      success: (categories) =>
+        @setState categories: categories.toRawJSON(), links: @extractLinks categories.toRawJSON()
 
   removeCategory: (category) ->
     return unless confirm "Вы уверены что хотите удалить?"
     Ctx.get("ajax").get "/api/categories/#{category}/pages", (pages) =>
       return alert "Невозможно удалить. Содержит дочерние элементы." if pages.length > 0
-      Ctx.get("ajax").remove "/api/categories/#{category}", =>
-        updated = []
-        for cat in @state.categories
-          updated.push cat unless cat.id is category
-        @setState categories: updated, links: @extractLinks updated
+      @categories.get(category).destroy
+        success: =>
+          @setState categories: @categories.toRawJSON(), links: @extractLinks @categories.toRawJSON()
 
   render: ->
     `(

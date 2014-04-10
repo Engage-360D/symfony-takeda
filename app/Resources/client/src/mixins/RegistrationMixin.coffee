@@ -27,9 +27,10 @@ RegistrationMixin =
       method: "POST"
       contentType: "application/json"
       data:  extractFields @state
-      error: (err) =>
-        console.log err
-      success: callback
+      error: (error) =>
+        callback JSON.parse error.response
+      success: =>
+        callback()
 
   login: (username, password) ->
     reqwest

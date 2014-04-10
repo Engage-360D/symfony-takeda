@@ -39,6 +39,10 @@ Registration = React.createClass
       base: 0
       doctor: 1
       registration: 2
+    errors:
+      minLength: "Минимальная длина 3 символа"
+      email: "Некорректный email адресс"
+      empty: "Поле не может быть пустым"
 
   getDefaultProps: ->
     showDoctor: true
@@ -54,6 +58,8 @@ Registration = React.createClass
     confirmPersonalization: true
     confirmSubscription: true
     confirmInformation: true
+    emailInvalidMessage: null
+    errors: null
 
   componentWillMount: ->
     @addEventListener window, "registrationSuccess", =>
@@ -72,15 +78,17 @@ Registration = React.createClass
   getValidationConfig: ->
     children:
       firstname:
-        notEmpty: validationConstraints.notEmpty()
+        minLength: validationConstraints.minLength 3
       email:
+        minLength: validationConstraints.minLength 3
         email: validationConstraints.email()
       region:
-        notEmpty: validationConstraints.notEmpty()
+        notNull: validationConstraints.notNull()
       password:
-        notEmpty: validationConstraints.notEmpty()
+        minLength: validationConstraints.minLength 3
       confirmPassword:
-        notEmpty: validationConstraints.notEmpty()
+        minLength: validationConstraints.minLength 3
+        coincide: (value) => value is @state.password
       specialization:
         notEmpty: validationConstraints.notEmpty()
       experience:
@@ -106,8 +114,7 @@ Registration = React.createClass
         for field in fields
           return false unless (childrenValidity[field]? and childrenValidity[field].valid)
         true
-      doctor: (state, childrenValidity) ->
-        return true unless state.doctor
+      doctor: (state, childrenValidity) =>
         fields = [
           "specialization", "experience", "address",
           "phone", "institution", "graduation"
@@ -118,12 +125,11 @@ Registration = React.createClass
         true
 
   handleDoctorChange: (value) ->
-    console.log value
     @setState context: Registration.context.doctor if value
 
   handleDocktorSave: ->
-    if @validity.component.doctor.invalid
-      return @setState showDoctorValidation: true
+    @setState showDoctorValidation: true
+    return if @validity.component.doctor.invalid
     @setState context: Registration.context.registration
 
   handleRegistrationChange: ->
@@ -133,16 +139,19 @@ Registration = React.createClass
     @setState context: Registration.context.base
 
   handleRegistrationClick: ->
-    if @validity.component.main.invalid
-      return @setState showValidation: true
-    @register (response) =>
-      @showSuccess()
-      state = {}
-      for key, value of @state
-        state[key] = null
-      for key, value of @getInitialState()
-        state[key] = value
-      @setState state
+    @setState showValidation: true, errors: {}
+    return if @validity.component.main.invalid
+    @register (error) =>
+      if error
+        @setState errors: error
+      else
+        @showSuccess()
+        state = {}
+        for key, value of @state
+          state[key] = null
+        for key, value of @getInitialState()
+          state[key] = value
+        @setState state
   
   showSuccess: ->
     modal = null
@@ -162,6 +171,19 @@ Registration = React.createClass
 
   isChildrenWindow: ->
     location.href.indexOf("connect") isnt -1
+
+  getEmailInvalidMessage: ->
+    return @state.emailInvalidMessage if @state.emailInvalidMessage
+    if @state.errors and @state.errors.email
+      return @state.errors.email.join " "
+    if @state.email and @state.email.length > 0
+      Registration.errors.email
+    else
+      Registration.errors.minLength
+
+  isEmailInvalid: ->
+    return false unless @state.showValidation
+    @validity.children.email.invalid || (@state.errors and @state.errors.email)
 
   renderModalBody: ->
     `(
@@ -281,13 +303,15 @@ Registration = React.createClass
       		  <Input
       		    placeholder="Имя"
       		    valueLink={this.linkState('firstname')}
-      		    invalid={this.state.showValidation && this.validity.children.firstname.invalid}/>
+      		    invalid={this.state.showValidation && this.validity.children.firstname.invalid}
+      		    invalidMessage={Registration.errors.minLength}/>
       		</Field>
       		<Field className="field_mod">
       		  <Input
       		    placeholder="Email"
       		    valueLink={this.linkState('email')}
-      		    invalid={this.state.showValidation && this.validity.children.email.invalid}/>
+      		    invalid={this.isEmailInvalid()}
+      		    invalidMessage={this.getEmailInvalidMessage()}/>
       		</Field>
       		<div className="reg__region">
       		  <Field>
@@ -295,7 +319,8 @@ Registration = React.createClass
       		    <div className="select">
       		      <RegionsInput
     					    valueLink={this.linkState('region')}
-    					    invalid={this.state.showValidation && this.validity.children.region.invalid}/>
+    					    invalid={this.state.showValidation && this.validity.children.region.invalid}
+    					    invalidMessage={Registration.errors.minLength}/>
       		    </div>
       		  </Field>
       		</div>
@@ -304,14 +329,16 @@ Registration = React.createClass
       			  type="password"
       			  placeholder="Пароль"
       			  valueLink={this.linkState('password')}
-      			  invalid={this.state.showValidation && this.validity.children.password.invalid}/>
+      			  invalid={this.state.showValidation && this.validity.children.password.invalid}
+      			  invalidMessage={Registration.errors.minLength}/>
       		</Field>
       		<Field>
       		  <Input
       		    type="password"
       		    placeholder="Подтвердить пароль"
       		    valueLink={this.linkState('confirmPassword')}
-      		    invalid={this.state.showValidation && this.validity.children.confirmPassword.invalid}/>
+      		    invalid={this.state.showValidation && this.validity.children.confirmPassword.invalid}
+      		    invalidMessage={Registration.errors.minLength}/>
       		</Field>
           <div className="reg__fieldset">
 						<Checkbox checkedLink={this.linkState('confirmPersonalization')}>

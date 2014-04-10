@@ -40,4 +40,9 @@ validationConstraints =
       return true if isNullOrUndefined value
       value <= max
 
+  minLength: (length) ->
+    (value) ->
+      return false unless value
+      value.length >= length
+
 module.exports = validationConstraints

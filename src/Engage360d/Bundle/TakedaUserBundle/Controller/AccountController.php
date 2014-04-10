@@ -4,9 +4,12 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller;
 
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Model\UserInterface;
@@ -70,6 +73,44 @@ class AccountController extends Controller
         return $this->container
             ->get('fos_oauth_server.server')
             ->finishClientAuthorization(true, $user, $request, null);
+    }
+
+    public function resetAction($token)
+    {
+        return $this->render('Engage360dTakedaUserBundle:Account:reset.html.twig', array(
+          'token' => $token,
+        ));
+    }
+
+    public function failureLoginAction(Request $request)
+    {
+        $response = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(
+                SecurityContext::AUTHENTICATION_ERROR
+            );
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+        }
+
+        if ($error instanceof BadCredentialsException) {
+            $user = $this->container
+                ->get('engage360d_security.manager.user')
+                ->findUserByUsernameOrEmail($error->getToken()->getUsername());
+            
+            if (null === $user) {
+                $response['username'] = 'Username not found';
+            } else {
+                $response['password'] = 'Invalid password';
+            }
+        } else {
+            $response['error'] = $error->getMessage();
+        }
+
+        return new JsonResponse($response, 500);
     }
 
     protected function authenticateUser(UserInterface $user)

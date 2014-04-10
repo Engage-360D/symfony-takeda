@@ -1,0 +1,20 @@
+{% extends "::layout.html.twig" %}
+
+{% block content %}
+<!-- page -->
+		<div class="page">
+			<!-- city -->
+			<div class="city">
+				<a href="#"><i></i><span>Москва</span></a>
+			</div>
+			<div class="title">Изменение пароля</div>
+			<!-- layout -->
+			<div class="layout">
+				<div class="layout__column">
+					<div data-react-component="ChangePassword" data-token="{{ token }}"></div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -22,7 +22,7 @@ class Auth
 
   logout: ->
     jso_wipe()
-    window.location.href = "/account/logout"
+    window.location.href = "/account/logout?_target_path=/admin.html"
 
   isAuthorized: ->
     jso_getToken("engage360d")?

@@ -9,10 +9,10 @@ ResetPasswordMixin =
       method: "POST"
       contentType: "application/json"
       data:  data
-      error: (err) =>
-        console.log err
+      error: (error) =>
+        callback JSON.parse error.response
       success: (response) =>
-        console.log response
+        callback()
 
 
 module.exports = ResetPasswordMixin
