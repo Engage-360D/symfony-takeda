@@ -114,6 +114,7 @@ Account = React.createClass
     @state.testResults.map (test) ->
       `(
         <TestResultRecommendations
+          testResultId={test.id}
           sex={test.sex}
           scoreValue={test.scoreValue}
           recommendations={test.recommendations}/>

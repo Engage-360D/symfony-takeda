@@ -2,9 +2,15 @@
 
 React = require "react"
 cx = require "react/lib/cx"
+LinkedStateMixin = require "../../mixins/LinkedStateMixin"
+ValidationMixin = require "../../mixins/ValidationMixin"
+validationConstraints = require "../../services/validationConstraints"
+Input = require "../registration/Input"
 
 
 TestResultRecommendations = React.createClass
+  mixins: [LinkedStateMixin, ValidationMixin]
+
   statics:
     additionalDietBanner:
       pageUrl: '/'
@@ -19,9 +25,51 @@ TestResultRecommendations = React.createClass
 
   getInitialState: ->
     recommendations: if typeof @props.recommendations is "string" then window[@props.recommendations] else @props.recommendations
+    popupActive: false
+    email: ''
+    showErrors: false
+    popupStatus: null
+
+  getValidationConfig: ->
+    children:
+      email:
+        notEmpty: validationConstraints.notEmpty()
+        email: validationConstraints.email()
 
   componentWillReceiveProps: (newProps) ->
     @setState recommendations: if typeof newProps.recommendations is "string" then window[newProps.recommendations] else newProps.recommendations
+    
+  togglePopup: ->
+    @setState
+      popupActive: not @state.popupActive
+      popupStatus: null
+    
+  submitEmail: ->
+    if @validity.invalid
+      return @setState showErrors: true
+
+    $.ajax
+      cache: false
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify(email: @state.email)
+      dataType: "text"
+      success: @handleRequest
+      error: @handleError
+      type: "POST"
+      url: "/api/test-results/#{@props.testResultId}/send-email"
+
+  handleRequest: (data) ->
+    @setState
+      email: ""
+      popupStatus: "Сообщение успешно отправлено"
+      
+    setTimeout =>
+      @setState popupActive: false
+    , 2000
+
+  handleError: (xhr, testStatus, errorThrown) ->
+    @setState
+      popupStatus: "Ошибка отправки сообщения"
 
   render: ->
     if not @state.recommendations
@@ -101,14 +149,48 @@ TestResultRecommendations = React.createClass
       "page": true
       "page_step_3": true
       "is-red": not not dangerAlert
-
+      
+    emailPopupClasses = cx
+      "result__send": true
+      "is-active": @state.popupActive
+      
+    popup = if @state.popupStatus
+      `(
+				<div className={emailPopupClasses}>
+					<i className="result__send-ico" onClick={this.togglePopup}></i>
+					<div className="result__send-in" style={{display: this.state.popupActive ? 'block' : 'none'}}>
+						{this.state.popupStatus}
+					</div>
+				</div>
+		  )`
+    else
+      `(
+				<div className={emailPopupClasses}>
+					<i className="result__send-ico" onClick={this.togglePopup}></i>
+					<div className="result__send-in" style={{display: this.state.popupActive ? 'block' : 'none'}}>
+						<div className="field">
+							<div className="field__label">Отправить результат тестирования по электронной почте</div>
+							<div className="field__in">
+								<Input placeholder="email получателя"
+								       valueLink={this.linkState('email')}
+								       invalid={this.state.showErrors && this.validity.children.email.invalid}
+								       invalidMessage="Неправильный адрес" />
+							</div>
+						</div>
+						<button className="btn" onClick={this.submitEmail}>Отправить</button>
+					</div>
+				</div>
+		  )`
+ 
     `(
       <div className={classes}>
         <div className="result">
           <div className="result__top">
-            <div className="result__info"></div>
-            <div className="result__arrow"></div>
-          </div>
+            {popup}
+  					<div className="help help_white" style={{display: 'none'}}>
+  						<div className="help__ico"></div>
+  					</div>
+  				</div>
           <div className="result__scale">
   					<div className="result__val">
   						<div className="result__val-in" style={{left: scoreOffset + '%'}}>
