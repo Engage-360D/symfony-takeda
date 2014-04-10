@@ -105,21 +105,21 @@ class User extends BaseUser
     /**
      * @var boolean $confirmInformation
      *
-     * @ORM\Column(name="confirm_information", type="boolean")
+     * @ORM\Column(name="confirm_information", type="boolean", nullable=true)
      */
     private $confirmInformation = true;
 
     /**
      * @var boolean $confirmPersonalization
      *
-     * @ORM\Column(name="confirm_personalization", type="boolean")
+     * @ORM\Column(name="confirm_personalization", type="boolean", nullable=true)
      */
     private $confirmPersonalization = true;
 
     /**
      * @var date $confirmSubscription
      *
-     * @ORM\Column(name="confirm_subscription", type="boolean")
+     * @ORM\Column(name="confirm_subscription", type="boolean", nullable=true)
      */
     private $confirmSubscription = true;
 
