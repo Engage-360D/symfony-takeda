@@ -36934,10 +36934,23 @@ var OdnoklassnikiButton, React;
 React = require("react");
 
 OdnoklassnikiButton = React.createClass({displayName: 'OdnoklassnikiButton',
-  onClick: function() {},
+  getDefaultProps: function() {
+    return {
+      reloadOnSuccess: false,
+      connected: false
+    };
+  },
+  onClick: function() {
+    if (this.props.connected) {
+
+    }
+  },
   render: function() {
     return this.transferPropsTo((
-      React.DOM.a( {onClick:this.onClick, className:"socail__ok", href:"#"}, 
+      React.DOM.a(
+        {href:"#",
+        onClick:this.onClick,
+        className:this.props.connected ? "socail__ok socail__connected" : "socail__fb"}, 
         React.DOM.i(null)
       )
     ));
@@ -36954,14 +36967,26 @@ var React, VkontakteButton;
 React = require("react");
 
 VkontakteButton = React.createClass({displayName: 'VkontakteButton',
+  getDefaultProps: function() {
+    return {
+      reloadOnSuccess: false,
+      connected: false
+    };
+  },
   onClick: function() {
     var url;
+    if (this.props.connected) {
+      return;
+    }
     url = "/connect/vkontakte?_target_path=/account/modal_success";
     return window.open(url, "", "width=800,height=650");
   },
   render: function() {
     return this.transferPropsTo((
-      React.DOM.a( {onClick:this.onClick, className:"socail__vk", href:"#"}, 
+      React.DOM.a(
+        {href:"#",
+        onClick:this.onClick,
+        className:this.props.connected ? "socail__vk socail__connected" : "socail__fb"}, 
         React.DOM.i(null)
       )
     ));
