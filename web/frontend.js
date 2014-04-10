@@ -1,4 +1,6 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"6StMfs":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"jquery":[function(require,module,exports){
+module.exports=require('6StMfs');
+},{}],"6StMfs":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*!
@@ -9796,8 +9798,6 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"jquery":[function(require,module,exports){
-module.exports=require('6StMfs');
 },{}],3:[function(require,module,exports){
 // shim for using process in browser
 
@@ -9860,6 +9860,8 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
+},{}],"microplugin":[function(require,module,exports){
+module.exports=require('edEggf');
 },{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10001,8 +10003,6 @@ process.chdir = function (dir) {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"microplugin":[function(require,module,exports){
-module.exports=require('edEggf');
 },{}],6:[function(require,module,exports){
 // moment.js language configuration
 // language : russian (ru)
@@ -34422,6 +34422,8 @@ global.MicroPlugin = require("microplugin");
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
 module.exports=require('iECS2l');
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -34877,8 +34879,6 @@ module.exports=require('iECS2l');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
 },{}],152:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -35673,7 +35673,7 @@ Account = React.createClass({displayName: 'Account',
         React.DOM.div( {className:"account"}, 	
     			React.DOM.div( {className:"account__top"}, 
     				React.DOM.div( {className:"account__tabs"}, 
-    				  React.DOM.button( 
+    				  React.DOM.button(
     				    {onClick:this.createTabChangeHandler(Account.tabs.test),
     				    className:this.state.active == Account.tabs.test ? "btn btn_arrow is-active" : "btn btn_arrow"}
     				    , 
@@ -37029,9 +37029,10 @@ Test = React.createClass({displayName: 'Test',
     };
     return $.ajax({
       cache: false,
-      data: {
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({
         testResult: data
-      },
+      }),
       dataType: "json",
       success: this.handleRequest,
       type: "POST",
@@ -37368,11 +37369,22 @@ module.exports = Test;
 
 },{"../../mixins/LinkedStateMixin":182,"../../mixins/ValidationMixin":187,"../../services/validationConstraints":188,"../../util/plural":189,"../form/BooleanRadioGroup":152,"../form/DateInput":154,"../form/RadioGroup":155,"../form/Range":156,"../helpers/Visibility":157,"../registration/Input":170,"../registration/NumberSelect":171,"./Login":162,"./Registration":163,"./TestResultRecommendations":166,"jquery":"6StMfs","moment":7,"react":146}],166:[function(require,module,exports){
 /** @jsx React.DOM */;
-var React, TestResultRecommendations;
+var React, TestResultRecommendations, TestResultRecommendationsBanner, cx;
 
 React = require("react");
 
+cx = require("react/lib/cx");
+
 TestResultRecommendations = React.createClass({displayName: 'TestResultRecommendations',
+  statics: {
+    additionalDietBanner: {
+      pageUrl: '/',
+      state: 'ask',
+      title: 'Дополнительная корректировка диеты',
+      aberration: null,
+      note: 'Пройти опрос'
+    }
+  },
   getDefaultProps: function() {
     return {
       sex: "male",
@@ -37390,108 +37402,111 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
     });
   },
   render: function() {
-    var maxScoreValue, scoreOffset;
+    var banners, classes, dangerAlert, mainRecommendation, maxScoreValue, scoreDescription, scoreOffset;
+    if (!this.state.recommendations) {
+      return (React.DOM.div(null ));
+    }
     maxScoreValue = this.props.sex === "male" ? 47 : 20;
     scoreOffset = Number(this.props.scoreValue) / (maxScoreValue / 100);
+    scoreDescription = this.state.recommendations.scoreDescription ? (
+        React.DOM.div( {className:"result__text"}, 
+          React.DOM.i( {className:'result__' + this.state.recommendations.scoreDescription.state}),
+          React.DOM.div( {dangerouslySetInnerHTML:{__html: this.state.recommendations.scoreDescription.text.replace(/\n/g, '<br />')}} )
+        )
+      ) : null;
+    dangerAlert = this.state.recommendations.dangerAlert ? (
+        React.DOM.div( {className:"result__text"}, 
+          React.DOM.i( {className:'result__' + this.state.recommendations.dangerAlert.state}),
+          React.DOM.div( {dangerouslySetInnerHTML:{__html: this.state.recommendations.dangerAlert.text.replace(/\n/g, '<br />')}} )
+        )
+      ) : null;
+    mainRecommendation = this.state.recommendations.mainRecommendation && !dangerAlert ? (
+        React.DOM.div( {className:"result__text"}, 
+          React.DOM.div( {dangerouslySetInnerHTML:{__html: this.state.recommendations.mainRecommendation.text.replace(/\n/g, '<br />')}} )
+        )
+      ) : null;
+    banners = !dangerAlert ? (
+        React.DOM.div( {className:"layout"}, 
+          React.DOM.div( {className:"layout__column"}, 
+            React.DOM.div( {className:"recomm"}, 
+              React.DOM.div( {className:"recomm__item"}, 
+                React.DOM.div( {className:"recomm__title"}, "Физическая активность"),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.physicalActivity} ),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.bmi} )
+              ),
+              React.DOM.div( {className:"recomm__item"}, 
+                React.DOM.div( {className:"recomm__title"}, "Диета"),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.extraSalt} ),
+                TestResultRecommendationsBanner( {banner:TestResultRecommendations.additionalDietBanner} )
+              )
+            )
+          ),
+          React.DOM.div( {className:"layout__column"}, 
+            React.DOM.div( {className:"recomm"}, 
+              React.DOM.div( {className:"recomm__item"}, 
+                React.DOM.div( {className:"recomm__title"}, "Курение"),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.smoking} )
+              ),
+              React.DOM.div( {className:"recomm__item"}, 
+                React.DOM.div( {className:"recomm__title"}, "Основные риски"),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.cholesterolLevel} ),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.arterialPressure} ),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.sugarProblems} ),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.arterialPressureDrugs} ),
+                TestResultRecommendationsBanner( {banner:this.state.recommendations.banners.cholesterolDrugs} )
+              )
+            )
+          )
+        )
+      ) : null;
+    classes = cx({
+      "page": true,
+      "page_step_3": true,
+      "is-red": !!dangerAlert
+    });
     return (
-      React.DOM.div( {className:"page page_step_3"}, 
+      React.DOM.div( {className:classes}, 
         React.DOM.div( {className:"result"}, 
           React.DOM.div( {className:"result__top"}, 
             React.DOM.div( {className:"result__info"}),
             React.DOM.div( {className:"result__arrow"})
           ),
-          React.DOM.div( {className:"result__val"}, 
-            React.DOM.div( {className:"result__val-blue", style:{width: scoreOffset + '%'}}, React.DOM.span(null, this.props.scoreValue)),
-            React.DOM.div( {className:"result__val-red"})
-          ),
-          React.DOM.div( {className:"result__text"}, "Вероятность тяжелых сердечно-сосудистых заболеваний в ближайшие 10 лет"),
-          React.DOM.div( {className:"result__text", style:{display: 'none'}}, React.DOM.i( {className:"result__attention-big"}),"Не соответствует норме. Воспользуйтесь нашими рекомендациями"),
-          React.DOM.div( {className:"layout"}, 
-            React.DOM.div( {className:"layout__column"}, 
-              React.DOM.div( {className:"recomm"}, 
-                React.DOM.div( {className:"recomm__item"}, 
-                  React.DOM.div( {className:"recomm__title"}, "Физическая активность"),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.physicalActivity.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.physicalActivity.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Физическая активность"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Отклонение от нормы: ", this.state.recommendations ? this.state.recommendations.physicalActivity.aberration : ''),
-                        React.DOM.p(null, this.state.recommendations ? this.state.recommendations.physicalActivity.stateTitle : '')
-                      )
-                    )
-                  ),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.bmi.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.bmi.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Вес"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Отклонение от нормы: ", this.state.recommendations ? this.state.recommendations.bmi.aberration : ''),
-                        React.DOM.p(null, this.state.recommendations ? this.state.recommendations.bmi.stateTitle : '')
-                      )
-                    )
-                  )
-                ),
-                React.DOM.div( {className:"recomm__item"}, 
-                  React.DOM.div( {className:"recomm__title"}, "Диета"),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.extraSalt.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.extraSalt.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Потребление соли"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Отклонение от нормы: ", this.state.recommendations ? this.state.recommendations.extraSalt.aberration : ''),
-                        React.DOM.p(null, this.state.recommendations ? this.state.recommendations.extraSalt.stateTitle : '')
-                      )
-                    )
-                  ),
-                  React.DOM.a( {className:"recomm__content", href:"/ration-test", style:{display: 'none'}}, 
-                    React.DOM.i( {className:'recomm__ask'}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Дополнительная корректировка диеты"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Пройти опрос")
-                      )
-                    )
-                  )
-                )
-              )
-            ),
-            React.DOM.div( {className:"layout__column"}, 
-              React.DOM.div( {className:"recomm"}, 
-                React.DOM.div( {className:"recomm__item"}, 
-                  React.DOM.div( {className:"recomm__title"}, "Курение"),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.smoking.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.smoking.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, this.state.recommendations ? this.state.recommendations.smoking.stateTitle : '')
-                    )
-                  )
-                ),
-                React.DOM.div( {className:"recomm__item"}, 
-                  React.DOM.div( {className:"recomm__title"}, "Основные риски"),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.cholesterolLevel.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.cholesterolLevel.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Уровень холестирина"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Отклонение от нормы: ", this.state.recommendations ? this.state.recommendations.cholesterolLevel.aberration : ''),
-                        React.DOM.p(null, this.state.recommendations ? this.state.recommendations.cholesterolLevel.stateTitle : '')
-                      )
-                    )
-                  ),
-                  React.DOM.a( {className:"recomm__content", href:this.state.recommendations ? this.state.recommendations.arterialPressure.url : ''}, 
-                    React.DOM.i( {className:'recomm__' + (this.state.recommendations ? this.state.recommendations.arterialPressure.state : '')}),
-                    React.DOM.div( {className:"recomm__item-sub"}, 
-                      React.DOM.div( {className:"recomm__title-sub"}, "Систолическое давление"),
-                      React.DOM.div( {class:"recomm__text"}, 
-                        React.DOM.p(null, "Отклонение от нормы: ", this.state.recommendations ? this.state.recommendations.arterialPressure.aberration : ''),
-                        React.DOM.p(null, this.state.recommendations ? this.state.recommendations.arterialPressure.stateTitle : '')
-                      )
-                    )
-                  )
-                )
-              )
-            )
+          React.DOM.div( {className:"result__scale"}, 
+  					React.DOM.div( {className:"result__val"}, 
+  						React.DOM.div( {className:"result__val-in", style:{left: scoreOffset + '%'}}, 
+  							React.DOM.span(null, this.props.scoreValue)
+  						)
+  					),
+  					React.DOM.div( {className:"result__line"}, React.DOM.i(null))
+  				),
+          scoreDescription,
+          dangerAlert,
+          mainRecommendation,
+          banners
+        )
+      )
+    );
+  }
+});
+
+TestResultRecommendationsBanner = React.createClass({displayName: 'TestResultRecommendationsBanner',
+  render: function() {
+    var Container, aberration, note, title;
+    if (!this.props.banner) {
+      return (React.DOM.div(null ));
+    }
+    title = this.props.banner.title ? (React.DOM.div( {className:"recomm__title-sub"}, this.props.banner.title)) : null;
+    aberration = this.props.banner.aberration ? (React.DOM.p(null, "Отклонение от нормы: ", this.props.banner.aberration)) : null;
+    note = this.props.banner.note ? (React.DOM.p(null, this.props.banner.note)) : null;
+    Container = this.props.banner.pageUrl ? React.DOM.a : React.DOM.div;
+    return (
+      Container( {className:"recomm__content", href:this.props.banner.pageUrl}, 
+        React.DOM.i( {className:'recomm__' + this.props.banner.state}),
+        React.DOM.div( {className:"recomm__item-sub"}, 
+          title,
+          React.DOM.div( {class:"recomm__text"}, 
+            aberration,
+            note
           )
         )
       )
@@ -37502,7 +37517,7 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
 module.exports = TestResultRecommendations;
 
 
-},{"react":146}],167:[function(require,module,exports){
+},{"react":146,"react/lib/cx":105}],167:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 

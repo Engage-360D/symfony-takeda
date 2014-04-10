@@ -24,10 +24,19 @@ class TestController extends Controller
         }
 
         $recommendations = $testResult->getRecommendations();
+        $page = $recommendations['pages'][$type];
+
+        if (!$page) {
+            throw $this->createNotFoundException();
+        }
+        
+        $pages = array_filter($recommendations['pages']);
 
         return $this->render('Engage360dTakedaTestBundle:Test:test_result_recommendation.html.twig', array(
             'testResult' => $testResult,
-            'recommendation' => $recommendations[$type],
+            'type' => $type,
+            'pages' => $pages,
+            'page' => $page,
         ));
     }
 }

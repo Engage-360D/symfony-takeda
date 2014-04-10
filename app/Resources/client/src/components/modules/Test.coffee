@@ -254,10 +254,11 @@ Test = React.createClass
       heartAttackOrStroke: @state.heartAttackOrStroke
       extraSalt: @state.extraSalt
       acetylsalicylicDrugs: @state.acetylsalicylicDrugs
-      
+
     $.ajax
       cache: false
-      data: testResult: data
+      contentType: "application/json; charset=utf-8"
+      data: JSON.stringify(testResult: data)
       dataType: "json"
       success: @handleRequest
       type: "POST"
