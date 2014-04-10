@@ -64,7 +64,7 @@ Registration = React.createClass
     errors: null
 
   componentWillMount: ->
-    @addEventListener window, "registrationSuccess", =>
+    window.registrationSuccess = =>
       unless @isChildrenWindow()
         @props.valueLink.requestChange true if @props.valueLink
         @props.onRegistrationSuccess() if @props.onRegistrationSuccess
@@ -161,7 +161,7 @@ Registration = React.createClass
       onClose: =>
         modal.setState show: false
         if @isChildrenWindow()
-          @triggerEvent window.opener, "registrationSuccess"
+          window.opener.registrationSuccess() if window.opener
           window.close()
         else
           @props.valueLink.requestChange true if @props.valueLink
