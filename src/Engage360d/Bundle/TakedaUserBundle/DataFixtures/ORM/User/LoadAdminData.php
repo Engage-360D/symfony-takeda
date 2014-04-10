@@ -31,7 +31,6 @@ class LoadAdminData
           ->get('engage360d_security.manager.user')
           ->createUser();
 
-        $user->setUsername('admin');
         $user->setFirstname('admin');
         $user->setLastname('admin');
         $user->setEmail('test@test.ru');
