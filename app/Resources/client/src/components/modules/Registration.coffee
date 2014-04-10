@@ -15,7 +15,7 @@ Modal = require "../modal/Modal"
 Checkbox = require "../form/Checkbox"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
-DateInput = require "../registration/DateInput"
+DateInput = require "../form/DateInput"
 Checkbox = require "../registration/Checkbox"
 RegionsInput = require "../registration/RegionsInput"
 NumberSelect = require "../registration/NumberSelect"
@@ -43,6 +43,8 @@ Registration = React.createClass
       minLength: "Минимальная длина 3 символа"
       email: "Некорректный email адресс"
       empty: "Поле не может быть пустым"
+    doctorGraduationMinDate: moment([1940, 0, 1])
+    doctorGraduationMaxDate: moment().subtract("days", 1)
 
   getDefaultProps: ->
     showDoctor: true
@@ -169,6 +171,9 @@ Registration = React.createClass
       children: @renderModalBody()
     modal = React.renderComponent Modal(props), @createContainer()
 
+  openGraduationCalendar: ->
+    @refs.graduationCalendar.open()
+
   isChildrenWindow: ->
     location.href.indexOf("connect") isnt -1
 
@@ -250,11 +255,16 @@ Registration = React.createClass
 					<div className="mainspec__item mainspec__date">
 						<div className="field">
 							<div className="field__label">Год окончания</div>
-							<NumberSelect
-  					    min={1950}
-  					    max={parseInt(moment().format("YYYY"))}
-  					    valueLink={this.linkState('graduation')}
-  					    invalid={this.state.showDoctorValidation && this.validity.children.graduation.invalid}/>
+							<div className="date">
+        				<div className="date__title" onClick={this.openGraduationCalendar}>за все время</div>
+        				<DateInput
+        				  ref="graduationCalendar"
+        				  title="Год окончания"
+        				  valueLink={this.linkState('graduation')}
+        				  minDate={Registration.doctorGraduationMinDate}
+        				  maxDate={Registration.doctorGraduationMaxDate}
+        		      invalid={this.state.showDoctorValidation && this.validity.children.graduation.invalid}/>
+        			</div>
 						</div>
 					</div>
 				</div>
