@@ -29,11 +29,12 @@ Range = React.createClass
     @currentValue = this.props.valueLink.value
     mouseMoveHandler = @handleMouseMove
     mouseUpHandler = @handleMouseUp
-    
+
     if event.type is "touchstart"
       $(@refs.point.getDOMNode()).addClass 'touch'
 
   handleMouseMove: (event) ->
+    event.preventDefault()
     stepSize = Number @props.step
     minValue = Number @props.min
     maxValue = Number @props.max
@@ -44,7 +45,13 @@ Range = React.createClass
     lineWidth = $lineNode.width()
     lineOffset = $lineNode.offset().left
 
-    pageX = if event.originalEvent then event.originalEvent.pageX else event.pageX
+    pageX = if 'originalEvent' in event
+      event.originalEvent.pageX
+    else if 'pageX' in event
+      event.pageX
+    else
+      event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+
     position = pageX - lineOffset
     position = 0 if position < 0
     position = lineWidth if position > lineWidth

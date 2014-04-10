@@ -40,9 +40,9 @@ RegistrationMixin =
       contentType: "application/json"
       data:  JSON.stringify _username: username, _password: password
       error: (err) =>
-        console.log err
+        #console.log err
       success: (response) =>
-        console.log response
+        #console.log response
 
 
 module.exports = RegistrationMixin

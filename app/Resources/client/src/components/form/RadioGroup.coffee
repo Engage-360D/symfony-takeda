@@ -6,7 +6,7 @@ LinkedValueUtils = require "react/lib/LinkedValueUtils"
 
 
 RadioGroup = React.createClass
-  renderValue: (value) ->
+  renderValue: (value, index) ->
     checked = LinkedValueUtils.getValue(@) is value.value
     onChange = (event) =>
       if @props.valueLink
@@ -19,7 +19,7 @@ RadioGroup = React.createClass
       "is-error": @props.invalid
 
     `(
-      <label className={classes}>
+      <label className={classes} key={index}>
         <input type="radio" checked={checked} onChange={onChange} />
         <span>{value.text}</span>
       </label>

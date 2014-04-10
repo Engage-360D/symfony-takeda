@@ -7,6 +7,7 @@
         <meta name="description" content="{% block description %}{% endblock %}">
         <meta name="keywords" content="{% block keywords %}{% endblock %}">
         <meta name="viewport" content="initial-scale=1"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/screen.css') }}" />
             <link rel="stylesheet" href="{{ asset('frontend.css') }}" />
@@ -17,6 +18,10 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-sham.min.js"></script>
+            <![endif]-->
             <script src="{{ asset('frontend.js') }}"></script>
         {% endblock %}
     </body>
