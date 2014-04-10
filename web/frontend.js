@@ -34410,12 +34410,16 @@ React = require("react");
 
 WindowLoaded = React.createClass({displayName: 'WindowLoaded',
   componentDidMount: function() {
-    var event;
+    var error;
     if (!window.opener) {
       return;
     }
-    event = new Event("loadSuccess");
-    window.opener.dispatchEvent(event);
+    try {
+      window.opener.loadSuccess();
+    } catch (_error) {
+      error = _error;
+      window.parent.loadSuccess();
+    }
     return window.close();
   },
   render: function() {
@@ -35373,12 +35377,18 @@ Registration = React.createClass({displayName: 'Registration',
     props = {
       onClose: (function(_this) {
         return function() {
+          var error;
           modal.setState({
             show: false
           });
           if (_this.isChildrenWindow()) {
             if (window.opener) {
-              window.opener.registrationSuccess();
+              try {
+                window.opener.registrationSuccess();
+              } catch (_error) {
+                error = _error;
+                window.parent.registrationSuccess();
+              }
             }
             return window.close();
           } else {
@@ -36999,19 +37009,24 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   componentDidMount: function() {
-    return this.addEventListener(window, "loadSuccess", (function(_this) {
+    return window.loadSuccess = (function(_this) {
       return function() {
         if (location.href.indexOf("/test") !== -1) {
           return;
         }
         return window.location.reload();
       };
-    })(this));
+    })(this);
   },
   onClick: function() {
     var url;
-    if (this.props.connected) {
+    if (this.state.connected) {
       return;
     }
     url = "/connect/facebook?_target_path=/account/modal_success";
@@ -37045,8 +37060,13 @@ OdnoklassnikiButton = React.createClass({displayName: 'OdnoklassnikiButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   onClick: function() {
-    if (this.props.connected) {
+    if (this.state.connected) {
 
     }
   },
@@ -37078,9 +37098,14 @@ VkontakteButton = React.createClass({displayName: 'VkontakteButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   onClick: function() {
     var url;
-    if (this.props.connected) {
+    if (this.state.connected) {
       return;
     }
     url = "/connect/vkontakte?_target_path=/account/modal_success";

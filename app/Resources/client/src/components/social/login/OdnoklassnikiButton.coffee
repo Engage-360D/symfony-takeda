@@ -8,8 +8,11 @@ OdnoklassnikiButton = React.createClass
     reloadOnSuccess: false
     connected: false
 
+  getInitialState: ->
+    connected: if typeof @props.connected is "boolean" then @props.connected else @props.connected is "true"
+
   onClick: ->
-    return if @props.connected
+    return if @state.connected
     #window.open("/connect/odnoklassniki", "", "width=800,height=650")
 
   render: ->

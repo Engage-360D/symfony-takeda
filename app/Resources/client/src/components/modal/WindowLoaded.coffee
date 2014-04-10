@@ -6,8 +6,10 @@ React = require "react"
 WindowLoaded = React.createClass
   componentDidMount: ->
     return unless window.opener
-    event = new Event "loadSuccess"
-    window.opener.dispatchEvent event
+    try
+      window.opener.loadSuccess()
+    catch error
+      window.parent.loadSuccess()
     window.close()
 
   render: ->
