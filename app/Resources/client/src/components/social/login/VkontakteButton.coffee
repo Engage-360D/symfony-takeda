@@ -8,8 +8,11 @@ VkontakteButton = React.createClass
     reloadOnSuccess: false
     connected: false
 
+  getInitialState: ->
+    connected: if typeof @props.connected is "boolean" then @props.connected else @props.connected is "true"
+
   onClick: ->
-    return if @props.connected
+    return if @state.connected
     url = "/connect/vkontakte?_target_path=/account/modal_success"
     window.open(url, "", "width=800,height=650")
 

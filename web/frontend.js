@@ -36911,6 +36911,11 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   componentDidMount: function() {
     return window.loadSuccess = (function(_this) {
       return function() {
@@ -36923,7 +36928,7 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
   },
   onClick: function() {
     var url;
-    if (this.props.connected) {
+    if (this.state.connected) {
       return;
     }
     url = "/connect/facebook?_target_path=/account/modal_success";
@@ -36957,8 +36962,13 @@ OdnoklassnikiButton = React.createClass({displayName: 'OdnoklassnikiButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   onClick: function() {
-    if (this.props.connected) {
+    if (this.state.connected) {
 
     }
   },
@@ -36990,9 +37000,14 @@ VkontakteButton = React.createClass({displayName: 'VkontakteButton',
       connected: false
     };
   },
+  getInitialState: function() {
+    return {
+      connected: typeof this.props.connected === "boolean" ? this.props.connected : this.props.connected === "true"
+    };
+  },
   onClick: function() {
     var url;
-    if (this.props.connected) {
+    if (this.state.connected) {
       return;
     }
     url = "/connect/vkontakte?_target_path=/account/modal_success";
