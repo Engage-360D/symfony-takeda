@@ -149,6 +149,11 @@ class User extends BaseUser
         return $this->id;
     }
 
+    public function isEnabled()
+    {
+        return true;
+    }
+
     public function setEmail($email)
     {
         $this->email = $email;

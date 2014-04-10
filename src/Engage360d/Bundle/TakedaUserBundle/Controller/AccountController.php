@@ -100,7 +100,7 @@ class AccountController extends Controller
             $user = $this->container
                 ->get('engage360d_security.manager.user')
                 ->findUserByUsernameOrEmail($error->getToken()->getUsername());
-            
+
             if (null === $user) {
                 $response['username'] = 'Username not found';
             } else {
@@ -110,7 +110,7 @@ class AccountController extends Controller
             $response['error'] = $error->getMessage();
         }
 
-        return new JsonResponse($response, 500);
+        return new JsonResponse($response, 401);
     }
 
     protected function authenticateUser(UserInterface $user)
