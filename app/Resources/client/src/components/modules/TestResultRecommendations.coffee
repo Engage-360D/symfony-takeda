@@ -1,10 +1,12 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
+$ = require "jquery"
 cx = require "react/lib/cx"
 LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
+gradientCalculatorFactory = require "../../util/gradientCalculatorFactory"
 Input = require "../registration/Input"
 
 
@@ -12,6 +14,8 @@ TestResultRecommendations = React.createClass
   mixins: [LinkedStateMixin, ValidationMixin]
 
   statics:
+    maleMaxScoreValue: 47
+    femaleMaxScoreValue: 20
     additionalDietBanner:
       pageUrl: '/'
       state: 'ask'
@@ -35,6 +39,63 @@ TestResultRecommendations = React.createClass
       email:
         notEmpty: validationConstraints.notEmpty()
         email: validationConstraints.email()
+        
+  componentDidMount: ->
+    @animated = false
+    @animate()
+      
+  componentDidUpdate: ->
+    @animate()
+
+  animate: ->
+    return if not @props.recommendations or @animated
+
+    @animated = true
+    
+    pageNode = @getDOMNode()
+    scoreValueNode = @refs.scoreValue.getDOMNode()
+    scoreValueTextNode = @refs.scoreValueText.getDOMNode()
+    
+    scoreValue = Number @props.scoreValue
+    
+    scoreValuePercent = if @props.sex is "male"
+      TestResultRecommendations.maleMaxScoreValue / 100
+    else
+      TestResultRecommendations.femaleMaxScoreValue / 100
+
+    maximumGradientTime = if @state.recommendations.dangerAlert
+      1
+    else
+      scoreValue / scoreValuePercent / 100
+
+    animationDuration = 1000
+    frameDuration = 1000 / 60
+    framesLength = animationDuration / frameDuration
+    frameGradientTime = maximumGradientTime / framesLength
+    
+    time = 0
+    gradientCalculator = gradientCalculatorFactory [241, 65, 67], [85, 189, 230]
+
+    nextColor = ->
+      time = 1 if time > 1
+      color = gradientCalculator time
+      color = "rgb(#{color[0]}, #{color[1]}, #{color[2]})"
+
+      pageNode.style.backgroundColor = color
+      
+      currentScoreValue = Math.ceil scoreValuePercent * time * 100
+      if currentScoreValue <= scoreValue
+        scoreValueNode.style.left = (time * 100) + '%'
+        scoreValueTextNode.style.color = color
+        scoreValueTextNode.textContent = currentScoreValue
+
+      return if time > maximumGradientTime
+      return if time is 1
+      time += frameGradientTime
+      setTimeout nextColor, frameDuration
+
+    nextColor()
+
 
   componentWillReceiveProps: (newProps) ->
     @setState recommendations: if typeof newProps.recommendations is "string" then window[newProps.recommendations] else newProps.recommendations
@@ -75,7 +136,7 @@ TestResultRecommendations = React.createClass
     if not @state.recommendations
       return `(<div />)`
     
-    maxScoreValue = if @props.sex is "male" then 47 else 20
+    maxScoreValue = if @props.sex is "male" then TestResultRecommendations.maleMaxScoreValue else TestResultRecommendations.femaleMaxScoreValue
     scoreOffset = Number(@props.scoreValue) / (maxScoreValue / 100)
     
     scoreDescription = if @state.recommendations.scoreDescription
@@ -147,8 +208,8 @@ TestResultRecommendations = React.createClass
       
     classes = cx
       "page": true
-      "page_step_3": true
-      "is-red": not not dangerAlert
+      #"page_step_3": true
+      #"is-red": not not dangerAlert
       
     emailPopupClasses = cx
       "result__send": true
@@ -193,8 +254,8 @@ TestResultRecommendations = React.createClass
   				</div>
           <div className="result__scale">
   					<div className="result__val">
-  						<div className="result__val-in" style={{left: scoreOffset + '%'}}>
-  							<span>{this.props.scoreValue}</span>
+  						<div className="result__val-in" ref="scoreValue">
+  							<span ref="scoreValueText">0</span>
   						</div>
   					</div>
   					<div className="result__line"><i></i></div>

@@ -30715,6 +30715,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33498,11 +33500,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -33957,6 +33955,8 @@ module.exports=require('fsZITE');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],151:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -36471,11 +36471,13 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":180,"../../mixins/ValidationMixin":185,"../../services/validationConstraints":186,"../../util/plural":187,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":168,"../registration/NumberSelect":169,"./Login":161,"./Registration":162,"./TestResultRecommendations":165,"jquery":"6StMfs","moment":7,"react":145}],165:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":180,"../../mixins/ValidationMixin":185,"../../services/validationConstraints":186,"../../util/plural":188,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":168,"../registration/NumberSelect":169,"./Login":161,"./Registration":162,"./TestResultRecommendations":165,"jquery":"6StMfs","moment":7,"react":145}],165:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Input, LinkedStateMixin, React, TestResultRecommendations, TestResultRecommendationsBanner, ValidationMixin, cx, validationConstraints;
+var $, Input, LinkedStateMixin, React, TestResultRecommendations, TestResultRecommendationsBanner, ValidationMixin, cx, gradientCalculatorFactory, validationConstraints;
 
 React = require("react");
+
+$ = require("jquery");
 
 cx = require("react/lib/cx");
 
@@ -36485,11 +36487,15 @@ ValidationMixin = require("../../mixins/ValidationMixin");
 
 validationConstraints = require("../../services/validationConstraints");
 
+gradientCalculatorFactory = require("../../util/gradientCalculatorFactory");
+
 Input = require("../registration/Input");
 
 TestResultRecommendations = React.createClass({displayName: 'TestResultRecommendations',
   mixins: [LinkedStateMixin, ValidationMixin],
   statics: {
+    maleMaxScoreValue: 47,
+    femaleMaxScoreValue: 20,
     additionalDietBanner: {
       pageUrl: '/',
       state: 'ask',
@@ -36522,6 +36528,56 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
         }
       }
     };
+  },
+  componentDidMount: function() {
+    this.animated = false;
+    return this.animate();
+  },
+  componentDidUpdate: function() {
+    return this.animate();
+  },
+  animate: function() {
+    var animationDuration, frameDuration, frameGradientTime, framesLength, gradientCalculator, maximumGradientTime, nextColor, pageNode, scoreValue, scoreValueNode, scoreValuePercent, scoreValueTextNode, time;
+    if (!this.props.recommendations || this.animated) {
+      return;
+    }
+    this.animated = true;
+    pageNode = this.getDOMNode();
+    scoreValueNode = this.refs.scoreValue.getDOMNode();
+    scoreValueTextNode = this.refs.scoreValueText.getDOMNode();
+    scoreValue = Number(this.props.scoreValue);
+    scoreValuePercent = this.props.sex === "male" ? TestResultRecommendations.maleMaxScoreValue / 100 : TestResultRecommendations.femaleMaxScoreValue / 100;
+    maximumGradientTime = this.state.recommendations.dangerAlert ? 1 : scoreValue / scoreValuePercent / 100;
+    animationDuration = 1000;
+    frameDuration = 1000 / 60;
+    framesLength = animationDuration / frameDuration;
+    frameGradientTime = maximumGradientTime / framesLength;
+    time = 0;
+    gradientCalculator = gradientCalculatorFactory([241, 65, 67], [85, 189, 230]);
+    nextColor = function() {
+      var color, currentScoreValue;
+      if (time > 1) {
+        time = 1;
+      }
+      color = gradientCalculator(time);
+      color = "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")";
+      pageNode.style.backgroundColor = color;
+      currentScoreValue = Math.ceil(scoreValuePercent * time * 100);
+      if (currentScoreValue <= scoreValue) {
+        scoreValueNode.style.left = (time * 100) + '%';
+        scoreValueTextNode.style.color = color;
+        scoreValueTextNode.textContent = currentScoreValue;
+      }
+      if (time > maximumGradientTime) {
+        return;
+      }
+      if (time === 1) {
+        return;
+      }
+      time += frameGradientTime;
+      return setTimeout(nextColor, frameDuration);
+    };
+    return nextColor();
   },
   componentWillReceiveProps: function(newProps) {
     return this.setState({
@@ -36576,7 +36632,7 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
     if (!this.state.recommendations) {
       return (React.DOM.div(null ));
     }
-    maxScoreValue = this.props.sex === "male" ? 47 : 20;
+    maxScoreValue = this.props.sex === "male" ? TestResultRecommendations.maleMaxScoreValue : TestResultRecommendations.femaleMaxScoreValue;
     scoreOffset = Number(this.props.scoreValue) / (maxScoreValue / 100);
     scoreDescription = this.state.recommendations.scoreDescription ? (
         React.DOM.div( {className:"result__text"}, 
@@ -36630,9 +36686,7 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
         )
       ) : null;
     classes = cx({
-      "page": true,
-      "page_step_3": true,
-      "is-red": !!dangerAlert
+      "page": true
     });
     emailPopupClasses = cx({
       "result__send": true,
@@ -36673,8 +36727,8 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
   				),
           React.DOM.div( {className:"result__scale"}, 
   					React.DOM.div( {className:"result__val"}, 
-  						React.DOM.div( {className:"result__val-in", style:{left: scoreOffset + '%'}}, 
-  							React.DOM.span(null, this.props.scoreValue)
+  						React.DOM.div( {className:"result__val-in", ref:"scoreValue"}, 
+  							React.DOM.span( {ref:"scoreValueText"}, "0")
   						)
   					),
   					React.DOM.div( {className:"result__line"}, React.DOM.i(null))
@@ -36717,7 +36771,7 @@ TestResultRecommendationsBanner = React.createClass({displayName: 'TestResultRec
 module.exports = TestResultRecommendations;
 
 
-},{"../../mixins/LinkedStateMixin":180,"../../mixins/ValidationMixin":185,"../../services/validationConstraints":186,"../registration/Input":168,"react":145,"react/lib/cx":104}],166:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":180,"../../mixins/ValidationMixin":185,"../../services/validationConstraints":186,"../../util/gradientCalculatorFactory":187,"../registration/Input":168,"jquery":"6StMfs","react":145,"react/lib/cx":104}],166:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 
@@ -37661,6 +37715,27 @@ module.exports = validationConstraints;
 
 
 },{"moment":7}],187:[function(require,module,exports){
+var gradientCalculatorFactory;
+
+module.exports = gradientCalculatorFactory = function(start, end) {
+  var endBlue, endGreen, endRed, startBlue, startGreen, startRed;
+  startRed = start[0];
+  startGreen = start[1];
+  startBlue = start[2];
+  endRed = end[0];
+  endGreen = end[1];
+  endBlue = end[2];
+  return function(time) {
+    var blue, green, red;
+    red = Math.round(time * startRed + (1 - time) * endRed);
+    green = Math.round(time * startGreen + (1 - time) * endGreen);
+    blue = Math.round(time * startBlue + (1 - time) * endBlue);
+    return [red, green, blue];
+  };
+};
+
+
+},{}],188:[function(require,module,exports){
 var plural;
 
 module.exports = plural = (function(_this) {
