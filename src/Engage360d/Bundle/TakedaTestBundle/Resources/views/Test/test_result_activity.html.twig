@@ -1,0 +1,15 @@
+<div class="activity">
+	<div class="activity__table">
+		<div class="activity__row">
+			<div class="activity__cell">
+        <a href="{{ path('engage360d_takeda_test_get_test_result', {id: testResult.id}) }}">Общие рекомендации</a>
+		  </div>
+      {% for key, page in pages %}
+				<div class="activity__cell">
+          <a href="{{ path('engage360d_takeda_test_get_test_result_recommendation', {id: testResult.id, type: key}) }}">{{page.urlText}}</a>
+			  </div>
+        {% if (loop.index + 1) is divisibleby(4) and pages|length > 4 %}</div><div class="activity__row">{% endif %}
+      {% endfor %}
+		</div>
+	</div>
+</div>

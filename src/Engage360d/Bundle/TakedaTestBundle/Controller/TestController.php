@@ -39,4 +39,22 @@ class TestController extends Controller
             'page' => $page,
         ));
     }
+    
+    public function getTestResultAction($id)
+    {
+        $testResult = $this->getDoctrine()->getManager()->getRepository('Engage360dTakedaTestBundle:TestResult')->find($id);
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+        
+        $recommendations = $testResult->getRecommendations();
+        $pages = array_filter($recommendations['pages']);
+
+
+        return $this->render('Engage360dTakedaTestBundle:Test:test_result.html.twig', array(
+            'testResult' => $testResult,
+            'pages' => $pages,
+        ));
+    }
 }

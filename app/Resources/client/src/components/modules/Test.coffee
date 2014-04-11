@@ -269,6 +269,7 @@ Test = React.createClass
       step: "third"
       showValidation: false
       loading: false
+      testResultId: testResult.id
       scoreValue: testResult.scoreValue
       recommendations: testResult.recommendations
 
@@ -581,7 +582,7 @@ Test = React.createClass
           </Visibility>
         </Visibility>
         <Visibility show={this.state.step == 'third'}>
-          <TestResultRecommendations sex={this.state.sex} scoreValue={this.state.scoreValue} recommendations={this.state.recommendations} />
+          <TestResultRecommendations sex={this.state.sex} scoreValue={this.state.scoreValue} recommendations={this.state.recommendations} testResultId={this.state.testResultId} />
         </Visibility>
       </div>
     )`

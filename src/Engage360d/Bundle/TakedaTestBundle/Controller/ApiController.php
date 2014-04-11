@@ -72,4 +72,40 @@ class ApiController extends RestController
 
         return $user->getTestResults();
     }
+
+    /**
+     * @Post("/test-results/{id}/send-email")
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Отправка результатов тестирования на email."
+     * )
+     */
+    public function postTestResultSendEmailAction($id)
+    {
+        if (!$this->getRequest()->request->get('email')) {
+            return new Response(null, 400);
+        }
+
+        $testResult = $this->getDoctrine()->getManager()->getRepository('Engage360dTakedaTestBundle:TestResult')->find($id);
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Результаты тестирования и рекомендации')
+            ->setFrom($this->container->getParameter('mailer_sender_email'))
+            ->setTo($this->getRequest()->request->get('email'))
+            ->setBody(
+                $this->renderView(
+                    'Engage360dTakedaTestBundle::test_result_email.txt.twig',
+                    array('id' => $id)
+                )
+            )
+        ;
+
+        $this->get('mailer')->send($message);
+
+        return new Response(null, 200);
+    }
 }

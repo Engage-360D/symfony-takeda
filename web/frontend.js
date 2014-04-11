@@ -30715,6 +30715,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33498,9 +33500,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"sifter":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
 module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
@@ -34602,7 +34602,8 @@ Account = React.createClass({displayName: 'Account',
     return this.state.testResults.map(function(test) {
       return (
         TestResultRecommendations(
-          {sex:test.sex,
+          {testResultId:test.id,
+          sex:test.sex,
           scoreValue:test.scoreValue,
           recommendations:test.recommendations})
       );
@@ -36149,6 +36150,7 @@ Test = React.createClass({displayName: 'Test',
       step: "third",
       showValidation: false,
       loading: false,
+      testResultId: testResult.id,
       scoreValue: testResult.scoreValue,
       recommendations: testResult.recommendations
     });
@@ -36462,7 +36464,7 @@ Test = React.createClass({displayName: 'Test',
           )
         ),
         Visibility( {show:this.state.step == 'third'}, 
-          TestResultRecommendations( {sex:this.state.sex, scoreValue:this.state.scoreValue, recommendations:this.state.recommendations} )
+          TestResultRecommendations( {sex:this.state.sex, scoreValue:this.state.scoreValue, recommendations:this.state.recommendations, testResultId:this.state.testResultId} )
         )
       )
     );
@@ -36472,16 +36474,31 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/LinkedStateMixin":179,"../../mixins/ValidationMixin":184,"../../services/validationConstraints":185,"../../util/plural":186,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":168,"../registration/NumberSelect":169,"./Login":161,"./Registration":162,"./TestResultRecommendations":165,"jquery":"6StMfs","moment":7,"react":145}],165:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":179,"../../mixins/ValidationMixin":184,"../../services/validationConstraints":185,"../../util/plural":187,"../form/BooleanRadioGroup":151,"../form/DateInput":153,"../form/RadioGroup":154,"../form/Range":155,"../helpers/Visibility":156,"../registration/Input":168,"../registration/NumberSelect":169,"./Login":161,"./Registration":162,"./TestResultRecommendations":165,"jquery":"6StMfs","moment":7,"react":145}],165:[function(require,module,exports){
 /** @jsx React.DOM */;
-var React, TestResultRecommendations, TestResultRecommendationsBanner, cx;
+var $, Input, LinkedStateMixin, React, TestResultRecommendations, TestResultRecommendationsBanner, ValidationMixin, cx, gradientCalculatorFactory, validationConstraints;
 
 React = require("react");
 
+$ = require("jquery");
+
 cx = require("react/lib/cx");
 
+LinkedStateMixin = require("../../mixins/LinkedStateMixin");
+
+ValidationMixin = require("../../mixins/ValidationMixin");
+
+validationConstraints = require("../../services/validationConstraints");
+
+gradientCalculatorFactory = require("../../util/gradientCalculatorFactory");
+
+Input = require("../registration/Input");
+
 TestResultRecommendations = React.createClass({displayName: 'TestResultRecommendations',
+  mixins: [LinkedStateMixin, ValidationMixin],
   statics: {
+    maleMaxScoreValue: 47,
+    femaleMaxScoreValue: 20,
     additionalDietBanner: {
       pageUrl: '/',
       state: 'ask',
@@ -36498,20 +36515,127 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
   },
   getInitialState: function() {
     return {
-      recommendations: typeof this.props.recommendations === "string" ? window[this.props.recommendations] : this.props.recommendations
+      recommendations: typeof this.props.recommendations === "string" ? window[this.props.recommendations] : this.props.recommendations,
+      popupActive: false,
+      email: '',
+      showErrors: false,
+      popupStatus: null
     };
+  },
+  getValidationConfig: function() {
+    return {
+      children: {
+        email: {
+          notEmpty: validationConstraints.notEmpty(),
+          email: validationConstraints.email()
+        }
+      }
+    };
+  },
+  componentDidMount: function() {
+    this.animated = false;
+    return this.animate();
+  },
+  componentDidUpdate: function() {
+    return this.animate();
+  },
+  animate: function() {
+    var animationDuration, frameDuration, frameGradientTime, framesLength, gradientCalculator, maximumGradientTime, nextColor, pageNode, scoreValue, scoreValueNode, scoreValuePercent, scoreValueTextNode, time;
+    if (!this.props.recommendations || this.animated) {
+      return;
+    }
+    this.animated = true;
+    pageNode = this.getDOMNode();
+    scoreValueNode = this.refs.scoreValue.getDOMNode();
+    scoreValueTextNode = this.refs.scoreValueText.getDOMNode();
+    scoreValue = Number(this.props.scoreValue);
+    scoreValuePercent = this.props.sex === "male" ? TestResultRecommendations.maleMaxScoreValue / 100 : TestResultRecommendations.femaleMaxScoreValue / 100;
+    maximumGradientTime = this.state.recommendations.dangerAlert ? 1 : scoreValue / scoreValuePercent / 100;
+    animationDuration = 1000;
+    frameDuration = 1000 / 60;
+    framesLength = animationDuration / frameDuration;
+    frameGradientTime = maximumGradientTime / framesLength;
+    time = 0;
+    gradientCalculator = gradientCalculatorFactory([241, 65, 67], [85, 189, 230]);
+    nextColor = function() {
+      var color, currentScoreValue;
+      if (time > 1) {
+        time = 1;
+      }
+      color = gradientCalculator(time);
+      color = "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")";
+      pageNode.style.backgroundColor = color;
+      currentScoreValue = Math.ceil(scoreValuePercent * time * 100);
+      if (currentScoreValue <= scoreValue) {
+        scoreValueNode.style.left = (time * 100) + '%';
+        scoreValueTextNode.style.color = color;
+        scoreValueTextNode.textContent = currentScoreValue;
+      }
+      if (time > maximumGradientTime) {
+        return;
+      }
+      if (time === 1) {
+        return;
+      }
+      time += frameGradientTime;
+      return setTimeout(nextColor, frameDuration);
+    };
+    return nextColor();
   },
   componentWillReceiveProps: function(newProps) {
     return this.setState({
       recommendations: typeof newProps.recommendations === "string" ? window[newProps.recommendations] : newProps.recommendations
     });
   },
+  togglePopup: function() {
+    return this.setState({
+      popupActive: !this.state.popupActive,
+      popupStatus: null
+    });
+  },
+  submitEmail: function() {
+    if (this.validity.invalid) {
+      return this.setState({
+        showErrors: true
+      });
+    }
+    return $.ajax({
+      cache: false,
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({
+        email: this.state.email
+      }),
+      dataType: "text",
+      success: this.handleRequest,
+      error: this.handleError,
+      type: "POST",
+      url: "/api/test-results/" + this.props.testResultId + "/send-email"
+    });
+  },
+  handleRequest: function(data) {
+    this.setState({
+      email: "",
+      popupStatus: "Сообщение успешно отправлено"
+    });
+    return setTimeout((function(_this) {
+      return function() {
+        return _this.setState({
+          popupActive: false
+        });
+      };
+    })(this), 2000);
+  },
+  handleError: function(xhr, testStatus, errorThrown) {
+    return this.setState({
+      popupStatus: "Ошибка отправки сообщения"
+    });
+  },
   render: function() {
-    var banners, classes, dangerAlert, mainRecommendation, maxScoreValue, scoreDescription, scoreOffset;
+    var banners, classes, dangerAlert, emailPopupClasses, mainRecommendation, maxScoreValue, popup, scoreDescription, scoreOffset;
     if (!this.state.recommendations) {
       return (React.DOM.div(null ));
     }
-    maxScoreValue = this.props.sex === "male" ? 47 : 20;
+    maxScoreValue = this.props.sex === "male" ? TestResultRecommendations.maleMaxScoreValue : TestResultRecommendations.femaleMaxScoreValue;
     scoreOffset = Number(this.props.scoreValue) / (maxScoreValue / 100);
     scoreDescription = this.state.recommendations.scoreDescription ? (
         React.DOM.div( {className:"result__text"}, 
@@ -36565,21 +36689,49 @@ TestResultRecommendations = React.createClass({displayName: 'TestResultRecommend
         )
       ) : null;
     classes = cx({
-      "page": true,
-      "page_step_3": true,
-      "is-red": !!dangerAlert
+      "page": true
     });
+    emailPopupClasses = cx({
+      "result__send": true,
+      "is-active": this.state.popupActive
+    });
+    popup = this.state.popupStatus ? (
+				React.DOM.div( {className:emailPopupClasses}, 
+					React.DOM.i( {className:"result__send-ico", onClick:this.togglePopup}),
+					React.DOM.div( {className:"result__send-in", style:{display: this.state.popupActive ? 'block' : 'none'}}, 
+						this.state.popupStatus
+					)
+				)
+		  ) : (
+				React.DOM.div( {className:emailPopupClasses}, 
+					React.DOM.i( {className:"result__send-ico", onClick:this.togglePopup}),
+					React.DOM.div( {className:"result__send-in", style:{display: this.state.popupActive ? 'block' : 'none'}}, 
+						React.DOM.div( {className:"field"}, 
+							React.DOM.div( {className:"field__label"}, "Отправить результат тестирования по электронной почте"),
+							React.DOM.div( {className:"field__in"}, 
+								Input( {placeholder:"email получателя",
+								       valueLink:this.linkState('email'),
+								       invalid:this.state.showErrors && this.validity.children.email.invalid,
+								       invalidMessage:"Неправильный адрес"} )
+							)
+						),
+						React.DOM.button( {className:"btn", onClick:this.submitEmail}, "Отправить")
+					)
+				)
+		  );
     return (
       React.DOM.div( {className:classes}, 
         React.DOM.div( {className:"result"}, 
           React.DOM.div( {className:"result__top"}, 
-            React.DOM.div( {className:"result__info"}),
-            React.DOM.div( {className:"result__arrow"})
-          ),
+            popup,
+  					React.DOM.div( {className:"help help_white", style:{display: 'none'}}, 
+  						React.DOM.div( {className:"help__ico"})
+  					)
+  				),
           React.DOM.div( {className:"result__scale"}, 
   					React.DOM.div( {className:"result__val"}, 
-  						React.DOM.div( {className:"result__val-in", style:{left: scoreOffset + '%'}}, 
-  							React.DOM.span(null, this.props.scoreValue)
+  						React.DOM.div( {className:"result__val-in", ref:"scoreValue"}, 
+  							React.DOM.span( {ref:"scoreValueText"}, "0")
   						)
   					),
   					React.DOM.div( {className:"result__line"}, React.DOM.i(null))
@@ -36622,7 +36774,7 @@ TestResultRecommendationsBanner = React.createClass({displayName: 'TestResultRec
 module.exports = TestResultRecommendations;
 
 
-},{"react":145,"react/lib/cx":104}],166:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":179,"../../mixins/ValidationMixin":184,"../../services/validationConstraints":185,"../../util/gradientCalculatorFactory":186,"../registration/Input":168,"jquery":"6StMfs","react":145,"react/lib/cx":104}],166:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 
@@ -37578,6 +37730,27 @@ module.exports = validationConstraints;
 
 
 },{"moment":7}],186:[function(require,module,exports){
+var gradientCalculatorFactory;
+
+module.exports = gradientCalculatorFactory = function(start, end) {
+  var endBlue, endGreen, endRed, startBlue, startGreen, startRed;
+  startRed = start[0];
+  startGreen = start[1];
+  startBlue = start[2];
+  endRed = end[0];
+  endGreen = end[1];
+  endBlue = end[2];
+  return function(time) {
+    var blue, green, red;
+    red = Math.round(time * startRed + (1 - time) * endRed);
+    green = Math.round(time * startGreen + (1 - time) * endGreen);
+    blue = Math.round(time * startBlue + (1 - time) * endBlue);
+    return [red, green, blue];
+  };
+};
+
+
+},{}],187:[function(require,module,exports){
 var plural;
 
 module.exports = plural = (function(_this) {
