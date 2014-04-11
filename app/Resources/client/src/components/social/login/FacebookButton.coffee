@@ -2,11 +2,8 @@
 
 React = require "react"
 reqwest = require "reqwest"
-EventsMixin = require "../../../mixins/EventsMixin"
 
 FacebookButton = React.createClass
-  mixins: [EventsMixin]
-
   getDefaultProps: ->
     reloadOnSuccess: false
     connected: false
@@ -15,7 +12,8 @@ FacebookButton = React.createClass
     connected: if typeof @props.connected is "boolean" then @props.connected else @props.connected is "true"
 
   componentDidMount: ->
-    window.loadSuccess = =>
+    $(window).on "loginSuccess", (event) =>
+      @props.onLogin() if @props.onLogin
       return if location.href.indexOf("/test") isnt -1
       window.location.reload()
 

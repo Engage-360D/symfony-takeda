@@ -70,6 +70,9 @@ Login = React.createClass
         @props.valueLink.requestChange true if @props.valueLink
         window.location.reload() if @props.reloadOnSuccess
 
+  handleLoginSuccess: ->
+    @props.valueLink.requestChange true if @props.valueLink
+
   getUsernameInvalidMessage: ->
     return @state.usernameInvalidMessage if @state.usernameInvalidMessage
     if @state.username and @state.username.length > 0
@@ -118,9 +121,9 @@ Login = React.createClass
     			<div className="data__row data__row_social">
   					<div className="data__label">Использовать аккаунт социальных сетей:</div>
   					<ul className="social social_gray">
-  						<li><VkontakteButton/></li>
-  						<li><FacebookButton/></li>
-  						<li><OdnoklassnikiButton/></li>
+  						<li><VkontakteButton onLogin={this.handleLoginSuccess}/></li>
+  						<li><FacebookButton onLogin={this.handleLoginSuccess}/></li>
+  						<li><OdnoklassnikiButton onLogin={this.handleLoginSuccess}/></li>
   					</ul>
   				</div>
         </div>

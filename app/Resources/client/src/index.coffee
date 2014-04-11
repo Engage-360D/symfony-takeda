@@ -37,3 +37,12 @@ $ ->
           props[propKey] = attribute.nodeValue
 
       React.renderComponent Component(props), node
+
+
+  # Modal window event handlers
+  window.loginSuccess = ->
+    $(window).trigger "loginSuccess"
+
+  window.registrationSuccess = ->
+    $(window).trigger "registrationSuccess"
+    $(window).trigger "loginSuccess"

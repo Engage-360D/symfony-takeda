@@ -7,9 +7,9 @@ WindowLoaded = React.createClass
   componentDidMount: ->
     return unless window.opener
     try
-      window.opener.loadSuccess()
+      window.opener.loginSuccess()
     catch error
-      window.parent.loadSuccess()
+      window.parent.loginSuccess()
     window.close()
 
   render: ->

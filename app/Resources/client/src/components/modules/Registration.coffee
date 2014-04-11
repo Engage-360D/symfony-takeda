@@ -7,7 +7,6 @@ LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 RegistrationMixin = require "../../mixins/RegistrationMixin"
 HTMLElementContainerMixin = require "../../mixins/HTMLElementContainerMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
-EventsMixin = require "../../mixins/EventsMixin"
 validationConstraints = require "../../services/validationConstraints"
 
 
@@ -27,7 +26,6 @@ OdnoklassnikiButton = require "../social/login/OdnoklassnikiButton"
 
 Registration = React.createClass
   mixins: [
-    EventsMixin
     LinkedStateMixin
     ValidationMixin
     RegistrationMixin
@@ -64,7 +62,7 @@ Registration = React.createClass
     errors: null
 
   componentWillMount: ->
-    window.registrationSuccess = =>
+    $(window).on "registrationSuccess", =>
       unless @isChildrenWindow()
         @props.valueLink.requestChange true if @props.valueLink
         @props.onRegistrationSuccess() if @props.onRegistrationSuccess
