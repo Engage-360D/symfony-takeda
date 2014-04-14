@@ -1,7 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block bodyclass %}registration-container{% endblock %}
+
 {% block body %}
-<div class="registration-container">
+<div>
   <div data-react-component="Registration" user='{{ user | json_encode | raw }}' context="2"></div>
 </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
+require "jquery-placeholder"
 
 
 ValidationError = require "./ValidationError"
@@ -11,10 +12,13 @@ Input = React.createClass
     invalid: false
     invalidMessage: null
 
+  componentDidMount: ->
+    $(@refs.input.getDOMNode()).placeholder()
+
   renderInput: ->
     @transferPropsTo (
       `(
-        <input type={this.props.type}/>
+        <input type={this.props.type} ref="input"/>
       )`
     )
 

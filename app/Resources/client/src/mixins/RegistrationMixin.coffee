@@ -28,7 +28,7 @@ RegistrationMixin =
       contentType: "application/json"
       data:  extractFields @state
       error: (error) =>
-        callback JSON.parse error.response
+        callback JSON.parse error.response or error.responseText
       success: =>
         callback()
 

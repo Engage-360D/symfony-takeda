@@ -353,13 +353,16 @@ Registration = React.createClass
       		    invalidMessage={Registration.errors.minLength}/>
       		</Field>
           <div className="reg__fieldset">
-						<Checkbox checkedLink={this.linkState('confirmPersonalization')}>
+						<Checkbox
+						  checkedLink={this.linkState('confirmPersonalization')}
+						  invalid={this.state.showValidation && this.validity.children.confirmPersonalization.invalid}>
               Согласен на обработку персональных данных
             </Checkbox>
             <Checkbox checkedLink={this.linkState('confirmSubscription')}>
               Согласен получать информацию по email
             </Checkbox>
-            <Checkbox checkedLink={this.linkState('confirmInformation')}>
+            <Checkbox checkedLink={this.linkState('confirmInformation')}
+              invalid={this.state.showValidation && this.validity.children.confirmInformation.invalid}>
               Согласен с тем, что вся информация носит рекомендательный характер
             </Checkbox>
 					</div>

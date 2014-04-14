@@ -7,7 +7,7 @@ module.exports = ->
   
   Ctx.register("eventBus").object require "Engage360d/services/EventBus"
   Ctx.register("router").object require "Engage360d/services/Router"
-  Ctx.register("auth").object new Auth("1_21g8rd7kv50ggw4wk8gwogock4c44c8sgoc4c4000o0kcsw0w4")
+  Ctx.register("auth").object new Auth("1_3af2h2teevok48swsk4osc4k88c0k4s4g04w4cc0gc4kk8kosw")
   Ctx.register("ajax").object require "Engage360d/services/Ajax"
   
   Ctx.register "navigation", Array, [

@@ -20,7 +20,8 @@
         "components-jquery": "git://github.com/components/jquery.git#1.10.2",
         "sifter": "^0.3",
       	"microplugin": "^0.0",
-      	"selectize": "git://github.com/vslinko/selectize.js#master"
+      	"selectize": "git://github.com/vslinko/selectize.js#master",
+      	"jquery-placeholder": "git://github.com/vslinko/jquery-placeholder#master"
     },
     "private": true,
     "shim": {
@@ -42,6 +43,13 @@
         "depends": {
           "sifter": "Sifter",
           "microplugin": "MicroPlugin"
+        }
+      },
+      "jquery-placeholder": {
+        "path": "./node_modules/jquery-placeholder/jquery.placeholder.js",
+        "exports": null,
+        "depends": {
+          "jquery": "jQuery"
         }
       }
     }

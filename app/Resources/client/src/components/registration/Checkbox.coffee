@@ -7,6 +7,9 @@ ModsMixin = require "../../mixins/ModsMixin"
 Checkbox = React.createClass
   mixins: [ModsMixin]
 
+  getDefaultProps: ->
+    invalid: false
+
   renderInput: ->
     @transferPropsTo `(
       <input type="checkbox"/>
@@ -14,7 +17,7 @@ Checkbox = React.createClass
 
   render: ->
     `(
-      <label className="checkbox">
+      <label className={this.props.invalid ? "checkbox checkbox_invalid" : "checkbox"}>
         {this.renderInput()}
         <span>
           {this.props.children}
