@@ -24,7 +24,7 @@ class RefreshToken extends BaseRefreshToken
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaUserBundle\Entity\User\User")
+     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaUserBundle\Entity\User\User", cascade={"all"})
      */
     protected $user;
 }
