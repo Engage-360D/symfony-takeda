@@ -27,8 +27,10 @@
 		</nav>
 		<!-- search-form -->
 		<div class="search-form">
-			<input type="text" placeholder="Поиск">
-			<button><i></i></button>
+            <form action="{{ path('engage360d_takeda_search_results_page') }}">
+                <input type="text" placeholder="Поиск" name="query">
+                <button><i></i></button>
+            </form>
 		</div>
 		<!-- links -->
 		<ul class="links">

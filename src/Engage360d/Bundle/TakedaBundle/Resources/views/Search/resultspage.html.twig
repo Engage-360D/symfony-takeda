@@ -1,0 +1,25 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}Поиск{% endblock %}
+{% block description %}Поиск{% endblock %}
+
+{% block content %}
+    <table>
+        <th></th>
+        <th></th>
+        <th></th>
+
+        {% for result in elasticaResult %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                {% if result.type == 'user' %}
+                    <td>Пользователь</td>
+                    <td>{{ result.firstname ~ ' ' ~ result.lastname }}</td>
+                {% else %}
+                    <td>Страница</td>
+                    <td><a href="#">{{ result.title }}</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

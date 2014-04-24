@@ -12,3 +12,8 @@ engage360d_takeda_main_category_page:
     path: /category/{category}/{url}
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Page:page }
+
+engage360d_takeda_search_results_page:
+    path: /search
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Search:search }
