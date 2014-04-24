@@ -132,6 +132,7 @@ hwi_oauth:
             client_secret:       "%vkontakte_client_secret%"
 
 fos_elastica:
+    serializer: ~
     clients:
         default: { host: localhost, port: 9200 }
     indexes:
@@ -151,11 +152,8 @@ fos_elastica:
                             update: true
                             delete: true
                 page:
-                    mappings:
-                        title: ~
-                        seoTitle: ~
-                        seoKeywords: ~
-                        seoDescription: ~
+                    serializer:
+                        groups: [elastica, Default]
                     persistence:
                         driver: orm
                         model: Engage360d\Bundle\PagesBundle\Entity\Page\Page
@@ -164,3 +162,4 @@ fos_elastica:
                             insert: true
                             update: true
                             delete: true
+
