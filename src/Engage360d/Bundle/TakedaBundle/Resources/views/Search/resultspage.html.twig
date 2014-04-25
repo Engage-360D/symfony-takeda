@@ -4,22 +4,17 @@
 {% block description %}Поиск{% endblock %}
 
 {% block content %}
+    <h1>Найденные страницы</h1>
     <table>
-        <th></th>
         <th></th>
         <th></th>
 
         {% for result in elasticaResult %}
             <tr>
                 <td>{{ loop.index }}</td>
-                {% if result.type == 'user' %}
-                    <td>Пользователь</td>
-                    <td>{{ result.firstname ~ ' ' ~ result.lastname }}</td>
-                {% else %}
-                    <td>Страница</td>
-                    <td><a href="#">{{ result.title }}</a></td>
-                {% endif %}
+                <td><a href="#">{{ result.title }}</a></td>
             </tr>
         {% endfor %}
     </table>
+   {{ elasticaResult|length == 0 ? 'Ничего не нейдено' : '' }}
 {% endblock %}

@@ -139,18 +139,6 @@ fos_elastica:
         website:
             client: default
             types:
-                user:
-                    mappings:
-                        firstname: ~
-                        lastname: ~
-                    persistence:
-                        driver: orm
-                        model: Engage360d\Bundle\TakedaUserBundle\Entity\User\User
-                        provider: ~
-                        listener:
-                            insert: true
-                            update: true
-                            delete: true
                 page:
                     serializer:
                         groups: [elastica, Default]
