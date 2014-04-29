@@ -43,6 +43,7 @@ security:
                 failure_path: engage360d_takeda_user_login_failuer
                 failure_forward: true
                 post_only: true
+                require_previous_session: false
             oauth:
                 resource_owners:
                     facebook:      facebook_login
