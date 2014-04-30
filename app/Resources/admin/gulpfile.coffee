@@ -16,7 +16,7 @@ path = require "path"
 
 components = require "./components/components"
 isProduction = args.type is "production"
-target = path.resolve args.target or "./../../../web/bundles"
+target = path.resolve args.target or "./../../../web"
 pkg = require "./package.json"
 
 gulp.task "scripts", ->
@@ -54,13 +54,13 @@ gulp.task "scripts", ->
 gulp.task "views", ->
   gulp.src("./admin.jade")
     .pipe(jade())
-    .pipe(gulp.dest("#{target}/../"))
+    .pipe(gulp.dest(target))
 
 gulp.task "styles", ->
   gulp.src("./components/**/**/**/*.styl")
     .pipe(
       stylus(
-        use: ["nib"], 
+        use: ["nib"],
         set: ["include css", true],
         import:[],
         paths:[
