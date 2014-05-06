@@ -201,7 +201,36 @@ Test = React.createClass
         childrenValidity.extraSalt.valid and \
         childrenValidity.acetylsalicylicDrugs.valid and \
         childrenValidity.user.valid
-        
+
+  getCholesterolLevel: ->
+    clevel = @state.cholesterolLevel
+    sex = @state.sex
+    age = age = if @state.birthday then moment().diff(@state.birthday, 'years') else null
+    return clevel if clevel isnt false
+    if sex is 'male'
+      if age and age < 40
+        return 4.5
+      else if age >= 40 and age <= 50
+        return 6
+      else if age > 50
+        return 5.5
+      # error
+      else
+        return 0
+    else if sex is 'female'
+      if age and age < 40
+        return 3.7
+      else if age >= 40 and age <= 50
+        return 4.5
+      else if age > 50
+        return 5
+      # error
+      else
+        return 0
+    # error
+    else
+      return 0
+
   handleDoctorChange: (doctor) ->
     @setState showDoctorPopup: doctor
 
@@ -243,7 +272,7 @@ Test = React.createClass
       growth: @state.growth
       weight: @state.weight
       smoking: @state.smoking
-      cholesterolLevel: @state.cholesterolLevel
+      cholesterolLevel: @getCholesterolLevel()
       cholesterolDrugs: @state.cholesterolDrugs
       diabetes: @state.diabetes
       sugarProblems: @state.sugarProblems
@@ -426,11 +455,16 @@ Test = React.createClass
                     </div>
                   </div>
                   <div className="data__row">
-                    <div className="data__label">Уровень общего холестирина</div>
+                    <div className="data__label">Уровень общего холестерина</div>
                     <div className="data__content">
-                      <Range valueLink={this.linkState('cholesterolLevel')} min="3" max="9" step="0.5" />
+                      <Range valueLink={this.linkState('cholesterolLevel')} min="3" max="9" step="0.5" extraOption="не знаю" />
                     </div>
                   </div>
+                  <Visibility show={this.state.cholesterolLevel < 3}>
+                    <div className="data__row">
+                      <div className="cholesterol_warning">Отмечая «не знаю» я даю согласие с тем, что тест не будет соответствовать моим индивидуальным показателям здоровья</div>
+                    </div>
+                  </Visibility>
                   <Visibility show={this.state.cholesterolLevel >= 5}>
                     <div className="data__row">
                       <div className="data__label">Принимаете лекарства для снижения уровня холестерина?</div>

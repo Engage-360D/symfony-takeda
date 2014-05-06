@@ -3,7 +3,7 @@
 React = require "react"
 cx = require "react/lib/cx"
 $ = require "jquery"
-
+Visibility = require "../helpers/Visibility"
 
 mouseMoveHandler = null
 mouseUpHandler = null
@@ -53,27 +53,31 @@ Range = React.createClass
       event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
 
     position = pageX - lineOffset
-    position = 0 if position < 0
+    if position < 0
+      position = if @props.extraOption isnt undefined then -50 else 0
     position = lineWidth if position > lineWidth
 
-    stepWidth = lineWidth / ((maxValue - minValue) / stepSize)
+    stepWidth = 100 / ((maxValue - minValue) / stepSize)
     currentStep = Math.round(position / stepWidth)
     currentValue = currentStep * stepSize + minValue
     
     return if @currentValue is currentValue
     
-    currentStepOffset = Math.round(stepWidth * currentStep)
+    currentStepOffset = stepWidth * currentStep
 
     @currentValue = currentValue
 
-    $pointNode.text(currentValue)
-    $pointNode.css left: "#{currentStepOffset}px"
+    $pointNode.text if @currentValue >= @props.min then @currentValue else '-'
+    $pointNode.css left: "#{currentStepOffset}%"
 
   handleMouseUp: ->
     mouseMoveHandler = null
     mouseUpHandler = null
 
-    if @currentValue and @currentValue isnt @startValue
+    if @currentValue < @props.min
+      @currentValue = false
+
+    if @currentValue isnt null and @currentValue isnt @startValue
       @props.valueLink.requestChange @currentValue
       @currentValue = null
 
@@ -86,16 +90,21 @@ Range = React.createClass
     maxValue = Number @props.max
     stepWidth = 100 / ((maxValue - minValue) / stepSize)
     offset = ((this.props.valueLink.value - minValue) / stepSize) * stepWidth
-    
+    if @props.extraOption isnt undefined and @props.valueLink.value is false
+      offset = -50
+
     classes = cx
       "range": true
       "is-revert": !!@props.revert
 
     @transferPropsTo `(
 			<div className={classes}>
+			  <Visibility show={this.props.extraOption !== undefined}>
+			    <div className="range__min_allowed"><span>{this.props.extraOption}</span><i></i></div>
+			  </Visibility>
 				<div className="range__from"><span>{this.props.min}</span><i></i></div>
 				<div className="range__to"><span>{this.props.max}</span><i></i></div>
-				<div className="range__val" ref="line"><a href="#" style={{left: offset + '%'}} ref="point">{this.props.valueLink.value}</a></div>
+				<div className="range__val" ref="line"><a href="#" style={{left: offset + '%'}} ref="point">{this.props.valueLink.value !== false ? this.props.valueLink.value : '-'}</a></div>
 				<div className="range__in">
 					<div className="range__line"></div>
 			  </div>
