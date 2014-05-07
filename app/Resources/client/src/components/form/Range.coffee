@@ -57,18 +57,18 @@ Range = React.createClass
       position = if @props.extraOption isnt undefined then -50 else 0
     position = lineWidth if position > lineWidth
 
-    stepWidth = 100 / ((maxValue - minValue) / stepSize)
+    stepWidth = lineWidth / ((maxValue - minValue) / stepSize)
     currentStep = Math.round(position / stepWidth)
     currentValue = currentStep * stepSize + minValue
     
     return if @currentValue is currentValue
     
-    currentStepOffset = stepWidth * currentStep
+    currentStepOffset = Math.round(stepWidth * currentStep)
 
     @currentValue = currentValue
 
     $pointNode.text if @currentValue >= @props.min then @currentValue else '-'
-    $pointNode.css left: "#{currentStepOffset}%"
+    $pointNode.css left: "#{currentStepOffset}px"
 
   handleMouseUp: ->
     mouseMoveHandler = null
@@ -91,7 +91,7 @@ Range = React.createClass
     stepWidth = 100 / ((maxValue - minValue) / stepSize)
     offset = ((this.props.valueLink.value - minValue) / stepSize) * stepWidth
     if @props.extraOption isnt undefined and @props.valueLink.value is false
-      offset = -50
+      offset = -49
 
     classes = cx
       "range": true

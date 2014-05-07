@@ -10046,6 +10046,8 @@ process.chdir = function (dir) {
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"jquery":"6StMfs"}],"jquery-placeholder":[function(require,module,exports){
 module.exports=require('M71An9');
+},{}],"microplugin":[function(require,module,exports){
+module.exports=require('edEggf');
 },{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10187,8 +10189,6 @@ module.exports=require('M71An9');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"microplugin":[function(require,module,exports){
-module.exports=require('edEggf');
 },{}],8:[function(require,module,exports){
 // moment.js language configuration
 // language : russian (ru)
@@ -30992,6 +30992,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33775,9 +33777,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -34545,17 +34545,17 @@ Range = React.createClass({displayName: 'Range',
     if (position > lineWidth) {
       position = lineWidth;
     }
-    stepWidth = 100 / ((maxValue - minValue) / stepSize);
+    stepWidth = lineWidth / ((maxValue - minValue) / stepSize);
     currentStep = Math.round(position / stepWidth);
     currentValue = currentStep * stepSize + minValue;
     if (this.currentValue === currentValue) {
       return;
     }
-    currentStepOffset = stepWidth * currentStep;
+    currentStepOffset = Math.round(stepWidth * currentStep);
     this.currentValue = currentValue;
     $pointNode.text(this.currentValue >= this.props.min ? this.currentValue : '-');
     return $pointNode.css({
-      left: "" + currentStepOffset + "%"
+      left: "" + currentStepOffset + "px"
     });
   },
   handleMouseUp: function() {
@@ -34580,7 +34580,7 @@ Range = React.createClass({displayName: 'Range',
     stepWidth = 100 / ((maxValue - minValue) / stepSize);
     offset = ((this.props.valueLink.value - minValue) / stepSize) * stepWidth;
     if (this.props.extraOption !== void 0 && this.props.valueLink.value === false) {
-      offset = -50;
+      offset = -49;
     }
     classes = cx({
       "range": true,
