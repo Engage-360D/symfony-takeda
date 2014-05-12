@@ -96,6 +96,9 @@ Account = React.createClass
       return @state.errors.email.join " "
     Account.errors.email
 
+  openDoctorGraduationCalendar: ->
+    @refs.doctorGraduationCalendar.open()
+
   renderModalBody: ->
     `(
       <div className="enter">
@@ -241,8 +244,9 @@ Account = React.createClass
 							</div>
 						</div>
 						<div className="date">
-							<div className="date__title">выбрать дату</div>
+							<div className="date__title" onClick={this.openDoctorGraduationCalendar}>выбрать дату</div>
 							<DateInput
+							  ref="doctorGraduationCalendar"
         				valueLink={this.linkState('graduation')}/>
 						</div>
 					</div>

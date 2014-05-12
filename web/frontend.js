@@ -33777,7 +33777,9 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
+},{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -34232,8 +34234,6 @@ global.MicroPlugin = require("microplugin");
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
 },{}],153:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -34871,6 +34871,9 @@ Account = React.createClass({displayName: 'Account',
     }
     return Account.errors.email;
   },
+  openDoctorGraduationCalendar: function() {
+    return this.refs.doctorGraduationCalendar.open();
+  },
   renderModalBody: function() {
     return (
       React.DOM.div( {className:"enter"}, 
@@ -35018,9 +35021,10 @@ Account = React.createClass({displayName: 'Account',
 							)
 						),
 						React.DOM.div( {className:"date"}, 
-							React.DOM.div( {className:"date__title"}, "выбрать дату"),
+							React.DOM.div( {className:"date__title", onClick:this.openDoctorGraduationCalendar}, "выбрать дату"),
 							DateInput(
-        				{valueLink:this.linkState('graduation')})
+							  {ref:"doctorGraduationCalendar",
+        				valueLink:this.linkState('graduation')})
 						)
 					)
 				),
