@@ -125,7 +125,7 @@ button { background: none; }
 .subscribe input { padding: 0 25px 0 6px; }
 .subscribe label { position: relative; display: block; }
 
-.subscribe__btn { position: absolute; top: 9px; right: 5px; background: url('../img/icons-s314e2dbd02.png') 0 -2423px no-repeat; width: 18px; height: 12px; }
+.subscribe__btn { position: absolute; top: 9px; right: 5px; background: url('../img/icons-s314e2dbd02.png') 0 -2423px no-repeat; width: 18px; height: 12px; cursor: pointer; }
 .subscribe__btn:hover { background: url('../img/icons-s314e2dbd02.png') 0 -2445px no-repeat; }
 
 .footer { position: absolute; left: 20px; right: 20px; bottom: 10px; }
