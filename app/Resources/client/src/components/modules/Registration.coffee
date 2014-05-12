@@ -39,8 +39,9 @@ Registration = React.createClass
       registration: 2
     errors:
       minLength: "Минимальная длина 3 символа"
+      mismatch: "Пароли не совпадают"
       email: "Некорректный email адресс"
-      empty: "Поле не может быть пустым"
+      empty: "Заполните поле"
     doctorGraduationMinDate: moment([1940, 0, 1])
     doctorGraduationMaxDate: moment().subtract("days", 1)
 
@@ -87,7 +88,6 @@ Registration = React.createClass
       password:
         minLength: validationConstraints.minLength 3
       confirmPassword:
-        minLength: validationConstraints.minLength 3
         coincide: (value) => value is @state.password
       specialization:
         notEmpty: validationConstraints.notEmpty()
@@ -313,7 +313,7 @@ Registration = React.createClass
   				<div className="reg__title">Ваши данные</div>
       		<Field className="field_mod">
       		  <Input
-      		    placeholder="Имя"
+      		    placeholder="Имя и Фамилия"
       		    valueLink={this.linkState('firstname')}
       		    invalid={this.state.showValidation && this.validity.children.firstname.invalid}
       		    invalidMessage={Registration.errors.minLength}/>
@@ -350,7 +350,7 @@ Registration = React.createClass
       		    placeholder="Подтвердить пароль"
       		    valueLink={this.linkState('confirmPassword')}
       		    invalid={this.state.showValidation && this.validity.children.confirmPassword.invalid}
-      		    invalidMessage={Registration.errors.minLength}/>
+      		    invalidMessage={Registration.errors.mismatch}/>
       		</Field>
           <div className="reg__fieldset">
 						<Checkbox

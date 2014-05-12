@@ -30992,6 +30992,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33775,9 +33777,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -35270,8 +35270,7 @@ Login = React.createClass({displayName: 'Login',
   statics: {
     errors: {
       minLength: "Минимальная длина 3 символа",
-      email: "Некорректный email адресс",
-      "default": "При попытке авторизации произошла ошибка. Попробуйте позже."
+      email: "Некорректный email адресс"
     }
   },
   getDefaultProps: function() {
@@ -35323,13 +35322,11 @@ Login = React.createClass({displayName: 'Login',
               usernameInvalidMessage: error.username,
               usernameInvalid: true
             });
-          } else if (error.password) {
+          } else {
             return _this.setState({
               passwordInvalidMessage: error.password,
               passwordInvalid: true
             });
-          } else {
-            return _this.showLoginFailureMessage();
           }
         } else {
           if (_this.props.valueLink) {
@@ -35368,22 +35365,6 @@ Login = React.createClass({displayName: 'Login',
       return false;
     }
     return this.validity.children.password.invalid || this.state.passwordInvalid;
-  },
-  showLoginFailureMessage: function() {
-    var modal, props;
-    modal = null;
-    props = {
-      onClose: (function(_this) {
-        return function() {
-          return modal.setState({
-            show: false
-          });
-        };
-      })(this),
-      title: "Ошибка",
-      children: Login.errors["default"]
-    };
-    return modal = React.renderComponent(Modal(props), this.createContainer());
   },
   render: function() {
     return (
@@ -35867,7 +35848,7 @@ Registration = React.createClass({displayName: 'Registration',
   				React.DOM.div( {className:"reg__title"}, "Ваши данные"),
       		Field( {className:"field_mod"}, 
       		  Input(
-      		    {placeholder:"Имя",
+      		    {placeholder:"Имя и Фамилия",
       		    valueLink:this.linkState('firstname'),
       		    invalid:this.state.showValidation && this.validity.children.firstname.invalid,
       		    invalidMessage:Registration.errors.minLength})
