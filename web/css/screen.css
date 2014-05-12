@@ -131,7 +131,7 @@ button { background: none; }
 .footer { position: absolute; left: 20px; right: 20px; bottom: 10px; }
 @media only screen and (max-height: 660px) { .footer { position: relative; left: auto; right: auto; bottom: auto; } }
 
-.footer__info { margin-bottom: 12px; font-size: 10px; color: #b2b3b3; line-height: 1.2; }
+.footer__info { margin-bottom: 12px; font-size: 12px; color: #b2b3b3; line-height: 1.2; }
 
 .takeda, .copyright { display: inline-block; vertical-align: bottom; }
 
