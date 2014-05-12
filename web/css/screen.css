@@ -210,7 +210,7 @@ button { background: none; }
 
 .calendar__cell { display: inline-block; width: 33%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; text-align: center; font-size: 14px; }
 
-.calendar__cell_left { padding: 4px 5px; text-align: left; }
+.calendar__cell_left { padding: 4px 5px; }
 
 .calendar__footer { text-align: center; }
 

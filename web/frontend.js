@@ -30992,8 +30992,6 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
-},{}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33777,8 +33775,8 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -34234,6 +34232,8 @@ module.exports=require('fsZITE');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],153:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -34386,37 +34386,37 @@ DateInput = React.createClass({displayName: 'DateInput',
   				React.DOM.div( {className:"calendar__title"}, this.props.title),
   				React.DOM.div( {className:"calendar__date"}, 
   					React.DOM.div( {className:"calendar__row"}, 
-  						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousMonth)}, 
-  							React.DOM.button( {className:"calendar__up", onClick:this.setCurrentMoment.bind(this, previousMonth)})
-  						),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousDate)}, 
   							React.DOM.button( {className:"calendar__up", onClick:this.setCurrentMoment.bind(this, previousDate)})
+  						),
+  						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousMonth)}, 
+  							React.DOM.button( {className:"calendar__up", onClick:this.setCurrentMoment.bind(this, previousMonth)})
   						),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousYear)}, 
   							React.DOM.button( {className:"calendar__up", onClick:this.setCurrentMoment.bind(this, previousYear)})
   						)
   					),
   					React.DOM.div( {className:"calendar__row"}, 
-  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(previousMonth)}, this.formatMonth(previousMonth.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousDate)}, previousDate.format('DD')),
+  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(previousMonth)}, this.formatMonth(previousMonth.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousYear)}, previousYear.format('YYYY'))
   					),
   					React.DOM.div( {className:"calendar__row is-active"}, 
-  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(previousMonth)}, this.formatMonth(currentMoment.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousDate)}, currentMoment.format('DD')),
+  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(previousMonth)}, this.formatMonth(currentMoment.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(previousYear)}, currentMoment.format('YYYY'))
   					),
   					React.DOM.div( {className:"calendar__row"}, 
-  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(nextMonth)}, this.formatMonth(nextMonth.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextDate)}, nextDate.format('DD')),
+  						React.DOM.div( {className:"calendar__cell calendar__cell_left", style:this.calculateVisibilityStyle(nextMonth)}, this.formatMonth(nextMonth.format('MMMM'))),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextYear)}, nextYear.format('YYYY'))
   					),
   					React.DOM.div( {className:"calendar__row"}, 
-  						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextMonth)}, 
-  							React.DOM.button( {className:"calendar__down", onClick:this.setCurrentMoment.bind(this, nextMonth)})
-  						),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextDate)}, 
   							React.DOM.button( {className:"calendar__down", onClick:this.setCurrentMoment.bind(this, nextDate)})
+  						),
+  						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextMonth)}, 
+  							React.DOM.button( {className:"calendar__down", onClick:this.setCurrentMoment.bind(this, nextMonth)})
   						),
   						React.DOM.div( {className:"calendar__cell", style:this.calculateVisibilityStyle(nextYear)}, 
   							React.DOM.button( {className:"calendar__down", onClick:this.setCurrentMoment.bind(this, nextYear)})

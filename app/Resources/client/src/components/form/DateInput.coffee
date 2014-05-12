@@ -82,37 +82,37 @@ DateInput = React.createClass
   				<div className="calendar__title">{this.props.title}</div>
   				<div className="calendar__date">
   					<div className="calendar__row">
-  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousMonth)}>
-  							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousMonth)}></button>
-  						</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>
   							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousDate)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousMonth)}>
+  							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousMonth)}></button>
   						</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>
   							<button className="calendar__up" onClick={this.setCurrentMoment.bind(this, previousYear)}></button>
   						</div>
   					</div>
   					<div className="calendar__row">
-  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(previousMonth.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>{previousDate.format('DD')}</div>
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(previousMonth.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>{previousYear.format('YYYY')}</div>
   					</div>
   					<div className="calendar__row is-active">
-  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(currentMoment.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>{currentMoment.format('DD')}</div>
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(previousMonth)}>{this.formatMonth(currentMoment.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousYear)}>{currentMoment.format('YYYY')}</div>
   					</div>
   					<div className="calendar__row">
-  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(nextMonth)}>{this.formatMonth(nextMonth.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextDate)}>{nextDate.format('DD')}</div>
+  						<div className="calendar__cell calendar__cell_left" style={this.calculateVisibilityStyle(nextMonth)}>{this.formatMonth(nextMonth.format('MMMM'))}</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextYear)}>{nextYear.format('YYYY')}</div>
   					</div>
   					<div className="calendar__row">
-  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextMonth)}>
-  							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextMonth)}></button>
-  						</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextDate)}>
   							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextDate)}></button>
+  						</div>
+  						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextMonth)}>
+  							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextMonth)}></button>
   						</div>
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(nextYear)}>
   							<button className="calendar__down" onClick={this.setCurrentMoment.bind(this, nextYear)}></button>
