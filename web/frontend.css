@@ -771,6 +771,7 @@ input::-webkit-inner-spin-button {
   font-size: 14px;
   color: #fff;
   z-index: 1000;
+  white-space: pre;
 }
 .ValidationError:before {
   content: "";

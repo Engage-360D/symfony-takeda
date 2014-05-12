@@ -7,6 +7,7 @@ plural = require "../../util/plural"
 LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
+ErrorMessageMixin = require "../../mixins/ErrorMessageMixin"
 
 RadioGroup = require "../form/RadioGroup"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"
@@ -19,9 +20,18 @@ Registration = require "./Registration"
 Login = require "./Login"
 TestResultRecommendations = require "./TestResultRecommendations"
 
+# several predefined constants
+MIN_WEIGHT = 30
+MAX_WEIGHT = 300
+MIN_GROWTH = 30
+MAX_GROWTH = 700
 
 Test = React.createClass
-  mixins: [LinkedStateMixin, ValidationMixin]
+  mixins: [
+    LinkedStateMixin
+    ValidationMixin
+    ErrorMessageMixin
+  ]
 
   statics:
     sexValues: [
@@ -80,6 +90,8 @@ Test = React.createClass
     heartAttackOrStroke: null
     extraSalt: null
     acetylsalicylicDrugs: null
+    growthInvalidMessage: null
+    weightInvalidMessage: null
 
     #step: "second"
     #showValidation: false
@@ -135,12 +147,12 @@ Test = React.createClass
         notNull: validationConstraints.notNull()
       growth:
         notNull: validationConstraints.notNull()
-        min: validationConstraints.min(30)
-        max: validationConstraints.max(300)
+        min: validationConstraints.min(MIN_GROWTH)
+        max: validationConstraints.max(MAX_GROWTH)
       weight:
         notNull: validationConstraints.notNull()
-        min: validationConstraints.min(30)
-        max: validationConstraints.max(700)
+        min: validationConstraints.min(MIN_WEIGHT)
+        max: validationConstraints.max(MAX_WEIGHT)
       smoking:
         notNull: validationConstraints.notNull()
       cholesterolDrugs:
@@ -231,6 +243,29 @@ Test = React.createClass
     else
       return 0
 
+  getGrowthInvalidMessage: ->
+    return @state.growthInvalidMessage if @state.growthInvalidMessage
+
+    if not @state.growth
+      @getErrorMessage('blank')
+    else if @state.growth < MIN_GROWTH
+      @getErrorMessage('minGrowth', {minGrowth: MIN_GROWTH})
+    else if @state.growth > MAX_GROWTH
+      @getErrorMessage('maxGrowth', {maxGrowth: MAX_GROWTH})
+    else
+      @getErrorMessage('invalidFormat')
+
+  getWeightInvalidMessage: ->
+    return @state.weightInvalidMessage if @state.weightInvalidMessage
+    if not @state.weight
+      @getErrorMessage('blank')
+    else if @state.weight < MIN_WEIGHT
+      @getErrorMessage('minWeight', {minWeight: MIN_WEIGHT})
+    else if @state.weight > MAX_WEIGHT
+      @getErrorMessage('maxWeight', {maxWeight: MAX_WEIGHT})
+    else
+      @getErrorMessage('invalidFormat')
+        
   handleDoctorChange: (doctor) ->
     @setState showDoctorPopup: doctor
 
@@ -302,6 +337,9 @@ Test = React.createClass
       scoreValue: testResult.scoreValue
       recommendations: testResult.recommendations
 
+  handleRequestErrors: (error) ->
+    #@setState
+
   render: ->
     user = if @state.doctor
       doctor: true
@@ -342,7 +380,11 @@ Test = React.createClass
                           <div className="mainspec__title">Основная специализация</div>
                           <div className="mainspec__item mainspec__add">
                             <div className="field">
-                              <Input placeholder="Введите название" valueLink={this.linkState('doctorSpecialization')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorSpecialization.invalid} />
+                              <Input
+                                placeholder="Введите название"
+                                valueLink={this.linkState('doctorSpecialization')}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorSpecialization.invalid}
+                                invalidMessage={this.getErrorMessage('blank')}/>
                             </div>
                           </div>
                           <div className="mainspec__item mainspec__experience">
@@ -357,19 +399,28 @@ Test = React.createClass
                           <div className="mainspec__item mainspec__address">
                             <div className="field">
                               <div className="field__label">Адрес</div>
-                              <Input valueLink={this.linkState('doctorAddress')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorAddress.invalid} />
+                              <Input
+                                valueLink={this.linkState('doctorAddress')}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorAddress.invalid}
+                                invalidMessage={this.getErrorMessage('blank')}/>
                             </div>
                           </div>
                           <div className="mainspec__item mainspec__phone">
                             <div className="field">
                               <div className="field__label">Телефон</div>
-                              <Input valueLink={this.linkState('doctorPhone')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorPhone.invalid} />
+                              <Input
+                                valueLink={this.linkState('doctorPhone')}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorPhone.invalid}
+                                invalidMessage={this.getErrorMessage('blank')}/>
                             </div>
                           </div>
                           <div className="mainspec__item mainspec__school">
                             <div className="field">
                               <div className="field__label">Учебное заведение</div>
-                              <Input valueLink={this.linkState('doctorInstitution')} invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorInstitution.invalid} />
+                              <Input
+                                valueLink={this.linkState('doctorInstitution')}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorInstitution.invalid}
+                                invalidMessage={this.getErrorMessage('blank')}/>
                             </div>
                           </div>
                           <div className="mainspec__item mainspec__date">
@@ -429,7 +480,10 @@ Test = React.createClass
                     <div className="data__content">
                       <div className="data__fieldset">
                         <div className="field">
-                          <Input valueLink={this.linkState('growth')} invalid={this.state.showValidation && this.validity.children.growth.invalid} />
+                          <Input
+                            valueLink={this.linkState('growth')}
+                            invalid={this.state.showValidation && this.validity.children.growth.invalid}
+                            invalidMessage={this.getGrowthInvalidMessage()}/>
                           <div className="field__label">см</div>
                         </div>
                       </div>
@@ -440,7 +494,10 @@ Test = React.createClass
                     <div className="data__content">
                       <div className="data__fieldset">
                         <div className="field">
-                          <Input valueLink={this.linkState('weight')} invalid={this.state.showValidation && this.validity.children.weight.invalid} />
+                          <Input
+                            valueLink={this.linkState('weight')}
+                            invalid={this.state.showValidation && this.validity.children.weight.invalid}
+                            invalidMessage={this.getWeightInvalidMessage()}/>
                           <div className="field__label">кг</div>
                         </div>
                       </div>
