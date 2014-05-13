@@ -33777,6 +33777,8 @@ global.MicroPlugin = require("microplugin");
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
 module.exports=require('iECS2l');
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -34232,8 +34234,6 @@ module.exports=require('iECS2l');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
 },{}],153:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -36461,6 +36461,12 @@ Test = React.createClass({displayName: 'Test',
       });
     }
   },
+  closeDoctorPopup: function() {
+    this.setState({
+      doctor: false
+    });
+    return this.handleDoctorChange(false);
+  },
   openSecondStep: function() {
     if (this.validity.component.firstStep.valid) {
       return this.setState({
@@ -36568,6 +36574,7 @@ Test = React.createClass({displayName: 'Test',
                       ),
                       Visibility( {show:this.state.showDoctorPopup}, 
                         React.DOM.div( {className:"mainspec mainspec_popup"}, 
+                          React.DOM.button( {className:"popover__close", onClick:this.closeDoctorPopup}),
                           React.DOM.div( {className:"mainspec__title"}, "Основная специализация"),
                           React.DOM.div( {className:"mainspec__item mainspec__add"}, 
                             React.DOM.div( {className:"field"}, 

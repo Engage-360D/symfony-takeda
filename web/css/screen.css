@@ -192,8 +192,8 @@ button { background: none; }
 .calendar__in { display: none; position: absolute; top: 30px; right: -10px; width: 230px; padding: 7px 10px; border: 1px solid #cdcdcd; background: white; color: #323232; }
 .calendar__in:before { content: ""; position: absolute; top: -10px; right: -1px; width: 0px; height: 0px; border-style: solid; border-width: 9px 0 0 9px; border-color: transparent transparent transparent #cdcdcd; }
 
-.calendar__close { position: absolute; top: 10px; right: 10px; background: url('../img/icons-s314e2dbd02.png') 0 -2340px no-repeat; width: 15px; height: 15px; }
-.calendar__close:hover { background: url('../img/icons-s314e2dbd02.png') 0 -2315px no-repeat; width: 15px; height: 15px; }
+.popover__close, .calendar__close { position: absolute; top: 10px; right: 10px; background: url('../img/icons-s314e2dbd02.png') 0 -2340px no-repeat; width: 15px; height: 15px; }
+.popover__close:hover, .calendar__close:hover { background: url('../img/icons-s314e2dbd02.png') 0 -2315px no-repeat; width: 15px; height: 15px; }
 
 .calendar__title { margin-bottom: 15px; text-align: center; font-weight: bold; }
 

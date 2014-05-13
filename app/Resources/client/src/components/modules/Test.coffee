@@ -287,6 +287,10 @@ Test = React.createClass
     else
       @setState showDoctorPopupValidation: true
 
+  closeDoctorPopup: ->
+    @setState doctor: false
+    @handleDoctorChange(false)
+
   openSecondStep: ->
     if @validity.component.firstStep.valid
       @setState step: "second", showValidation: false
@@ -377,6 +381,7 @@ Test = React.createClass
                       </div>
                       <Visibility show={this.state.showDoctorPopup}>
                         <div className="mainspec mainspec_popup">
+                          <button className="popover__close" onClick={this.closeDoctorPopup}></button>
                           <div className="mainspec__title">Основная специализация</div>
                           <div className="mainspec__item mainspec__add">
                             <div className="field">
