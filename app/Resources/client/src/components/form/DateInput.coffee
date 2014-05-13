@@ -53,6 +53,8 @@ DateInput = React.createClass
     @props.valueLink.requestChange moment(@state.currentMoment)
     @setState
       opened: false
+    if typeof @props.changeCallback is 'function' then @props.changeCallback(moment(@state.currentMoment))
+
 
   calculateVisibilityStyle: (date) ->
     visibility: if date.isAfter(@state.maxDate) or date.isBefore(@state.minDate)
@@ -79,7 +81,7 @@ DateInput = React.createClass
   			<div className="calendar__ico" onClick={this.open}></div>
   			<div className="calendar__in">
   				<button className="calendar__close" onClick={this.close}></button>
-  				<div className="calendar__title">{this.props.title}</div>
+  				<div className="calendar__title">{this.props.calendarTitle}</div>
   				<div className="calendar__date">
   					<div className="calendar__row">
   						<div className="calendar__cell" style={this.calculateVisibilityStyle(previousDate)}>

@@ -14,7 +14,7 @@ Modal = require "../modal/Modal"
 Checkbox = require "../form/Checkbox"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
-DateInput = require "../form/DateInput"
+ExtendedDateInput = require "../form/ExtendedDateInput"
 Checkbox = require "../registration/Checkbox"
 RegionsInput = require "../registration/RegionsInput"
 NumberSelect = require "../registration/NumberSelect"
@@ -173,9 +173,6 @@ Registration = React.createClass
       children: @renderModalBody()
     modal = React.renderComponent Modal(props), @createContainer()
 
-  openGraduationCalendar: ->
-    @refs.graduationCalendar.open()
-
   isChildrenWindow: ->
     location.href.indexOf("connect") isnt -1
 
@@ -257,16 +254,13 @@ Registration = React.createClass
 					<div className="mainspec__item mainspec__date">
 						<div className="field">
 							<div className="field__label">Год окончания</div>
-							<div className="date">
-        				<div className="date__title" onClick={this.openGraduationCalendar}>за все время</div>
-        				<DateInput
-        				  ref="graduationCalendar"
-        				  title="Год окончания"
+							<ExtendedDateInput
+        				  placeholder="за все время"
+        				  calendarTitle="Год окончания"
         				  valueLink={this.linkState('graduation')}
         				  minDate={Registration.doctorGraduationMinDate}
         				  maxDate={Registration.doctorGraduationMaxDate}
         		      invalid={this.state.showDoctorValidation && this.validity.children.graduation.invalid}/>
-        			</div>
 						</div>
 					</div>
 				</div>

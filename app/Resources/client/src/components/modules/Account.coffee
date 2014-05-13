@@ -13,7 +13,7 @@ Visibility = require "../helpers/Visibility"
 Modal = require "../modal/Modal"
 Field = require "../registration/Field"
 Input = require "../registration/Input"
-DateInput = require "../form/DateInput"
+ExtendedDateInput = require "../form/ExtendedDateInput"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"
 TestResultRecommendations = require "./TestResultRecommendations"
 
@@ -96,9 +96,6 @@ Account = React.createClass
     if @state.errors and @state.errors.email
       return @state.errors.email.join " "
     Account.errors.email
-
-  openDoctorGraduationCalendar: ->
-    @refs.doctorGraduationCalendar.open()
 
   renderModalBody: ->
     `(
@@ -240,17 +237,9 @@ Account = React.createClass
           <div className="data__row data__row_year">
             <div className="data__label">Год окончания</div>
             <div className="data__content">
-              <div className="field">
-                <div className="field__in">
-                  <span>{this.state.graduation && this.state.graduation.format("YYYY")}</span>
-                </div>
-              </div>
-              <div className="date">
-                <div className="date__title" onClick={this.openDoctorGraduationCalendar}>выбрать дату</div>
-                <DateInput
-                  ref="doctorGraduationCalendar"
-                  valueLink={this.linkState('graduation')}/>
-              </div>
+              <ExtendedDateInput
+                placeholder="выбрать дату"
+                valueLink={this.linkState('graduation')}/>
             </div>
           </div>
         </Visibility>

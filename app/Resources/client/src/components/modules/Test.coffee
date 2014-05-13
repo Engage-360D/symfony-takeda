@@ -12,6 +12,7 @@ ErrorMessageMixin = require "../../mixins/ErrorMessageMixin"
 RadioGroup = require "../form/RadioGroup"
 BooleanRadioGroup = require "../form/BooleanRadioGroup"
 DateInput = require "../form/DateInput"
+ExtendedDateInput = require "../form/ExtendedDateInput"
 Range = require "../form/Range"
 Input = require "../registration/Input"
 NumberSelect = require "../registration/NumberSelect"
@@ -277,9 +278,6 @@ Test = React.createClass
         success: (user) =>
           @setState user: user
         url: "/api/users/me"
-        
-  openDoctorGraduationCalendar: ->
-    @refs.doctorGraduationCalendar.open()
 
   saveDoctorInfo: ->
     if @validity.component.doctorInfo.valid
@@ -431,16 +429,13 @@ Test = React.createClass
                           <div className="mainspec__item mainspec__date">
                             <div className="field">
                               <div className="field__label">Год окончания</div>
-                              <div className="date">
-        												<div className="date__title" onClick={this.openDoctorGraduationCalendar}>за все время</div>
-        												<DateInput
-        												  ref="doctorGraduationCalendar"
-        												  title="Год окончания"
-        												  valueLink={this.linkState('doctorGraduation')}
-        												  minDate={Test.doctorGraduationMinDate}
-        												  maxDate={Test.doctorGraduationMaxDate}
-        												  invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
-        											</div>
+                              <ExtendedDateInput
+                                placeholder="за все время"
+                                calendarTitle="Год окончания"
+                                valueLink={this.linkState('doctorGraduation')}
+                                minDate={Test.doctorGraduationMinDate}
+                                maxDate={Test.doctorGraduationMaxDate}
+                                invalid={this.state.showDoctorPopupValidation && this.validity.children.doctorGraduation.invalid} />
                             </div>
                           </div>
                           <div className="mainspec__btn">
@@ -472,7 +467,7 @@ Test = React.createClass
         									<div className="field__label">{age == '-' ? 'лет' : plural(age, "год", "года", "лет")}</div>
         								</div>
                         <DateInput
-                          title="Дата рождения"
+                          calendarTitle="Дата рождения"
                           valueLink={this.linkState('birthday')}
                           minDate={Test.birthdayMinDate}
                           maxDate={Test.birthdayMaxDate}
