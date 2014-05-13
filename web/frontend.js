@@ -34722,7 +34722,7 @@ module.exports = WindowLoaded;
 
 },{"react":147}],161:[function(require,module,exports){
 /** @jsx React.DOM */;
-var Account, AccountMixin, BooleanRadioGroup, DateInput, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, React, TestResultRecommendations, ValidationMixin, moment, validationConstraints;
+var Account, AccountMixin, BooleanRadioGroup, DateInput, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, React, TestResultRecommendations, ValidationMixin, Visibility, moment, validationConstraints;
 
 React = require("react");
 
@@ -34737,6 +34737,8 @@ HTMLElementContainerMixin = require("../../mixins/HTMLElementContainerMixin");
 ValidationMixin = require("../../mixins/ValidationMixin");
 
 validationConstraints = require("../../services/validationConstraints");
+
+Visibility = require("../helpers/Visibility");
 
 Modal = require("../modal/Modal");
 
@@ -34966,68 +34968,70 @@ Account = React.createClass({displayName: 'Account',
   renderSettingsInfo: function() {
     return (
       React.DOM.div( {className:"data data_account-info"}, 
-				React.DOM.div( {className:"data__title"}, "Дополнительная информация"),
-				React.DOM.div( {className:"data__row"}, 
-					React.DOM.div( {className:"data__label"}, "Специализация"),
-					React.DOM.div( {className:"data__content"}, 
-						Field(null, 
-  						Input(
-        		    {valueLink:this.linkState('specialization')})
-        		)
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_experiance"}, 
-					React.DOM.div( {className:"data__label"}, "Стаж"),
-					React.DOM.div( {className:"data__content"}, 
-						Field(null, 
-  						Input(
-        		    {valueLink:this.linkState('experience')})
-        		)
-					)
-				),
-				React.DOM.div( {className:"data__row"}, 
-					React.DOM.div( {className:"data__label"}, "Адрес"),
-					React.DOM.div( {className:"data__content"}, 
-						Field(null, 
-  						Input(
-        		    {valueLink:this.linkState('address')})
-        		)
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_phone"}, 
-					React.DOM.div( {className:"data__label"}, "Телефон"),
-					React.DOM.div( {className:"data__content"}, 
-						Field(null, 
-  						Input(
-        		    {valueLink:this.linkState('phone')})
-        		)
-					)
-				),
-				React.DOM.div( {className:"data__row"}, 
-					React.DOM.div( {className:"data__label"}, "Учебное заведение"),
-					React.DOM.div( {className:"data__content"}, 
-						Field(null, 
-  						Input(
-        		    {valueLink:this.linkState('institution')})
-        		)
-					)
-				),
-				React.DOM.div( {className:"data__row data__row_year"}, 
-					React.DOM.div( {className:"data__label"}, "Год окончания"),
-					React.DOM.div( {className:"data__content"}, 
-						React.DOM.div( {className:"field"}, 
-							React.DOM.div( {className:"field__in"}, 
-								React.DOM.span(null, this.state.graduation && this.state.graduation.format("YYYY"))
-							)
-						),
-						React.DOM.div( {className:"date"}, 
-							React.DOM.div( {className:"date__title", onClick:this.openDoctorGraduationCalendar}, "выбрать дату"),
-							DateInput(
-							  {ref:"doctorGraduationCalendar",
-        				valueLink:this.linkState('graduation')})
-						)
-					)
-				),
+        Visibility( {show:this.state.doctor}, 
+          React.DOM.div( {className:"data__title"}, "Дополнительная информация"),
+          React.DOM.div( {className:"data__row"}, 
+            React.DOM.div( {className:"data__label"}, "Специализация"),
+            React.DOM.div( {className:"data__content"}, 
+              Field(null, 
+                Input(
+                  {valueLink:this.linkState('specialization')})
+              )
+            )
+          ),
+          React.DOM.div( {className:"data__row data__row_experiance"}, 
+            React.DOM.div( {className:"data__label"}, "Стаж"),
+            React.DOM.div( {className:"data__content"}, 
+              Field(null, 
+                Input(
+                  {valueLink:this.linkState('experience')})
+              )
+            )
+          ),
+          React.DOM.div( {className:"data__row"}, 
+            React.DOM.div( {className:"data__label"}, "Адрес"),
+            React.DOM.div( {className:"data__content"}, 
+              Field(null, 
+                Input(
+                  {valueLink:this.linkState('address')})
+              )
+            )
+          ),
+          React.DOM.div( {className:"data__row data__row_phone"}, 
+            React.DOM.div( {className:"data__label"}, "Телефон"),
+            React.DOM.div( {className:"data__content"}, 
+              Field(null, 
+                Input(
+                  {valueLink:this.linkState('phone')})
+              )
+            )
+          ),
+          React.DOM.div( {className:"data__row"}, 
+            React.DOM.div( {className:"data__label"}, "Учебное заведение"),
+            React.DOM.div( {className:"data__content"}, 
+              Field(null, 
+                Input(
+                  {valueLink:this.linkState('institution')})
+              )
+            )
+          ),
+          React.DOM.div( {className:"data__row data__row_year"}, 
+            React.DOM.div( {className:"data__label"}, "Год окончания"),
+            React.DOM.div( {className:"data__content"}, 
+              React.DOM.div( {className:"field"}, 
+                React.DOM.div( {className:"field__in"}, 
+                  React.DOM.span(null, this.state.graduation && this.state.graduation.format("YYYY"))
+                )
+              ),
+              React.DOM.div( {className:"date"}, 
+                React.DOM.div( {className:"date__title", onClick:this.openDoctorGraduationCalendar}, "выбрать дату"),
+                DateInput(
+                  {ref:"doctorGraduationCalendar",
+                  valueLink:this.linkState('graduation')})
+              )
+            )
+          )
+        ),
 				React.DOM.div( {className:"data__row data__row_btns"}, 
 					React.DOM.button( {className:"btn", onClick:this.handleSave}, "Сохранить"),
 					React.DOM.button( {className:"btn", onClick:this.handleCancel}, "Отменить")
@@ -35081,7 +35085,7 @@ Account = React.createClass({displayName: 'Account',
 module.exports = Account;
 
 
-},{"../../mixins/AccountMixin":178,"../../mixins/HTMLElementContainerMixin":181,"../../mixins/LinkedStateMixin":182,"../../mixins/ValidationMixin":187,"../../services/validationConstraints":188,"../form/BooleanRadioGroup":153,"../form/DateInput":155,"../modal/Modal":159,"../registration/Field":169,"../registration/Input":170,"./TestResultRecommendations":167,"moment":9,"react":147}],162:[function(require,module,exports){
+},{"../../mixins/AccountMixin":178,"../../mixins/HTMLElementContainerMixin":181,"../../mixins/LinkedStateMixin":182,"../../mixins/ValidationMixin":187,"../../services/validationConstraints":188,"../form/BooleanRadioGroup":153,"../form/DateInput":155,"../helpers/Visibility":158,"../modal/Modal":159,"../registration/Field":169,"../registration/Input":170,"./TestResultRecommendations":167,"moment":9,"react":147}],162:[function(require,module,exports){
 /** @jsx React.DOM */;
 var ChangePassword, ChangePasswordMixin, Field, HTMLElementContainerMixin, Input, LinkedStateMixin, Modal, React, ResetPasswordMixin, ValidationMixin, validationConstraints;
 

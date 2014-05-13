@@ -8,6 +8,7 @@ LinkedStateMixin = require "../../mixins/LinkedStateMixin"
 HTMLElementContainerMixin = require "../../mixins/HTMLElementContainerMixin"
 ValidationMixin = require "../../mixins/ValidationMixin"
 validationConstraints = require "../../services/validationConstraints"
+Visibility = require "../helpers/Visibility"
 
 Modal = require "../modal/Modal"
 Field = require "../registration/Field"
@@ -189,68 +190,70 @@ Account = React.createClass
   renderSettingsInfo: ->
     `(
       <div className="data data_account-info">
-				<div className="data__title">Дополнительная информация</div>
-				<div className="data__row">
-					<div className="data__label">Специализация</div>
-					<div className="data__content">
-						<Field>
-  						<Input
-        		    valueLink={this.linkState('specialization')}/>
-        		</Field>
-					</div>
-				</div>
-				<div className="data__row data__row_experiance">
-					<div className="data__label">Стаж</div>
-					<div className="data__content">
-						<Field>
-  						<Input
-        		    valueLink={this.linkState('experience')}/>
-        		</Field>
-					</div>
-				</div>
-				<div className="data__row">
-					<div className="data__label">Адрес</div>
-					<div className="data__content">
-						<Field>
-  						<Input
-        		    valueLink={this.linkState('address')}/>
-        		</Field>
-					</div>
-				</div>
-				<div className="data__row data__row_phone">
-					<div className="data__label">Телефон</div>
-					<div className="data__content">
-						<Field>
-  						<Input
-        		    valueLink={this.linkState('phone')}/>
-        		</Field>
-					</div>
-				</div>
-				<div className="data__row">
-					<div className="data__label">Учебное заведение</div>
-					<div className="data__content">
-						<Field>
-  						<Input
-        		    valueLink={this.linkState('institution')}/>
-        		</Field>
-					</div>
-				</div>
-				<div className="data__row data__row_year">
-					<div className="data__label">Год окончания</div>
-					<div className="data__content">
-						<div className="field">
-							<div className="field__in">
-								<span>{this.state.graduation && this.state.graduation.format("YYYY")}</span>
-							</div>
-						</div>
-						<div className="date">
-							<div className="date__title" onClick={this.openDoctorGraduationCalendar}>выбрать дату</div>
-							<DateInput
-							  ref="doctorGraduationCalendar"
-        				valueLink={this.linkState('graduation')}/>
-						</div>
-					</div>
-				</div>
+        <Visibility show={this.state.doctor}>
+          <div className="data__title">Дополнительная информация</div>
+          <div className="data__row">
+            <div className="data__label">Специализация</div>
+            <div className="data__content">
+              <Field>
+                <Input
+                  valueLink={this.linkState('specialization')}/>
+              </Field>
+            </div>
+          </div>
+          <div className="data__row data__row_experiance">
+            <div className="data__label">Стаж</div>
+            <div className="data__content">
+              <Field>
+                <Input
+                  valueLink={this.linkState('experience')}/>
+              </Field>
+            </div>
+          </div>
+          <div className="data__row">
+            <div className="data__label">Адрес</div>
+            <div className="data__content">
+              <Field>
+                <Input
+                  valueLink={this.linkState('address')}/>
+              </Field>
+            </div>
+          </div>
+          <div className="data__row data__row_phone">
+            <div className="data__label">Телефон</div>
+            <div className="data__content">
+              <Field>
+                <Input
+                  valueLink={this.linkState('phone')}/>
+              </Field>
+            </div>
+          </div>
+          <div className="data__row">
+            <div className="data__label">Учебное заведение</div>
+            <div className="data__content">
+              <Field>
+                <Input
+                  valueLink={this.linkState('institution')}/>
+              </Field>
+            </div>
+          </div>
+          <div className="data__row data__row_year">
+            <div className="data__label">Год окончания</div>
+            <div className="data__content">
+              <div className="field">
+                <div className="field__in">
+                  <span>{this.state.graduation && this.state.graduation.format("YYYY")}</span>
+                </div>
+              </div>
+              <div className="date">
+                <div className="date__title" onClick={this.openDoctorGraduationCalendar}>выбрать дату</div>
+                <DateInput
+                  ref="doctorGraduationCalendar"
+                  valueLink={this.linkState('graduation')}/>
+              </div>
+            </div>
+          </div>
+        </Visibility>
 				<div className="data__row data__row_btns">
 					<button className="btn" onClick={this.handleSave}>Сохранить</button>
 					<button className="btn" onClick={this.handleCancel}>Отменить</button>
