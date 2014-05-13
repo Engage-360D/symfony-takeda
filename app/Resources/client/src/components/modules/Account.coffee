@@ -80,7 +80,7 @@ Account = React.createClass
     unless @modal
       props =
         onClose: @handleClose
-        title: "Восстановление пароля"
+        #title: "Изменение личных данных"
         children: @renderModalBody()
       @modal = React.renderComponent Modal(props), @createContainer()
     @modal.setState show: true
@@ -107,7 +107,7 @@ Account = React.createClass
           <div>Ваш аккаунт успешно изменен.</div>
         </Field>
         <div>
-				  <button className="btn" onClick={this.handleClose}>Закрыть</button>
+				  <button className="btn" onClick={this.handleClose}>OK</button>
 				</div>
       </div>  
     )`

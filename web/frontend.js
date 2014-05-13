@@ -30992,6 +30992,8 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33775,9 +33777,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
-},{}],"sifter":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
 module.exports=require('fsZITE');
 },{}],"fsZITE":[function(require,module,exports){
 (function (global){
@@ -34847,7 +34847,6 @@ Account = React.createClass({displayName: 'Account',
     if (!this.modal) {
       props = {
         onClose: this.handleClose,
-        title: "Восстановление пароля",
         children: this.renderModalBody()
       };
       this.modal = React.renderComponent(Modal(props), this.createContainer());
@@ -34883,7 +34882,7 @@ Account = React.createClass({displayName: 'Account',
           React.DOM.div(null, "Ваш аккаунт успешно изменен.")
         ),
         React.DOM.div(null, 
-				  React.DOM.button( {className:"btn", onClick:this.handleClose}, "Закрыть")
+				  React.DOM.button( {className:"btn", onClick:this.handleClose}, "OK")
 				)
       )  
     );
