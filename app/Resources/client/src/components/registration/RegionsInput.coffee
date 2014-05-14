@@ -3,6 +3,7 @@
 React = require "react"
 $ = require "jquery"
 require "selectize"
+compareRegions = require "../../util/compareRegions"
 
 RegionsInput = React.createClass
   getDefaultProps: ->
@@ -45,6 +46,10 @@ RegionsInput = React.createClass
           text: region.properties.get "hintContent"
           value: region.properties.get "hintContent"
           order: index
+
+      # Sort the region list
+      options = options.sort(compareRegions)
+      opt.order = i for opt, i in options
 
       selectize = $(@refs.select.getDOMNode())[0].selectize
       selectize.clearOptions()

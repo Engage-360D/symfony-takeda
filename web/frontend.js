@@ -9860,8 +9860,6 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],"jquery-placeholder":[function(require,module,exports){
-module.exports=require('M71An9');
 },{}],"M71An9":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -10046,7 +10044,9 @@ module.exports=require('M71An9');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"6StMfs"}],"edEggf":[function(require,module,exports){
+},{"jquery":"6StMfs"}],"jquery-placeholder":[function(require,module,exports){
+module.exports=require('M71An9');
+},{}],"edEggf":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -33777,9 +33777,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"sifter":[function(require,module,exports){
-module.exports=require('fsZITE');
-},{}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -34234,6 +34232,8 @@ module.exports=require('fsZITE');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('fsZITE');
 },{}],153:[function(require,module,exports){
 /** @jsx React.DOM */;
 var BooleanRadioGroup, RadioGroup, React;
@@ -36923,7 +36923,7 @@ Test = React.createClass({displayName: 'Test',
 module.exports = Test;
 
 
-},{"../../mixins/ErrorMessageMixin":181,"../../mixins/LinkedStateMixin":183,"../../mixins/ValidationMixin":188,"../../services/validationConstraints":189,"../../util/plural":191,"../form/BooleanRadioGroup":153,"../form/DateInput":155,"../form/ExtendedDateInput":156,"../form/RadioGroup":157,"../form/Range":158,"../helpers/Visibility":159,"../registration/Input":171,"../registration/NumberSelect":172,"./Login":164,"./Registration":165,"./TestResultRecommendations":168,"jquery":"6StMfs","moment":9,"react":147}],168:[function(require,module,exports){
+},{"../../mixins/ErrorMessageMixin":181,"../../mixins/LinkedStateMixin":183,"../../mixins/ValidationMixin":188,"../../services/validationConstraints":189,"../../util/plural":192,"../form/BooleanRadioGroup":153,"../form/DateInput":155,"../form/ExtendedDateInput":156,"../form/RadioGroup":157,"../form/Range":158,"../helpers/Visibility":159,"../registration/Input":171,"../registration/NumberSelect":172,"./Login":164,"./Registration":165,"./TestResultRecommendations":168,"jquery":"6StMfs","moment":9,"react":147}],168:[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, Input, LinkedStateMixin, React, TestResultRecommendations, TestResultRecommendationsBanner, ValidationMixin, cx, gradientCalculatorFactory, validationConstraints;
 
@@ -37223,7 +37223,7 @@ TestResultRecommendationsBanner = React.createClass({displayName: 'TestResultRec
 module.exports = TestResultRecommendations;
 
 
-},{"../../mixins/LinkedStateMixin":183,"../../mixins/ValidationMixin":188,"../../services/validationConstraints":189,"../../util/gradientCalculatorFactory":190,"../registration/Input":171,"jquery":"6StMfs","react":147,"react/lib/cx":106}],169:[function(require,module,exports){
+},{"../../mixins/LinkedStateMixin":183,"../../mixins/ValidationMixin":188,"../../services/validationConstraints":189,"../../util/gradientCalculatorFactory":191,"../registration/Input":171,"jquery":"6StMfs","react":147,"react/lib/cx":106}],169:[function(require,module,exports){
 /** @jsx React.DOM */;
 var Checkbox, ModsMixin, React;
 
@@ -37400,13 +37400,15 @@ module.exports = NumberSelect;
 
 },{"jquery":"6StMfs","moment":9,"react":147,"selectize":"iECS2l"}],173:[function(require,module,exports){
 /** @jsx React.DOM */;
-var $, React, RegionsInput;
+var $, React, RegionsInput, compareRegions;
 
 React = require("react");
 
 $ = require("jquery");
 
 require("selectize");
+
+compareRegions = require("../../util/compareRegions");
 
 RegionsInput = React.createClass({displayName: 'RegionsInput',
   getDefaultProps: function() {
@@ -37445,7 +37447,7 @@ RegionsInput = React.createClass({displayName: 'RegionsInput',
       quality: 1
     }).then((function(_this) {
       return function(result) {
-        var options, selectize;
+        var i, opt, options, selectize, _i, _len;
         options = [];
         result.geoObjects.each(function(region, index) {
           return options.push({
@@ -37454,6 +37456,11 @@ RegionsInput = React.createClass({displayName: 'RegionsInput',
             order: index
           });
         });
+        options = options.sort(compareRegions);
+        for (i = _i = 0, _len = options.length; _i < _len; i = ++_i) {
+          opt = options[i];
+          opt.order = i;
+        }
         selectize = $(_this.refs.select.getDOMNode())[0].selectize;
         selectize.clearOptions();
         selectize.addOption(options);
@@ -37483,7 +37490,7 @@ RegionsInput = React.createClass({displayName: 'RegionsInput',
 module.exports = RegionsInput;
 
 
-},{"jquery":"6StMfs","react":147,"selectize":"iECS2l"}],174:[function(require,module,exports){
+},{"../../util/compareRegions":190,"jquery":"6StMfs","react":147,"selectize":"iECS2l"}],174:[function(require,module,exports){
 /** @jsx React.DOM */;
 var React, ValidationError;
 
@@ -38223,6 +38230,38 @@ module.exports = validationConstraints;
 
 
 },{"moment":9}],190:[function(require,module,exports){
+var compareRegions;
+
+compareRegions = function(a, b) {
+  if (a && b && a.text && b.text) {
+    if (a.text === 'Москва' || b.text === 'Москва') {
+      if (a.text === 'Москва') {
+        return -1;
+      } else {
+        return 1;
+      }
+    } else if (a.text === 'Санкт-Петербург' || b.text === 'Санкт-Петербург') {
+      if (a.text === 'Санкт-Петербург') {
+        return -1;
+      } else {
+        return 1;
+      }
+    } else {
+      if (a.text < b.text) {
+        return -1;
+      } else if (a.text > b.text) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
+};
+
+module.exports = compareRegions;
+
+
+},{}],191:[function(require,module,exports){
 var gradientCalculatorFactory;
 
 module.exports = gradientCalculatorFactory = function(start, end) {
@@ -38243,7 +38282,7 @@ module.exports = gradientCalculatorFactory = function(start, end) {
 };
 
 
-},{}],191:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 var plural;
 
 module.exports = plural = (function(_this) {
