@@ -102,9 +102,9 @@ class AccountController extends Controller
                 ->findUserByUsernameOrEmail($error->getToken()->getUsername());
 
             if (null === $user) {
-                $response['username'] = 'Username not found';
+                $response['username'] = $this->get('translator')->trans('error.invalid.username');
             } else {
-                $response['password'] = 'Invalid password';
+                $response['password'] = $this->get('translator')->trans('error.invalid.password');
             }
         } else {
             $response['error'] = $error->getMessage();

@@ -15,7 +15,9 @@ parameters:
     mailer_auth_mode:    ~
     mailer_sender_email: ~
 
-    locale:            en
+    # In order to translation service to work properly in English locale,
+    # this property should be in the form language_country, e.g. "en_US".
+    locale:            ru
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     facebook_client_id: 245182945513174

@@ -31,6 +31,7 @@ Login = React.createClass
     errors:
       minLength: "Минимальная длина 3 символа"
       email: "Некорректный email адресс"
+      default: "При попытке авторизации произошла ошибка. Попробуйте позже."
 
   getDefaultProps: ->
     reloadOnSuccess: true
@@ -64,8 +65,10 @@ Login = React.createClass
       if error
         if error.username
           @setState usernameInvalidMessage: error.username, usernameInvalid: true
-        else
+        else if error.password
           @setState passwordInvalidMessage: error.password, passwordInvalid: true
+        else
+          @showLoginFailureMessage()
       else
         @props.valueLink.requestChange true if @props.valueLink
         window.location.reload() if @props.reloadOnSuccess
@@ -87,6 +90,15 @@ Login = React.createClass
   isPasswordInvalid: ->
     return false unless @state.showValidation
     @validity.children.password.invalid or @state.passwordInvalid
+
+  showLoginFailureMessage: ->
+    modal = null
+    props =
+      onClose: =>
+        modal.setState show: false
+      title: "Ошибка"
+      children: Login.errors.default
+    modal = React.renderComponent Modal(props), @createContainer()
 
   render: ->
     `(

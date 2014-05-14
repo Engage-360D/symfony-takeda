@@ -15,10 +15,21 @@ class Auth
         presenttoken: "header"
         isDefault: true
 
-  login: (username, password) ->
-    $.post("/account/check", {_username: username, _password: password, _target_path: "/account/admin_success"})
-      .success (response) =>
-        jso_ensureTokens engage360d: []
+  login: (username, password, callback) ->
+    $.ajax
+      url: "/account/check"
+      method: "POST"
+      data:
+        _username: username
+        _password: password
+        _target_path: "/account/admin_success"
+      success: (response) -> jso_ensureTokens engage360d: []
+      error: (error) ->
+        try
+          error = JSON.parse error.responseText
+        catch e
+          error = {}
+        callback error if typeof callback is 'function'
 
   logout: ->
     jso_wipe()

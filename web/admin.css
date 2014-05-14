@@ -678,6 +678,30 @@ ul.st-text-block {
   padding-top: 7px;
 }
 
+.ValidationError {
+  position: absolute;
+  top: 37px;
+  right: -2px;
+  border: 1px solid #cdcdcd;
+  padding: 10px 20px;
+  background: #f04244;
+  font-size: 14px;
+  color: #fff;
+  z-index: 1000;
+  white-space: pre;
+}
+.ValidationError:before {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -10px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 9px 0 0 9px;
+  border-color: transparent transparent transparent #cdcdcd;
+}
+
 .Grid {
   width: 100%;
   background: #fcfcfc;
@@ -781,49 +805,46 @@ ul.st-text-block {
   overflow: hidden;
 }
 
-.ModalBackdrop {
-  position: absolute;
-  z-index: 99;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background: rgba(255,255,255,0.35);
-}
 .Modal {
   position: absolute;
-  z-index: 100;
-  width: 600px;
-  top: 80px;
+  top: 200px;
   left: 50%;
-  margin-left: -300px;
+  width: 650px;
+  margin-left: -325px;
+  border: 1px solid #cdcdcd;
+  padding: 20px;
   background: #fff;
-  box-shadow: 1px 4px 6px rgba(0,0,0,0.2);
-  border-radius: 2px;
+  z-index: 1000;
 }
-.Modal .ModalHeader {
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  min-height: 16.428571429px;
-}
-.Modal .ModalHeader span {
-  font-size: 20px;
-  line-height: 1.428571429;
-  color: #333;
-}
-.Modal .ModalHeader .ModalClose {
-  float: right;
-  font-size: 21px;
-  font-weight: 700;
+.Modal .ModalTitle {
+  margin-bottom: 15px;
   line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: 0.2;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px;
+}
+.Modal .ModalClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  background: url("../img/icons-s314e2dbd02.png") 0 -2340px no-repeat;
+  border: none;
+  outline: none;
   cursor: pointer;
+}
+.Modal .ModalClose:hover {
+  background: url("../img/icons-s314e2dbd02.png") 0 -2315px no-repeat;
+}
+.Modal .ModalBody {
+  font-size: 14px;
+}
+.Modal .ModalBody .field_mod_middle {
+  margin-bottom: 10px;
+}
+.Modal .ModalBody .enter {
   border: 0px;
-  padding: 0px;
-  background: none;
-  box-shadow: none;
+  padding-bottom: 0px;
 }
 
 .Navigation {
@@ -3629,6 +3650,9 @@ repeat-x
 	top: 0;
 	left: 0;
 	cursor: default;
+}
+.Input {
+  position: relative;
 }
 .Input .InputElement,
 .DateInput .InputElement {

@@ -4,24 +4,24 @@ React = require "react"
 
 Modal = React.createClass
   getDefaultProps: ->
-    show: false
     title: null
+
+  getInitialState: ->
+    show: true
 
   onClose: ->
     @props.onClose() if @props.onClose
 
   render: ->
-    return `(<div/>)` unless @props.show
+    return `(<div/>)` unless @state.show
 
     `(
       <div>
         <div className="ModalBackdrop" onClick={this.onClose}>
         </div>
         <div className="Modal">
-          <div className="ModalHeader">
-            <button className="ModalClose" onClick={this.onClose}>×</button>
-            <span>{this.props.title}</span>
-          </div>
+          <button className="ModalClose" onClick={this.onClose}></button>
+          <div className="ModalTitle">{this.props.title}</div>
           <div className="ModalBody">
             {this.props.children}
           </div>

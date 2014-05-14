@@ -1,4 +1,6 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"vVe2ih":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"admin":[function(require,module,exports){
+module.exports=require('vVe2ih');
+},{}],"vVe2ih":[function(require,module,exports){
 module.exports = function() {
   var Auth, Ctx, LoginPage, MainPage, React;
   React = require("react");
@@ -6,7 +8,7 @@ module.exports = function() {
   Ctx = require("Engage360d/services/Context");
   Ctx.register("eventBus").object(require("Engage360d/services/EventBus"));
   Ctx.register("router").object(require("Engage360d/services/Router"));
-  Ctx.register("auth").object(new Auth("1_3af2h2teevok48swsk4osc4k88c0k4s4g04w4cc0gc4kk8kosw"));
+  Ctx.register("auth").object(new Auth("1_cje2917uo740sscss400g0wc8w80sc8owg04wowo04w4g4kg4"));
   Ctx.register("ajax").object(require("Engage360d/services/Ajax"));
   Ctx.register("navigation", Array, [require("Engage360d/modules/pages/navigation/PagesNavigation")(), require("Engage360d/modules/users/navigation/UsersNavigation")(), require("Engage360d/modules/menu/navigation/MenuNavigation")()]);
   Ctx.register("pages", Array, [require("Engage360d/modules/pages/page/Category")(), require("Engage360d/modules/pages/page/Pages")(), require("Engage360d/modules/pages/page/Page")(), require("Engage360d/modules/menu/page/Menu")(), require("Engage360d/modules/menu/page/Menus")(), require("Engage360d/modules/menu/page/Node")(), require("Engage360d/modules/users/page/Users")(), require("Engage360d/modules/users/page/User")()]);
@@ -21,8 +23,8 @@ module.exports = function() {
 };
 
 
-},{"Engage360d/modules/menu/navigation/MenuNavigation":"EkbGDu","Engage360d/modules/menu/page/Menu":"oC83n7","Engage360d/modules/menu/page/Menus":"tbtta8","Engage360d/modules/menu/page/Node":"4unedn","Engage360d/modules/pages/navigation/PagesNavigation":"E0ndaY","Engage360d/modules/pages/page/Category":"qnI2hI","Engage360d/modules/pages/page/Page":"Uk/Bfo","Engage360d/modules/pages/page/Pages":"4bSWJg","Engage360d/modules/users/navigation/UsersNavigation":"eiQQe9","Engage360d/modules/users/page/User":"/7W5WQ","Engage360d/modules/users/page/Users":"0wIqoY","Engage360d/services/Ajax":"vtdv34","Engage360d/services/Auth":"QwpjDN","Engage360d/services/Context":"6uxOYh","Engage360d/services/EventBus":"MVSHGE","Engage360d/services/Router":"IQeGgv","LoginPage":"IK4n64","MainPage":"EIQB12","react":320}],"admin":[function(require,module,exports){
-module.exports=require('vVe2ih');
+},{"Engage360d/modules/menu/navigation/MenuNavigation":"EkbGDu","Engage360d/modules/menu/page/Menu":"oC83n7","Engage360d/modules/menu/page/Menus":"tbtta8","Engage360d/modules/menu/page/Node":"4unedn","Engage360d/modules/pages/navigation/PagesNavigation":"E0ndaY","Engage360d/modules/pages/page/Category":"qnI2hI","Engage360d/modules/pages/page/Page":"Uk/Bfo","Engage360d/modules/pages/page/Pages":"4bSWJg","Engage360d/modules/users/navigation/UsersNavigation":"eiQQe9","Engage360d/modules/users/page/User":"/7W5WQ","Engage360d/modules/users/page/Users":"0wIqoY","Engage360d/services/Ajax":"vtdv34","Engage360d/services/Auth":"QwpjDN","Engage360d/services/Context":"6uxOYh","Engage360d/services/EventBus":"MVSHGE","Engage360d/services/Router":"IQeGgv","LoginPage":"IK4n64","MainPage":"EIQB12","react":330}],"Engage360d/components":[function(require,module,exports){
+module.exports=require('38wF9y');
 },{}],"38wF9y":[function(require,module,exports){
 (function (__dirname){
 var Components, through, vfs;
@@ -58,8 +60,8 @@ module.exports = Components;
 
 
 }).call(this,"/components")
-},{"through2":344,"vinyl-fs":347}],"Engage360d/components":[function(require,module,exports){
-module.exports=require('38wF9y');
+},{"through2":354,"vinyl-fs":357}],"Engage360d/components/button/Button":[function(require,module,exports){
+module.exports=require('eFdXaF');
 },{}],"eFdXaF":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, ModsMixin, React;
@@ -90,8 +92,8 @@ Button = React.createClass({displayName: 'Button',
 module.exports = Button;
 
 
-},{"Engage360d/mixins/ModsMixin":"muIYaX","react":320}],"Engage360d/components/button/Button":[function(require,module,exports){
-module.exports=require('eFdXaF');
+},{"Engage360d/mixins/ModsMixin":"muIYaX","react":330}],"Engage360d/components/button/ButtonGroup":[function(require,module,exports){
+module.exports=require('QnvJ83');
 },{}],"QnvJ83":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, ButtonGroup, DropDown, ModsMixin, React;
@@ -144,9 +146,7 @@ ButtonGroup = React.createClass({displayName: 'ButtonGroup',
 module.exports = ButtonGroup;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/dropdown/DropDown":"/3QQPJ","Engage360d/mixins/ModsMixin":"muIYaX","react":320}],"Engage360d/components/button/ButtonGroup":[function(require,module,exports){
-module.exports=require('QnvJ83');
-},{}],"80fQOa":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/dropdown/DropDown":"/3QQPJ","Engage360d/mixins/ModsMixin":"muIYaX","react":330}],"80fQOa":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Column, ModsMixin, React;
 
@@ -168,7 +168,7 @@ Column = React.createClass({displayName: 'Column',
 module.exports = Column;
 
 
-},{"Engage360d/mixins/ModsMixin":"muIYaX","react":320}],"Engage360d/components/column/Column":[function(require,module,exports){
+},{"Engage360d/mixins/ModsMixin":"muIYaX","react":330}],"Engage360d/components/column/Column":[function(require,module,exports){
 module.exports=require('80fQOa');
 },{}],"Engage360d/components/container/Container":[function(require,module,exports){
 module.exports=require('NdL5Xi');
@@ -203,7 +203,7 @@ Container = React.createClass({displayName: 'Container',
 module.exports = Container;
 
 
-},{"react":320}],"/3QQPJ":[function(require,module,exports){
+},{"react":330}],"/3QQPJ":[function(require,module,exports){
 /** @jsx React.DOM */;
 var DropDown, ModsMixin, React;
 
@@ -233,7 +233,7 @@ DropDown = React.createClass({displayName: 'DropDown',
 module.exports = DropDown;
 
 
-},{"Engage360d/mixins/ModsMixin":"muIYaX","react":320}],"Engage360d/components/dropdown/DropDown":[function(require,module,exports){
+},{"Engage360d/mixins/ModsMixin":"muIYaX","react":330}],"Engage360d/components/dropdown/DropDown":[function(require,module,exports){
 module.exports=require('/3QQPJ');
 },{}],"QJhC9K":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -299,7 +299,7 @@ Editor = React.createClass({displayName: 'Editor',
 module.exports = Editor;
 
 
-},{"jquery":"v0jpUW","react":320,"react/lib/LinkedValueUtils":205,"sirTrevor":"r+a/67"}],"Engage360d/components/editor/Editor":[function(require,module,exports){
+},{"jquery":"v0jpUW","react":330,"react/lib/LinkedValueUtils":215,"sirTrevor":"r+a/67"}],"Engage360d/components/editor/Editor":[function(require,module,exports){
 module.exports=require('QJhC9K');
 },{}],"Engage360d/components/form/Field":[function(require,module,exports){
 module.exports=require('Fp+wUa');
@@ -322,7 +322,7 @@ Input = React.createClass({displayName: 'Input',
 module.exports = Input;
 
 
-},{"react":320}],"VtP6mB":[function(require,module,exports){
+},{"react":330}],"VtP6mB":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Label, React;
 
@@ -341,11 +341,35 @@ Label = React.createClass({displayName: 'Label',
 module.exports = Label;
 
 
-},{"react":320}],"Engage360d/components/form/Label":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/form/Label":[function(require,module,exports){
 module.exports=require('VtP6mB');
-},{}],"Engage360d/components/form/field/DateInput":[function(require,module,exports){
-module.exports=require('SW99nY');
-},{}],"SW99nY":[function(require,module,exports){
+},{}],"Engage360d/components/form/ValidationError":[function(require,module,exports){
+module.exports=require('8fYgYZ');
+},{}],"8fYgYZ":[function(require,module,exports){
+/** @jsx React.DOM */;
+var React, ValidationError;
+
+React = require("react");
+
+ValidationError = React.createClass({displayName: 'ValidationError',
+  getDefaultProps: function() {
+    return {
+      message: "Ошибка заполнения формы."
+    };
+  },
+  render: function() {
+    return (
+    	React.DOM.div( {className:"ValidationError"}, 
+    	  this.props.message
+    	)
+    );
+  }
+});
+
+module.exports = ValidationError;
+
+
+},{"react":330}],"SW99nY":[function(require,module,exports){
 /** @jsx React.DOM */;
 var DateInput, Pikaday, React;
 
@@ -426,21 +450,25 @@ DateInput = React.createClass({displayName: 'DateInput',
 module.exports = DateInput;
 
 
-},{"pikaday":184,"react":320}],"Engage360d/components/form/field/Input":[function(require,module,exports){
-module.exports=require('iegu9J');
+},{"pikaday":194,"react":330}],"Engage360d/components/form/field/DateInput":[function(require,module,exports){
+module.exports=require('SW99nY');
 },{}],"iegu9J":[function(require,module,exports){
 /** @jsx React.DOM */;
-var Input, React;
+var Input, React, ValidationError;
 
 React = require("react");
 
 require("jquery.ui.autocomplete");
 
+ValidationError = require("Engage360d/components/form/ValidationError");
+
 Input = React.createClass({displayName: 'Input',
   getDefaultProps: function() {
     return {
       type: "text",
-      autocomplete: null
+      autocomplete: null,
+      invalid: false,
+      invalidMessage: null
     };
   },
   componentDidMount: function() {
@@ -453,12 +481,24 @@ Input = React.createClass({displayName: 'Input',
       }
     }
   },
+  renderInput: function() {
+    return this.transferPropsTo((
+        React.DOM.input( {className:"InputElement", ref:"input"})
+      ));
+  },
+  renderValidation: function() {
+    if (!this.props.invalid) {
+      return;
+    }
+    return (
+      ValidationError( {message:this.props.invalidMessage} )
+    );
+  },
   render: function() {
     return (
       React.DOM.span( {className:"Input"}, 
-        this.transferPropsTo(
-          React.DOM.input( {className:"InputElement", ref:"input"})
-        )
+        this.renderInput(),
+        this.renderValidation()
       )
     );
   }
@@ -467,7 +507,9 @@ Input = React.createClass({displayName: 'Input',
 module.exports = Input;
 
 
-},{"jquery.ui.autocomplete":"Js05Q+","react":320}],"Engage360d/components/form/field/Select":[function(require,module,exports){
+},{"Engage360d/components/form/ValidationError":"8fYgYZ","jquery.ui.autocomplete":"Js05Q+","react":330}],"Engage360d/components/form/field/Input":[function(require,module,exports){
+module.exports=require('iegu9J');
+},{}],"Engage360d/components/form/field/Select":[function(require,module,exports){
 module.exports=require('/LGJws');
 },{}],"/LGJws":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -539,9 +581,7 @@ Select = React.createClass({displayName: 'Select',
 module.exports = Select;
 
 
-},{"react":320,"selectize":"qBYR1F"}],"Engage360d/components/grid/Grid":[function(require,module,exports){
-module.exports=require('mYjFMZ');
-},{}],"mYjFMZ":[function(require,module,exports){
+},{"react":330,"selectize":"qBYR1F"}],"mYjFMZ":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Grid, Icon, Input, React;
 
@@ -691,7 +731,11 @@ Grid = React.createClass({displayName: 'Grid',
 module.exports = Grid;
 
 
-},{"Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","react":320}],"dokV2f":[function(require,module,exports){
+},{"Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","react":330}],"Engage360d/components/grid/Grid":[function(require,module,exports){
+module.exports=require('mYjFMZ');
+},{}],"Engage360d/components/header/Header":[function(require,module,exports){
+module.exports=require('dokV2f');
+},{}],"dokV2f":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, ButtonGroup, Ctx, Header, Icon, Logo, React;
 
@@ -762,11 +806,7 @@ Header = React.createClass({displayName: 'Header',
 module.exports = Header;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/button/ButtonGroup":"QnvJ83","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/logo/Logo":"u7t/1o","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/components/header/Header":[function(require,module,exports){
-module.exports=require('dokV2f');
-},{}],"Engage360d/components/icon/Icon":[function(require,module,exports){
-module.exports=require('OxPNWg');
-},{}],"OxPNWg":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/button/ButtonGroup":"QnvJ83","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/logo/Logo":"u7t/1o","Engage360d/services/Context":"6uxOYh","react":330}],"OxPNWg":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Icon, React;
 
@@ -788,9 +828,11 @@ Icon = React.createClass({displayName: 'Icon',
 module.exports = Icon;
 
 
-},{"react":320}],"RrNTyx":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/icon/Icon":[function(require,module,exports){
+module.exports=require('OxPNWg');
+},{}],"RrNTyx":[function(require,module,exports){
 /** @jsx React.DOM */;
-var Button, Ctx, Field, Input, Login, React;
+var Button, Ctx, ErrorMessageMixin, Field, HTMLElementContainerMixin, Input, Login, Modal, React, ValidationMixin, validationConstraints;
 
 React = require("react");
 
@@ -802,11 +844,26 @@ Input = require("Engage360d/components/form/field/Input");
 
 Button = require("Engage360d/components/button/Button");
 
+Modal = require("Engage360d/components/modal/Modal");
+
+ValidationMixin = require("Engage360d/mixins/ValidationMixin");
+
+HTMLElementContainerMixin = require("Engage360d/mixins/HTMLElementContainerMixin");
+
+ErrorMessageMixin = require("Engage360d/mixins/ErrorMessageMixin");
+
+validationConstraints = require("Engage360d/services/ValidationConstraints");
+
 Login = React.createClass({displayName: 'Login',
+  mixins: [ValidationMixin, HTMLElementContainerMixin, ErrorMessageMixin],
   getInitialState: function() {
     return {
       username: null,
-      password: null
+      password: null,
+      usernameInvalid: false,
+      passwordInvalid: false,
+      usernameInvalidMessage: null,
+      passwordInvalidMessage: null
     };
   },
   createChangeHandler: function(field) {
@@ -818,8 +875,91 @@ Login = React.createClass({displayName: 'Login',
       return _this.setState(state);
     };
   },
+  getValidationConfig: function() {
+    return {
+      children: {
+        username: {
+          minLength: validationConstraints.minLength(3),
+          email: validationConstraints.email()
+        },
+        password: {
+          minLength: validationConstraints.minLength(3)
+        }
+      },
+      component: {
+        form: function(state, childrenValidity) {
+          return childrenValidity.username.valid && childrenValidity.password.valid;
+        }
+      }
+    };
+  },
+  isUsernameInvalid: function() {
+    if (!this.state.showValidation) {
+      return false;
+    }
+    return this.validity.children.username.invalid || this.state.usernameInvalid;
+  },
+  isPasswordInvalid: function() {
+    if (!this.state.showValidation) {
+      return false;
+    }
+    return this.validity.children.password.invalid || this.state.passwordInvalid;
+  },
+  getUsernameInvalidMessage: function() {
+    ({
+      getUsernameInvalidMessage: function() {}
+    });
+    if (this.state.usernameInvalidMessage) {
+      return this.state.usernameInvalidMessage;
+    }
+    if (this.state.username && this.state.username.length > 0) {
+      return this.getErrorMessage('email');
+    } else {
+      return this.getErrorMessage('blank');
+    }
+  },
+  showLoginFailureMessage: function() {
+    var modal, props,
+      _this = this;
+    modal = null;
+    props = {
+      onClose: function() {
+        return modal.setState({
+          show: false
+        });
+      },
+      title: "Ошибка",
+      children: this.getErrorMessage('unknown')
+    };
+    return modal = React.renderComponent(Modal(props), this.createContainer());
+  },
   submit: function() {
-    return Ctx.get("auth").login(this.state.username, this.state.password);
+    var _this = this;
+    this.setState({
+      showValidation: true,
+      usernameInvalid: false,
+      passwordInvalid: false
+    });
+    if (this.validity.component.form.invalid) {
+      return;
+    }
+    return Ctx.get("auth").login(this.state.username, this.state.password, function(error) {
+      if (error) {
+        if (error.username) {
+          return _this.setState({
+            usernameInvalidMessage: error.username,
+            usernameInvalid: true
+          });
+        } else if (error.password) {
+          return _this.setState({
+            passwordInvalidMessage: error.password,
+            passwordInvalid: true
+          });
+        } else {
+          return _this.showLoginFailureMessage();
+        }
+      }
+    });
   },
   render: function() {
     return (
@@ -827,13 +967,17 @@ Login = React.createClass({displayName: 'Login',
         Field(null, 
           Input(
             {placeholder:"Логин",
-            onChange:this.createChangeHandler("username")})
+            onChange:this.createChangeHandler("username"),
+            invalid:this.isUsernameInvalid(),
+            invalidMessage:this.getUsernameInvalidMessage()})
         ),
         Field(null, 
           Input(
             {type:"password",
             placeholder:"Пароль",
-            onChange:this.createChangeHandler("password")})
+            onChange:this.createChangeHandler("password"),
+            invalid:this.isPasswordInvalid(),
+            invalidMessage:this.state.passwordInvalidMessage || this.getErrorMessage('minLength')})
         ),
         Button( {onClick:this.submit, mods:["Block", "Success"]}, "Войти")
       )
@@ -844,10 +988,8 @@ Login = React.createClass({displayName: 'Login',
 module.exports = Login;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/field/Input":"iegu9J","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/components/login/Login":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/modal/Modal":"LSLQfC","Engage360d/mixins/ErrorMessageMixin":"AQ8sLL","Engage360d/mixins/HTMLElementContainerMixin":"UaZyMV","Engage360d/mixins/ValidationMixin":"w6PycL","Engage360d/services/Context":"6uxOYh","Engage360d/services/ValidationConstraints":"AB8O9v","react":330}],"Engage360d/components/login/Login":[function(require,module,exports){
 module.exports=require('RrNTyx');
-},{}],"Engage360d/components/login/facebook/FacebookButton":[function(require,module,exports){
-module.exports=require('IQIO8q');
 },{}],"IQIO8q":[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, Button, FacebookButton, React;
@@ -906,7 +1048,11 @@ FacebookButton = React.createClass({displayName: 'FacebookButton',
 module.exports = FacebookButton;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","jquery":"v0jpUW","react":320}],"u7t/1o":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","jquery":"v0jpUW","react":330}],"Engage360d/components/login/facebook/FacebookButton":[function(require,module,exports){
+module.exports=require('IQIO8q');
+},{}],"Engage360d/components/logo/Logo":[function(require,module,exports){
+module.exports=require('u7t/1o');
+},{}],"u7t/1o":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Logo, React;
 
@@ -927,9 +1073,7 @@ Logo = React.createClass({displayName: 'Logo',
 module.exports = Logo;
 
 
-},{"react":320}],"Engage360d/components/logo/Logo":[function(require,module,exports){
-module.exports=require('u7t/1o');
-},{}],"LSLQfC":[function(require,module,exports){
+},{"react":330}],"LSLQfC":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Modal, React;
 
@@ -938,8 +1082,12 @@ React = require("react");
 Modal = React.createClass({displayName: 'Modal',
   getDefaultProps: function() {
     return {
-      show: false,
       title: null
+    };
+  },
+  getInitialState: function() {
+    return {
+      show: true
     };
   },
   onClose: function() {
@@ -948,7 +1096,7 @@ Modal = React.createClass({displayName: 'Modal',
     }
   },
   render: function() {
-    if (!this.props.show) {
+    if (!this.state.show) {
       return (React.DOM.div(null));
     }
     return (
@@ -956,10 +1104,8 @@ Modal = React.createClass({displayName: 'Modal',
         React.DOM.div( {className:"ModalBackdrop", onClick:this.onClose}
         ),
         React.DOM.div( {className:"Modal"}, 
-          React.DOM.div( {className:"ModalHeader"}, 
-            React.DOM.button( {className:"ModalClose", onClick:this.onClose}, "×"),
-            React.DOM.span(null, this.props.title)
-          ),
+          React.DOM.button( {className:"ModalClose", onClick:this.onClose}),
+          React.DOM.div( {className:"ModalTitle"}, this.props.title),
           React.DOM.div( {className:"ModalBody"}, 
             this.props.children
           )
@@ -972,10 +1118,8 @@ Modal = React.createClass({displayName: 'Modal',
 module.exports = Modal;
 
 
-},{"react":320}],"Engage360d/components/modal/Modal":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/modal/Modal":[function(require,module,exports){
 module.exports=require('LSLQfC');
-},{}],"Engage360d/components/navigation/Navigation":[function(require,module,exports){
-module.exports=require('FgxmrT');
 },{}],"FgxmrT":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Ctx, Navigation, React;
@@ -1013,7 +1157,11 @@ Navigation = React.createClass({displayName: 'Navigation',
 module.exports = Navigation;
 
 
-},{"Engage360d/services/Context":"6uxOYh","react":320}],"YJUEkw":[function(require,module,exports){
+},{"Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/components/navigation/Navigation":[function(require,module,exports){
+module.exports=require('FgxmrT');
+},{}],"Engage360d/components/navigation/NavigationBlock":[function(require,module,exports){
+module.exports=require('YJUEkw');
+},{}],"YJUEkw":[function(require,module,exports){
 /** @jsx React.DOM */;
 var NavigationBlock, NavigationItem, NavigationSubItem, React;
 
@@ -1102,8 +1250,8 @@ NavigationBlock = React.createClass({displayName: 'NavigationBlock',
 module.exports = NavigationBlock;
 
 
-},{"Engage360d/components/navigation/NavigationItem":"1qsxHA","Engage360d/components/navigation/NavigationSubItem":"ij5Ff9","react":320}],"Engage360d/components/navigation/NavigationBlock":[function(require,module,exports){
-module.exports=require('YJUEkw');
+},{"Engage360d/components/navigation/NavigationItem":"1qsxHA","Engage360d/components/navigation/NavigationSubItem":"ij5Ff9","react":330}],"Engage360d/components/navigation/NavigationItem":[function(require,module,exports){
+module.exports=require('1qsxHA');
 },{}],"1qsxHA":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Icon, ModsMixin, NavigationItem, React;
@@ -1135,11 +1283,7 @@ NavigationItem = React.createClass({displayName: 'NavigationItem',
 module.exports = NavigationItem;
 
 
-},{"Engage360d/components/icon/Icon":"OxPNWg","Engage360d/mixins/ModsMixin":"muIYaX","react":320}],"Engage360d/components/navigation/NavigationItem":[function(require,module,exports){
-module.exports=require('1qsxHA');
-},{}],"Engage360d/components/navigation/NavigationSubItem":[function(require,module,exports){
-module.exports=require('ij5Ff9');
-},{}],"ij5Ff9":[function(require,module,exports){
+},{"Engage360d/components/icon/Icon":"OxPNWg","Engage360d/mixins/ModsMixin":"muIYaX","react":330}],"ij5Ff9":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Ctx, Icon, ModsMixin, NavigationSubItem, React;
 
@@ -1210,7 +1354,11 @@ NavigationSubItem = React.createClass({displayName: 'NavigationSubItem',
 module.exports = NavigationSubItem;
 
 
-},{"Engage360d/components/icon/Icon":"OxPNWg","Engage360d/mixins/ModsMixin":"muIYaX","Engage360d/services/Context":"6uxOYh","react":320}],"dliSDD":[function(require,module,exports){
+},{"Engage360d/components/icon/Icon":"OxPNWg","Engage360d/mixins/ModsMixin":"muIYaX","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/components/navigation/NavigationSubItem":[function(require,module,exports){
+module.exports=require('ij5Ff9');
+},{}],"Engage360d/components/page/Page":[function(require,module,exports){
+module.exports=require('dliSDD');
+},{}],"dliSDD":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Page, React;
 
@@ -1229,9 +1377,7 @@ Page = React.createClass({displayName: 'Page',
 module.exports = Page;
 
 
-},{"react":320}],"Engage360d/components/page/Page":[function(require,module,exports){
-module.exports=require('dliSDD');
-},{}],"a2OhWu":[function(require,module,exports){
+},{"react":330}],"a2OhWu":[function(require,module,exports){
 /** @jsx React.DOM */;
 var PageContainer, React;
 
@@ -1250,8 +1396,10 @@ PageContainer = React.createClass({displayName: 'PageContainer',
 module.exports = PageContainer;
 
 
-},{"react":320}],"Engage360d/components/page/PageContainer":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/page/PageContainer":[function(require,module,exports){
 module.exports=require('a2OhWu');
+},{}],"Engage360d/components/page/PageContent":[function(require,module,exports){
+module.exports=require('ILIUOY');
 },{}],"ILIUOY":[function(require,module,exports){
 /** @jsx React.DOM */;
 var PageContent, React;
@@ -1271,11 +1419,7 @@ PageContent = React.createClass({displayName: 'PageContent',
 module.exports = PageContent;
 
 
-},{"react":320}],"Engage360d/components/page/PageContent":[function(require,module,exports){
-module.exports=require('ILIUOY');
-},{}],"Engage360d/components/page/PageHeader":[function(require,module,exports){
-module.exports=require('3lZY+5');
-},{}],"3lZY+5":[function(require,module,exports){
+},{"react":330}],"3lZY+5":[function(require,module,exports){
 /** @jsx React.DOM */;
 var PageHeader, React;
 
@@ -1296,8 +1440,8 @@ PageHeader = React.createClass({displayName: 'PageHeader',
 module.exports = PageHeader;
 
 
-},{"react":320}],"Engage360d/components/panel/Panel":[function(require,module,exports){
-module.exports=require('qjwbpK');
+},{"react":330}],"Engage360d/components/page/PageHeader":[function(require,module,exports){
+module.exports=require('3lZY+5');
 },{}],"qjwbpK":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Panel, React;
@@ -1317,7 +1461,9 @@ Panel = React.createClass({displayName: 'Panel',
 module.exports = Panel;
 
 
-},{"react":320}],"Engage360d/components/panel/PanelBody":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/panel/Panel":[function(require,module,exports){
+module.exports=require('qjwbpK');
+},{}],"Engage360d/components/panel/PanelBody":[function(require,module,exports){
 module.exports=require('aVlvDm');
 },{}],"aVlvDm":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -1338,7 +1484,7 @@ PanelBody = React.createClass({displayName: 'PanelBody',
 module.exports = PanelBody;
 
 
-},{"react":320}],"Engage360d/components/panel/PanelFooter":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/panel/PanelFooter":[function(require,module,exports){
 module.exports=require('jfuj8E');
 },{}],"jfuj8E":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -1359,7 +1505,9 @@ PanelFooter = React.createClass({displayName: 'PanelFooter',
 module.exports = PanelFooter;
 
 
-},{"react":320}],"o4HNgt":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/panel/PanelHeader":[function(require,module,exports){
+module.exports=require('o4HNgt');
+},{}],"o4HNgt":[function(require,module,exports){
 /** @jsx React.DOM */;
 var PanelHeader, React;
 
@@ -1384,9 +1532,7 @@ PanelHeader = React.createClass({displayName: 'PanelHeader',
 module.exports = PanelHeader;
 
 
-},{"react":320}],"Engage360d/components/panel/PanelHeader":[function(require,module,exports){
-module.exports=require('o4HNgt');
-},{}],"uB84Cd":[function(require,module,exports){
+},{"react":330}],"uB84Cd":[function(require,module,exports){
 /** @jsx React.DOM */;
 var React, Tab;
 
@@ -1415,7 +1561,7 @@ Tab = React.createClass({displayName: 'Tab',
 module.exports = Tab;
 
 
-},{"react":320}],"Engage360d/components/tabs/Tab":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/tabs/Tab":[function(require,module,exports){
 module.exports=require('uB84Cd');
 },{}],"QeVmws":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -1508,7 +1654,7 @@ TabPanel = React.createClass({displayName: 'TabPanel',
 module.exports = TabPanel;
 
 
-},{"react":320}],"Engage360d/components/tabs/TabPanel":[function(require,module,exports){
+},{"react":330}],"Engage360d/components/tabs/TabPanel":[function(require,module,exports){
 module.exports=require('QeVmws');
 },{}],"ELVsL4":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -1572,7 +1718,7 @@ Tree = React.createClass({displayName: 'Tree',
 module.exports = Tree;
 
 
-},{"jstree":"Q/deoU","react":320}],"Engage360d/components/tree/Tree":[function(require,module,exports){
+},{"jstree":"Q/deoU","react":330}],"Engage360d/components/tree/Tree":[function(require,module,exports){
 module.exports=require('ELVsL4');
 },{}],"KRuBaj":[function(require,module,exports){
 var Backbone, Collection;
@@ -1592,8 +1738,10 @@ Collection = Backbone.Collection.extend({
 module.exports = Collection;
 
 
-},{"backbone":129,"jquery":"v0jpUW"}],"Engage360d/data/Collection":[function(require,module,exports){
+},{"backbone":139,"jquery":"v0jpUW"}],"Engage360d/data/Collection":[function(require,module,exports){
 module.exports=require('KRuBaj');
+},{}],"Engage360d/data/Model":[function(require,module,exports){
+module.exports=require('YskCdS');
 },{}],"YskCdS":[function(require,module,exports){
 var Backbone, Model;
 
@@ -1661,8 +1809,64 @@ Model = Backbone.Model.extend({
 module.exports = Model;
 
 
-},{"backbone":129,"jquery":"v0jpUW"}],"Engage360d/data/Model":[function(require,module,exports){
-module.exports=require('YskCdS');
+},{"backbone":139,"jquery":"v0jpUW"}],"Engage360d/mixins/ErrorMessageMixin":[function(require,module,exports){
+module.exports=require('AQ8sLL');
+},{}],"AQ8sLL":[function(require,module,exports){
+var ErrorMessageMixin;
+
+ErrorMessageMixin = {
+  getErrorMessage: function(type, config) {
+    var errors, minLength;
+    minLength = config && config.minLength ? config.minLength : 3;
+    errors = {
+      blank: "Заполните поле",
+      minLength: "Минимальная длина " + minLength + " символа",
+      email: "Некорректный email адресс",
+      "default": "Ошибка заполнения формы",
+      unknown: "При попытке авторизации произошла ошибка. Попробуйте позже."
+    };
+    if (errors[type]) {
+      return errors[type];
+    } else {
+      return errors["default"];
+    }
+  }
+};
+
+module.exports = ErrorMessageMixin;
+
+
+},{}],"UaZyMV":[function(require,module,exports){
+var HTMLElementContainerMixin;
+
+HTMLElementContainerMixin = {
+  createContainer: function() {
+    var body, container;
+    body = this.getBody();
+    container = document.createElement("div");
+    body.appendChild(container);
+    return container;
+  },
+  getBody: function() {
+    var body;
+    if (document.querySelectorAll) {
+      body = document.querySelectorAll("body");
+    } else {
+      body = document.getElementsByTagName("body");
+    }
+    if (body[0]) {
+      return body[0];
+    } else {
+      return body;
+    }
+  }
+};
+
+module.exports = HTMLElementContainerMixin;
+
+
+},{}],"Engage360d/mixins/HTMLElementContainerMixin":[function(require,module,exports){
+module.exports=require('UaZyMV');
 },{}],"Engage360d/mixins/LinkModelMixin":[function(require,module,exports){
 module.exports=require('49oysP');
 },{}],"49oysP":[function(require,module,exports){
@@ -1684,9 +1888,7 @@ LinkModelMixin = {
 module.exports = LinkModelMixin;
 
 
-},{"react/lib/ReactLink":238}],"Engage360d/mixins/ModsMixin":[function(require,module,exports){
-module.exports=require('muIYaX');
-},{}],"muIYaX":[function(require,module,exports){
+},{"react/lib/ReactLink":248}],"muIYaX":[function(require,module,exports){
 var ModsMixin;
 
 ModsMixin = {
@@ -1714,8 +1916,85 @@ ModsMixin = {
 module.exports = ModsMixin;
 
 
-},{}],"Engage360d/modules/menu/model/Menu":[function(require,module,exports){
-module.exports=require('ehY1ZR');
+},{}],"Engage360d/mixins/ModsMixin":[function(require,module,exports){
+module.exports=require('muIYaX');
+},{}],"w6PycL":[function(require,module,exports){
+var ValidationMixin, validateState, validateValue,
+  __slice = [].slice;
+
+validateValue = function() {
+  var args, config, fieldValidity, valid, validatorName, _i, _len, _ref;
+  config = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+  fieldValidity = {
+    valid: true,
+    invalid: false
+  };
+  _ref = Object.keys(config);
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    validatorName = _ref[_i];
+    valid = config[validatorName].apply(null, args);
+    fieldValidity[validatorName] = {
+      valid: valid,
+      invalid: !valid
+    };
+    if (!valid) {
+      fieldValidity.valid = false;
+      fieldValidity.invalid = true;
+    }
+  }
+  return fieldValidity;
+};
+
+validateState = function(config, state) {
+  var childrenValidity, componentValidity, key, validity, _i, _len, _ref;
+  validity = {
+    valid: true,
+    invalid: false,
+    children: {}
+  };
+  if (config.children) {
+    _ref = Object.keys(config.children);
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      key = _ref[_i];
+      childrenValidity = validateValue(config.children[key], state[key], state);
+      validity.children[key] = childrenValidity;
+      if (childrenValidity.invalid) {
+        validity.valid = false;
+        validity.invalid = true;
+      }
+    }
+  }
+  if (config.component) {
+    componentValidity = validateValue(config.component, state, validity.children);
+    validity.component = componentValidity;
+    if (componentValidity.invalid) {
+      validity.valid = false;
+      validity.invalid = true;
+    }
+  }
+  return validity;
+};
+
+ValidationMixin = {
+  componentWillMount: function() {
+    return this.validity = validateState(this.getValidationConfig(), this.state);
+  },
+  componentWillUpdate: function(nextProps, nextState) {
+    this._prevValidity = this.validity;
+    return this.validity = validateState(this.getValidationConfig(), nextState);
+  },
+  componentDidUpdate: function() {
+    if (this.componentDidValidated) {
+      return this.componentDidValidated(this._prevValidity);
+    }
+  }
+};
+
+module.exports = ValidationMixin;
+
+
+},{}],"Engage360d/mixins/ValidationMixin":[function(require,module,exports){
+module.exports=require('w6PycL');
 },{}],"ehY1ZR":[function(require,module,exports){
 var Menu, Model;
 
@@ -1752,7 +2031,9 @@ Menu = Model.extend({
 module.exports = Menu;
 
 
-},{"Engage360d/data/Model":"YskCdS","moment":"iROhDJ"}],"Engage360d/modules/menu/model/MenuCollection":[function(require,module,exports){
+},{"Engage360d/data/Model":"YskCdS","moment":"iROhDJ"}],"Engage360d/modules/menu/model/Menu":[function(require,module,exports){
+module.exports=require('ehY1ZR');
+},{}],"Engage360d/modules/menu/model/MenuCollection":[function(require,module,exports){
 module.exports=require('GFgFu1');
 },{}],"GFgFu1":[function(require,module,exports){
 var Collection, MenuCollection, MenuModel;
@@ -1908,9 +2189,7 @@ MenuNavigation = React.createClass({displayName: 'MenuNavigation',
 module.exports = MenuNavigation;
 
 
-},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/modules/menu/model/MenuCollection":"GFgFu1","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/modules/menu/page/Menu":[function(require,module,exports){
-module.exports=require('oC83n7');
-},{}],"oC83n7":[function(require,module,exports){
+},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/modules/menu/model/MenuCollection":"GFgFu1","Engage360d/services/Context":"6uxOYh","react":330}],"oC83n7":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, Column, Ctx, Field, Icon, Input, Label, LinkModelMixin, Menu, MenuModel, PageContent, PageHeader, Panel, PanelBody, PanelFooter, PanelHeader, React;
 
@@ -2073,8 +2352,8 @@ Menu = React.createClass({displayName: 'Menu',
 module.exports = Menu;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/menu/model/Menu":"ehY1ZR","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/modules/menu/page/Menus":[function(require,module,exports){
-module.exports=require('tbtta8');
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/menu/model/Menu":"ehY1ZR","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/menu/page/Menu":[function(require,module,exports){
+module.exports=require('oC83n7');
 },{}],"tbtta8":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, Column, Container, Ctx, Grid, Icon, MenuCollection, Menus, Modal, PageContent, PageHeader, Panel, PanelBody, PanelFooter, PanelHeader, React, Select, Tree;
@@ -2265,7 +2544,11 @@ Menus = React.createClass({displayName: 'Menus',
 module.exports = Menus;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/modal/Modal":"LSLQfC","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tree/Tree":"ELVsL4","Engage360d/modules/menu/model/MenuCollection":"GFgFu1","Engage360d/services/Context":"6uxOYh","react":320}],"4unedn":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/modal/Modal":"LSLQfC","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tree/Tree":"ELVsL4","Engage360d/modules/menu/model/MenuCollection":"GFgFu1","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/menu/page/Menus":[function(require,module,exports){
+module.exports=require('tbtta8');
+},{}],"Engage360d/modules/menu/page/Node":[function(require,module,exports){
+module.exports=require('4unedn');
+},{}],"4unedn":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, Column, Ctx, Field, Icon, Input, Label, LinkModelMixin, MenuModel, Modal, Node, PageContent, PageHeader, Panel, PanelBody, PanelFooter, PanelHeader, React;
 
@@ -2441,11 +2724,7 @@ Node = React.createClass({displayName: 'Node',
 module.exports = Node;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/modal/Modal":"LSLQfC","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/menu/model/Menu":"ehY1ZR","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/modules/menu/page/Node":[function(require,module,exports){
-module.exports=require('4unedn');
-},{}],"Engage360d/modules/pages/model/Category":[function(require,module,exports){
-module.exports=require('l6MszG');
-},{}],"l6MszG":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/modal/Modal":"LSLQfC","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/menu/model/Menu":"ehY1ZR","Engage360d/services/Context":"6uxOYh","react":330}],"l6MszG":[function(require,module,exports){
 var Category, Model;
 
 Model = require("Engage360d/data/Model");
@@ -2471,7 +2750,9 @@ Category = Model.extend({
 module.exports = Category;
 
 
-},{"Engage360d/data/Model":"YskCdS"}],"dEbssf":[function(require,module,exports){
+},{"Engage360d/data/Model":"YskCdS"}],"Engage360d/modules/pages/model/Category":[function(require,module,exports){
+module.exports=require('l6MszG');
+},{}],"dEbssf":[function(require,module,exports){
 var CategoryCollection, CategoryModel, Collection;
 
 Collection = require("Engage360d/data/Collection");
@@ -2488,8 +2769,6 @@ module.exports = CategoryCollection;
 
 },{"Engage360d/data/Collection":"KRuBaj","Engage360d/modules/pages/model/Category":"l6MszG"}],"Engage360d/modules/pages/model/CategoryCollection":[function(require,module,exports){
 module.exports=require('dEbssf');
-},{}],"Engage360d/modules/pages/model/Page":[function(require,module,exports){
-module.exports=require('d4hnwf');
 },{}],"d4hnwf":[function(require,module,exports){
 var Model, Page;
 
@@ -2522,7 +2801,11 @@ Page = Model.extend({
 module.exports = Page;
 
 
-},{"Engage360d/data/Model":"YskCdS"}],"/9yQcy":[function(require,module,exports){
+},{"Engage360d/data/Model":"YskCdS"}],"Engage360d/modules/pages/model/Page":[function(require,module,exports){
+module.exports=require('d4hnwf');
+},{}],"Engage360d/modules/pages/model/PageCollection":[function(require,module,exports){
+module.exports=require('/9yQcy');
+},{}],"/9yQcy":[function(require,module,exports){
 var Collection, PageCollection, PageModel;
 
 Collection = require("Engage360d/data/Collection");
@@ -2537,9 +2820,7 @@ PageCollection = Collection.extend({
 module.exports = PageCollection;
 
 
-},{"Engage360d/data/Collection":"KRuBaj","Engage360d/modules/pages/model/Page":"d4hnwf"}],"Engage360d/modules/pages/model/PageCollection":[function(require,module,exports){
-module.exports=require('/9yQcy');
-},{}],"E0ndaY":[function(require,module,exports){
+},{"Engage360d/data/Collection":"KRuBaj","Engage360d/modules/pages/model/Page":"d4hnwf"}],"E0ndaY":[function(require,module,exports){
 /** @jsx React.DOM */;
 var CategoryCollection, Ctx, NavigationBlock, PagesNavigation, React;
 
@@ -2675,7 +2956,7 @@ PagesNavigation = React.createClass({displayName: 'PagesNavigation',
 module.exports = PagesNavigation;
 
 
-},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/modules/pages/model/CategoryCollection":"dEbssf","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/modules/pages/navigation/PagesNavigation":[function(require,module,exports){
+},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/modules/pages/model/CategoryCollection":"dEbssf","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/pages/navigation/PagesNavigation":[function(require,module,exports){
 module.exports=require('E0ndaY');
 },{}],"qnI2hI":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -2831,7 +3112,7 @@ Category = React.createClass({displayName: 'Category',
 module.exports = Category;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/pages/model/Category":"l6MszG","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/modules/pages/page/Category":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/pages/model/Category":"l6MszG","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/pages/page/Category":[function(require,module,exports){
 module.exports=require('qnI2hI');
 },{}],"Uk/Bfo":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -3039,7 +3320,7 @@ Page = React.createClass({displayName: 'Page',
 module.exports = Page;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/editor/Editor":"QJhC9K","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tabs/Tab":"uB84Cd","Engage360d/components/tabs/TabPanel":"QeVmws","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/pages/model/Page":"d4hnwf","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","react":320}],"Engage360d/modules/pages/page/Page":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/editor/Editor":"QJhC9K","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tabs/Tab":"uB84Cd","Engage360d/components/tabs/TabPanel":"QeVmws","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/pages/model/Page":"d4hnwf","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","react":330}],"Engage360d/modules/pages/page/Page":[function(require,module,exports){
 module.exports=require('Uk/Bfo');
 },{}],"Engage360d/modules/pages/page/Pages":[function(require,module,exports){
 module.exports=require('4bSWJg');
@@ -3226,7 +3507,7 @@ Pages = React.createClass({displayName: 'Pages',
 module.exports = Pages;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/modules/pages/model/Page":"d4hnwf","Engage360d/modules/pages/model/PageCollection":"/9yQcy","Engage360d/services/Context":"6uxOYh","react":320}],"lVlSqw":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/modules/pages/model/Page":"d4hnwf","Engage360d/modules/pages/model/PageCollection":"/9yQcy","Engage360d/services/Context":"6uxOYh","react":330}],"lVlSqw":[function(require,module,exports){
 var Model, User;
 
 Model = require("Engage360d/data/Model");
@@ -3296,6 +3577,8 @@ module.exports = User;
 
 },{"Engage360d/data/Model":"YskCdS","moment":"iROhDJ"}],"Engage360d/modules/users/model/User":[function(require,module,exports){
 module.exports=require('lVlSqw');
+},{}],"Engage360d/modules/users/model/UserCollection":[function(require,module,exports){
+module.exports=require('uJwY6G');
 },{}],"uJwY6G":[function(require,module,exports){
 var Collection, UserCollection, UserModel;
 
@@ -3311,11 +3594,7 @@ UserCollection = Collection.extend({
 module.exports = UserCollection;
 
 
-},{"Engage360d/data/Collection":"KRuBaj","Engage360d/modules/users/model/User":"lVlSqw"}],"Engage360d/modules/users/model/UserCollection":[function(require,module,exports){
-module.exports=require('uJwY6G');
-},{}],"Engage360d/modules/users/navigation/UsersNavigation":[function(require,module,exports){
-module.exports=require('eiQQe9');
-},{}],"eiQQe9":[function(require,module,exports){
+},{"Engage360d/data/Collection":"KRuBaj","Engage360d/modules/users/model/User":"lVlSqw"}],"eiQQe9":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Ctx, NavigationBlock, React, UsersNavigation;
 
@@ -3368,7 +3647,11 @@ UsersNavigation = React.createClass({displayName: 'UsersNavigation',
 module.exports = UsersNavigation;
 
 
-},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/services/Context":"6uxOYh","react":320}],"/7W5WQ":[function(require,module,exports){
+},{"Engage360d/components/navigation/NavigationBlock":"YJUEkw","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/users/navigation/UsersNavigation":[function(require,module,exports){
+module.exports=require('eiQQe9');
+},{}],"Engage360d/modules/users/page/User":[function(require,module,exports){
+module.exports=require('/7W5WQ');
+},{}],"/7W5WQ":[function(require,module,exports){
 /** @jsx React.DOM */;
 var $, Button, Column, Container, Ctx, DateInput, Editor, Field, Icon, Input, Label, LinkModelMixin, PageContent, PageHeader, Panel, PanelBody, PanelFooter, PanelHeader, React, Tab, TabPanel, User, UserModel;
 
@@ -3554,11 +3837,7 @@ User = React.createClass({displayName: 'User',
 module.exports = User;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/editor/Editor":"QJhC9K","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/DateInput":"SW99nY","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tabs/Tab":"uB84Cd","Engage360d/components/tabs/TabPanel":"QeVmws","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/users/model/User":"lVlSqw","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","md5":"9vQjF3","moment":"iROhDJ","react":320}],"Engage360d/modules/users/page/User":[function(require,module,exports){
-module.exports=require('/7W5WQ');
-},{}],"Engage360d/modules/users/page/Users":[function(require,module,exports){
-module.exports=require('0wIqoY');
-},{}],"0wIqoY":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/editor/Editor":"QJhC9K","Engage360d/components/form/Field":"Fp+wUa","Engage360d/components/form/Label":"VtP6mB","Engage360d/components/form/field/DateInput":"SW99nY","Engage360d/components/form/field/Input":"iegu9J","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/components/tabs/Tab":"uB84Cd","Engage360d/components/tabs/TabPanel":"QeVmws","Engage360d/mixins/LinkModelMixin":"49oysP","Engage360d/modules/users/model/User":"lVlSqw","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","md5":"9vQjF3","moment":"iROhDJ","react":330}],"0wIqoY":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Button, Column, Container, Ctx, Grid, Icon, PageContent, PageHeader, Panel, PanelBody, PanelFooter, PanelHeader, React, Select, User, UserCollection, Users;
 
@@ -3744,7 +4023,9 @@ Users = React.createClass({displayName: 'Users',
 module.exports = Users;
 
 
-},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/modules/users/model/User":"lVlSqw","Engage360d/modules/users/model/UserCollection":"uJwY6G","Engage360d/services/Context":"6uxOYh","react":320}],"Engage360d/services/Ajax":[function(require,module,exports){
+},{"Engage360d/components/button/Button":"eFdXaF","Engage360d/components/column/Column":"80fQOa","Engage360d/components/container/Container":"NdL5Xi","Engage360d/components/form/field/Select":"/LGJws","Engage360d/components/grid/Grid":"mYjFMZ","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/page/PageContent":"ILIUOY","Engage360d/components/page/PageHeader":"3lZY+5","Engage360d/components/panel/Panel":"qjwbpK","Engage360d/components/panel/PanelBody":"aVlvDm","Engage360d/components/panel/PanelFooter":"jfuj8E","Engage360d/components/panel/PanelHeader":"o4HNgt","Engage360d/modules/users/model/User":"lVlSqw","Engage360d/modules/users/model/UserCollection":"uJwY6G","Engage360d/services/Context":"6uxOYh","react":330}],"Engage360d/modules/users/page/Users":[function(require,module,exports){
+module.exports=require('0wIqoY');
+},{}],"Engage360d/services/Ajax":[function(require,module,exports){
 module.exports=require('vtdv34');
 },{}],"vtdv34":[function(require,module,exports){
 var $, Ajax;
@@ -3813,7 +4094,9 @@ Ajax = (function() {
 module.exports = new Ajax();
 
 
-},{"JSOjs":"HV714h","jStorage":"Y5a8cd","jquery":"v0jpUW"}],"QwpjDN":[function(require,module,exports){
+},{"JSOjs":"HV714h","jStorage":"Y5a8cd","jquery":"v0jpUW"}],"Engage360d/services/Auth":[function(require,module,exports){
+module.exports=require('QwpjDN');
+},{}],"QwpjDN":[function(require,module,exports){
 var $, Auth;
 
 $ = require("jquery");
@@ -3841,16 +4124,32 @@ Auth = (function() {
     });
   };
 
-  Auth.prototype.login = function(username, password) {
-    var _this = this;
-    return $.post("/account/check", {
-      _username: username,
-      _password: password,
-      _target_path: "/account/admin_success"
-    }).success(function(response) {
-      return jso_ensureTokens({
-        engage360d: []
-      });
+  Auth.prototype.login = function(username, password, callback) {
+    return $.ajax({
+      url: "/account/check",
+      method: "POST",
+      data: {
+        _username: username,
+        _password: password,
+        _target_path: "/account/admin_success"
+      },
+      success: function(response) {
+        return jso_ensureTokens({
+          engage360d: []
+        });
+      },
+      error: function(error) {
+        var e;
+        try {
+          error = JSON.parse(error.responseText);
+        } catch (_error) {
+          e = _error;
+          error = {};
+        }
+        if (typeof callback === 'function') {
+          return callback(error);
+        }
+      }
     });
   };
 
@@ -3870,17 +4169,13 @@ Auth = (function() {
 module.exports = Auth;
 
 
-},{"JSOjs":"HV714h","jStorage":"Y5a8cd","jquery":"v0jpUW"}],"Engage360d/services/Auth":[function(require,module,exports){
-module.exports=require('QwpjDN');
+},{"JSOjs":"HV714h","jStorage":"Y5a8cd","jquery":"v0jpUW"}],"Engage360d/services/Context":[function(require,module,exports){
+module.exports=require('6uxOYh');
 },{}],"6uxOYh":[function(require,module,exports){
 module.exports = require("di").createContext();
 
 
-},{"di":"boLFV1"}],"Engage360d/services/Context":[function(require,module,exports){
-module.exports=require('6uxOYh');
-},{}],"Engage360d/services/EventBus":[function(require,module,exports){
-module.exports=require('MVSHGE');
-},{}],"MVSHGE":[function(require,module,exports){
+},{"di":"boLFV1"}],"MVSHGE":[function(require,module,exports){
 var EventBus, events,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -3901,7 +4196,9 @@ EventBus = (function(_super) {
 module.exports = new EventBus();
 
 
-},{"events":140}],"Engage360d/services/Router":[function(require,module,exports){
+},{"events":150}],"Engage360d/services/EventBus":[function(require,module,exports){
+module.exports=require('MVSHGE');
+},{}],"Engage360d/services/Router":[function(require,module,exports){
 module.exports=require('IQeGgv');
 },{}],"IQeGgv":[function(require,module,exports){
 var RouteRecognizer, Router, events,
@@ -3962,7 +4259,87 @@ Router = (function(_super) {
 module.exports = new Router();
 
 
-},{"events":140,"route-recognizer":"LMPt8Y"}],"HV714h":[function(require,module,exports){
+},{"events":150,"route-recognizer":"LMPt8Y"}],"AB8O9v":[function(require,module,exports){
+var isNullOrUndefined, moment, validationConstraints;
+
+moment = require("moment");
+
+isNullOrUndefined = function(value) {
+  return value === null || value === void 0;
+};
+
+validationConstraints = {
+  notNull: function() {
+    return function(value) {
+      return !isNullOrUndefined(value);
+    };
+  },
+  notEmpty: function() {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return value.length > 0;
+    };
+  },
+  isTrue: function() {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return value === true;
+    };
+  },
+  email: function() {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return /^.+@.+\..+$/.test(value);
+    };
+  },
+  date: function(format) {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return moment(value, format || "DD.MM.YYYY").isValid();
+    };
+  },
+  min: function(min) {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return value >= min;
+    };
+  },
+  max: function(max) {
+    return function(value) {
+      if (isNullOrUndefined(value)) {
+        return true;
+      }
+      return value <= max;
+    };
+  },
+  minLength: function(length) {
+    return function(value) {
+      if (!value) {
+        return false;
+      }
+      return value.length >= length;
+    };
+  }
+};
+
+module.exports = validationConstraints;
+
+
+},{"moment":"iROhDJ"}],"Engage360d/services/ValidationConstraints":[function(require,module,exports){
+module.exports=require('AB8O9v');
+},{}],"JSOjs":[function(require,module,exports){
+module.exports=require('HV714h');
+},{}],"HV714h":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -4563,9 +4940,7 @@ module.exports = new Router();
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW"}],"JSOjs":[function(require,module,exports){
-module.exports=require('HV714h');
-},{}],129:[function(require,module,exports){
+},{"jquery":"v0jpUW"}],139:[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -6460,9 +6835,9 @@ module.exports=require('9vQjF3');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW"}],132:[function(require,module,exports){
+},{"jquery":"v0jpUW"}],142:[function(require,module,exports){
 
-},{}],133:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -6824,14 +7199,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":135}],134:[function(require,module,exports){
+},{"util/":145}],144:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],135:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7421,7 +7796,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":134,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"inherits":141}],136:[function(require,module,exports){
+},{"./support/isBuffer":144,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"inherits":151}],146:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -8532,7 +8907,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":137,"ieee754":138}],137:[function(require,module,exports){
+},{"base64-js":147,"ieee754":148}],147:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -8655,7 +9030,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],138:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -8741,7 +9116,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],139:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports={
   "O_RDONLY": 0,
   "O_WRONLY": 1,
@@ -8921,7 +9296,7 @@ module.exports={
   "NPN_ENABLED": 1
 }
 
-},{}],140:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9223,7 +9598,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],141:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -9248,7 +9623,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],142:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -9310,7 +9685,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],143:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9538,7 +9913,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],144:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],154:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9612,7 +9987,7 @@ function onend() {
   });
 }
 
-},{"./readable.js":148,"./writable.js":150,"inherits":141,"process/browser.js":146}],145:[function(require,module,exports){
+},{"./readable.js":158,"./writable.js":160,"inherits":151,"process/browser.js":156}],155:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9741,7 +10116,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"./duplex.js":144,"./passthrough.js":147,"./readable.js":148,"./transform.js":149,"./writable.js":150,"events":140,"inherits":141}],146:[function(require,module,exports){
+},{"./duplex.js":154,"./passthrough.js":157,"./readable.js":158,"./transform.js":159,"./writable.js":160,"events":150,"inherits":151}],156:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -9796,7 +10171,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],147:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9839,7 +10214,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./transform.js":149,"inherits":141}],148:[function(require,module,exports){
+},{"./transform.js":159,"inherits":151}],158:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10776,7 +11151,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./index.js":145,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"buffer":136,"events":140,"inherits":141,"process/browser.js":146,"string_decoder":151}],149:[function(require,module,exports){
+},{"./index.js":155,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"buffer":146,"events":150,"inherits":151,"process/browser.js":156,"string_decoder":161}],159:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10982,7 +11357,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./duplex.js":144,"inherits":141}],150:[function(require,module,exports){
+},{"./duplex.js":154,"inherits":151}],160:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11370,7 +11745,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"./index.js":145,"buffer":136,"inherits":141,"process/browser.js":146}],151:[function(require,module,exports){
+},{"./index.js":155,"buffer":146,"inherits":151,"process/browser.js":156}],161:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11563,7 +11938,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":136}],152:[function(require,module,exports){
+},{"buffer":146}],162:[function(require,module,exports){
 // DOM APIs, for completeness
 
 if (typeof setTimeout !== 'undefined') exports.setTimeout = setTimeout;
@@ -11588,13 +11963,13 @@ exports.active = function(item) {
 
 exports.setImmediate = require('process/browser.js').nextTick;
 
-},{"process/browser.js":153}],153:[function(require,module,exports){
-module.exports=require(146)
-},{}],154:[function(require,module,exports){
-module.exports=require(134)
-},{}],155:[function(require,module,exports){
-module.exports=require(135)
-},{"./support/isBuffer":154,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"inherits":141}],"jquery":[function(require,module,exports){
+},{"process/browser.js":163}],163:[function(require,module,exports){
+module.exports=require(156)
+},{}],164:[function(require,module,exports){
+module.exports=require(144)
+},{}],165:[function(require,module,exports){
+module.exports=require(145)
+},{"./support/isBuffer":164,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"inherits":151}],"jquery":[function(require,module,exports){
 module.exports=require('v0jpUW');
 },{}],"v0jpUW":[function(require,module,exports){
 (function (global){
@@ -21623,6 +21998,8 @@ di.utils.invokeStmt = function (args, op) {
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"Eventable":[function(require,module,exports){
+module.exports=require('XqTNTJ');
 },{}],"XqTNTJ":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -21824,11 +22201,7 @@ di.utils.invokeStmt = function (args, op) {
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"underscore":"ZKusGn"}],"Eventable":[function(require,module,exports){
-module.exports=require('XqTNTJ');
-},{}],"jStorage":[function(require,module,exports){
-module.exports=require('Y5a8cd');
-},{}],"Y5a8cd":[function(require,module,exports){
+},{"underscore":"ZKusGn"}],"Y5a8cd":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -22797,8 +23170,8 @@ module.exports=require('Y5a8cd');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW"}],"jquery.ui.autocomplete":[function(require,module,exports){
-module.exports=require('Js05Q+');
+},{"jquery":"v0jpUW"}],"jStorage":[function(require,module,exports){
+module.exports=require('Y5a8cd');
 },{}],"Js05Q+":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -23422,7 +23795,9 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW","jquery.ui.core":"PHJpTu","jquery.ui.menu":"rXBywX","jquery.ui.position":"UAy1Ah","jquery.ui.widget":"cvlV4G"}],"PHJpTu":[function(require,module,exports){
+},{"jquery":"v0jpUW","jquery.ui.core":"PHJpTu","jquery.ui.menu":"rXBywX","jquery.ui.position":"UAy1Ah","jquery.ui.widget":"cvlV4G"}],"jquery.ui.autocomplete":[function(require,module,exports){
+module.exports=require('Js05Q+');
+},{}],"PHJpTu":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -25802,7 +26177,9 @@ $.datepicker.version = "@VERSION";
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW"}],"rXBywX":[function(require,module,exports){
+},{"jquery":"v0jpUW"}],"jquery.ui.menu":[function(require,module,exports){
+module.exports=require('rXBywX');
+},{}],"rXBywX":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -26435,11 +26812,7 @@ $.widget( "ui.menu", {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW","jquery.ui.core":"PHJpTu","jquery.ui.position":"UAy1Ah","jquery.ui.widget":"cvlV4G"}],"jquery.ui.menu":[function(require,module,exports){
-module.exports=require('rXBywX');
-},{}],"jquery.ui.position":[function(require,module,exports){
-module.exports=require('UAy1Ah');
-},{}],"UAy1Ah":[function(require,module,exports){
+},{"jquery":"v0jpUW","jquery.ui.core":"PHJpTu","jquery.ui.position":"UAy1Ah","jquery.ui.widget":"cvlV4G"}],"UAy1Ah":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -26945,7 +27318,9 @@ $.ui.position = {
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":"v0jpUW"}],"cvlV4G":[function(require,module,exports){
+},{"jquery":"v0jpUW"}],"jquery.ui.position":[function(require,module,exports){
+module.exports=require('UAy1Ah');
+},{}],"cvlV4G":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 
@@ -27981,8 +28356,10 @@ module.exports=require('cvlV4G');
 		/**
 		 * destroy an instance
 		 * @name destroy()
+		 * @param  {Boolean} keep_html if not set to `true` the container will be emptied, otherwise the current DOM elements will be kept intact
 		 */
-		destroy : function () {
+		destroy : function (keep_html) {
+			if(!keep_html) { this.element.empty(); }
 			this.element.unbind("destroyed", this.teardown);
 			this.teardown();
 		},
@@ -30107,7 +30484,7 @@ module.exports=require('cvlV4G');
 			};
 			var c = this.get_container_ul()[0].className;
 			if(!skip_loading) {
-				this.element.html("<"+"ul class='jstree-container-ul jstree-children'><"+"li class='jstree-initial-node jstree-loading jstree-leaf jstree-last'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' href='#'><i class='jstree-icon jstree-themeicon-hidden'></i>" + this.get_string("Loading ...") + "</a></li></ul>");
+				this.element.html("<"+"ul class='"+c+"'><"+"li class='jstree-initial-node jstree-loading jstree-leaf jstree-last'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' href='#'><i class='jstree-icon jstree-themeicon-hidden'></i>" + this.get_string("Loading ...") + "</a></li></ul>");
 			}
 			this.load_node('#', function (o, s) {
 				if(s) {
@@ -30533,7 +30910,7 @@ module.exports=require('cvlV4G');
 		 * @trigger move_node.jstree
 		 */
 		move_node : function (obj, par, pos, callback, is_loaded) {
-			var t1, t2, old_par, new_par, old_ins, is_multi, dpc, tmp, i, j, k, l, p;
+			var t1, t2, old_par, old_pos, new_par, old_ins, is_multi, dpc, tmp, i, j, k, l, p;
 			if($.isArray(obj)) {
 				obj = obj.reverse().slice();
 				for(t1 = 0, t2 = obj.length; t1 < t2; t1++) {
@@ -30554,6 +30931,7 @@ module.exports=require('cvlV4G');
 			new_par = (!pos.toString().match(/^(before|after)$/) || par.id === '#') ? par : this.get_node(par.parent);
 			old_ins = obj.instance ? obj.instance : (this._model.data[obj.id] ? this : $.jstree.reference(obj.id));
 			is_multi = !old_ins || !old_ins._id || (this._id !== old_ins._id);
+			old_pos = old_ins && old_ins._id && old_par && old_ins._model.data[old_par] && old_ins._model.data[old_par].children ? $.inArray(obj.id, old_ins._model.data[old_par].children) : -1;
 			if(is_multi) {
 				if(this.copy_node(obj, par, pos, callback, is_loaded)) {
 					if(old_ins) { old_ins.delete_node(obj); }
@@ -30661,11 +31039,12 @@ module.exports=require('cvlV4G');
 			 * @param {String} parent the parent's ID
 			 * @param {Number} position the position of the node among the parent's children
 			 * @param {String} old_parent the old parent of the node
+			 * @param {Number} old_position the old position of the node
 			 * @param {Boolean} is_multi do the node and new parent belong to different instances
 			 * @param {jsTree} old_instance the instance the node came from
 			 * @param {jsTree} new_instance the instance of the new parent
 			 */
-			this.trigger('move_node', { "node" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, 'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
+			this.trigger('move_node', { "node" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, "old_position" : old_pos, 'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
 			return true;
 		},
 		/**
@@ -30764,11 +31143,12 @@ module.exports=require('cvlV4G');
 			 * @param {String} parent the parent's ID
 			 * @param {Number} position the position of the node among the parent's children
 			 * @param {String} old_parent the old parent of the node
+			 * @param {Number} old_position the position of the original node
 			 * @param {Boolean} is_multi do the node and new parent belong to different instances
 			 * @param {jsTree} old_instance the instance the node came from
 			 * @param {jsTree} new_instance the instance of the new parent
 			 */
-			this.trigger('copy_node', { "node" : tmp, "original" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, 'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
+			this.trigger('copy_node', { "node" : tmp, "original" : obj, "parent" : new_par.id, "position" : pos, "old_parent" : old_par, "old_position" : old_ins && old_ins._id && old_par && old_ins._model.data[old_par] && old_ins._model.data[old_par].children ? $.inArray(obj.id, old_ins._model.data[old_par].children) : -1,'is_multi' : (old_ins && old_ins._id && old_ins._id !== this._id), 'is_foreign' : (!old_ins || !old_ins._id), 'old_instance' : old_ins, 'new_instance' : this });
 			return tmp.id;
 		},
 		/**
@@ -31818,8 +32198,7 @@ module.exports=require('cvlV4G');
 				y = o.top + this._data.core.li_height;
 			}
 			if(this.settings.contextmenu.select_node && !this.is_selected(obj)) {
-				this.deselect_all();
-				this.select_node(obj, false, false, e);
+				this.activate_node(obj, e);
 			}
 
 			i = s.items;
@@ -32226,7 +32605,13 @@ module.exports=require('cvlV4G');
 		 * @name $.jstree.defaults.dnd.always_copy
 		 * @plugin dnd
 		 */
-		always_copy : false
+		always_copy : false,
+		/**
+		 * when dropping a node "inside", this setting indicates the position the node should go to - it can be an integer or a string: "first" (same as 0) or "last", default is `0`
+		 * @name $.jstree.defaults.dnd.inside_pos
+		 * @plugin dnd
+		 */
+		inside_pos : 0
 	};
 	// TODO: now check works by checking for each node individually, how about max_children, unique, etc?
 	// TODO: drop somewhere else - maybe demo only?
@@ -32272,7 +32657,7 @@ module.exports=require('cvlV4G');
 					ref = false,
 					off = false,
 					rel = false,
-					l, t, h, p, i, o, ok, t1, t2, op, ps, pr;
+					l, t, h, p, i, o, ok, t1, t2, op, ps, pr, ip, tm;
 				// if we are over an instance
 				if(ins && ins._data && ins._data.dnd) {
 					marker.attr('class', 'jstree-' + ins.get_theme());
@@ -32320,10 +32705,12 @@ module.exports=require('cvlV4G');
 										i = ref.parent().index();
 										break;
 									case 'i':
+										ip = ins.settings.dnd.inside_pos;
+										tm = ins.get_node(ref.parent());
 										l = off.left - 2;
 										t = off.top - 5 + h / 2 + 1;
-										p = ins.get_node(ref.parent()).id;
-										i = 0;
+										p = tm.id;
+										i = ip === 'first' ? 0 : (ip === 'last' ? tm.children.length : Math.min(ip, tm.children.length));
 										break;
 									case 'a':
 										l = off.left - 6;
@@ -32357,7 +32744,7 @@ module.exports=require('cvlV4G');
 									if(v === 'i' && ref.parent().is('.jstree-closed') && ins.settings.dnd.open_timeout) {
 										opento = setTimeout((function (x, z) { return function () { x.open_node(z); }; }(ins, ref)), ins.settings.dnd.open_timeout);
 									}
-									lastmv = { 'ins' : ins, 'par' : p, 'pos' : i };
+									lastmv = { 'ins' : ins, 'par' : p, 'pos' : v === 'i' && ip === 'last' && i === 0 && !ins.is_loaded(tm) ? 'last' : i };
 									marker.css({ 'left' : l + 'px', 'top' : t + 'px' }).show();
 									data.helper.find('.jstree-icon:eq(0)').removeClass('jstree-er').addClass('jstree-ok');
 									laster = {};
@@ -32721,24 +33108,15 @@ module.exports=require('cvlV4G');
 			this.element.on('before_open.jstree', $.proxy(function (e, data) {
 				var i, j, f, r = this._data.search.res, s = [], o = $();
 				if(r && r.length) {
-					this._data.search.dom = $();
-					for(i = 0, j = r.length; i < j; i++) {
-						s = s.concat(this.get_node(r[i]).parents);
-						f = this.get_node(r[i], true);
-						if(f) {
-							this._data.search.dom = this._data.search.dom.add(f);
-						}
-					}
-					s = $.vakata.array_unique(s);
-					for(i = 0, j = s.length; i < j; i++) {
-						if(s[i] === "#") { continue; }
-						f = this.get_node(s[i], true);
-						if(f) {
-							o = o.add(f);
-						}
-					}
+					this._data.search.dom = $(this.element[0].querySelectorAll('#' + $.map(r, function (v) { return "0123456789".indexOf(v[0]) !== -1 ? '\\3' + v[0] + ' ' + v.substr(1).replace($.jstree.idregex,'\\$&') : v.replace($.jstree.idregex,'\\$&'); }).join(', #')));
 					this._data.search.dom.children(".jstree-anchor").addClass('jstree-search');
 					if(this.settings.search.show_only_matches && this._data.search.res.length) {
+						for(i = 0, j = r.length; i < j; i++) {
+							s = s.concat(this.get_node(r[i]).parents);
+						}
+						s = $.vakata.array_remove_item($.vakata.array_unique(s),'#');
+						o = s.length ? $(this.element[0].querySelectorAll('#' + $.map(s, function (v) { return "0123456789".indexOf(v[0]) !== -1 ? '\\3' + v[0] + ' ' + v.substr(1).replace($.jstree.idregex,'\\$&') : v.replace($.jstree.idregex,'\\$&'); }).join(', #'))) : $();
+
 						this.element.find(".jstree-node").hide().filter('.jstree-last').filter(function() { return this.nextSibling; }).removeClass('jstree-last');
 						o = o.add(this._data.search.dom);
 						o.parentsUntil(".jstree").addBack().show()
@@ -32804,7 +33182,7 @@ module.exports=require('cvlV4G');
 							if(d && d.d) { d = d.d; }
 							this._load_nodes(!$.isArray(d) ? [] : d, function () {
 								this.search(str, true);
-							});
+							}, true);
 						}, this));
 				}
 			}
@@ -32824,12 +33202,7 @@ module.exports=require('cvlV4G');
 			if(r.length) {
 				p = $.vakata.array_unique(p);
 				this._search_open(p);
-				for(i = 0, j = r.length; i < j; i++) {
-					f = this.get_node(r[i], true);
-					if(f) {
-						this._data.search.dom = this._data.search.dom.add(f);
-					}
-				}
+				this._data.search.dom = $(this.element[0].querySelectorAll('#' + $.map(r, function (v) { return "0123456789".indexOf(v[0]) !== -1 ? '\\3' + v[0] + ' ' + v.substr(1).replace($.jstree.idregex,'\\$&') : v.replace($.jstree.idregex,'\\$&'); }).join(', #')));
 				this._data.search.res = r;
 				this._data.search.dom.children(".jstree-anchor").addClass('jstree-search');
 			}
@@ -33411,16 +33784,21 @@ module.exports=require('cvlV4G');
 				case "delete_node":
 					return true;
 				case "rename_node":
+					i = ($.inArray(n, c) === -1 || (obj.text && obj.text === n));
+					if(!i) {
+						this._data.core.last_error = { 'error' : 'check', 'plugin' : 'unique', 'id' : 'unique_01', 'reason' : 'Child with name ' + n + ' already exists. Preventing: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
+					}
+					return i;
 				case "copy_node":
 					i = ($.inArray(n, c) === -1);
 					if(!i) {
-						this._data.core.last_error = { 'error' : 'check', 'plugin' : 'unique', 'id' : 'unique_01', 'reason' : 'Child with name ' + n + ' already exists. Preventing: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
+						this._data.core.last_error = { 'error' : 'check', 'plugin' : 'unique', 'id' : 'unique_02', 'reason' : 'Child with name ' + n + ' already exists. Preventing: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
 					}
 					return i;
 				case "move_node":
 					i = (obj.parent === par.id || $.inArray(n, c) === -1);
 					if(!i) {
-						this._data.core.last_error = { 'error' : 'check', 'plugin' : 'unique', 'id' : 'unique_01', 'reason' : 'Child with name ' + n + ' already exists. Preventing: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
+						this._data.core.last_error = { 'error' : 'check', 'plugin' : 'unique', 'id' : 'unique_03', 'reason' : 'Child with name ' + n + ' already exists. Preventing: ' + chk, 'data' : JSON.stringify({ 'chk' : chk, 'pos' : pos, 'obj' : obj && obj.id ? obj.id : false, 'par' : par && par.id ? par.id : false }) };
 					}
 					return i;
 			}
@@ -33668,6 +34046,8 @@ module.exports=require('Q/deoU');
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],"microplugin":[function(require,module,exports){
 module.exports=require('Akr4jP');
+},{}],"momentLang":[function(require,module,exports){
+module.exports=require('oNO+19');
 },{}],"oNO+19":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -33838,8 +34218,8 @@ module.exports=require('Akr4jP');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../moment":"iROhDJ"}],"momentLang":[function(require,module,exports){
-module.exports=require('oNO+19');
+},{"../moment":"iROhDJ"}],"moment":[function(require,module,exports){
+module.exports=require('iROhDJ');
 },{}],"iROhDJ":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
@@ -36336,9 +36716,7 @@ module.exports=require('oNO+19');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"moment":[function(require,module,exports){
-module.exports=require('iROhDJ');
-},{}],184:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /*!
  * Pikaday
  *
@@ -37260,7 +37638,7 @@ module.exports=require('iROhDJ');
 
 }));
 
-},{"moment":"iROhDJ"}],185:[function(require,module,exports){
+},{"moment":"iROhDJ"}],195:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -37294,7 +37672,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":285}],186:[function(require,module,exports){
+},{"./focusNode":295}],196:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -37417,7 +37795,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],187:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -37516,7 +37894,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 
-},{"./CSSProperty":186,"./dangerousStyleValue":280,"./escapeTextForBrowser":283,"./hyphenate":295,"./memoizeStringOnly":305}],188:[function(require,module,exports){
+},{"./CSSProperty":196,"./dangerousStyleValue":290,"./escapeTextForBrowser":293,"./hyphenate":305,"./memoizeStringOnly":315}],198:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -37905,7 +38283,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":198,"./EventPluginHub":200,"./EventPropagators":203,"./ExecutionEnvironment":204,"./ReactUpdates":256,"./SyntheticEvent":263,"./isEventSupported":298,"./isTextInputElement":300,"./keyOf":304}],189:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPluginHub":210,"./EventPropagators":213,"./ExecutionEnvironment":214,"./ReactUpdates":266,"./SyntheticEvent":273,"./isEventSupported":308,"./isTextInputElement":310,"./keyOf":314}],199:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -37937,7 +38315,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],190:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -38199,7 +38577,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":198,"./EventPropagators":203,"./ExecutionEnvironment":204,"./ReactInputSelection":236,"./SyntheticCompositionEvent":261,"./getTextContentAccessor":293,"./keyOf":304}],191:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPropagators":213,"./ExecutionEnvironment":214,"./ReactInputSelection":246,"./SyntheticCompositionEvent":271,"./getTextContentAccessor":303,"./keyOf":314}],201:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -38372,7 +38750,7 @@ var DOMChildrenOperations = {
 
 module.exports = DOMChildrenOperations;
 
-},{"./Danger":194,"./ReactMultiChildUpdateTypes":243,"./getTextContentAccessor":293}],192:[function(require,module,exports){
+},{"./Danger":204,"./ReactMultiChildUpdateTypes":253,"./getTextContentAccessor":303}],202:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -38646,7 +39024,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],193:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],203:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -38831,7 +39209,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMProperty":192,"./escapeTextForBrowser":283,"./memoizeStringOnly":305,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],194:[function(require,module,exports){
+},{"./DOMProperty":202,"./escapeTextForBrowser":293,"./memoizeStringOnly":315,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],204:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -39022,7 +39400,7 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":204,"./createNodesFromMarkup":278,"./emptyFunction":281,"./getMarkupWrap":290,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],195:[function(require,module,exports){
+},{"./ExecutionEnvironment":214,"./createNodesFromMarkup":288,"./emptyFunction":291,"./getMarkupWrap":300,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],205:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -39220,7 +39598,7 @@ var DefaultDOMPropertyConfig = {
 
 module.exports = DefaultDOMPropertyConfig;
 
-},{"./DOMProperty":192}],196:[function(require,module,exports){
+},{"./DOMProperty":202}],206:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -39266,7 +39644,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":304}],197:[function(require,module,exports){
+},{"./keyOf":314}],207:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -39413,7 +39791,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":198,"./EventPropagators":203,"./ReactMount":240,"./SyntheticMouseEvent":266,"./keyOf":304}],198:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPropagators":213,"./ReactMount":250,"./SyntheticMouseEvent":276,"./keyOf":314}],208:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -39491,7 +39869,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":303}],199:[function(require,module,exports){
+},{"./keyMirror":313}],209:[function(require,module,exports){
 (function (process){
 /**
  * @providesModule EventListener
@@ -39564,7 +39942,7 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":281,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],200:[function(require,module,exports){
+},{"./emptyFunction":291,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],210:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -39863,7 +40241,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventPluginRegistry":201,"./EventPluginUtils":202,"./ExecutionEnvironment":204,"./accumulate":272,"./forEachAccumulated":286,"./invariant":297,"./isEventSupported":298,"./monitorCodeUse":310,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],201:[function(require,module,exports){
+},{"./EventPluginRegistry":211,"./EventPluginUtils":212,"./ExecutionEnvironment":214,"./accumulate":282,"./forEachAccumulated":296,"./invariant":307,"./isEventSupported":308,"./monitorCodeUse":320,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],211:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -40148,7 +40526,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],202:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],212:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -40366,7 +40744,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":198,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],203:[function(require,module,exports){
+},{"./EventConstants":208,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],213:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -40513,7 +40891,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":198,"./EventPluginHub":200,"./accumulate":272,"./forEachAccumulated":286,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],204:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPluginHub":210,"./accumulate":282,"./forEachAccumulated":296,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],214:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -40559,7 +40937,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],205:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -40723,7 +41101,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactPropTypes":249,"./invariant":297,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],206:[function(require,module,exports){
+},{"./ReactPropTypes":259,"./invariant":307,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],216:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -40788,7 +41166,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":198,"./emptyFunction":281}],207:[function(require,module,exports){
+},{"./EventConstants":208,"./emptyFunction":291}],217:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -40911,7 +41289,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],208:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],218:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -41012,7 +41390,7 @@ React.version = '0.10.0';
 module.exports = React;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMPropertyOperations":193,"./EventPluginUtils":202,"./ExecutionEnvironment":204,"./ReactChildren":210,"./ReactComponent":211,"./ReactCompositeComponent":213,"./ReactContext":214,"./ReactCurrentOwner":215,"./ReactDOM":216,"./ReactDOMComponent":218,"./ReactDefaultInjection":228,"./ReactInstanceHandles":237,"./ReactMount":240,"./ReactMultiChild":242,"./ReactPerf":245,"./ReactPropTypes":249,"./ReactServerRendering":253,"./ReactTextComponent":255,"./onlyChild":313,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],209:[function(require,module,exports){
+},{"./DOMPropertyOperations":203,"./EventPluginUtils":212,"./ExecutionEnvironment":214,"./ReactChildren":220,"./ReactComponent":221,"./ReactCompositeComponent":223,"./ReactContext":224,"./ReactCurrentOwner":225,"./ReactDOM":226,"./ReactDOMComponent":228,"./ReactDefaultInjection":238,"./ReactInstanceHandles":247,"./ReactMount":250,"./ReactMultiChild":252,"./ReactPerf":255,"./ReactPropTypes":259,"./ReactServerRendering":263,"./ReactTextComponent":265,"./onlyChild":323,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],219:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -41058,7 +41436,7 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactMount":240,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],210:[function(require,module,exports){
+},{"./ReactMount":250,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],220:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -41194,7 +41572,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./PooledClass":207,"./invariant":297,"./traverseAllChildren":318,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],211:[function(require,module,exports){
+},{"./PooledClass":217,"./invariant":307,"./traverseAllChildren":328,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],221:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -41793,7 +42171,7 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactCurrentOwner":215,"./ReactOwner":244,"./ReactUpdates":256,"./invariant":297,"./keyMirror":303,"./merge":306,"./monitorCodeUse":310,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],212:[function(require,module,exports){
+},{"./ReactCurrentOwner":225,"./ReactOwner":254,"./ReactUpdates":266,"./invariant":307,"./keyMirror":313,"./merge":316,"./monitorCodeUse":320,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],222:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -41921,7 +42299,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactDOMIDOperations":220,"./ReactMarkupChecksum":239,"./ReactMount":240,"./ReactPerf":245,"./ReactReconcileTransaction":251,"./getReactRootElementInContainer":292,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],213:[function(require,module,exports){
+},{"./ReactDOMIDOperations":230,"./ReactMarkupChecksum":249,"./ReactMount":250,"./ReactPerf":255,"./ReactReconcileTransaction":261,"./getReactRootElementInContainer":302,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],223:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -43512,7 +43890,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":211,"./ReactContext":214,"./ReactCurrentOwner":215,"./ReactErrorUtils":231,"./ReactOwner":244,"./ReactPerf":245,"./ReactPropTransferer":246,"./ReactPropTypeLocationNames":247,"./ReactPropTypeLocations":248,"./ReactUpdates":256,"./instantiateReactComponent":296,"./invariant":297,"./keyMirror":303,"./merge":306,"./mixInto":309,"./monitorCodeUse":310,"./objMap":311,"./shouldUpdateReactComponent":316,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],214:[function(require,module,exports){
+},{"./ReactComponent":221,"./ReactContext":224,"./ReactCurrentOwner":225,"./ReactErrorUtils":241,"./ReactOwner":254,"./ReactPerf":255,"./ReactPropTransferer":256,"./ReactPropTypeLocationNames":257,"./ReactPropTypeLocations":258,"./ReactUpdates":266,"./instantiateReactComponent":306,"./invariant":307,"./keyMirror":313,"./merge":316,"./mixInto":319,"./monitorCodeUse":320,"./objMap":321,"./shouldUpdateReactComponent":326,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],224:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -43581,7 +43959,7 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./merge":306}],215:[function(require,module,exports){
+},{"./merge":316}],225:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -43622,7 +44000,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],216:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -43831,7 +44209,7 @@ ReactDOM.injection = injection;
 
 module.exports = ReactDOM;
 
-},{"./ReactDOMComponent":218,"./mergeInto":308,"./objMapKeyVal":312}],217:[function(require,module,exports){
+},{"./ReactDOMComponent":228,"./mergeInto":318,"./objMapKeyVal":322}],227:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -43902,7 +44280,7 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":185,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./keyMirror":303}],218:[function(require,module,exports){
+},{"./AutoFocusMixin":195,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./keyMirror":313}],228:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -44322,7 +44700,7 @@ mixInto(ReactDOMComponent, ReactBrowserComponentMixin);
 module.exports = ReactDOMComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./CSSPropertyOperations":187,"./DOMProperty":192,"./DOMPropertyOperations":193,"./ReactBrowserComponentMixin":209,"./ReactComponent":211,"./ReactEventEmitter":232,"./ReactMount":240,"./ReactMultiChild":242,"./ReactPerf":245,"./escapeTextForBrowser":283,"./invariant":297,"./keyOf":304,"./merge":306,"./mixInto":309,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],219:[function(require,module,exports){
+},{"./CSSPropertyOperations":197,"./DOMProperty":202,"./DOMPropertyOperations":203,"./ReactBrowserComponentMixin":219,"./ReactComponent":221,"./ReactEventEmitter":242,"./ReactMount":250,"./ReactMultiChild":252,"./ReactPerf":255,"./escapeTextForBrowser":293,"./invariant":307,"./keyOf":314,"./merge":316,"./mixInto":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],229:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -44386,7 +44764,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":198,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./ReactEventEmitter":232}],220:[function(require,module,exports){
+},{"./EventConstants":208,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./ReactEventEmitter":242}],230:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -44608,7 +44986,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./CSSPropertyOperations":187,"./DOMChildrenOperations":191,"./DOMPropertyOperations":193,"./ReactMount":240,"./ReactPerf":245,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],221:[function(require,module,exports){
+},{"./CSSPropertyOperations":197,"./DOMChildrenOperations":201,"./DOMPropertyOperations":203,"./ReactMount":250,"./ReactPerf":255,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],231:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -44671,7 +45049,7 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":198,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./ReactEventEmitter":232}],222:[function(require,module,exports){
+},{"./EventConstants":208,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./ReactEventEmitter":242}],232:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -44857,7 +45235,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":185,"./DOMPropertyOperations":193,"./LinkedValueUtils":205,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./ReactMount":240,"./invariant":297,"./merge":306,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],223:[function(require,module,exports){
+},{"./AutoFocusMixin":195,"./DOMPropertyOperations":203,"./LinkedValueUtils":215,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./ReactMount":250,"./invariant":307,"./merge":316,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],233:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -44916,7 +45294,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],224:[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],234:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -45100,7 +45478,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 module.exports = ReactDOMSelect;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":185,"./LinkedValueUtils":205,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./invariant":297,"./merge":306,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],225:[function(require,module,exports){
+},{"./AutoFocusMixin":195,"./LinkedValueUtils":215,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./invariant":307,"./merge":316,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],235:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -45291,7 +45669,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./getNodeForCharacterOffset":291,"./getTextContentAccessor":293}],226:[function(require,module,exports){
+},{"./getNodeForCharacterOffset":301,"./getTextContentAccessor":303}],236:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -45439,7 +45817,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./AutoFocusMixin":185,"./DOMPropertyOperations":193,"./LinkedValueUtils":205,"./ReactBrowserComponentMixin":209,"./ReactCompositeComponent":213,"./ReactDOM":216,"./invariant":297,"./merge":306,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],227:[function(require,module,exports){
+},{"./AutoFocusMixin":195,"./DOMPropertyOperations":203,"./LinkedValueUtils":215,"./ReactBrowserComponentMixin":219,"./ReactCompositeComponent":223,"./ReactDOM":226,"./invariant":307,"./merge":316,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],237:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -45516,7 +45894,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./ReactUpdates":256,"./Transaction":270,"./emptyFunction":281,"./mixInto":309}],228:[function(require,module,exports){
+},{"./ReactUpdates":266,"./Transaction":280,"./emptyFunction":291,"./mixInto":319}],238:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -45645,7 +46023,7 @@ module.exports = {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ChangeEventPlugin":188,"./ClientReactRootIndex":189,"./CompositionEventPlugin":190,"./DefaultDOMPropertyConfig":195,"./DefaultEventPluginOrder":196,"./EnterLeaveEventPlugin":197,"./ExecutionEnvironment":204,"./MobileSafariClickEventPlugin":206,"./ReactBrowserComponentMixin":209,"./ReactComponentBrowserEnvironment":212,"./ReactDOM":216,"./ReactDOMButton":217,"./ReactDOMForm":219,"./ReactDOMImg":221,"./ReactDOMInput":222,"./ReactDOMOption":223,"./ReactDOMSelect":224,"./ReactDOMTextarea":226,"./ReactDefaultBatchingStrategy":227,"./ReactDefaultPerf":229,"./ReactEventTopLevelCallback":234,"./ReactInjection":235,"./ReactInstanceHandles":237,"./ReactMount":240,"./SelectEventPlugin":257,"./ServerReactRootIndex":258,"./SimpleEventPlugin":259,"./createFullPageComponent":277,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],229:[function(require,module,exports){
+},{"./ChangeEventPlugin":198,"./ClientReactRootIndex":199,"./CompositionEventPlugin":200,"./DefaultDOMPropertyConfig":205,"./DefaultEventPluginOrder":206,"./EnterLeaveEventPlugin":207,"./ExecutionEnvironment":214,"./MobileSafariClickEventPlugin":216,"./ReactBrowserComponentMixin":219,"./ReactComponentBrowserEnvironment":222,"./ReactDOM":226,"./ReactDOMButton":227,"./ReactDOMForm":229,"./ReactDOMImg":231,"./ReactDOMInput":232,"./ReactDOMOption":233,"./ReactDOMSelect":234,"./ReactDOMTextarea":236,"./ReactDefaultBatchingStrategy":237,"./ReactDefaultPerf":239,"./ReactEventTopLevelCallback":244,"./ReactInjection":245,"./ReactInstanceHandles":247,"./ReactMount":250,"./SelectEventPlugin":267,"./ServerReactRootIndex":268,"./SimpleEventPlugin":269,"./createFullPageComponent":287,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],239:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -45891,7 +46269,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":192,"./ReactDefaultPerfAnalysis":230,"./ReactMount":240,"./ReactPerf":245,"./performanceNow":314}],230:[function(require,module,exports){
+},{"./DOMProperty":202,"./ReactDefaultPerfAnalysis":240,"./ReactMount":250,"./ReactPerf":255,"./performanceNow":324}],240:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46092,7 +46470,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./merge":306}],231:[function(require,module,exports){
+},{"./merge":316}],241:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46131,7 +46509,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],232:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -46474,7 +46852,7 @@ var ReactEventEmitter = merge(ReactEventEmitterMixin, {
 module.exports = ReactEventEmitter;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":198,"./EventListener":199,"./EventPluginHub":200,"./EventPluginRegistry":201,"./ExecutionEnvironment":204,"./ReactEventEmitterMixin":233,"./ViewportMetrics":271,"./invariant":297,"./isEventSupported":298,"./merge":306,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],233:[function(require,module,exports){
+},{"./EventConstants":208,"./EventListener":209,"./EventPluginHub":210,"./EventPluginRegistry":211,"./ExecutionEnvironment":214,"./ReactEventEmitterMixin":243,"./ViewportMetrics":281,"./invariant":307,"./isEventSupported":308,"./merge":316,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],243:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46533,7 +46911,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":200,"./ReactUpdates":256}],234:[function(require,module,exports){
+},{"./EventPluginHub":210,"./ReactUpdates":266}],244:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46684,7 +47062,7 @@ var ReactEventTopLevelCallback = {
 
 module.exports = ReactEventTopLevelCallback;
 
-},{"./PooledClass":207,"./ReactEventEmitter":232,"./ReactInstanceHandles":237,"./ReactMount":240,"./getEventTarget":289,"./mixInto":309}],235:[function(require,module,exports){
+},{"./PooledClass":217,"./ReactEventEmitter":242,"./ReactInstanceHandles":247,"./ReactMount":250,"./getEventTarget":299,"./mixInto":319}],245:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46729,7 +47107,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":192,"./EventPluginHub":200,"./ReactComponent":211,"./ReactCompositeComponent":213,"./ReactDOM":216,"./ReactEventEmitter":232,"./ReactPerf":245,"./ReactRootIndex":252,"./ReactUpdates":256}],236:[function(require,module,exports){
+},{"./DOMProperty":202,"./EventPluginHub":210,"./ReactComponent":221,"./ReactCompositeComponent":223,"./ReactDOM":226,"./ReactEventEmitter":242,"./ReactPerf":255,"./ReactRootIndex":262,"./ReactUpdates":266}],246:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -46872,7 +47250,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":225,"./containsNode":274,"./focusNode":285,"./getActiveElement":287}],237:[function(require,module,exports){
+},{"./ReactDOMSelection":235,"./containsNode":284,"./focusNode":295,"./getActiveElement":297}],247:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -47214,7 +47592,7 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactRootIndex":252,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],238:[function(require,module,exports){
+},{"./ReactRootIndex":262,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],248:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -47270,7 +47648,7 @@ function ReactLink(value, requestChange) {
 
 module.exports = ReactLink;
 
-},{}],239:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -47325,7 +47703,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":273}],240:[function(require,module,exports){
+},{"./adler32":283}],250:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -47978,7 +48356,7 @@ var ReactMount = {
 module.exports = ReactMount;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./DOMProperty":192,"./ReactEventEmitter":232,"./ReactInstanceHandles":237,"./ReactPerf":245,"./containsNode":274,"./getReactRootElementInContainer":292,"./instantiateReactComponent":296,"./invariant":297,"./shouldUpdateReactComponent":316,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],241:[function(require,module,exports){
+},{"./DOMProperty":202,"./ReactEventEmitter":242,"./ReactInstanceHandles":247,"./ReactPerf":255,"./containsNode":284,"./getReactRootElementInContainer":302,"./instantiateReactComponent":306,"./invariant":307,"./shouldUpdateReactComponent":326,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],251:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -48075,7 +48453,7 @@ PooledClass.addPoolingTo(ReactMountReady);
 
 module.exports = ReactMountReady;
 
-},{"./PooledClass":207,"./mixInto":309}],242:[function(require,module,exports){
+},{"./PooledClass":217,"./mixInto":319}],252:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -48509,7 +48887,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":211,"./ReactMultiChildUpdateTypes":243,"./flattenChildren":284,"./instantiateReactComponent":296,"./shouldUpdateReactComponent":316}],243:[function(require,module,exports){
+},{"./ReactComponent":221,"./ReactMultiChildUpdateTypes":253,"./flattenChildren":294,"./instantiateReactComponent":306,"./shouldUpdateReactComponent":326}],253:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -48549,7 +48927,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":303}],244:[function(require,module,exports){
+},{"./keyMirror":313}],254:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -48712,7 +49090,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyObject":282,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],245:[function(require,module,exports){
+},{"./emptyObject":292,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],255:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -48801,7 +49179,7 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],246:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],256:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -48952,7 +49330,7 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":281,"./invariant":297,"./joinClasses":302,"./merge":306,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],247:[function(require,module,exports){
+},{"./emptyFunction":291,"./invariant":307,"./joinClasses":312,"./merge":316,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],257:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -48987,7 +49365,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],248:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],258:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -49018,7 +49396,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":303}],249:[function(require,module,exports){
+},{"./keyMirror":313}],259:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -49381,7 +49759,7 @@ function createChainableTypeChecker(validate) {
 module.exports = Props;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":211,"./ReactPropTypeLocationNames":247,"./createObjectFrom":279,"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],250:[function(require,module,exports){
+},{"./ReactComponent":221,"./ReactPropTypeLocationNames":257,"./createObjectFrom":289,"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],260:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -49444,7 +49822,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./PooledClass":207,"./ReactEventEmitter":232,"./mixInto":309}],251:[function(require,module,exports){
+},{"./PooledClass":217,"./ReactEventEmitter":242,"./mixInto":319}],261:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -49628,7 +50006,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./PooledClass":207,"./ReactEventEmitter":232,"./ReactInputSelection":236,"./ReactMountReady":241,"./ReactPutListenerQueue":250,"./Transaction":270,"./mixInto":309}],252:[function(require,module,exports){
+},{"./PooledClass":217,"./ReactEventEmitter":242,"./ReactInputSelection":246,"./ReactMountReady":251,"./ReactPutListenerQueue":260,"./Transaction":280,"./mixInto":319}],262:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -49666,7 +50044,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],253:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -49759,7 +50137,7 @@ module.exports = {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":211,"./ReactInstanceHandles":237,"./ReactMarkupChecksum":239,"./ReactServerRenderingTransaction":254,"./instantiateReactComponent":296,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],254:[function(require,module,exports){
+},{"./ReactComponent":221,"./ReactInstanceHandles":247,"./ReactMarkupChecksum":249,"./ReactServerRenderingTransaction":264,"./instantiateReactComponent":306,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],264:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -49877,7 +50255,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./PooledClass":207,"./ReactMountReady":241,"./ReactPutListenerQueue":250,"./Transaction":270,"./emptyFunction":281,"./mixInto":309}],255:[function(require,module,exports){
+},{"./PooledClass":217,"./ReactMountReady":251,"./ReactPutListenerQueue":260,"./Transaction":280,"./emptyFunction":291,"./mixInto":319}],265:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50000,7 +50378,7 @@ ReactTextComponent.prototype.type = ReactTextComponent;
 
 module.exports = ReactTextComponent;
 
-},{"./DOMPropertyOperations":193,"./ReactBrowserComponentMixin":209,"./ReactComponent":211,"./escapeTextForBrowser":283,"./mixInto":309}],256:[function(require,module,exports){
+},{"./DOMPropertyOperations":203,"./ReactBrowserComponentMixin":219,"./ReactComponent":221,"./escapeTextForBrowser":293,"./mixInto":319}],266:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -50152,7 +50530,7 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactPerf":245,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],257:[function(require,module,exports){
+},{"./ReactPerf":255,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],267:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50354,7 +50732,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":198,"./EventPropagators":203,"./ReactInputSelection":236,"./SyntheticEvent":263,"./getActiveElement":287,"./isTextInputElement":300,"./keyOf":304,"./shallowEqual":315}],258:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPropagators":213,"./ReactInputSelection":246,"./SyntheticEvent":273,"./getActiveElement":297,"./isTextInputElement":310,"./keyOf":314,"./shallowEqual":325}],268:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50392,7 +50770,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],259:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -50809,7 +51187,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./EventConstants":198,"./EventPluginUtils":202,"./EventPropagators":203,"./SyntheticClipboardEvent":260,"./SyntheticDragEvent":262,"./SyntheticEvent":263,"./SyntheticFocusEvent":264,"./SyntheticKeyboardEvent":265,"./SyntheticMouseEvent":266,"./SyntheticTouchEvent":267,"./SyntheticUIEvent":268,"./SyntheticWheelEvent":269,"./invariant":297,"./keyOf":304,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],260:[function(require,module,exports){
+},{"./EventConstants":208,"./EventPluginUtils":212,"./EventPropagators":213,"./SyntheticClipboardEvent":270,"./SyntheticDragEvent":272,"./SyntheticEvent":273,"./SyntheticFocusEvent":274,"./SyntheticKeyboardEvent":275,"./SyntheticMouseEvent":276,"./SyntheticTouchEvent":277,"./SyntheticUIEvent":278,"./SyntheticWheelEvent":279,"./invariant":307,"./keyOf":314,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],270:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50862,7 +51240,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":263}],261:[function(require,module,exports){
+},{"./SyntheticEvent":273}],271:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50915,7 +51293,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":263}],262:[function(require,module,exports){
+},{"./SyntheticEvent":273}],272:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -50961,7 +51339,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":266}],263:[function(require,module,exports){
+},{"./SyntheticMouseEvent":276}],273:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51127,7 +51505,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./PooledClass":207,"./emptyFunction":281,"./getEventTarget":289,"./merge":306,"./mergeInto":308}],264:[function(require,module,exports){
+},{"./PooledClass":217,"./emptyFunction":291,"./getEventTarget":299,"./merge":316,"./mergeInto":318}],274:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51173,7 +51551,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":268}],265:[function(require,module,exports){
+},{"./SyntheticUIEvent":278}],275:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51233,7 +51611,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":268,"./getEventKey":288}],266:[function(require,module,exports){
+},{"./SyntheticUIEvent":278,"./getEventKey":298}],276:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51320,7 +51698,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":268,"./ViewportMetrics":271}],267:[function(require,module,exports){
+},{"./SyntheticUIEvent":278,"./ViewportMetrics":281}],277:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51372,7 +51750,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":268}],268:[function(require,module,exports){
+},{"./SyntheticUIEvent":278}],278:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51419,7 +51797,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":263}],269:[function(require,module,exports){
+},{"./SyntheticEvent":273}],279:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51487,7 +51865,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":266}],270:[function(require,module,exports){
+},{"./SyntheticMouseEvent":276}],280:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -51767,7 +52145,7 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],271:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],281:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51806,7 +52184,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":294}],272:[function(require,module,exports){
+},{"./getUnboundedScrollPosition":304}],282:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -51864,7 +52242,7 @@ function accumulate(current, next) {
 module.exports = accumulate;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],273:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],283:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51905,7 +52283,7 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],274:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -51956,7 +52334,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":301}],275:[function(require,module,exports){
+},{"./isTextNode":311}],285:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52014,7 +52392,7 @@ function copyProperties(obj, a, b, c, d, e, f) {
 module.exports = copyProperties;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],276:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],286:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52107,7 +52485,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":317}],277:[function(require,module,exports){
+},{"./toArray":327}],287:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52174,7 +52552,7 @@ function createFullPageComponent(componentClass) {
 module.exports = createFullPageComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactCompositeComponent":213,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],278:[function(require,module,exports){
+},{"./ReactCompositeComponent":223,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],288:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52271,7 +52649,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":204,"./createArrayFrom":276,"./getMarkupWrap":290,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],279:[function(require,module,exports){
+},{"./ExecutionEnvironment":214,"./createArrayFrom":286,"./getMarkupWrap":300,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],289:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52336,7 +52714,7 @@ function createObjectFrom(keys, values /* = true */) {
 module.exports = createObjectFrom;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],280:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],290:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52395,7 +52773,7 @@ function dangerousStyleValue(styleName, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":186}],281:[function(require,module,exports){
+},{"./CSSProperty":196}],291:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52440,7 +52818,7 @@ copyProperties(emptyFunction, {
 
 module.exports = emptyFunction;
 
-},{"./copyProperties":275}],282:[function(require,module,exports){
+},{"./copyProperties":285}],292:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52471,7 +52849,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = emptyObject;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],283:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],293:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52520,7 +52898,7 @@ function escapeTextForBrowser(text) {
 
 module.exports = escapeTextForBrowser;
 
-},{}],284:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52581,7 +52959,7 @@ function flattenChildren(children) {
 module.exports = flattenChildren;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"./traverseAllChildren":318,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],285:[function(require,module,exports){
+},{"./invariant":307,"./traverseAllChildren":328,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],295:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -52616,7 +52994,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 
-},{}],286:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52654,7 +53032,7 @@ var forEachAccumulated = function(arr, cb, scope) {
 
 module.exports = forEachAccumulated;
 
-},{}],287:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52690,7 +53068,7 @@ function getActiveElement() /*?DOMElement*/ {
 
 module.exports = getActiveElement;
 
-},{}],288:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52777,7 +53155,7 @@ function getEventKey(nativeEvent) {
 
 module.exports = getEventKey;
 
-},{}],289:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -52815,7 +53193,7 @@ function getEventTarget(nativeEvent) {
 
 module.exports = getEventTarget;
 
-},{}],290:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -52937,7 +53315,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ExecutionEnvironment":204,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],291:[function(require,module,exports){
+},{"./ExecutionEnvironment":214,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],301:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53019,7 +53397,7 @@ function getNodeForCharacterOffset(root, offset) {
 
 module.exports = getNodeForCharacterOffset;
 
-},{}],292:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53061,7 +53439,7 @@ function getReactRootElementInContainer(container) {
 
 module.exports = getReactRootElementInContainer;
 
-},{}],293:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53105,7 +53483,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":204}],294:[function(require,module,exports){
+},{"./ExecutionEnvironment":214}],304:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53152,7 +53530,7 @@ function getUnboundedScrollPosition(scrollable) {
 
 module.exports = getUnboundedScrollPosition;
 
-},{}],295:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53189,7 +53567,7 @@ function hyphenate(string) {
 
 module.exports = hyphenate;
 
-},{}],296:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -53263,7 +53641,7 @@ function instantiateReactComponent(descriptor) {
 module.exports = instantiateReactComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./warning":319,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],297:[function(require,module,exports){
+},{"./warning":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],307:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -53329,7 +53707,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = invariant;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],298:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],308:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53401,7 +53779,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":204}],299:[function(require,module,exports){
+},{"./ExecutionEnvironment":214}],309:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53436,7 +53814,7 @@ function isNode(object) {
 
 module.exports = isNode;
 
-},{}],300:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53487,7 +53865,7 @@ function isTextInputElement(elem) {
 
 module.exports = isTextInputElement;
 
-},{}],301:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53519,7 +53897,7 @@ function isTextNode(object) {
 
 module.exports = isTextNode;
 
-},{"./isNode":299}],302:[function(require,module,exports){
+},{"./isNode":309}],312:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53565,7 +53943,7 @@ function joinClasses(className/*, ... */) {
 
 module.exports = joinClasses;
 
-},{}],303:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -53627,7 +54005,7 @@ var keyMirror = function(obj) {
 module.exports = keyMirror;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],304:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],314:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53670,7 +54048,7 @@ var keyOf = function(oneKeyObj) {
 
 module.exports = keyOf;
 
-},{}],305:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53711,7 +54089,7 @@ function memoizeStringOnly(callback) {
 
 module.exports = memoizeStringOnly;
 
-},{}],306:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53750,7 +54128,7 @@ var merge = function(one, two) {
 
 module.exports = merge;
 
-},{"./mergeInto":308}],307:[function(require,module,exports){
+},{"./mergeInto":318}],317:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -53890,7 +54268,7 @@ var mergeHelpers = {
 module.exports = mergeHelpers;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"./keyMirror":303,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],308:[function(require,module,exports){
+},{"./invariant":307,"./keyMirror":313,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],318:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53937,7 +54315,7 @@ function mergeInto(one, two) {
 
 module.exports = mergeInto;
 
-},{"./mergeHelpers":307}],309:[function(require,module,exports){
+},{"./mergeHelpers":317}],319:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -53973,7 +54351,7 @@ var mixInto = function(constructor, methodBag) {
 
 module.exports = mixInto;
 
-},{}],310:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -54014,7 +54392,7 @@ function monitorCodeUse(eventName, data) {
 module.exports = monitorCodeUse;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],311:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],321:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -54063,7 +54441,7 @@ function objMap(obj, func, context) {
 
 module.exports = objMap;
 
-},{}],312:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -54112,7 +54490,7 @@ function objMapKeyVal(obj, func, context) {
 
 module.exports = objMapKeyVal;
 
-},{}],313:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -54159,7 +54537,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactComponent":211,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],314:[function(require,module,exports){
+},{"./ReactComponent":221,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],324:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -54203,7 +54581,7 @@ var performanceNow = performance.now.bind(performance);
 
 module.exports = performanceNow;
 
-},{"./ExecutionEnvironment":204}],315:[function(require,module,exports){
+},{"./ExecutionEnvironment":214}],325:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -54254,7 +54632,7 @@ function shallowEqual(objA, objB) {
 
 module.exports = shallowEqual;
 
-},{}],316:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -54319,7 +54697,7 @@ function shouldUpdateReactComponent(prevComponentInstance, nextDescriptor) {
 module.exports = shouldUpdateReactComponent;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],317:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],327:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -54398,7 +54776,7 @@ function toArray(obj) {
 module.exports = toArray;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],318:[function(require,module,exports){
+},{"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],328:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -54592,7 +54970,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./ReactInstanceHandles":237,"./ReactTextComponent":255,"./invariant":297,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],319:[function(require,module,exports){
+},{"./ReactInstanceHandles":247,"./ReactTextComponent":265,"./invariant":307,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],329:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -54644,10 +55022,12 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./emptyFunction":281,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142}],320:[function(require,module,exports){
+},{"./emptyFunction":291,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152}],330:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":208}],"LMPt8Y":[function(require,module,exports){
+},{"./lib/React":218}],"route-recognizer":[function(require,module,exports){
+module.exports=require('LMPt8Y');
+},{}],"LMPt8Y":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 (function(__exports__) {
@@ -55283,8 +55663,8 @@ module.exports = require('./lib/React');
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"route-recognizer":[function(require,module,exports){
-module.exports=require('LMPt8Y');
+},{}],"selectize":[function(require,module,exports){
+module.exports=require('qBYR1F');
 },{}],"qBYR1F":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -58068,11 +58448,7 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"Akr4jP","sifter":"FTtM1e"}],"selectize":[function(require,module,exports){
-module.exports=require('qBYR1F');
-},{}],"sifter":[function(require,module,exports){
-module.exports=require('FTtM1e');
-},{}],"FTtM1e":[function(require,module,exports){
+},{"microplugin":"Akr4jP","sifter":"FTtM1e"}],"FTtM1e":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -58527,6 +58903,8 @@ module.exports=require('FTtM1e');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],"sifter":[function(require,module,exports){
+module.exports=require('FTtM1e');
 },{}],"sirTrevor":[function(require,module,exports){
 module.exports=require('r+a/67');
 },{}],"r+a/67":[function(require,module,exports){
@@ -58542,7 +58920,7 @@ global.Eventable = require("Eventable");
  * Released under the MIT license
  * www.opensource.org/licenses/MIT
  *
- * 2014-03-22
+ * 2014-05-01
  */
 
 (function ($, _){
@@ -58834,7 +59212,7 @@ global.Eventable = require("Eventable");
     }
   };
   
-  if (window.i18n === undefined) {
+  if (window.i18n === undefined || window.i18n.init === undefined) {
     // Minimal i18n stub that only reads the English strings
     SirTrevor.log("Using i18n stub");
     window.i18n = {
@@ -59337,11 +59715,11 @@ global.Eventable = require("Eventable");
       this._queued = [];
     },
   
-    addQueuedItem: function(name, deffered) {
+    addQueuedItem: function(name, deferred) {
       SirTrevor.log("Adding queued item for " + this.blockID + " called " + name);
       SirTrevor.EventBus.trigger("onUploadStart", this.blockID);
   
-      this._queued.push({ name: name, deffered: deffered });
+      this._queued.push({ name: name, deferred: deferred });
     },
   
     removeQueuedItem: function(name) {
@@ -59358,7 +59736,7 @@ global.Eventable = require("Eventable");
     resolveAllInQueue: function() {
       _.each(this._queued, function(item){
         SirTrevor.log("Aborting queued request: " + item.name);
-        item.deffered.abort();
+        item.deferred.abort();
       }, this);
     }
   
@@ -60276,13 +60654,13 @@ global.Eventable = require("Eventable");
       },
   
       getSelectionForFormatter: function() {
-        _.defer(function(){
+        _.defer(function(block){
           var selection = window.getSelection(),
              selectionStr = selection.toString().trim(),
              eventType = (selectionStr === '') ? 'hide' : 'position';
   
-          SirTrevor.EventBus.trigger('formatter:' + eventType , this);
-        });
+          SirTrevor.EventBus.trigger('formatter:' + eventType, block);
+        }, this);
        },
   
       clearInsertedStyles: function(e) {
@@ -61176,7 +61554,7 @@ global.Eventable = require("Eventable");
         this._setEvents();
   
         SirTrevor.EventBus.on(this.ID + ":blocks:change_position", this.changeBlockPosition);
-        SirTrevor.EventBus.on("formatter:positon", this.formatBar.renderBySelection);
+        SirTrevor.EventBus.on("formatter:position", this.formatBar.renderBySelection);
         SirTrevor.EventBus.on("formatter:hide", this.formatBar.hide);
   
         this.$wrapper.prepend(this.fl_block_controls.render().$el);
@@ -61710,7 +62088,7 @@ global.Eventable = require("Eventable");
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"Eventable":"XqTNTJ","jquery":"v0jpUW","underscore":"ZKusGn"}],329:[function(require,module,exports){
+},{"Eventable":"XqTNTJ","jquery":"v0jpUW","underscore":"ZKusGn"}],339:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -61803,7 +62181,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./_stream_readable":330,"./_stream_writable":332,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"core-util-is":333,"inherits":334}],330:[function(require,module,exports){
+},{"./_stream_readable":340,"./_stream_writable":342,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"core-util-is":343,"inherits":344}],340:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -62766,7 +63144,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"buffer":136,"core-util-is":333,"events":140,"inherits":334,"isarray":335,"stream":145,"string_decoder/":336}],331:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"buffer":146,"core-util-is":343,"events":150,"inherits":344,"isarray":345,"stream":155,"string_decoder/":346}],341:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -62978,7 +63356,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":329,"core-util-is":333,"inherits":334}],332:[function(require,module,exports){
+},{"./_stream_duplex":339,"core-util-is":343,"inherits":344}],342:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -63369,7 +63747,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./_stream_duplex":329,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"buffer":136,"core-util-is":333,"inherits":334,"stream":145}],333:[function(require,module,exports){
+},{"./_stream_duplex":339,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"buffer":146,"core-util-is":343,"inherits":344,"stream":155}],343:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -63479,14 +63857,14 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":136}],334:[function(require,module,exports){
-module.exports=require(141)
-},{}],335:[function(require,module,exports){
+},{"buffer":146}],344:[function(require,module,exports){
+module.exports=require(151)
+},{}],345:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],336:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -63688,10 +64066,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":136}],337:[function(require,module,exports){
+},{"buffer":146}],347:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":331}],338:[function(require,module,exports){
+},{"./lib/_stream_transform.js":341}],348:[function(require,module,exports){
 module.exports = hasKeys
 
 function hasKeys(source) {
@@ -63700,7 +64078,7 @@ function hasKeys(source) {
         typeof source === "function")
 }
 
-},{}],339:[function(require,module,exports){
+},{}],349:[function(require,module,exports){
 var Keys = require("object-keys")
 var hasKeys = require("./has-keys")
 
@@ -63727,7 +64105,7 @@ function extend() {
     return target
 }
 
-},{"./has-keys":338,"object-keys":341}],340:[function(require,module,exports){
+},{"./has-keys":348,"object-keys":351}],350:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -63769,11 +64147,11 @@ module.exports = function forEach(obj, fn) {
 };
 
 
-},{}],341:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 module.exports = Object.keys || require('./shim');
 
 
-},{"./shim":343}],342:[function(require,module,exports){
+},{"./shim":353}],352:[function(require,module,exports){
 var toString = Object.prototype.toString;
 
 module.exports = function isArguments(value) {
@@ -63791,7 +64169,7 @@ module.exports = function isArguments(value) {
 };
 
 
-},{}],343:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 (function () {
 	"use strict";
 
@@ -63855,7 +64233,7 @@ module.exports = function isArguments(value) {
 }());
 
 
-},{"./foreach":340,"./isArguments":342}],344:[function(require,module,exports){
+},{"./foreach":350,"./isArguments":352}],354:[function(require,module,exports){
 var Transform = require('readable-stream/transform')
   , inherits  = require('util').inherits
   , xtend     = require('xtend')
@@ -63935,7 +64313,7 @@ module.exports.obj = through2(function (options, transform, flush) {
   return t2
 })
 
-},{"readable-stream/transform":337,"util":155,"xtend":339}],"underscore":[function(require,module,exports){
+},{"readable-stream/transform":347,"util":165,"xtend":349}],"underscore":[function(require,module,exports){
 module.exports=require('ZKusGn');
 },{}],"ZKusGn":[function(require,module,exports){
 (function (global){
@@ -65287,13 +65665,13 @@ module.exports=require('ZKusGn');
 }).call(global, module, undefined);
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],347:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 module.exports = {
   src: require('./lib/src'),
   dest: require('./lib/dest'),
   watch: require('glob-watcher')
 };
-},{"./lib/dest":348,"./lib/src":356,"glob-watcher":369}],348:[function(require,module,exports){
+},{"./lib/dest":358,"./lib/src":366,"glob-watcher":379}],358:[function(require,module,exports){
 (function (process){
 var map = require('map-stream');
 var path = require('path');
@@ -65339,7 +65717,7 @@ module.exports = function(outFolder, opt) {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./writeContents":350,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"map-stream":382,"mkdirp":383,"path":143}],349:[function(require,module,exports){
+},{"./writeContents":360,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"map-stream":392,"mkdirp":393,"path":153}],359:[function(require,module,exports){
 var fs = require('graceful-fs');
 
 module.exports = function(writePath, file, cb) {
@@ -65352,7 +65730,7 @@ module.exports = function(writePath, file, cb) {
   fs.writeFile(writePath, file.contents, opt, cb);
 };
 
-},{"graceful-fs":380}],350:[function(require,module,exports){
+},{"graceful-fs":390}],360:[function(require,module,exports){
 var writeDir = require('./writeDir');
 var writeStream = require('./writeStream');
 var writeBuffer = require('./writeBuffer');
@@ -65383,7 +65761,7 @@ module.exports = function (writePath, file, cb) {
   // if no contents then do nothing
   if (file.isNull()) return done();
 };
-},{"./writeBuffer":349,"./writeDir":351,"./writeStream":352}],351:[function(require,module,exports){
+},{"./writeBuffer":359,"./writeDir":361,"./writeStream":362}],361:[function(require,module,exports){
 var mkdirp = require('mkdirp');
 
 module.exports = function (writePath, file, cb) {
@@ -65397,7 +65775,7 @@ module.exports = function (writePath, file, cb) {
   mkdirp(writePath, cb);
 };
 
-},{"mkdirp":383}],352:[function(require,module,exports){
+},{"mkdirp":393}],362:[function(require,module,exports){
 var streamFile = require('../src/streamFile');
 var fs = require('graceful-fs');
 
@@ -65419,7 +65797,7 @@ module.exports = function(writePath, file, cb) {
   return outStream;
 };
 
-},{"../src/streamFile":358,"graceful-fs":380}],353:[function(require,module,exports){
+},{"../src/streamFile":368,"graceful-fs":390}],363:[function(require,module,exports){
 var fs = require('graceful-fs');
 
 module.exports = function (file, cb) {
@@ -65430,7 +65808,7 @@ module.exports = function (file, cb) {
     cb(err, file);
   });
 };
-},{"graceful-fs":380}],354:[function(require,module,exports){
+},{"graceful-fs":390}],364:[function(require,module,exports){
 var map = require('map-stream');
 
 var readDir = require('./readDir');
@@ -65453,7 +65831,7 @@ module.exports = function(opt) {
     return streamFile(file, cb);
   });
 };
-},{"./bufferFile":353,"./readDir":357,"./streamFile":358,"map-stream":382}],355:[function(require,module,exports){
+},{"./bufferFile":363,"./readDir":367,"./streamFile":368,"map-stream":392}],365:[function(require,module,exports){
 var map = require('map-stream');
 var fs = require('graceful-fs');
 
@@ -65467,7 +65845,7 @@ module.exports = function(opt) {
     });
   });
 };
-},{"graceful-fs":380,"map-stream":382}],356:[function(require,module,exports){
+},{"graceful-fs":390,"map-stream":392}],366:[function(require,module,exports){
 var map = require('map-stream');
 var gs = require('glob-stream');
 
@@ -65503,19 +65881,19 @@ module.exports = function(glob, opt) {
   return stream.pipe(getContents(opt));
 };
 
-},{"./getContents":354,"./getStats":355,"glob-stream":359,"map-stream":382,"vinyl":384}],357:[function(require,module,exports){
+},{"./getContents":364,"./getStats":365,"glob-stream":369,"map-stream":392,"vinyl":394}],367:[function(require,module,exports){
 module.exports = function (file, cb) {
   // do nothing for now
   cb(null, file);
 };
-},{}],358:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 var fs = require('graceful-fs');
 
 module.exports = function (file, cb) {
   file.contents = fs.createReadStream(file.path);
   cb(null, file);
 };
-},{"graceful-fs":380}],359:[function(require,module,exports){
+},{"graceful-fs":390}],369:[function(require,module,exports){
 (function (process){
 /*jslint node: true */
 
@@ -65637,7 +66015,7 @@ var gs = {
 module.exports = gs;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"glob":360,"glob2base":362,"map-stream":382,"minimatch":363,"ordered-read-streams":366,"path":143,"through":367,"unique-stream":368}],360:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"glob":370,"glob2base":372,"map-stream":392,"minimatch":373,"ordered-read-streams":376,"path":153,"through":377,"unique-stream":378}],370:[function(require,module,exports){
 (function (process){
 // Approach:
 //
@@ -66369,9 +66747,9 @@ function absUnix (p) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"assert":133,"events":140,"fs":132,"inherits":361,"minimatch":363,"path":143}],361:[function(require,module,exports){
-module.exports=require(141)
-},{}],362:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"assert":143,"events":150,"fs":142,"inherits":371,"minimatch":373,"path":153}],371:[function(require,module,exports){
+module.exports=require(151)
+},{}],372:[function(require,module,exports){
 (function (process){
 var path = require('path');
 
@@ -66426,7 +66804,7 @@ module.exports = function(glob) {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"path":143}],363:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"path":153}],373:[function(require,module,exports){
 (function (process){
 ;(function (require, exports, module, platform) {
 
@@ -67485,7 +67863,7 @@ function regExpEscape (s) {
   )
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"lru-cache":364,"path":143,"sigmund":365}],364:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"lru-cache":374,"path":153,"sigmund":375}],374:[function(require,module,exports){
 ;(function () { // closure for web browsers
 
 if (typeof module === 'object' && module.exports) {
@@ -67739,7 +68117,7 @@ function Entry (key, value, lu, length, now) {
 
 })()
 
-},{}],365:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 module.exports = sigmund
 function sigmund (subject, maxSessions) {
     maxSessions = maxSessions || 10;
@@ -67780,7 +68158,7 @@ function sigmund (subject, maxSessions) {
 
 // vim: set softtabstop=4 shiftwidth=4:
 
-},{}],366:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 var Readable = require('stream').Readable;
 var util = require('util');
 
@@ -67847,7 +68225,7 @@ OrderedStreams.prototype._read = function () {};
 
 module.exports = OrderedStreams;
 
-},{"stream":145,"util":155}],367:[function(require,module,exports){
+},{"stream":155,"util":165}],377:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -67959,7 +68337,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"stream":145}],368:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"stream":155}],378:[function(require,module,exports){
 var Stream = require('stream');
 
 function prop(propName) {
@@ -68015,7 +68393,7 @@ function unique(propName) {
   return s;
 }
 
-},{"stream":145}],369:[function(require,module,exports){
+},{"stream":155}],379:[function(require,module,exports){
 var gaze = require('gaze');
 var EventEmitter = require('events').EventEmitter;
 
@@ -68056,7 +68434,7 @@ module.exports = function(glob, opts, cb) {
   return out;
 };
 
-},{"events":140,"gaze":370}],370:[function(require,module,exports){
+},{"events":150,"gaze":380}],380:[function(require,module,exports){
 (function (process){
 /*
  * gaze
@@ -68499,7 +68877,7 @@ Gaze.prototype._handleError = function(err) {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./helper":371,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"events":140,"fs":132,"globule":372,"path":143,"timers":152,"util":155}],371:[function(require,module,exports){
+},{"./helper":381,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"events":150,"fs":142,"globule":382,"path":153,"timers":162,"util":165}],381:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -68570,7 +68948,7 @@ helper.forEachSeries = function forEachSeries(arr, iterator, callback) {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"path":143}],372:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"path":153}],382:[function(require,module,exports){
 /*
  * globule
  * https://github.com/cowboy/node-globule
@@ -68744,7 +69122,7 @@ globule.findMapping = function(patterns, options) {
   return globule.mapping(globule.find(patterns, options), options);
 };
 
-},{"fs":132,"glob":373,"lodash":376,"minimatch":377,"path":143}],373:[function(require,module,exports){
+},{"fs":142,"glob":383,"lodash":386,"minimatch":387,"path":153}],383:[function(require,module,exports){
 (function (process){
 // Approach:
 //
@@ -69391,7 +69769,7 @@ function absUnix (p) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"assert":133,"events":140,"graceful-fs":374,"inherits":375,"minimatch":377,"path":143}],374:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"assert":143,"events":150,"graceful-fs":384,"inherits":385,"minimatch":387,"path":153}],384:[function(require,module,exports){
 (function (process){
 // this keeps a queue of opened file descriptors, and will make
 // fs operations wait until some have closed before trying to open more.
@@ -69837,7 +70215,7 @@ fs.readSync = function (fd, buffer, offset, length, position) {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"constants":139,"fs":132}],375:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"constants":149,"fs":142}],385:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -69868,7 +70246,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],376:[function(require,module,exports){
+},{}],386:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -74855,13 +75233,13 @@ function inherits (c, p, proto) {
 }(this));
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],377:[function(require,module,exports){
-module.exports=require(363)
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"lru-cache":378,"path":143,"sigmund":379}],378:[function(require,module,exports){
-module.exports=require(364)
-},{}],379:[function(require,module,exports){
-module.exports=require(365)
-},{}],380:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
+module.exports=require(373)
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"lru-cache":388,"path":153,"sigmund":389}],388:[function(require,module,exports){
+module.exports=require(374)
+},{}],389:[function(require,module,exports){
+module.exports=require(375)
+},{}],390:[function(require,module,exports){
 (function (process){
 // Monkey-patching the fs module.
 // It's ugly, but there is simply no other way to do this.
@@ -75025,7 +75403,7 @@ function onclose() {
 }
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./polyfills.js":381,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"assert":133,"fs":132,"util":155}],381:[function(require,module,exports){
+},{"./polyfills.js":391,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"assert":143,"fs":142,"util":165}],391:[function(require,module,exports){
 (function (process){
 var fs = require('fs')
 var constants = require('constants')
@@ -75257,7 +75635,7 @@ fs.readSync = function (fd, buffer, offset, length, position) {
 
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"constants":139,"fs":132}],382:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"constants":149,"fs":142}],392:[function(require,module,exports){
 (function (process){
 //filter will reemit the data if cb(err,pass) pass is truthy
 
@@ -75406,7 +75784,7 @@ module.exports = function (mapper, opts) {
 
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"stream":145}],383:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"stream":155}],393:[function(require,module,exports){
 (function (process){
 var path = require('path');
 var fs = require('fs');
@@ -75492,7 +75870,7 @@ mkdirP.sync = function sync (p, mode, made) {
 };
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"fs":132,"path":143}],384:[function(require,module,exports){
+},{"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"fs":142,"path":153}],394:[function(require,module,exports){
 (function (process){
 var path = require('path');
 
@@ -75624,7 +76002,7 @@ Object.defineProperty(File.prototype, 'relative', {
 module.exports = File;
 
 }).call(this,require("/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./lib/cloneBuffer":385,"./lib/inspectStream":386,"./lib/isBuffer":387,"./lib/isNull":388,"./lib/isStream":389,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":142,"clone-stats":390,"path":143}],385:[function(require,module,exports){
+},{"./lib/cloneBuffer":395,"./lib/inspectStream":396,"./lib/isBuffer":397,"./lib/isNull":398,"./lib/isStream":399,"/home/vagrant/c9/symfony-takeda/app/Resources/admin/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":152,"clone-stats":400,"path":153}],395:[function(require,module,exports){
 var Buffer = require('buffer').Buffer;
 
 module.exports = function(buf) {
@@ -75632,7 +76010,7 @@ module.exports = function(buf) {
   buf.copy(out);
   return out;
 };
-},{"buffer":136}],386:[function(require,module,exports){
+},{"buffer":146}],396:[function(require,module,exports){
 var Stream = require('stream').Stream;
 var isStream = require('./isStream');
 
@@ -75645,7 +76023,7 @@ module.exports = function(stream) {
 
   return '<'+streamType+'Stream>';
 };
-},{"./isStream":389,"stream":145}],387:[function(require,module,exports){
+},{"./isStream":399,"stream":155}],397:[function(require,module,exports){
 var buf = require('buffer');
 var Buffer = buf.Buffer;
 
@@ -75653,17 +76031,17 @@ var Buffer = buf.Buffer;
 module.exports = function(o) {
   return typeof o === 'object' && o instanceof Buffer;
 };
-},{"buffer":136}],388:[function(require,module,exports){
+},{"buffer":146}],398:[function(require,module,exports){
 module.exports = function(v) {
   return v === null;
 };
-},{}],389:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 var Stream = require('stream').Stream;
 
 module.exports = function(o) {
   return !!o && o instanceof Stream;
 };
-},{"stream":145}],390:[function(require,module,exports){
+},{"stream":155}],400:[function(require,module,exports){
 var Stat = require('fs').Stats
 
 module.exports = cloneStats
@@ -75678,7 +76056,7 @@ function cloneStats(stats) {
   return replacement
 }
 
-},{"fs":132}],"IK4n64":[function(require,module,exports){
+},{"fs":142}],"IK4n64":[function(require,module,exports){
 /** @jsx React.DOM */;
 var Login, LoginPage, React;
 
@@ -75699,7 +76077,7 @@ LoginPage = React.createClass({displayName: 'LoginPage',
 module.exports = LoginPage;
 
 
-},{"Engage360d/components/login/Login":"RrNTyx","react":320}],"LoginPage":[function(require,module,exports){
+},{"Engage360d/components/login/Login":"RrNTyx","react":330}],"LoginPage":[function(require,module,exports){
 module.exports=require('IK4n64');
 },{}],"EIQB12":[function(require,module,exports){
 /** @jsx React.DOM */;
@@ -75752,6 +76130,6 @@ MainPage = React.createClass({displayName: 'MainPage',
 module.exports = MainPage;
 
 
-},{"Engage360d/components/header/Header":"dokV2f","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/navigation/Navigation":"FgxmrT","Engage360d/components/page/Page":"dliSDD","Engage360d/components/page/PageContainer":"a2OhWu","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","react":320}],"MainPage":[function(require,module,exports){
+},{"Engage360d/components/header/Header":"dokV2f","Engage360d/components/icon/Icon":"OxPNWg","Engage360d/components/navigation/Navigation":"FgxmrT","Engage360d/components/page/Page":"dliSDD","Engage360d/components/page/PageContainer":"a2OhWu","Engage360d/services/Context":"6uxOYh","jquery":"v0jpUW","react":330}],"MainPage":[function(require,module,exports){
 module.exports=require('EIQB12');
 },{}]},{},[])
