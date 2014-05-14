@@ -1,3 +1,5 @@
+plural = require "../util/plural"
+
 ErrorMessageMixin =
   getErrorMessage: (type, config) ->
     minLength = if config and config.minLength then config.minLength else 3
@@ -8,7 +10,7 @@ ErrorMessageMixin =
 
     errors =
       blank: "Заполните поле"
-      minLength: "Минимальная длина #{minLength} символа"
+      minLength: "Минимальная длина - #{minLength} " + plural(minLength, 'символ', 'символа', 'символов')
       minGrowth: "Минимальный рост - #{minGrowth} см"
       maxGrowth: "Максимальный рост - #{maxGrowth} см"
       minWeight: "Минимальный вес - #{minWeight} кг"

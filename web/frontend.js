@@ -30992,8 +30992,6 @@ module.exports = require('./lib/React');
   return reqwest
 });
 
-},{}],"selectize":[function(require,module,exports){
-module.exports=require('iECS2l');
 },{}],"iECS2l":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
@@ -33777,7 +33775,9 @@ global.MicroPlugin = require("microplugin");
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"microplugin":"edEggf","sifter":"fsZITE"}],"fsZITE":[function(require,module,exports){
+},{"microplugin":"edEggf","sifter":"fsZITE"}],"selectize":[function(require,module,exports){
+module.exports=require('iECS2l');
+},{}],"fsZITE":[function(require,module,exports){
 (function (global){
 (function browserifyShim(module, define) {
 /**
@@ -37833,7 +37833,9 @@ module.exports = ChangePasswordMixin;
 
 
 },{"reqwest":148}],181:[function(require,module,exports){
-var ErrorMessageMixin;
+var ErrorMessageMixin, plural;
+
+plural = require("../util/plural");
 
 ErrorMessageMixin = {
   getErrorMessage: function(type, config) {
@@ -37845,7 +37847,7 @@ ErrorMessageMixin = {
     maxWeight = config && config.maxWeight ? config.maxWeight : 300;
     errors = {
       blank: "Заполните поле",
-      minLength: "Минимальная длина " + minLength + " символа",
+      minLength: ("Минимальная длина - " + minLength + " ") + plural(minLength, 'символ', 'символа', 'символов'),
       minGrowth: "Минимальный рост - " + minGrowth + " см",
       maxGrowth: "Максимальный рост - " + maxGrowth + " см",
       minWeight: "Минимальный вес - " + minWeight + " кг",
@@ -37866,7 +37868,7 @@ ErrorMessageMixin = {
 module.exports = ErrorMessageMixin;
 
 
-},{}],182:[function(require,module,exports){
+},{"../util/plural":192}],182:[function(require,module,exports){
 var HTMLElementContainerMixin;
 
 HTMLElementContainerMixin = {
