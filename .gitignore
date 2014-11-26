@@ -9,7 +9,6 @@
 /vendor/
 /bin/
 /composer.phar
-/composer.lock
 /app/Resources/admin/node_modules/
 /node_modules/
 *.swp
