@@ -29,7 +29,7 @@
         "doctrine/doctrine-fixtures-bundle":    "dev-master",
         "doctrine/doctrine-migrations-bundle":  "dev-master",
         "stof/doctrine-extensions-bundle":      "dev-master",
-        "nelmio/api-doc-bundle":                "dev-master",
+        "nelmio/api-doc-bundle":                "~2.7",
         "friendsofsymfony/user-bundle":         "dev-master",
         "friendsofsymfony/facebook-bundle":     "dev-master",
         "friendsofsymfony/oauth-server-bundle": "dev-master",
@@ -40,14 +40,16 @@
         "hwi/oauth-bundle":                     "dev-master",
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
-        "engage360d/security-bundle":           "dev-master",
         "engage360d/search-bundle":             "dev-master",
-        "engage360d/pages-bundle":              "dev-master"
+        "engage360d/pages-bundle":              "dev-master",
+        "melodia/user-bundle": "~1.0",
+        "engage360d/security-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Melodia\\UserBundle\\Composer\\ScriptHandler::generateSSHKeys",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
@@ -55,6 +57,7 @@
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Melodia\\UserBundle\\Composer\\ScriptHandler::generateSSHKeys",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
@@ -83,6 +86,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/vslinko/serializer.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/melodia/MelodiaUserBundle.git"
         }
     ],
     "minimum-stability": "stable",
