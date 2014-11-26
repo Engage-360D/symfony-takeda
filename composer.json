@@ -36,7 +36,7 @@
         "friendsofsymfony/jsrouting-bundle":    "dev-master",
         "friendsofsymfony/rest-bundle":         "dev-master",
         "friendsofsymfony/rest":                "dev-master",
-        "friendsofsymfony/elastica-bundle":     "dev-master",
+        "friendsofsymfony/elastica-bundle":     "dev-master#428a1014ca244c5d864252f44ce336b9a0774452",
         "hwi/oauth-bundle":                     "dev-master",
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
