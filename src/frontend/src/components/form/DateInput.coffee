@@ -2,7 +2,7 @@
 
 React = require "react"
 moment = require "moment"
-require "moment/lang/ru"
+require "moment/locale/ru"
 cx = require "react/lib/cx"
 
 
@@ -24,7 +24,7 @@ DateInput = React.createClass
       moment(props.valueLink.value)
     else
       moment()
-      
+
     if props.maxDate and currentMoment.isAfter(props.maxDate)
       currentMoment = moment(props.maxDate)
 
@@ -41,7 +41,7 @@ DateInput = React.createClass
     @setState
       opened: false
       currentMoment: @readCurrentMoment @props
-      
+
   formatMonth: (month) ->
     month[0].toUpperCase() + month.slice(1).toLowerCase()
 

@@ -2,7 +2,6 @@
 
 React = require "react"
 $ = require "jquery"
-require "selectize"
 compareRegions = require "../../util/compareRegions"
 
 RegionsInput = React.createClass
@@ -26,12 +25,12 @@ RegionsInput = React.createClass
     ].join ""
 
     document.getElementsByTagName('head')[0].appendChild(script)
-    
+
     $selectize = $(@refs.select.getDOMNode()).selectize
       sortField: 'order'
       maxItems: 1
     selectize = $selectize[0].selectize
-    
+
     $selectize.on "change", (event) =>
       @props.valueLink.requestChange event.target.value
 

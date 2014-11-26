@@ -1,8 +1,6 @@
 `/** @jsx React.DOM */`
 
 React = require "react"
-require "jquery-placeholder"
-
 
 ValidationError = require "./ValidationError"
 

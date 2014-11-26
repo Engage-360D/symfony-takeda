@@ -23,6 +23,18 @@ FacebookButton = require "../social/login/FacebookButton"
 VkontakteButton = require "../social/login/VkontakteButton"
 OdnoklassnikiButton = require "../social/login/OdnoklassnikiButton"
 
+statics =
+  context:
+    base: 0
+    doctor: 1
+    registration: 2
+  errors:
+    minLength: "Минимальная длина 3 символа"
+    mismatch: "Пароли не совпадают"
+    email: "Некорректный email адресс"
+    empty: "Заполните поле"
+  doctorGraduationMinDate: moment([1940, 0, 1])
+  doctorGraduationMaxDate: moment().subtract("days", 1)
 
 Registration = React.createClass
   mixins: [
@@ -32,23 +44,10 @@ Registration = React.createClass
     HTMLElementContainerMixin
   ]
 
-  statics:
-    context:
-      base: 0
-      doctor: 1
-      registration: 2
-    errors:
-      minLength: "Минимальная длина 3 символа"
-      mismatch: "Пароли не совпадают"
-      email: "Некорректный email адресс"
-      empty: "Заполните поле"
-    doctorGraduationMinDate: moment([1940, 0, 1])
-    doctorGraduationMaxDate: moment().subtract("days", 1)
-
   getDefaultProps: ->
     showDoctor: true
     reloadOnRegister: true
-    context: Registration.context.base
+    context: statics.context.base
     user: null
 
   getInitialState: ->
@@ -125,18 +124,18 @@ Registration = React.createClass
         true
 
   handleDoctorChange: (value) ->
-    @setState context: Registration.context.doctor if value
+    @setState context: statics.context.doctor if value
 
   handleDocktorSave: ->
     @setState showDoctorValidation: true
     return if @validity.component.doctor.invalid
-    @setState context: Registration.context.registration
+    @setState context: statics.context.registration
 
   handleRegistrationChange: ->
-    @setState context: Registration.context.registration
+    @setState context: statics.context.registration
 
   handleBackClick: ->
-    @setState context: Registration.context.base
+    @setState context: statics.context.base
 
   handleRegistrationClick: ->
     @setState showValidation: true, errors: {}
@@ -152,7 +151,7 @@ Registration = React.createClass
         for key, value of @getInitialState()
           state[key] = value
         @setState state
-  
+
   showSuccess: ->
     modal = null
     props =
@@ -181,9 +180,9 @@ Registration = React.createClass
     if @state.errors and @state.errors.email
       return @state.errors.email.join " "
     if @state.email and @state.email.length > 0
-      Registration.errors.email
+      statics.errors.email
     else
-      Registration.errors.minLength
+      statics.errors.minLength
 
   isEmailInvalid: ->
     return false unless @state.showValidation
@@ -196,7 +195,7 @@ Registration = React.createClass
         </Field>
         <Field className="field_mod">
           <span>Для подтверждения регистрации на почтовый ящик </span>
-          <strong>{this.state.email}</strong> 
+          <strong>{this.state.email}</strong>
           <span> отправлено письмо.</span>
         </Field>
       </div>
@@ -258,8 +257,8 @@ Registration = React.createClass
         				  placeholder="за все время"
         				  calendarTitle="Год окончания"
         				  valueLink={this.linkState('graduation')}
-        				  minDate={Registration.doctorGraduationMinDate}
-        				  maxDate={Registration.doctorGraduationMaxDate}
+        				  minDate={statics.doctorGraduationMinDate}
+        				  maxDate={statics.doctorGraduationMaxDate}
         		      invalid={this.state.showDoctorValidation && this.validity.children.graduation.invalid}/>
 						</div>
 					</div>
@@ -272,7 +271,7 @@ Registration = React.createClass
 
   renderDoctor: ->
     return unless @props.showDoctor
-    
+
     `(
       <div className="data__row data__row_border">
 				<div className="data__label">Вы являетесь врачом?</div>
@@ -310,7 +309,7 @@ Registration = React.createClass
       		    placeholder="Имя и Фамилия"
       		    valueLink={this.linkState('firstname')}
       		    invalid={this.state.showValidation && this.validity.children.firstname.invalid}
-      		    invalidMessage={Registration.errors.minLength}/>
+      		    invalidMessage={statics.errors.minLength}/>
       		</Field>
       		<Field className="field_mod">
       		  <Input
@@ -326,7 +325,7 @@ Registration = React.createClass
       		      <RegionsInput
     					    valueLink={this.linkState('region')}
     					    invalid={this.state.showValidation && this.validity.children.region.invalid}
-    					    invalidMessage={Registration.errors.minLength}/>
+    					    invalidMessage={statics.errors.minLength}/>
       		    </div>
       		  </Field>
       		</div>
@@ -336,7 +335,7 @@ Registration = React.createClass
       			  placeholder="Пароль"
       			  valueLink={this.linkState('password')}
       			  invalid={this.state.showValidation && this.validity.children.password.invalid}
-      			  invalidMessage={Registration.errors.minLength}/>
+      			  invalidMessage={statics.errors.minLength}/>
       		</Field>
       		<Field>
       		  <Input
@@ -344,7 +343,7 @@ Registration = React.createClass
       		    placeholder="Подтвердить пароль"
       		    valueLink={this.linkState('confirmPassword')}
       		    invalid={this.state.showValidation && this.validity.children.confirmPassword.invalid}
-      		    invalidMessage={Registration.errors.mismatch}/>
+      		    invalidMessage={statics.errors.mismatch}/>
       		</Field>
           <div className="reg__fieldset">
 						<Checkbox
@@ -362,7 +361,7 @@ Registration = React.createClass
 					</div>
           <div className="reg__btn">
 					  <button className="btn" onClick={this.handleRegistrationClick}>
-					    Зарегистрироваться 
+					    Зарегистрироваться
 					  </button>
 					</div>
   			</div>
@@ -391,9 +390,9 @@ Registration = React.createClass
     )`
 
   renderState: ->
-    if @state.context is Registration.context.doctor
+    if @state.context is statics.context.doctor
       @renderDoctorForm()
-    else if @state.context is Registration.context.registration
+    else if @state.context is statics.context.registration
       @renderRegistration()
     else
       @renderBase()

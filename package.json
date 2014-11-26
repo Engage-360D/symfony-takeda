@@ -2,55 +2,18 @@
     "name": "takeda",
     "version": "0.1.0",
     "dependencies": {
-        "react": "^0.10"
+        "react": "~0.11",
+        "moment": "~2.8",
+        "reqwest": "~1.1"
     },
     "devDependencies": {
-        "coffee-script": "^1.7",
-        "gulp": "^3.5",
-        "gulp-rename": "^1.2",
-        "gulp-concat": "^2.2",
-        "gulp-browserify": "^0.5",
-        "gulp-stylus": "^0.1",
-        "coffeeify": "^0.6",
-        "reactify": "^0.10",
-        "nib": "^1.0",
-        "reqwest": "^1.1",
-        "pikaday": "^1.2",
-        "moment": "^2.5",
-        "components-jquery": "git://github.com/components/jquery.git#1.10.2",
-        "sifter": "^0.3",
-      	"microplugin": "^0.0",
-      	"selectize": "git://github.com/vslinko/selectize.js#master",
-      	"jquery-placeholder": "git://github.com/vslinko/jquery-placeholder#master"
+        "yargs": "~1.3",
+        "webpack": "~1.4",
+        "coffee-loader": "~0.7",
+        "jsx-loader": "~0.11",
+        "stylus-loader": "~0.4",
+        "css-loader": "~0.9",
+        "style-loader": "~0.8"
     },
-    "private": true,
-    "shim": {
-      "jquery": {
-        "path": "./node_modules/components-jquery/jquery.js",
-        "exports": "$"
-      },
-      "sifter": {
-        "path": "./node_modules/sifter/lib/sifter.js",
-        "exports": null
-      },
-      "microplugin": {
-        "path": "./node_modules/microplugin/src/microplugin.js",
-        "exports": null
-      },
-      "selectize": {
-        "path": "./node_modules/selectize/dist/js/selectize.js",
-        "exports": "selectize",
-        "depends": {
-          "sifter": "Sifter",
-          "microplugin": "MicroPlugin"
-        }
-      },
-      "jquery-placeholder": {
-        "path": "./node_modules/jquery-placeholder/jquery.placeholder.js",
-        "exports": null,
-        "depends": {
-          "jquery": "jQuery"
-        }
-      }
-    }
+    "private": true
 }

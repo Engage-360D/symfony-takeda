@@ -22,7 +22,12 @@
             <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-sham.min.js"></script>
             <![endif]-->
-            <script src="{{ asset('frontend.js') }}"></script>
+            <script src="/vendor/jquery.min.js"></script>
+            <script src="/vendor/jquery.placeholder.js"></script>
+            <script src="/vendor/microplugin.js"></script>
+            <script src="/vendor/sifter.js"></script>
+            <script src="/vendor/selectize.js"></script>
+            <script src="{{ asset('client/client.js') }}"></script>
         {% endblock %}
     </body>
 </html>

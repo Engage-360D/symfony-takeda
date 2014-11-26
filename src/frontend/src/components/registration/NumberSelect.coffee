@@ -3,7 +3,6 @@
 React = require "react"
 moment = require "moment"
 $ = require "jquery"
-require "selectize"
 
 NumberSelect = React.createClass
   getDefaultProps: ->
