@@ -18,6 +18,10 @@ engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
+melodia_user_api_:
+    resource: "@MelodiaUserBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+
 engage360d_user_security:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
     prefix:   /account

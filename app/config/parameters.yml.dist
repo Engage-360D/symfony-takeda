@@ -25,3 +25,6 @@ parameters:
 
     vkontakte_client_id: 4062540
     vkontakte_client_secret: jFWCe3jFCkJ9E3fA2ndH
+
+    ssh_key.passphrase: YourPassPhrase
+    ssh_keys_dir: app/var/jwt
