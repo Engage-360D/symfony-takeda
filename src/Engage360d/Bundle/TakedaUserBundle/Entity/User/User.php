@@ -16,7 +16,7 @@ use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="users_normal")
  */
 class User extends BaseUser
 {
@@ -96,7 +96,7 @@ class User extends BaseUser
      * @ORM\Column(name="graduation", type="date", nullable=true)
      */
     private $graduation;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaTestBundle\Entity\TestResult", mappedBy="user")
      */
@@ -184,7 +184,7 @@ class User extends BaseUser
     {
         $this->birthday = $birthday;
     }
-  
+
     public function getBirthday()
     {
         return $this->birthday;
@@ -349,7 +349,7 @@ class User extends BaseUser
     public function getOdnoklassnikieAccessToken()
     {
     }
-    
+
     public function getFullName()
     {
         return implode(' ', array(
@@ -357,12 +357,12 @@ class User extends BaseUser
             $this->getLastname(),
         ));
     }
-    
+
     public function getTestResults()
     {
         return $this->testResults;
     }
-    
+
     public function addTestResult($testResult)
     {
         $this->testResults[] = $testResult;
