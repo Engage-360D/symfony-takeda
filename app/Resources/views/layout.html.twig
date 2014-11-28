@@ -15,14 +15,14 @@
 		<nav class="nav">
 			<ul>
 				<li class="nav__cabina {% if app.request.attributes.get('_route') == 'engage360d_takeda_user_account' %}is-active{% endif %}"><a href="{{ path('engage360d_takeda_user_account') }}"><span>Личный кабинет</span><i></i></a></li>
-				{% for menu in takeda_menu("Главное меню") %}
-			    <li class="{% if app.request.requestUri == takeda_menu_url(menu) %}is-active{% endif %}">
-			      <a href="{{ takeda_menu_url(menu) }}">
-			        <span>{{ menu.name|e }}</span>
-			        <i></i>
-			      </a>
-			     </li>
-			  {% endfor %}
+        {% for menu in [] %}
+          <li class="{% if app.request.requestUri == "" %}is-active{% endif %}">
+            <a href="#">
+              <span>{{ menu.name|e }}</span>
+              <i></i>
+            </a>
+           </li>
+        {% endfor %}
 			</ul>
 		</nav>
 		<!-- search-form -->

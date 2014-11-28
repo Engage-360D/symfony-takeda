@@ -6,8 +6,8 @@ engage360d_user_api:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/api.yml"
     prefix:   /api/normal
 
-engage360d_pages_api:
-    resource: "@Engage360dPagesBundle/Resources/config/routing/api.yml"
+melodia_pages_api_:
+    resource: "@MelodiaPageBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
 engage360d_takeda_test_api:

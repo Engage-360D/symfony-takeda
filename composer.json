@@ -44,7 +44,8 @@
         "engage360d/pages-bundle":              "dev-master",
         "melodia/user-bundle": "~1.0",
         "engage360d/security-bundle": "dev-master",
-        "melodia/util-bundle": "~0.1"
+        "melodia/util-bundle": "~0.1",
+        "melodia/page-bundle": "~0.1"
     },
     "scripts": {
         "post-install-cmd": [
@@ -95,6 +96,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/melodia/MelodiaUtilBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/melodia/MelodiaPageBundle.git"
         }
     ],
     "minimum-stability": "stable",

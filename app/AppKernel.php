@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
@@ -46,9 +47,9 @@ class AppKernel extends Kernel
 
             new Melodia\UtilBundle\MelodiaUtilBundle(),
             new Melodia\UserBundle\MelodiaUserBundle(),
+            new Melodia\PageBundle\MelodiaPageBundle(),
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
-            new Engage360d\Bundle\PagesBundle\Engage360dPagesBundle(),
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
             new Engage360d\Bundle\CountriesBundle\Engage360dCountriesBundle(),
             new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
