@@ -1,3 +1,9 @@
+melodia_user_check_login:
+    pattern: /login
+
+melodia_user_get_token:
+    pattern: /tokens
+
 engage360d_search_api:
     resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
     prefix:   /api
