@@ -24,7 +24,7 @@ security:
             security:   false
 
         login:
-            pattern:  ^/login|logout|tokens
+            pattern:  ^/admin|tokens
             stateless: true
             anonymous: ~
             form_login:
