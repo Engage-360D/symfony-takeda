@@ -41,6 +41,7 @@ security:
             pattern:    ^/api
             stateless: true
             anonymous: true
+            provider: admins
             lexik_jwt:
                 authorization_header: # check token in Authorization Header
                     enabled: true
