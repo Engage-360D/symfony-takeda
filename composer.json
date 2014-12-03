@@ -41,7 +41,6 @@
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
         "engage360d/search-bundle":             "dev-master",
-        "engage360d/pages-bundle":              "dev-master",
         "melodia/user-bundle": "~1.0",
         "engage360d/security-bundle": "dev-master",
         "melodia/util-bundle": "~0.1",
