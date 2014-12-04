@@ -6,7 +6,6 @@ jms_security_extra:
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
-        Melodia\UserBundle\Entity\User: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -15,42 +14,18 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
-        admins:
-            entity: { class: Melodia\UserBundle\Entity\User , property: username }
 
     firewalls:
         oauth_token:
             pattern:    ^/oauth/v2/token
             security:   false
 
-        login:
-            pattern:  ^/admin|tokens
-            stateless: true
-            anonymous: ~
-            form_login:
-                provider: admins
-                check_path: melodia_user_get_token
-                login_path: melodia_user_check_login
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-                require_previous_session: false
-            logout:
-                path:   /logout
-                target: /
         api:
             pattern:    ^/api
-            stateless: true
+            fos_oauth: true
+            http_basic: ~
             anonymous: true
-            provider: admins
-            lexik_jwt:
-                authorization_header: # check token in Authorization Header
-                    enabled: true
-                    prefix:  Bearer
-                query_parameter:      # check token in query string parameter
-                    enabled: true
-                    name:    token
-                throw_exceptions: false     # When an authentication failure occurs, return a 401 response immediately
-                create_entry_point: true
+            context: auth
 
         main:
             pattern: ^/
@@ -83,10 +58,10 @@ security:
                 invalidate_session: true
 
     access_control:
+        - { path: ^/api/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
         - { path: ^/api/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
         - { path: ^/api/test-results, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/countries, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/api/normal/users/me, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
 
         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
 

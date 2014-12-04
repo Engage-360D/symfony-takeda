@@ -1,16 +1,10 @@
-melodia_user_check_login:
-    pattern: /login
-
-melodia_user_get_token:
-    pattern: /tokens
-
 engage360d_search_api:
     resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
 engage360d_user_api:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/api.yml"
-    prefix:   /api/normal
+    prefix:   /api
 
 melodia_pages_api_:
     resource: "@MelodiaPageBundle/Resources/config/routing/api.yml"
@@ -22,10 +16,6 @@ engage360d_takeda_test_api:
 
 engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
-    prefix:   /api
-
-melodia_user_api_:
-    resource: "@MelodiaUserBundle/Resources/config/routing/api.yml"
     prefix:   /api
 
 engage360d_user_security:

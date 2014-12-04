@@ -38,7 +38,6 @@ class AppKernel extends Kernel
             // other bundles
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
@@ -46,7 +45,6 @@ class AppKernel extends Kernel
             // our project bundles
 
             new Melodia\UtilBundle\MelodiaUtilBundle(),
-            new Melodia\UserBundle\MelodiaUserBundle(),
             new Melodia\PageBundle\MelodiaPageBundle(),
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),

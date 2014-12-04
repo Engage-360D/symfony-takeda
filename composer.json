@@ -40,17 +40,16 @@
         "hwi/oauth-bundle":                     "dev-master",
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
+        "engage360d/security-bundle":           "dev-master",
         "engage360d/search-bundle":             "dev-master",
-        "melodia/user-bundle": "~1.0",
-        "engage360d/security-bundle": "dev-master",
         "melodia/util-bundle": "~0.1",
-        "melodia/page-bundle": "~0.1"
+        "melodia/page-bundle": "~0.1",
+        "engage360d/pages-bundle":              "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Melodia\\UserBundle\\Composer\\ScriptHandler::generateSSHKeys",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
@@ -58,7 +57,6 @@
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Melodia\\UserBundle\\Composer\\ScriptHandler::generateSSHKeys",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
@@ -87,10 +85,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/vslinko/serializer.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/melodia/MelodiaUserBundle.git"
         },
         {
             "type": "vcs",

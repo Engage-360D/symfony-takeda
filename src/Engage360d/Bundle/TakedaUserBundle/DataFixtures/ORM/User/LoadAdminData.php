@@ -12,7 +12,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Melodia\UserBundle\Entity\User;
 
 /**
  * Admin user.
@@ -28,12 +27,18 @@ class LoadAdminData
 
     public function load(ObjectManager $manager)
     {
-        $user = new User();
+        $user = $this->container
+            ->get('engage360d_security.manager.user')
+            ->createUser();
 
-        $user->setUsername('admin');
-        $user->setPassword('12345Wq');
-        $user->setFullName('Admin Admin');
-        $user->setIsActive(true);
+        $user->setFirstname('admin');
+        $user->setLastname('admin');
+        $user->setEmail('test@test.ru');
+        $user->setPlainPassword('password');
+        $user->setBirthday(new \DateTime());
+        $user->setEnabled(true);
+        $user->setDoctor(true);
+        $user->addRole('ROLE_ADMIN');
 
         $manager->persist($user);
         $manager->flush();
