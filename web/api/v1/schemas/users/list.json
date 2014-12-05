@@ -4,7 +4,7 @@
   "type": "array",
 
   "items": {
-    "$ref": "http://cardiomagnyl.ru/api/v1/schemas/user/one.json#"
+    "$ref": "http://cardiomagnyl.ru/api/v1/schemas/users/one.json#"
   },
 
   "uniqueItems": true
