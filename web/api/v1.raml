@@ -16,7 +16,7 @@ securitySchemes:
         queryParameters:
           token:
             type: string
-            example: "AUTHORIZATIONTOKEN"
+            example: "ACCESS_TOKEN"
             description: |
               Don't forget to escape token.
         responses:
@@ -25,16 +25,17 @@ securitySchemes:
               Token is invalid or expired.
 
 traits:
-  - admin-only:
+  - secured:
       securedBy: [ x-query-token ]
       queryParameters:
         token:
           type: string
-          example: "AUTHORIZATIONTOKEN"
+          example: "ACCESS_TOKEN"
           description: |
             Don't forget to escape token.
+
+  - admin-only:
       responses:
-        200:
         403:
           description: |
             `ROLE_ADMIN` is required to perform this operation.
@@ -54,8 +55,10 @@ traits:
 
 /users:
   get:
-    is: [ admin-only, paged ]
+    is: [ secured, admin-only, paged ]
   post:
+    description: |
+      User registration.
     body:
       application/json:
         schema: !include v1/schemas/users/post.json
@@ -68,7 +71,7 @@ traits:
             example: !include v1/examples/users/one.json
   /{id}:
     get:
-      is: [ admin-only ]
+      is: [ secured, admin-only ]
       responses:
         200:
           body:
@@ -76,7 +79,7 @@ traits:
               schema: !include v1/schemas/users/one.json
               example: !include v1/examples/users/one.json
     patch:
-      is: [ admin-only ]
+      is: [ secured, admin-only ]
       body:
         application/json:
           schema: !include v1/schemas/users/patch.json
@@ -88,11 +91,47 @@ traits:
               schema: !include v1/schemas/users/one.json
               example: !include v1/examples/users/one.json
     delete:
-      is: [ admin-only ]
+      is: [ secured, admin-only ]
       responses:
         200:
     /reset-password:
       post:
-        is: [ admin-only ]
+        is: [ secured, admin-only ]
         responses:
           200:
+
+/account:
+  post:
+    description: |
+      User authentication.
+    body:
+      application/json:
+        schema: !include v1/schemas/account/post.json
+        example: !include v1/examples/account/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/account/one.json
+            example: !include v1/examples/account/one.json
+  patch:
+    is: [ secured ]
+    description: |
+      User account update.
+    body:
+      application/json:
+        schema: !include v1/schemas/users/patch.json
+        example: !include v1/examples/users/patch.json
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/one.json
+            example: !include v1/examples/users/one.json
+  /reset-password:
+    post:
+      is: [ secured ]
+      description: |
+        User password reset.
+      responses:
+        200:

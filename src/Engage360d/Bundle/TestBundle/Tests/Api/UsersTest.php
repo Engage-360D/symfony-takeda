@@ -20,7 +20,15 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json')
+
+            ->setQuery(array('page' => 2, 'limit' => 1))
+            ->setClient($this->getAdminClient())
+                ->assertStatusCode(200)
+                ->testResponse(function($response, $users) {
+                    $this->assertEquals(1, count($users));
+                    $this->assertEquals(2, $users[0]->id);
+                });
     }
 
     public function testCreateUser()
@@ -40,7 +48,16 @@ class UsersTest extends ApiTestCase
             )
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(201)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+
+            ->setBody(
+                null,
+                (object) array(
+                    'region' => 'Москва',
+                )
+            )
+            ->setClient($this->getAnonymousClient())
+                ->assertStatusCode(400);
     }
 
     public function testGetUser()
@@ -80,12 +97,19 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+
+            ->setBody(
+                null,
+                (object) array()
+            )
+            ->setClient($this->getAdminClient())
+                ->assertStatusCode(400);
     }
 
     public function testDeleteUser()
     {
-        $this->resource('DELETE', '/api/v1/users/1')
+        $this->resource('DELETE', '/api/v1/users/4')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
 
