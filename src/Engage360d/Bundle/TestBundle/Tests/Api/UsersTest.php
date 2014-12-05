@@ -23,6 +23,7 @@ class UsersTest extends ApiTestCase
                 ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json')
 
             ->setQuery(array('page' => 2, 'limit' => 1))
+            ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
                 ->testResponse(function($response, $users) {
                     $this->assertEquals(1, count($users));
@@ -47,7 +48,16 @@ class UsersTest extends ApiTestCase
             )
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(201)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+
+            ->setBody(
+                null,
+                (object) array(
+                    'region' => 'Москва',
+                )
+            )
+            ->setClient($this->getAnonymousClient())
+                ->assertStatusCode(400);
     }
 
     public function testGetUser()
@@ -87,7 +97,14 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+
+            ->setBody(
+                null,
+                (object) array()
+            )
+            ->setClient($this->getAdminClient())
+                ->assertStatusCode(400);
     }
 
     public function testDeleteUser()

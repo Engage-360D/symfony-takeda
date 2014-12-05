@@ -59,7 +59,10 @@ class ApiTest
 
     public function setBody($uri, $body)
     {
-        $this->assertBySchema($uri, $body);
+        if ($uri) {
+            $this->assertBySchema($uri, $body);
+        }
+
         $this->body = $body;
         $this->requested = false;
         return $this;
