@@ -104,7 +104,8 @@
     },
 
     "email": {
-      "type": "string"
+      "type": "string",
+      "format": "email"
     },
 
     "enabled": {

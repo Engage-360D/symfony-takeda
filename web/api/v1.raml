@@ -1,29 +1,13 @@
 #%RAML 0.8
 title: Cardiomagnyl API
 version: v1
-baseUri: /api/{version}
 
-traits:
-  - paged:
-      queryParameters:
-        page:
-          type: number
-          example: 1
-          description: |
-            Starting from one.
-        limit:
-          type: number
-          example: 10
-          description: |
-            Page limit.
-
-  - secured:
-      queryParameters:
-        token:
-          type: string
-          example: "AUTHORIZATIONTOKEN"
-          description: |
-            Don't forget to escape token.
+baseUri: "{schema}://{domain}/api/{version}"
+baseUriParameters:
+  schema:
+    enum: [ http, https ]
+  domain:
+    enum: [ cardiomagnyl.iengage.ru, cardiomagnyl.ru ]
 
 securitySchemes:
   - x-query-token:
@@ -40,19 +24,37 @@ securitySchemes:
             description: |
               Token is invalid or expired.
 
+traits:
+  - admin-only:
+      securedBy: [ x-query-token ]
+      queryParameters:
+        token:
+          type: string
+          example: "AUTHORIZATIONTOKEN"
+          description: |
+            Don't forget to escape token.
+      responses:
+        200:
+        403:
+          description: |
+            `ROLE_ADMIN` is required to perform this operation.
+
+  - paged:
+      queryParameters:
+        page:
+          type: number
+          example: 1
+          description: |
+            Starting from one.
+        limit:
+          type: number
+          example: 10
+          description: |
+            Page limit.
+
 /users:
   get:
-    securedBy: [ x-query-token ]
-    is: [ secured, paged ]
-    responses:
-      200:
-        body:
-          application/json:
-            schema: !include v1/schemas/users/list.json
-            example: !include v1/examples/users/list.json
-      403:
-        description: |
-          `ROLE_ADMIN` is required to perform this operation.
+    is: [ admin-only, paged ]
   post:
     body:
       application/json:
@@ -64,26 +66,17 @@ securitySchemes:
           application/json:
             schema: !include v1/schemas/users/one.json
             example: !include v1/examples/users/one.json
-      403:
-        description: |
-          `ROLE_ADMIN` is required to perform this operation.
-          Or you could be anonymous :-)
   /{id}:
     get:
-      securedBy: [ x-query-token ]
-      is: [ secured ]
+      is: [ admin-only ]
       responses:
         200:
           body:
             application/json:
               schema: !include v1/schemas/users/one.json
               example: !include v1/examples/users/one.json
-        403:
-          description: |
-            `ROLE_ADMIN` is required to perform this operation.
     patch:
-      securedBy: [ x-query-token ]
-      is: [ secured ]
+      is: [ admin-only ]
       body:
         application/json:
           schema: !include v1/schemas/users/patch.json
@@ -94,14 +87,12 @@ securitySchemes:
             application/json:
               schema: !include v1/schemas/users/one.json
               example: !include v1/examples/users/one.json
-        403:
-          description: |
-            `ROLE_ADMIN` is required to perform this operation.
     delete:
-      securedBy: [ x-query-token ]
-      is: [ secured ]
+      is: [ admin-only ]
       responses:
         200:
-        403:
-          description: |
-            Required admin role.
+    /reset-password:
+      post:
+        is: [ admin-only ]
+        responses:
+          200:

@@ -5,5 +5,7 @@
 
   "items": {
     "$ref": "http://cardiomagnyl.ru/api/v1/schemas/user/one.json#"
-  }
+  },
+
+  "uniqueItems": true
 }
