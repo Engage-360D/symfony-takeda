@@ -109,7 +109,7 @@ class UsersTest extends ApiTestCase
 
     public function testDeleteUser()
     {
-        $this->resource('DELETE', '/api/v1/users/1')
+        $this->resource('DELETE', '/api/v1/users/4')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
 
