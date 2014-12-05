@@ -14,3 +14,4 @@
 *.swp
 app/var/*
 /web/client/
+/phpunit.phar

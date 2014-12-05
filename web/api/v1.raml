@@ -1,0 +1,107 @@
+#%RAML 0.8
+title: Cardiomagnyl API
+version: v1
+baseUri: /api/{version}
+
+traits:
+  - paged:
+      queryParameters:
+        page:
+          type: number
+          example: 1
+          description: |
+            Starting from one.
+        limit:
+          type: number
+          example: 10
+          description: |
+            Page limit.
+
+  - secured:
+      queryParameters:
+        token:
+          type: string
+          example: "AUTHORIZATIONTOKEN"
+          description: |
+            Don't forget to escape token.
+
+securitySchemes:
+  - x-query-token:
+      type: x-query-token
+      describedBy:
+        queryParameters:
+          token:
+            type: string
+            example: "AUTHORIZATIONTOKEN"
+            description: |
+              Don't forget to escape token.
+        responses:
+          401:
+            description: |
+              Token is invalid or expired.
+
+/users:
+  get:
+    securedBy: [ x-query-token ]
+    is: [ secured, paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/list.json
+            example: !include v1/examples/users/list.json
+      403:
+        description: |
+          `ROLE_ADMIN` is required to perform this operation.
+  post:
+    body:
+      application/json:
+        schema: !include v1/schemas/users/post.json
+        example: !include v1/examples/users/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/one.json
+            example: !include v1/examples/users/one.json
+      403:
+        description: |
+          `ROLE_ADMIN` is required to perform this operation.
+          Or you could be anonymous :-)
+  /{id}:
+    get:
+      securedBy: [ x-query-token ]
+      is: [ secured ]
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/users/one.json
+              example: !include v1/examples/users/one.json
+        403:
+          description: |
+            `ROLE_ADMIN` is required to perform this operation.
+    patch:
+      securedBy: [ x-query-token ]
+      is: [ secured ]
+      body:
+        application/json:
+          schema: !include v1/schemas/users/patch.json
+          example: !include v1/examples/users/patch.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/users/one.json
+              example: !include v1/examples/users/one.json
+        403:
+          description: |
+            `ROLE_ADMIN` is required to perform this operation.
+    delete:
+      securedBy: [ x-query-token ]
+      is: [ secured ]
+      responses:
+        200:
+        403:
+          description: |
+            Required admin role.

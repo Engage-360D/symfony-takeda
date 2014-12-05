@@ -1,0 +1,23 @@
+{
+  "address": null,
+  "birthday": "2014-12-04T00:00:00+0000",
+  "confirmSubscription": true,
+  "doctor": true,
+  "email": "test@test.ru",
+  "enabled": true,
+  "experience": null,
+  "facebookId": null,
+  "firstname": "admin",
+  "graduation": null,
+  "id": 1,
+  "institution": null,
+  "lastLogin": null,
+  "lastname": "admin",
+  "phone": null,
+  "region": null,
+  "registration": "2014-12-04T00:00:00+0000",
+  "specialization": null,
+  "testResults": [],
+  "username": "test@test.ru",
+  "vkontakteId": null
+}

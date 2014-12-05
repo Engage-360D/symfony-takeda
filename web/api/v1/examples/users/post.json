@@ -1,0 +1,9 @@
+{
+  "doctor": false,
+  "email": "test@example.com",
+  "firstname": "vyacheslav",
+  "lastname": "slinko",
+  "region": "Москва",
+  "confirmSubscription": true,
+  "plainPassword": "test"
+}

@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+
+    "doctor": {
+      "type": "boolean"
+    },
+
+    "birthday": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+
+    "region": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "registration": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "specialization": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "experience": {
+      "oneOf": [
+        {"type": "number"},
+        {"type": "null"}
+      ]
+    },
+
+    "address": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "phone": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "institution": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "graduation": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+
+    "confirmSubscription": {
+      "type": "boolean"
+    },
+
+    "vkontakteId": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "firstname": {
+      "type": "string"
+    },
+
+    "lastname": {
+      "type": "string"
+    },
+
+    "facebookId": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+
+    "username": {
+      "type": "string"
+    },
+
+    "email": {
+      "type": "string"
+    },
+
+    "enabled": {
+      "type": "boolean"
+    },
+
+    "lastLogin": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+
+    "roles": {
+      "type": "array",
+
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+
+  "required": [
+    "id",
+    "doctor",
+    "birthday",
+    "region",
+    "registration",
+    "specialization",
+    "experience",
+    "address",
+    "phone",
+    "institution",
+    "graduation",
+    "confirmSubscription",
+    "vkontakteId",
+    "firstname",
+    "lastname",
+    "facebookId",
+    "username",
+    "email",
+    "enabled",
+    "lastLogin",
+    "roles"
+  ]
+}

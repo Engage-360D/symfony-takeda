@@ -58,10 +58,10 @@ security:
                 invalidate_session: true
 
     access_control:
-        - { path: ^/api/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
-        - { path: ^/api/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-        - { path: ^/api/test-results, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/countries, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
+        - { path: ^/api/v1/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: ^/api/v1/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
+        - { path: ^/api/v1/test-results, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1/countries, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
 
         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
 

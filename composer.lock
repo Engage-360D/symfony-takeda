@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c799d609a5772978afce1b04ea4fb12",
+    "hash": "ceda5d523d3f996a7e75c31071148b60",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1271,6 +1271,7 @@
             "keywords": [
                 "facebook"
             ],
+            "abandoned": "hwi/oauth-bundle",
             "time": "2014-04-25 13:24:31"
         },
         {
@@ -1497,6 +1498,7 @@
             "keywords": [
                 "rest"
             ],
+            "abandoned": true,
             "time": "2013-10-12 20:34:05"
         },
         {
@@ -2461,6 +2463,72 @@
                 "webinterface"
             ],
             "time": "2014-10-29 13:23:47"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "87b54b460febed69726c781ab67462084e97a105"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/87b54b460febed69726c781ab67462084e97a105",
+                "reference": "87b54b460febed69726c781ab67462084e97a105",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "json-schema/json-schema-test-suite": "1.1.0",
+                "phpdocumentor/phpdocumentor": "~2",
+                "phpunit/phpunit": "~3.7"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JsonSchema": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2014-08-25 02:48:14"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -4270,9 +4338,9 @@
         "hwi/oauth-bundle": 20,
         "nickcernis/html-to-markdown": 20,
         "engage360d/rest-bundle": 20,
+        "engage360d/security-bundle": 20,
         "engage360d/search-bundle": 20,
-        "engage360d/pages-bundle": 20,
-        "engage360d/security-bundle": 20
+        "engage360d/pages-bundle": 20
     },
     "prefer-stable": false,
     "platform": {

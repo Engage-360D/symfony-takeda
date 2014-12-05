@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Cardiomagnyl API</title>
+
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body ng-app="ramlConsoleApp" ng-cloak id="raml-console-unembedded">
+    <div style="position:relative; height: 100vh; overflow: auto;">
+      <raml-console src='/api/v1.raml' with-root-documentation></raml-console>
+    </div>
+
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

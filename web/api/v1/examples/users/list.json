@@ -1,0 +1,27 @@
+[
+  {
+    "address": null,
+    "birthday": null,
+    "confirmSubscription": false,
+    "doctor": false,
+    "email": "vslinko@yahoo.com",
+    "enabled": false,
+    "experience": null,
+    "facebookAccessToken": null,
+    "facebookId": null,
+    "firstname": "vslinko",
+    "graduation": null,
+    "id": 1,
+    "institution": null,
+    "lastLogin": "2014-12-04T13:49:42+0000",
+    "lastname": null,
+    "phone": null,
+    "region": "Москва",
+    "registration": "2014-12-04T00:00:00+0000",
+    "specialization": null,
+    "testResults": [],
+    "username": "vslinko@yahoo.com",
+    "vkontakteAccessToken": null,
+    "vkontakteId": null
+  }
+]

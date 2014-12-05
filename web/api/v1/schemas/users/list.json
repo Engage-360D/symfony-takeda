@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "array",
+
+  "items": {
+    "$ref": "http://cardiomagnyl.ru/api/v1/schemas/user/one.json#"
+  }
+}
