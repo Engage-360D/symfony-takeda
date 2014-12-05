@@ -27,6 +27,7 @@ class ApiTest
     private $client;
     private $method;
     private $url;
+    private $query;
     private $body;
     private $requested = false;
 
@@ -49,6 +50,13 @@ class ApiTest
         return $this;
     }
 
+    public function setQuery($query)
+    {
+        $this->query = $query;
+        $this->requested = false;
+        return $this;
+    }
+
     public function setBody($uri, $body)
     {
         $this->assertBySchema($uri, $body);
@@ -62,6 +70,17 @@ class ApiTest
         $this->client = $client;
         $this->requested = false;
         return $this;
+    }
+
+    public function testResponse($callback)
+    {
+        $response = $this->client->getResponse();
+        $body = json_decode($response->getContent());
+
+        $callback(
+            $response,
+            $body
+        );
     }
 
     public function assertStatusCode($code)
@@ -131,7 +150,14 @@ class ApiTest
         $server = array();
         $content = null;
 
-        if (isset($this->body)) {
+        if ($this->query) {
+            $url = implode("?", array(
+                $url,
+                http_build_query($this->query)
+            ));
+        }
+
+        if ($this->body) {
             $server['CONTENT_TYPE'] = 'application/json';
             $content = json_encode($this->body);
         }

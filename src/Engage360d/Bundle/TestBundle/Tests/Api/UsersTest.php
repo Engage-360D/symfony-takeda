@@ -20,7 +20,14 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json');
+                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json')
+
+            ->setQuery(array('page' => 2, 'limit' => 1))
+                ->assertStatusCode(200)
+                ->testResponse(function($response, $users) {
+                    $this->assertEquals(1, count($users));
+                    $this->assertEquals(2, $users[0]->id);
+                });
     }
 
     public function testCreateUser()
