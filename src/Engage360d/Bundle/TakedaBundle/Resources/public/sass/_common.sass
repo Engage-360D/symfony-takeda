@@ -1,0 +1,479 @@
+// # SHORT HOWTO
+// ## Sprites
+//     .whatever
+//          +sized-sprite($icons, coderiver) //or
+// 			+s(codedby) //gets default value for spritemap as $icons
+// ### animation example
+//     +include keyframes(rotate)
+//        from
+//           +rotate(0)
+//        to
+//           +rotate(360)
+// ## animation usage
+//     body:hover
+// 	    +animation(rotate 200s linear infinite)
+// ## animations easing, see easings.net for full list and examples, tnx @ai
+//     transition: all 1.2s ceaser($ease-in)
+// ## gradient example
+//     +background-image(linear-gradient(#232323, #5c5c5c));
+//     +g(#232323, #5c5c5c);
+//	   horizontal
+//     +gh(#232323, #5c5c5c);
+// ## making bw-images
+//     img
+//			@extend %gray
+// ## predefined media-queries: https://github.com/paranoida/sass-mediaqueries
+//     +min-screen(320)
+//			display: none
+// +max-screen(1000), +iphone5, +iphone4, +ipad-retina, +ipad, +hdpi - also available
+//
+// ## use cycles
+//     @for $i from 1 through 3
+//       .item-#{$i}
+//			width: 2em * $i;
+//     @each $s in a,b,c
+// 	    	#{$s}
+//				display: none
+// ## fonts 
+// Save fonts to /css/fonts, after that write (eot, woff, ttf):
++font(SegoeWP, segoewp)  
+=reg
+	font-family: "SegoeWP", Arial, sans-serif 
++font(SegoeWPLight, segoewplight)  
+=l
+	font-family: "SegoeWPLight", Arial, sans-serif  
+	font-weight: 300 
+=h
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+=hl
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+	font-weight: 300 
+
+//media query
+@mixin rt($media)
+	@media only screen and (max-width: $media+px)
+		@content
+@mixin rth($media)
+	@media only screen and (max-height: $media+px)
+		@content
+	
+$bl: #2269c8
+$bll: #1077e0
+$cl: #414141
+$green: #46bdaf
+$border: #d9d9d9
+$c89: #898989
+$red: #f04244
+
+@font-face 
+	font-family: fontello
+	src: url('../font/fontello.eot?64913113')
+	src: url('../font/fontello.eot?64913113#iefix') format('embedded-opentype'), url('../font/fontello.woff?64913113') format('woff'), url('../font/fontello.ttf?64913113') format('truetype'), url('../font/fontello.svg?64913113#fontello') format('svg')
+	font-weight: normal
+	font-style: normal
+
+.icon
+	display: inline-block
+	-webkit-font-smoothing: antialiased
+	line-height: 1
+	&:before
+		display: block
+		font-family: "fontello"
+		font-style: normal
+		font-weight: normal
+		speak: none
+
+.icon-main-circle:before
+	content: '\e800'
+.icon-arr-circle-right-fill:before
+	content: '\e801'
+.icon-arr-circle-right:before
+	content: '\e802'
+.icon-minus-fill:before
+	content: '\e803'
+.icon-ok-circle-big-fill:before
+	content: '\e804'
+.icon-ask-circle-big:before
+	content: '\e805'
+.icon-ask-circle:before
+	content: '\e806'
+.icon-ok-circle-big-thin:before
+	content: '\e807'
+.icon-attention-fill:before
+	content: '\e808'
+.icon-ok-circle-big:before
+	content: '\e809'
+.icon-ok-circle-middle:before
+	content: '\e80a'
+.icon-attention:before
+	content: '\e80b'
+.icon-bell-big:before
+	content: '\e80c'
+.icon-ok-circle:before
+	content: '\e80d'
+.icon-os-android:before
+	content: '\e80e'
+.icon-bell:before
+	content: '\e80f'
+.icon-calendar-fill:before
+	content: '\e810'
+.icon-calendar:before
+	content: '\e811'
+.icon-play:before
+	content: '\e812'
+.icon-os-ios:before
+	content: '\e813'
+.icon-plus-fill:before
+	content: '\e814'
+.icon-circles-fill:before
+	content: '\e815'
+.icon-close-circle:before
+	content: '\e816'
+.icon-print-circle-fill:before
+	content: '\e817'
+.icon-print-circle:before
+	content: '\e818'
+.icon-search:before
+	content: '\e819'
+.icon-doc:before
+	content: '\e81a'
+.icon-info-fill:before
+	content: '\e81b'
+.icon-soc-fb:before
+	content: '\e81c'
+.icon-soc-ok:before
+	content: '\e81d'
+.icon-info-triangle-big:before
+	content: '\e81e'
+.icon-info-triangle:before
+	content: '\e81f'
+.icon-soc-vk:before
+	content: '\e820'
+.icon-user:before
+	content: '\e821'
+.icon-info:before
+	content: '\e822'
+.icon-mail:before
+	content: '\e823'
+.icon-mail-circle-fill:before
+	content: '\e824'
+.icon-close:before
+	content: '\e825'
+.icon-ok:before
+	content: '\e826'
+.icon-arr-right:before
+	content: '\e827'
+.icon-arr-left:before
+	content: '\e828'
+.icon-arr-down:before
+	content: '\e829'
+.icon-arr-circle-left:before
+	content: '\e82a'
+.icon-arr-circle-left-fill:before
+	content: '\e82b'
+.icon-arr-top:before
+	content: '\e82c'
+.icon-marker:before
+	content: '\e82d'
+.icon-minus:before
+	content: '\e82e'
+.icon-plus:before
+	content: '\e82f'
+.icon-circles:before
+	content: '\e830'
+
+body
+	min-width: 1024px
+	background: #ECECEC 
+	+h
+	font-size: 14px 
+	line-height: 1.4
+	-webkit-font-smoothing: antialiased
+	color: #414141
+a
+	text-decoration: none
+input, textarea, button
+	+h
+	font-size: 14px
+	+box
+input[type="text"], input[type="password"], textarea
+	width: 100%
+button
+	background: none
+
+// common blocks
+.wrapper
+	min-width: 1024px
+	
+.aside
+	position: fixed
+	top: 0
+	bottom: 0
+	
+.aside
+	left: 0
+	width: 179px
+	padding: 0 20px
+	padding-bottom: 50px
+	background: #35373A 
+	border-right: #2B2B2B 1px solid
+	 
+.section
+	position: relative
+	max-width: 1220px
+	min-height: 100vh
+	margin-left: 220px
+	background: #fff
+	border-right: 1px solid #d7d7d7  
+
+.logo
+	margin: 0 -20px
+	padding: 11px 20px 24px 
+	background: #424549 
+	border-bottom: #4A4B4E 1px solid 
+.logo__pic
+	+s(logo)
+
+.aside__in
+	padding: 0 20px
+
+.nav
+	margin-bottom: 8px
+	li
+		&:first-child
+			border-bottom: #2B2F34 1px solid
+			box-shadow: 0 1px 0 #4a4b4e
+			a
+				padding: 10px 20px 11px
+		&.is-active
+			a
+				background: $bll
+				cursor: default
+				color: #fff 
+			.icon
+				color: #FFF
+	a
+		position: relative
+		display: block
+		margin: 0 -20px
+		padding: 4px 20px 5px
+		+reg
+		font-size: 15px
+		color: #FFF 
+		overflow: hidden
+		&:hover
+			background: #fff 
+			color: #35373A 
+		&:active
+			background: $bll
+			color: #fff
+			.icon
+				color: #FFF  
+	.icon
+		position: absolute
+		top: 9px
+		right: 20px
+		font-size: 23px
+		color: #858585 
+		
+.search-form, .links, .links-app, .social, .subscribe
+	border-bottom: #2B2F34 1px solid
+	box-shadow: 0 1px 0 #4a4b4e 
+
+.search-form, .subscribe
+	input
+		height: 29px
+		padding: 0 30px 0 10px
+		border-radius: 8px
+		background: #9a9b9d
+		box-shadow: inset 2px 4px 7px rgba(0,0,0,.26)
+		font-size: 12px
+		+placeholder-color(#4b4c4d)
+		&:focus
+			background: #fff 
+.search-form
+	position: relative
+	padding-bottom: 12px
+	button
+		position: absolute
+		top: 0
+		right: 0
+		width: 30px
+		height: 28px
+		font-size: 0
+		overflow: visible
+		&:hover
+			.icon
+				color: $bll 
+	.icon
+		position: absolute
+		top: 8px
+		right: 7px
+		font-size: 13px
+		color: #545556 
+
+.links, .links-app
+	position: relative
+	height: 41px
+	font-size: 0
+	z-index: 4 
+	li
+		display: inline-block
+		width: 50%
+		vertical-align: top
+		+box
+		&:first-child
+			border-right: #2B2F34 1px solid
+			box-shadow: 1px 0 0 #4a4b4e 
+			a
+				margin: 0 0 0 -20px 
+				padding: 0 0 0 22px
+	a
+		display: block
+		height: 42px
+		margin: 0 -20px 0 0 
+		padding: 0 20px 0 10px
+		+reg
+		color: #FFF 
+		font-size: 14px  
+		line-height: 42px
+		white-space: nowrap
+		&:hover
+			background: #FFF
+			color: #35373A 
+			.icon
+				color: #35373A 
+		&:active
+			background: $bl
+			color: #fff  
+			.icon
+				color: #FFF 
+	span, .icon
+		display: inline-block
+		vertical-align: top
+	span
+		margin-right: 5px
+		vertical-align: top
+	.icon
+		position: relative
+		top: 8px
+		font-size: 25px
+		color: #858585 
+
+.social
+	height: 41px
+	font-size: 0
+	&.social_dark
+		border: none
+		box-shadow: none
+		li
+			margin: 0 10px 0 0
+			&:first-child
+				margin: 0 10px 0 0
+		.icon
+			color: #414141 
+	li
+		display: inline-block
+		width: 42px
+		margin-left: 15px
+		vertical-align: top
+		&:first-child
+			margin-left: 8px
+	a
+		display: table-cell
+		width: 42px
+		height: 42px
+		vertical-align: middle
+		text-align: center
+		&:hover
+			.icon
+				color: #FFF 
+	.icon
+		color: #858585 
+	.icon-soc-vk
+		font-size: 17px 
+	.icon-soc-fb
+		font-size: 28px 
+	.icon-soc-ok
+		font-size: 26px 
+	&.social_gray
+		height: auto
+		border: none
+		box-shadow: none
+		text-align: center
+		li
+			width: 52px
+			margin: 0
+			&:first-child
+				margin: 0
+		a
+			width: 52px
+			height: 52px
+	.social__vk
+		&:hover
+			background: #6082a7 
+	.social__fb
+		&:hover
+			background: #3c5b97 
+	.social__ok
+		&:hover
+			background: #f4863f 
+
+.subscribe
+	margin-bottom: 12px
+	padding: 11px 0 12px 
+	input
+		padding: 0 25px 0 6px
+	label
+		position: relative
+		display: block
+.subscribe__btn
+	position: absolute
+	top: 9px
+	right: 7px
+	font-size: 0
+	&:hover
+		.icon
+			color: $bll 
+	.icon
+		font-size: 12px
+		color: #545556 
+
+.footer
+	position: absolute
+	left: 20px
+	right: 20px
+	bottom: 10px
+	+rth(660)
+		position: relative
+		left: auto
+		right: auto
+		bottom: auto
+.footer__info
+	margin-bottom: 12px
+	font-size: 10px
+	color: #B2B3B3 
+	line-height: 1.2
+.takeda, .copyright
+	display: inline-block
+	vertical-align: bottom
+.takeda
+	margin-right: 20px
+	+s(takeda)
+.copyright
+	font-size: 10px
+	color: #FFF 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

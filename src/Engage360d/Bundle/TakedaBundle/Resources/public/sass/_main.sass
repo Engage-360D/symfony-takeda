@@ -1,0 +1,235 @@
+// Normally main page style
+.main
+	border: 2px solid #fff
+	border-width: 2px 2px 0 
+	.main__blocks
+		z-index: 2 
+	.main__item
+		position: relative
+		min-height: 657px
+		margin-bottom: 2px
+	.main__item_1
+		.head
+			position: relative
+			min-height: 103px
+			padding: 20px 40px 20px
+			margin: 0
+		.main__item-in
+			.h
+				margin-bottom: 20px
+				font-size: 28px
+				color: #FFF 
+	.main__item_2
+		background: url(../img/main-item2-bg.png) no-repeat 94% 15px #aa85f4
+		+rt(1280)
+			background-position: 105% 15px 
+		.main__item-in
+			padding: 20px 40px
+			color: #fff
+			.h
+				margin-bottom: 30px
+		.field
+			.field__label
+				margin-bottom: 15px
+				font-size: 16px
+			.field__radio
+				span
+					&:before
+						border-color: #fff
+				input
+					&:checked + span
+						&:before
+							background: #FFF 
+	.main__item_3
+		background: url(../img/main-item3-bg.png) no-repeat 94% 15px #55BDE6 
+		overflow: hidden
+		+rt(1280)
+			background-position: 101% 15px 
+		.main__item-in
+			padding: 20px 40px
+	.main__text
+		font-size: 16px
+	.main__product	
+		position: relative
+		float: left
+		width: 290px
+		height: 514px
+		margin-right: 2px
+		overflow: hidden
+		&:hover
+			.main__product-pic
+				+scale(1.1)
+		.link
+			position: absolute
+			right: 20px
+			bottom: 20px
+	.main__product-pic
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background-size: cover 
+		background-position: 50% 50% 
+		+tr(transform .4s)
+	.main__info
+		height: 184px
+		margin-bottom: 2px
+		overflow: hidden
+		padding: 15px 20px
+		background: #289bc8
+		+rt(1280)
+			background-position: 102% 70%
+	.main__item-info-links
+		li
+			margin-bottom: 7px
+	.main__app
+		height: 268px
+		padding: 15px 20px
+		background: #2cbbb0 
+		overflow: hidden
+		.main__text-in
+			margin-bottom: 30px
+			color: #FFF
+	.main__app-list	
+		tac
+		+clr
+	.main__app-item
+		float: left
+		width: 108px
+		.main__app-pic
+			padding-left: 18px
+		&:first-child
+			margin-right: 100px
+			.main__app-pic
+				padding: 0
+	.main__app-pic
+		height: 106px
+		font-size: 0
+		vertical-align: top
+		img
+			display: block
+	.main__map
+		position: relative
+		display: inline-block
+		min-height: 110px
+		padding-right: 100px
+		.h
+			color: #FFF
+			line-height: 1.2
+			a
+				display: inline-block
+				color: #000
+				text-decoration: underline 
+		.link
+			position: absolute
+			top: 75px
+			right: 0
+			+rt(1290)
+				right: 110px
+
+.map
+	+clr
+	.map__panel
+		float: left
+		width: 38px
+		padding: 30px 45px 0 0  
+		font-size: 0
+	.map__circle,
+	.map__plus,
+	.map__minus
+		position: relative
+		cursor: pointer
+		.icon
+			font-size: 38px
+			color: #FFF 
+			&:first-child
+				position: absolute
+				top: 0
+				left: 0
+				visibility: hidden
+		&:hover
+			.icon
+				visibility: hidden
+				&:first-child
+					visibility: visible
+	.map__circle
+		margin-bottom: 16px
+	.map__zoom
+		position: relative
+		margin: 5px 12px
+		li
+			height: 1px
+			margin-top: 10px
+			background: #FFF
+			&:first-child
+				margin: 0
+		.map__zoom-drag
+			position: absolute
+			left: -8px
+			width: 30px
+			height: 6px
+			margin: -3px 0 0 0
+			border-radius: 2px
+			cursor: pointer
+	.map__container
+		position: relative
+		width: 544px
+		margin: 0 auto
+	.map__container-in
+		position: relative
+		width: 534px
+		height: 534px
+		border: 5px solid #fff
+		border-radius: 50%
+		background: #f5f5f5
+		z-index: 4
+	.map__shadow
+		position: absolute
+		top: 170px
+		left: 208px
+		width: 544px
+		height: 620px
+		+g(rgba(0,0,0,.15), rgba(0,0,0,0))
+		+rotate(-45)
+	
+.point
+	position: absolute
+	.point__mark
+		display: block
+		+s(map-mark)
+	.point__tooltip
+		position: absolute
+		right: -25px
+		bottom: 50px
+		width: 210px
+		padding: 10px
+		border-radius: 10px 10px 0 10px
+		background: #fff
+		&:after
+			content: ""
+			position: absolute
+			right: 0
+			bottom: -20px
+			width: 20px
+			height: 20px
+			border-radius: 0 0 40px 0
+			background: #FFF 
+	.point__title
+		font-size: 20px
+	.point__type
+		padding-bottom: 3px
+		margin-bottom: 3px
+		border-bottom: #ACACAC 1px solid 
+	.point__mail
+		a
+			color: #000 
+			text-decoration: underline
+	.icon-marker
+		font-size: 40px
+		color: $bl 
+
+
+
+
+

@@ -1,0 +1,61 @@
+{% extends "Engage360dTakedaBundle::base.html.twig" %}
+
+{% block body %}
+<!-- wrapper-->
+<div class="wrapper">
+  <!-- aside -->
+  <div class="aside">
+    <!-- logo -->
+    <div class="logo">
+      <div class="logo__pic"></div>
+    </div>
+    <!-- nav -->
+    <nav class="nav">
+      <ul>
+        <li><a href="#">Личный кабинет<i class="icon icon-user"></i></a></li>
+        <li><a href="#">Препарат</a></li>
+        <li><a href="#">Болезни группы риска</a></li>
+        <li{# class="is-active"#}><a href="#">Полезно знать</a></li>
+        <li><a href="{{ path('engage360d_takeda_test_get_test') }}">Анализ рисков</a></li>
+        <li><a href="#">Поиск учереждений</a></li>
+        <li><a href="#">Пресс-центр</a></li>
+      </ul>
+    </nav>
+    <!-- search-form -->
+    <div class="search-form">
+      <input type="text" placeholder="Поиск">
+      <button><i class="icon icon-search"></i></button>
+    </div>
+    <!-- links -->
+    <ul class="links">
+      <li><a href="#">О компании</a></li>
+      <li><a href="#">Контакты</a></li>
+    </ul>
+    <!-- app -->
+    <ul class="links-app">
+      <li><a href="https://itunes.apple.com/us/app/kardiomagnil-zdorovoe-serdce/id862662989?mt=8"><span>IPhone</span><i class="icon icon-os-ios"></i></a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=ru.com.cardiomagnil&amp;hl=ru"><span>Android</span><i class="icon icon-os-android"></i></a></li>
+    </ul>
+    <!-- social -->
+    <ul class="social">
+      <li><a class="social__vk" href="#"><i class="icon icon-soc-vk"></i></a></li>
+      <li><a class="social__fb" href="#"><i class="icon icon-soc-fb"></i></a></li>
+      <li><a class="social__ok" href="#"><i class="icon icon-soc-ok"></i></a></li>
+    </ul>
+    <!-- subscribe -->
+    <div class="subscribe">
+      <label>
+        <input type="text" placeholder="Подписка на обновления">
+        <button class="subscribe__btn"><i class="icon icon-mail"></i></button>
+      </label>
+    </div>
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer__info">Имеются противопоказания. Необходимо ознакомиться с инструкцией или проконсуль- тироватся со специалистом.</div>
+      <a class="takeda" href="#"></a>
+      <div class="copyright">© 2013 Takeda</div>
+    </footer>
+  </div>
+  {% block content %}{% endblock %}
+</div>
+{% endblock %}
