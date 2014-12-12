@@ -5,23 +5,9 @@
 
   "properties": {
     "users": {
-      "$ref": "#/definitions/user"
-    }
-  },
-
-  "required": [
-    "users"
-  ],
-
-  "definitions": {
-    "user": {
       "type": "object",
 
       "properties": {
-        "id": {
-          "type": "string"
-        },
-
         "email": {
           "type": "string",
           "format": "email"
@@ -38,20 +24,6 @@
         "birthday": {
           "type": "string",
           "format": "date-time"
-        },
-
-        "vkontakteId": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "null"}
-          ]
-        },
-
-        "facebookId": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "null"}
-          ]
         },
 
         "specializationGraduationDate": {
@@ -100,66 +72,14 @@
             {"type": "string"},
             {"type": "null"}
           ]
-        },
-
-        "roles": {
-          "type": "array",
-
-          "items": {
-            "type": "string",
-            "enum": ["ROLE_USER", "ROLE_DOCTOR", "ROLE_ADMIN"]
-          },
-
-          "minItems": 1,
-          "uniqueItems": true
-        },
-
-        "enabled": {
-          "type": "boolean"
-        },
-
-        "links": {
-          "type": "object",
-
-          "properties": {
-            "region": {
-              "type": "string"
-            }
-          },
-
-          "additionalProperties": false,
-
-          "required": [
-            "region"
-          ]
         }
       },
 
-      "additionalProperties": false,
-
-      "required": [
-        "id",
-
-        "email",
-        "firstname",
-        "lastname",
-        "birthday",
-
-        "vkontakteId",
-        "facebookId",
-
-        "specializationExperienceYears",
-        "specializationGraduationDate",
-        "specializationInstitutionAddress",
-        "specializationInstitutionName",
-        "specializationInstitutionPhone",
-        "specializationName",
-
-        "roles",
-        "enabled",
-
-        "links"
-      ]
+      "additionalProperties": false
     }
-  }
+  },
+
+  "required": [
+    "users"
+  ]
 }

@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "tokens": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "user": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "user"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "links"
+      ]
+    },
+
+    "linked": {
+      "type": "object",
+
+      "properties": {
+        "users": {
+          "$ref": "https://cardiomagnyl.ru/api/v1/schemas/users/list.json#"
+        }
+      },
+
+      "required": [
+        "users"
+      ]
+    }
+  },
+
+  "required": [
+    "tokens",
+    "linked"
+  ]
+}

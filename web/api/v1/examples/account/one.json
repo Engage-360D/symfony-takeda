@@ -1,9 +1,0 @@
-{
-  "user": {
-    "email": "regular@example.com",
-    "lastname": "regular",
-    "firstname": "regular"
-  },
-
-  "token": "ACCESS_TOKEN"
-}

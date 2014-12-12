@@ -5,8 +5,14 @@ version: v1
 baseUri: "{schema}://{domain}/api/{version}"
 baseUriParameters:
   schema:
+    description: |
+      На рабочем сервере API не будет доступен по HTTP.
     enum: [ http, https ]
   domain:
+    description: |
+      * `cardiomagnyl.dev.iengage.ru` — сервер активной разработки, обновляется очень часто;
+      * `cardiomagnyl.iengage.ru` — сервер демонстрации заказчику, обновляется редко;
+      * `cardiomagnyl.ru` — рабочий сервер.
     enum: [ cardiomagnyl.dev.iengage.ru, cardiomagnyl.iengage.ru, cardiomagnyl.ru ]
 
 securitySchemes:
@@ -18,11 +24,11 @@ securitySchemes:
             type: string
             example: "ACCESS_TOKEN"
             description: |
-              Don't forget to escape token.
+              Не забывайте экранировать токен, так как он может содержать специальные символы.
         responses:
           401:
             description: |
-              Token is invalid or expired.
+              Возвращается, если токен устарел или не существует.
 
 traits:
   - secured:
@@ -32,13 +38,13 @@ traits:
           type: string
           example: "ACCESS_TOKEN"
           description: |
-            Don't forget to escape token.
+            Не забывайте экранировать токен, так как он может содержать специальные символы.
 
   - admin-only:
       responses:
         403:
           description: |
-            `ROLE_ADMIN` is required to perform this operation.
+            Возвращается, если у пользователя нет роли `ROLE_ADMIN`.
 
   - paged:
       queryParameters:
@@ -46,19 +52,45 @@ traits:
           type: number
           example: 1
           description: |
-            Starting from one.
+            Нумерация начинается с единицы.
+            Обязательно наличие параметра в запросе `limit`.
         limit:
           type: number
           example: 10
           description: |
-            Page limit.
+            Количество записей на страницу.
+            По умолчанию лимит не установлен.
+
+/regions:
+  get:
+    is: [ paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/regions/list.json
+            example: !include v1/examples/regions/list.json
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/regions/one.json
+              example: !include v1/examples/regions/one.json
 
 /users:
   get:
     is: [ secured, admin-only, paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/list.json
+            example: !include v1/examples/users/list.json
   post:
     description: |
-      User registration.
+      Регистрация нового пользователя.
     body:
       application/json:
         schema: !include v1/schemas/users/post.json
@@ -78,12 +110,12 @@ traits:
             application/json:
               schema: !include v1/schemas/users/one.json
               example: !include v1/examples/users/one.json
-    patch:
+    put:
       is: [ secured, admin-only ]
       body:
         application/json:
-          schema: !include v1/schemas/users/patch.json
-          example: !include v1/examples/users/patch.json
+          schema: !include v1/schemas/users/put.json
+          example: !include v1/examples/users/put.json
       responses:
         200:
           body:
@@ -100,28 +132,30 @@ traits:
         responses:
           200:
 
-/account:
+/tokens:
   post:
     description: |
-      User authentication.
+      Аутентификация пользователя.
     body:
       application/json:
-        schema: !include v1/schemas/account/post.json
-        example: !include v1/examples/account/post.json
+        schema: !include v1/schemas/tokens/post.json
+        example: !include v1/examples/tokens/post.json
     responses:
       201:
         body:
           application/json:
-            schema: !include v1/schemas/account/one.json
-            example: !include v1/examples/account/one.json
-  patch:
+            schema: !include v1/schemas/tokens/one.json
+            example: !include v1/examples/tokens/one.json
+
+/account:
+  put:
     is: [ secured ]
     description: |
-      User account update.
+      Редактирование профиля пользователя.
     body:
       application/json:
-        schema: !include v1/schemas/users/patch.json
-        example: !include v1/examples/users/patch.json
+        schema: !include v1/schemas/users/put.json
+        example: !include v1/examples/users/put.json
     responses:
       200:
         body:
@@ -131,7 +165,5 @@ traits:
   /reset-password:
     post:
       is: [ secured ]
-      description: |
-        User password reset.
       responses:
         200:

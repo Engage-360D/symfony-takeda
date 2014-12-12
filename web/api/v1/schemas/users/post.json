@@ -4,92 +4,132 @@
   "type": "object",
 
   "properties": {
-    "doctor": {
-      "type": "boolean"
-    },
+    "users": {
+      "type": "object",
 
-    "birthday": {
-      "oneOf": [
-        {"type": "string", "format": "date-time"},
-        {"type": "null"}
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+
+        "firstname": {
+          "type": "string"
+        },
+
+        "lastname": {
+          "type": "string"
+        },
+
+        "birthday": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "specializationGraduationDate": {
+          "description": "Дата выпуска из учебного заведения. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "string", "format": "date-time"},
+            {"type": "null"}
+          ]
+        },
+
+        "specializationExperienceYears": {
+          "description": "Стаж по основной специализации. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "number"},
+            {"type": "null"}
+          ]
+        },
+
+        "specializationInstitutionAddress": {
+          "description": "Адрес учебного заведения. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "specializationInstitutionName": {
+          "description": "Название учебного заведения. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "specializationInstitutionPhone": {
+          "description": "Телефон учебного заведения. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "specializationName": {
+          "description": "Название специализации. Пустое значение если пользователь не доктор.",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "plainPassword": {
+          "type": "string"
+        },
+
+        "doctor": {
+          "description": "Метка для добавления пользователю роли ROLE_DOCTOR.",
+          "type": "boolean"
+        },
+
+        "subscribe": {
+          "description": "Метка для добавления пользователя в список рассылки.",
+          "type": "boolean"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "region": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "region"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "email",
+        "firstname",
+        "lastname",
+        "birthday",
+
+        "specializationExperienceYears",
+        "specializationGraduationDate",
+        "specializationInstitutionAddress",
+        "specializationInstitutionName",
+        "specializationInstitutionPhone",
+        "specializationName",
+
+        "plainPassword",
+        "doctor",
+        "subscribe",
+
+        "links"
       ]
-    },
-
-    "region": {
-      "type": "string"
-    },
-
-    "specialization": {
-      "oneOf": [
-        {"type": "string"},
-        {"type": "null"}
-      ]
-    },
-
-    "experience": {
-      "oneOf": [
-        {"type": "number"},
-        {"type": "null"}
-      ]
-    },
-
-    "address": {
-      "oneOf": [
-        {"type": "string"},
-        {"type": "null"}
-      ]
-    },
-
-    "phone": {
-      "oneOf": [
-        {"type": "string"},
-        {"type": "null"}
-      ]
-    },
-
-    "institution": {
-      "oneOf": [
-        {"type": "string"},
-        {"type": "null"}
-      ]
-    },
-
-    "graduation": {
-      "oneOf": [
-        {"type": "string", "format": "date-time"},
-        {"type": "null"}
-      ]
-    },
-
-    "confirmSubscription": {
-      "type": "boolean"
-    },
-
-    "firstname": {
-      "type": "string"
-    },
-
-    "lastname": {
-      "type": "string"
-    },
-
-    "email": {
-      "type": "string",
-      "format": "email"
-    },
-
-    "plainPassword": {
-      "type": "string"
     }
   },
 
   "required": [
-    "doctor",
-    "region",
-    "confirmSubscription",
-    "firstname",
-    "lastname",
-    "email",
-    "plainPassword"
+    "users"
   ]
 }

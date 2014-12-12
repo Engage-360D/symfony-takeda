@@ -1,9 +1,20 @@
 {
-  "doctor": false,
-  "email": "test@example.com",
-  "firstname": "vyacheslav",
-  "lastname": "slinko",
-  "region": "Москва",
-  "confirmSubscription": true,
-  "plainPassword": "test"
+  "users": {
+    "email": "vslinko@yahoo.com",
+    "firstname": "Vyacheslav",
+    "lastname": "Slinko",
+    "birthday": "1991-01-19T00:00:00+0000",
+    "specializationExperienceYears": null,
+    "specializationGraduationDate": null,
+    "specializationInstitutionAddress": null,
+    "specializationInstitutionName": null,
+    "specializationInstitutionPhone": null,
+    "specializationName": null,
+    "plainPassword": "password",
+    "doctor": false,
+    "subscribe": true,
+    "links": {
+      "region": "1"
+    }
+  }
 }

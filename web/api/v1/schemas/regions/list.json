@@ -4,11 +4,11 @@
   "type": "object",
 
   "properties": {
-    "users": {
+    "regions": {
       "type": "array",
 
       "items": {
-        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/users/one.json#/definitions/user"
+        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/regions/one.json#/definitions/region"
       },
 
       "uniqueItems": true
@@ -16,6 +16,6 @@
   },
 
   "required": [
-    "users"
+    "regions"
   ]
 }

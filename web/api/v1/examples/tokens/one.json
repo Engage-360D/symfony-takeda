@@ -1,18 +1,26 @@
 {
   "links": {
-    "users.region": {
-      "href": "https://cardiomagnyl.ru/api/v1/regions/{users.region}",
-      "type": "regions"
+    "tokens.user": {
+      "href": "https://cardiomagnyl.ru/api/v1/users/{tokens.user}",
+      "type": "users"
     }
   },
 
-  "users": [
-    {
+  "tokens": {
+    "id": "ACCESS_TOKEN",
+    "links": {
+      "user": "1"
+    }
+  },
+
+  "linked": {
+    "users": [{
       "id": "1",
       "email": "vslinko@yahoo.com",
       "firstname": "Vyacheslav",
       "lastname": "Slinko",
       "birthday": "1991-01-19T00:00:00+0000",
+      "region": "1",
       "vkontakteId": null,
       "facebookId": null,
       "specializationExperienceYears": null,
@@ -22,10 +30,7 @@
       "specializationInstitutionPhone": null,
       "specializationName": null,
       "roles": ["ROLE_USER"],
-      "enabled": true,
-      "links": {
-        "region": "1"
-      }
-    }
-  ]
+      "enabled": true
+    }]
+  }
 }
