@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "testResults": {
+      "type": "object",
+
+      "properties": {
+        "sex": {
+          "type": "string",
+          "enum": ["male", "female"]
+        },
+
+        "birthday": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "growth": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 300
+        },
+
+        "weight": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 700
+        },
+
+        "isSmoker": {
+          "type": "boolean"
+        },
+
+        "cholesterolLevel": {
+          "description": "Пустое значение если пользователь не знает уровень холестерина.",
+
+          "oneOf": [
+            {"type": "number", "minimum": 3, "maximum": 9},
+            {"type": "null"}
+          ]
+        },
+
+        "isCholesterolDrugsConsumer": {
+          "description": "Пустое значение если уровень холестерина меньше 5 или не известен.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "hasDiabetes": {
+          "type": "boolean"
+        },
+
+        "hadSugarProblems": {
+          "description": "Пустое значение если у пользователя есть диабет.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "isSugarDrugsConsumer": {
+          "description": "Пустое значение если у пользователя нет диабета.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "arterialPressure": {
+          "type": "number",
+          "minimum": 80,
+          "maximum": 200
+        },
+
+        "isArterialPressureDrugsConsumer": {
+          "description": "Пустое значение если артериальное давление меньше 140.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "physicalActivityMinutes": {
+          "type": "number",
+          "minimum": 80,
+          "maximum": 200
+        },
+
+        "hadHeartAttackOrStroke": {
+          "type": "boolean"
+        },
+
+        "isAddingExtraSalt": {
+          "type": "boolean"
+        },
+
+        "isAcetylsalicylicDrugsConsumer": {
+          "type": "boolean"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "sex",
+        "birthday",
+        "growth",
+        "weight",
+        "isSmoker",
+        "cholesterolLevel",
+        "isCholesterolDrugsConsumer",
+        "hasDiabetes",
+        "hadSugarProblems",
+        "isSugarDrugsConsumer",
+        "arterialPressure",
+        "isArterialPressureDrugsConsumer",
+        "physicalActivityMinutes",
+        "hadHeartAttackOrStroke",
+        "isAddingExtraSalt",
+        "isAcetylsalicylicDrugsConsumer"
+      ]
+    }
+  },
+
+  "required": [
+    "testResults"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "testResults": [
+    {
+      "id": "1",
+      "sex": "male",
+      "birthday": "1991-01-19T00:00:00+0000",
+      "growth": 185,
+      "weight": 98,
+      "isSmoker": false,
+      "cholesterolLevel": null,
+      "isCholesterolDrugsConsumer": null,
+      "hasDiabetes": false,
+      "hadSugarProblems": false,
+      "isSugarDrugsConsumer": null,
+      "arterialPressure": 120,
+      "isArterialPressureDrugsConsumer": null,
+      "physicalActivityMinutes": 100,
+      "hadHeartAttackOrStroke": true,
+      "isAddingExtraSalt": true,
+      "isAcetylsalicylicDrugsConsumer": true,
+
+      "bmi": 28.6,
+      "score": 0,
+
+      "recommendations": {
+        "scoreNote": {
+          "state": "ok",
+          "text": "Категория низкого риска развития смертельных сердечно-сосудистых заболеваний в ближайшие 10 лет"
+        },
+
+        "fullscreenAlert": null,
+
+        "mainRecommendation": {
+          "state": null,
+          "text": "Обратитесь к врачу для консультации о необходимости приема препаратов ацетилсалициловой кислоты для снижения риска тромбозов.\n"
+        },
+
+        "placesLinkShouldBeVisible": false,
+
+        "banners": {
+          "physicalActivityMinutes": {
+            "shouldHaveLink": true,
+            "state": "attention",
+            "title": "Физическая активность",
+            "subtitle": "большое отклонение",
+            "note": "Необходимо улучшение"
+          },
+          "weight": {
+            "shouldHaveLink": true,
+            "state": "bell",
+            "title": "Вес",
+            "subtitle": "среднее отклонение",
+            "note": "Необходимо улучшение"
+          },
+          "isAddingExtraSalt": {
+            "state": "ok",
+            "title": "Потребление соли",
+            "subtitle": "",
+            "note": "Все хорошо",
+            "shouldHaveLink": false
+          },
+          "isSmoker": {
+            "state": "ok",
+            "title": "Курение",
+            "subtitle": "",
+            "note": "Все хорошо",
+            "shouldHaveLink": false
+          },
+          "cholesterolLevel": {
+            "state": "ok",
+            "title": "Уровень холестирина",
+            "subtitle": "близко к норме",
+            "note": "Все хорошо",
+            "shouldHaveLink": false
+          },
+          "arterialPressure": {
+            "state": "ok",
+            "title": "Систолическое давление",
+            "subtitle": "близко к норме",
+            "note": "Все хорошо",
+            "shouldHaveLink": false
+          },
+          "hadSugarProblems": null,
+          "isArterialPressureDrugsConsumer": null,
+          "isCholesterolDrugsConsumer": null
+        }
+      }
+    }
+  ]
+}

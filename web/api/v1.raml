@@ -167,3 +167,63 @@ traits:
       is: [ secured ]
       responses:
         200:
+  /test-results:
+    get:
+      is: [ secured ]
+      description: |
+        Получение результатов тестирования пользователя.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/test-results/list.json
+              example: !include v1/examples/test-results/list.json
+    post:
+      is: [ secured ]
+      description: |
+        Сохранение результатов тестирования пользователя.
+      body:
+        application/json:
+          schema: !include v1/schemas/test-results/post.json
+          example: !include v1/examples/test-results/post.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/test-results/one.json
+              example: !include v1/examples/test-results/one.json
+
+
+/test-results:
+  get:
+    is: [ secured, admin-only ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/test-results/list.json
+            example: !include v1/examples/test-results/list.json
+  /{id}:
+    get:
+      is: [ secured, admin-only ]
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/test-results/one.json
+              example: !include v1/examples/test-results/one.json
+    /send-email:
+      post:
+        is: [ secured ]
+        description: |
+          Отправка результатов тестирования на email.
+        body:
+          application/json:
+            schema: !include v1/schemas/test-results/send-email/post.json
+            example: !include v1/examples/test-results/send-email/post.json
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include v1/schemas/test-results/send-email/one.json
+                example: !include v1/examples/test-results/send-email/one.json
