@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "pages": {
+      "type": "object",
+
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+
+        "title": {
+          "type": "string"
+        },
+
+        "description": {
+          "type": "string"
+        },
+
+        "keywords": {
+          "type": "string"
+        },
+
+        "isActive": {
+          "type": "boolean"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "pageBlocks": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "pageBlocks"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "url",
+        "title",
+        "description",
+        "keywords",
+        "isActive",
+        "links"
+      ]
+    }
+  },
+
+  "required": [
+    "pages"
+  ]
+}

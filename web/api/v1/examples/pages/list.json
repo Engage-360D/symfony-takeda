@@ -1,0 +1,24 @@
+{
+  "links": {
+    "pages.pageBlocks": {
+      "href": "https://cardiomagnyl.ru/api/v1/page-blocks/{pages.pageBlocks}",
+      "type": "pageBlocks"
+    }
+  },
+
+  "pages": [
+    {
+      "id": "1",
+      "url": "/about",
+      "title": "О компании",
+      "description": "О компании",
+      "keywords": "О компании",
+      "isActive": true,
+      "isEditable": false,
+
+      "links": {
+        "pageBlocks": ["1"]
+      }
+    }
+  ]
+}

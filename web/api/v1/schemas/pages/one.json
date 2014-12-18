@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "pages": {
+      "$ref": "#/definitions/page"
+    },
+
+    "linked": {
+      "type": "object",
+
+      "properties": {
+        "pageBlocks": {
+          "$ref": "https://cardiomagnyl.ru/api/v1/schemas/page-blocks/list.json#"
+        }
+      },
+
+      "required": [
+        "pageBlocks"
+      ]
+    }
+  },
+
+  "required": [
+    "pages",
+    "linked"
+  ],
+
+  "definitions": {
+    "page": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "url": {
+          "type": "string"
+        },
+
+        "title": {
+          "type": "string"
+        },
+
+        "description": {
+          "type": "string"
+        },
+
+        "keywords": {
+          "type": "string"
+        },
+
+        "isActive": {
+          "type": "boolean"
+        },
+
+        "isEditable": {
+          "type": "boolean"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "pageBlocks": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "pageBlocks"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "url",
+        "title",
+        "description",
+        "keywords",
+        "isActive",
+        "isEditable",
+        "links"
+      ]
+    }
+  }
+}

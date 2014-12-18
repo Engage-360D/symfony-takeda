@@ -273,3 +273,49 @@ traits:
       is: [ secured, admin-only ]
       responses:
         200:
+
+/pages:
+  get:
+    is: [ paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/pages/list.json
+            example: !include v1/examples/pages/list.json
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/pages/post.json
+        example: !include v1/examples/pages/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/pages/one.json
+            example: !include v1/examples/pages/one.json
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/pages/one.json
+              example: !include v1/examples/pages/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/pages/put.json
+          example: !include v1/examples/pages/put.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/pages/one.json
+              example: !include v1/examples/pages/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:
