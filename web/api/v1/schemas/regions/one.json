@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "regions": {
+      "ref": "#/definitions/region"
+    }
+  },
+
+  "required": [
+    "regions"
+  ],
+
+  "definitions": {
+    "region": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "name": {
+          "type": "string"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "name"
+      ]
+    }
+  }
+}

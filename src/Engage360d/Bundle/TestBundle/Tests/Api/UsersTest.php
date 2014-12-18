@@ -20,14 +20,14 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/list.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/users/list.json')
 
             ->setQuery(array('page' => 2, 'limit' => 1))
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
                 ->testResponse(function($response, $users) {
                     $this->assertEquals(1, count($users));
-                    $this->assertEquals(2, $users[0]->id);
+                    $this->assertEquals('2', $users[0]->id);
                 });
     }
 
@@ -35,26 +35,35 @@ class UsersTest extends ApiTestCase
     {
         $this->resource('POST', '/api/v1/users')
             ->setBody(
-                'http://cardiomagnyl.ru/api/v1/schemas/users/post.json',
+                'https://cardiomagnyl.ru/api/v1/schemas/users/post.json',
                 (object) array(
-                    'doctor' => false,
-                    'email' => 'test@example.com',
-                    'firstname' => 'vyacheslav',
-                    'lastname' => 'slinko',
-                    'region' => 'Москва',
-                    'confirmSubscription' => true,
-                    'plainPassword' => 'test',
+                    'users' => (object) array(
+                        'email' => 'vslinko@yahoo.com',
+                        'firstname' => 'Vyacheslav',
+                        'lastname' => 'Slinko',
+                        'birthday' => '1991-01-19T00:00:00+0000',
+                        'specializationExperienceYears' => null,
+                        'specializationGraduationDate' => null,
+                        'specializationInstitutionAddress' => null,
+                        'specializationInstitutionName' => null,
+                        'specializationInstitutionPhone' => null,
+                        'specializationName' => null,
+                        'plainPassword' => 'password',
+                        'doctor' => false,
+                        'subscribe' => true,
+                        'links' => (object) array(
+                          'region' => '1'
+                        )
+                    )
                 )
             )
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(201)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/users/one.json')
 
             ->setBody(
                 null,
-                (object) array(
-                    'region' => 'Москва',
-                )
+                (object) array()
             )
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(400);
@@ -74,16 +83,18 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json');
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/users/one.json');
     }
 
     public function testUpdateUser()
     {
-        $this->resource('PATCH', '/api/v1/users/1')
+        $this->resource('PUT', '/api/v1/users/1')
             ->setBody(
-                'http://cardiomagnyl.ru/api/v1/schemas/users/patch.json',
+                'https://cardiomagnyl.ru/api/v1/schemas/users/put.json',
                 (object) array(
-                    'confirmSubscription' => false
+                    'users' => (object) array(
+                      'firstname' => 'Test'
+                    )
                 )
             )
             ->setClient($this->getAnonymousClient())
@@ -97,7 +108,7 @@ class UsersTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('http://cardiomagnyl.ru/api/v1/schemas/users/one.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/users/one.json')
 
             ->setBody(
                 null,

@@ -12,7 +12,7 @@ class UriRetriever extends \JsonSchema\Uri\UriRetriever
     public function retrieve($uri, $baseUri = null)
     {
         $uri = str_replace(
-            'http://cardiomagnyl.ru/api/v1/schemas',
+            'https://cardiomagnyl.ru/api/v1/schemas',
             'file://' . __DIR__ . '/../../../../../web/api/v1/schemas',
             $uri
         );

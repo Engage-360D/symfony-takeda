@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "user": {
+    "tokens": {
       "type": "object",
 
       "properties": {
@@ -13,29 +13,21 @@
           "format": "email"
         },
 
-        "lastname": {
-          "type": "string"
-        },
-
-        "firstname": {
+        "plainPassword": {
           "type": "string"
         }
       },
 
+      "additionalProperties": false,
+
       "required": [
         "email",
-        "lastname",
-        "firstname"
+        "plainPassword"
       ]
-    },
-
-    "token": {
-      "type": "string"
     }
   },
 
   "required": [
-    "user",
-    "token"
+    "tokens"
   ]
 }
