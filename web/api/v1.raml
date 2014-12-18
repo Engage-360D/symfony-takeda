@@ -227,3 +227,48 @@ traits:
               application/json:
                 schema: !include v1/schemas/test-results/send-email/one.json
                 example: !include v1/examples/test-results/send-email/one.json
+
+/page-blocks:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/page-blocks/list.json
+            example: !include v1/examples/page-blocks/list.json
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/page-blocks/post.json
+        example: !include v1/examples/page-blocks/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/page-blocks/one.json
+            example: !include v1/examples/page-blocks/one.json
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/page-blocks/one.json
+              example: !include v1/examples/page-blocks/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/page-blocks/put.json
+          example: !include v1/examples/page-blocks/put.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/page-blocks/one.json
+              example: !include v1/examples/page-blocks/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:

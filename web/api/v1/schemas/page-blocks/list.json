@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "pageBlocks": {
+      "type": "array",
+
+      "items": {
+        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/page-blocks/one.json#/definitions/pageBlock"
+      },
+
+      "uniqueItems": true
+    }
+  },
+
+  "required": [
+    "pageBlocks"
+  ]
+}

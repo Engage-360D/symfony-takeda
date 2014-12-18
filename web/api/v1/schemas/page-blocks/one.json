@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "pageBlocks": {
+      "ref": "#/definitions/pageBlock"
+    }
+  },
+
+  "required": [
+    "pageBlocks"
+  ],
+
+  "definitions": {
+    "pageBlock": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "type": {
+          "type": "string"
+        },
+
+        "keyword": {
+          "type": "string"
+        },
+
+        "json": {
+          "type": "string"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "type",
+        "keyword",
+        "json"
+      ]
+    }
+  }
+}
