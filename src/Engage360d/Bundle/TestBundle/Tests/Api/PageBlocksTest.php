@@ -10,15 +10,6 @@ class PageBlocksTest extends ApiTestCase
     {
         $this->resource('GET', '/api/v1/page-blocks')
             ->setClient($this->getAnonymousClient())
-                ->assertStatusCode(401)
-
-            ->setClient($this->getRegularUserClient())
-                ->assertStatusCode(403)
-
-            ->setClient($this->getDoctorClient())
-                ->assertStatusCode(403)
-
-            ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
                 ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/page-blocks/list.json')
 
