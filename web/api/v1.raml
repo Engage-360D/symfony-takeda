@@ -196,7 +196,7 @@ traits:
 
 /test-results:
   get:
-    is: [ secured, admin-only ]
+    is: [ secured, admin-only, paged ]
     responses:
       200:
         body:
@@ -230,6 +230,7 @@ traits:
 
 /page-blocks:
   get:
+    is: [ paged ]
     responses:
       200:
         body:
