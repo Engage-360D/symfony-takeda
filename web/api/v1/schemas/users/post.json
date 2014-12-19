@@ -78,12 +78,12 @@
           "type": "string"
         },
 
-        "doctor": {
+        "isDoctor": {
           "description": "Метка для добавления пользователю роли ROLE_DOCTOR.",
           "type": "boolean"
         },
 
-        "subscribe": {
+        "isSubscribed": {
           "description": "Метка для добавления пользователя в список рассылки.",
           "type": "boolean"
         },
@@ -121,8 +121,8 @@
         "specializationName",
 
         "plainPassword",
-        "doctor",
-        "subscribe",
+        "isDoctor",
+        "isSubscribed",
 
         "links"
       ]
