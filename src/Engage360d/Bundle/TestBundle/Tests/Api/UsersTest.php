@@ -49,8 +49,8 @@ class UsersTest extends ApiTestCase
                         'specializationInstitutionPhone' => null,
                         'specializationName' => null,
                         'plainPassword' => 'password',
-                        'doctor' => false,
-                        'subscribe' => true,
+                        'isDoctor' => false,
+                        'isSubscribed' => true,
                         'links' => (object) array(
                           'region' => '1'
                         )

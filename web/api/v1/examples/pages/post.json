@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "url": "/about",
+    "title": "О компании",
+    "description": "О компании",
+    "keywords": "О компании",
+    "isActive": true,
+
+    "links": {
+      "pageBlocks": ["1"]
+    }
+  }
+}

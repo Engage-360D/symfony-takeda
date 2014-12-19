@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "pages": {
+      "type": "array",
+
+      "items": {
+        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/pages/one.json#/definitions/page"
+      },
+
+      "uniqueItems": true
+    }
+  },
+
+  "required": [
+    "pages"
+  ]
+}

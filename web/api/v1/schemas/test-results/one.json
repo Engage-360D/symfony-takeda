@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "testResults": {
+      "$ref": "#/definitions/testResult"
+    }
+  },
+
+  "required": [
+    "testResults"
+  ],
+
+  "definitions": {
+    "state": {
+      "type": "string",
+      "enum": ["ok", "bell", "attention", "doctor"]
+    },
+
+    "recommendationBlock": {
+      "oneOf": [
+        {
+          "type": "object",
+
+          "properties": {
+            "state": {
+              "oneOf": [
+                {"$ref": "#/definitions/state"},
+                {"type": "null"}
+              ]
+            },
+
+            "text": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "state",
+            "text"
+          ]
+        },
+        {"type": "null"}
+      ]
+    },
+
+    "recommendationBanner": {
+      "oneOf": [
+        {
+          "type": "object",
+
+          "properties": {
+            "state": {
+              "$ref": "#/definitions/state"
+            },
+
+            "title": {
+              "type": "string"
+            },
+
+            "subtitle": {
+              "type": "string"
+            },
+
+            "note": {
+              "type": "string"
+            },
+
+            "shouldHaveLink": {
+              "type": "boolean"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "state",
+            "title",
+            "subtitle",
+            "note",
+            "shouldHaveLink"
+          ]
+        },
+        {"type": "null"}
+      ]
+    },
+
+    "testResult": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "sex": {
+          "type": "string",
+          "enum": ["male", "female"]
+        },
+
+        "birthday": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "growth": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 300
+        },
+
+        "weight": {
+          "type": "number",
+          "minimum": 30,
+          "maximum": 700
+        },
+
+        "isSmoker": {
+          "type": "boolean"
+        },
+
+        "cholesterolLevel": {
+          "description": "Пустое значение если пользователь не знает уровень холестерина.",
+
+          "oneOf": [
+            {"type": "number", "minimum": 3, "maximum": 9},
+            {"type": "null"}
+          ]
+        },
+
+        "isCholesterolDrugsConsumer": {
+          "description": "Пустое значение если уровень холестерина меньше 5 или не известен.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "hasDiabetes": {
+          "type": "boolean"
+        },
+
+        "hadSugarProblems": {
+          "description": "Пустое значение если у пользователя есть диабет.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "isSugarDrugsConsumer": {
+          "description": "Пустое значение если у пользователя нет диабета.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "arterialPressure": {
+          "type": "number",
+          "minimum": 80,
+          "maximum": 200
+        },
+
+        "isArterialPressureDrugsConsumer": {
+          "description": "Пустое значение если артериальное давление меньше 140.",
+
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "null"}
+          ]
+        },
+
+        "physicalActivityMinutes": {
+          "type": "number",
+          "minimum": 80,
+          "maximum": 200
+        },
+
+        "hadHeartAttackOrStroke": {
+          "type": "boolean"
+        },
+
+        "isAddingExtraSalt": {
+          "type": "boolean"
+        },
+
+        "isAcetylsalicylicDrugsConsumer": {
+          "type": "boolean"
+        },
+
+        "bmi": {
+          "type": "number"
+        },
+
+        "score": {
+          "type": "number"
+        },
+
+        "recommendations": {
+          "type": "object",
+
+          "properties": {
+            "scoreNote": {
+              "$ref": "#/definitions/recommendationBlock"
+            },
+
+            "fullscreenAlert": {
+              "$ref": "#/definitions/recommendationBlock"
+            },
+
+            "mainRecommendation": {
+              "$ref": "#/definitions/recommendationBlock"
+            },
+
+            "placesLinkShouldBeVisible": {
+              "type": "boolean"
+            },
+
+            "banners": {
+              "type": "object",
+
+              "properties": {
+                "physicalActivityMinutes": {"$ref": "#/definitions/recommendationBanner"},
+                "weight": {"$ref": "#/definitions/recommendationBanner"},
+                "isAddingExtraSalt": {"$ref": "#/definitions/recommendationBanner"},
+                "cholesterolLevel": {"$ref": "#/definitions/recommendationBanner"},
+                "arterialPressure": {"$ref": "#/definitions/recommendationBanner"},
+                "hadSugarProblems": {"$ref": "#/definitions/recommendationBanner"},
+                "isArterialPressureDrugsConsumer": {"$ref": "#/definitions/recommendationBanner"},
+                "isCholesterolDrugsConsumer": {"$ref": "#/definitions/recommendationBanner"}
+              },
+
+              "additionalProperties": false,
+
+              "required": [
+                "physicalActivityMinutes",
+                "weight",
+                "isAddingExtraSalt",
+                "cholesterolLevel",
+                "arterialPressure",
+                "hadSugarProblems",
+                "isArterialPressureDrugsConsumer",
+                "isCholesterolDrugsConsumer"
+              ]
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "scoreNote",
+            "fullscreenAlert",
+            "mainRecommendation",
+            "placesLinkShouldBeVisible",
+            "banners"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "sex",
+        "birthday",
+        "growth",
+        "weight",
+        "isSmoker",
+        "cholesterolLevel",
+        "isCholesterolDrugsConsumer",
+        "hasDiabetes",
+        "hadSugarProblems",
+        "isSugarDrugsConsumer",
+        "arterialPressure",
+        "isArterialPressureDrugsConsumer",
+        "physicalActivityMinutes",
+        "hadHeartAttackOrStroke",
+        "isAddingExtraSalt",
+        "isAcetylsalicylicDrugsConsumer",
+        "bmi",
+        "score",
+        "recommendations"
+      ]
+    }
+  }
+}

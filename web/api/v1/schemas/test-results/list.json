@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "testResults": {
+      "type": "array",
+
+      "items": {
+        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/test-results/one.json#/definitions/testResult"
+      },
+
+      "uniqueItems": true
+    }
+  },
+
+  "required": [
+    "testResults"
+  ]
+}

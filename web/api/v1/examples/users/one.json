@@ -21,7 +21,7 @@
     "specializationInstitutionPhone": null,
     "specializationName": null,
     "roles": ["ROLE_USER"],
-    "enabled": true,
+    "isEnabled": true,
     "links": {
       "region": "1"
     }
