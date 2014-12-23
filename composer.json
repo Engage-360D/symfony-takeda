@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "2.5.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
@@ -40,12 +40,12 @@
         "hwi/oauth-bundle":                     "dev-master",
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
-        "engage360d/security-bundle":           "dev-master",
-        "engage360d/search-bundle":             "dev-master",
         "melodia/util-bundle": "~0.1",
         "melodia/page-bundle": "~0.1",
         "engage360d/pages-bundle":              "dev-master",
-        "justinrainbow/json-schema": "~1.3"
+        "justinrainbow/json-schema": "~1.3",
+        "engage360d/search-bundle": "dev-master",
+        "engage360d/security-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
