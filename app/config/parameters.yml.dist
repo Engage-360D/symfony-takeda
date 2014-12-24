@@ -25,3 +25,7 @@ parameters:
 
     vkontakte_client_id: 4672457
     vkontakte_client_secret: 17L45R2M1u2EMROP1jhE
+
+    api.base_url: "http://localhost"
+    api.url_path: "/api/v1"
+    api.resource_class_path: "Rest/Resource"

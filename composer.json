@@ -45,7 +45,11 @@
         "engage360d/pages-bundle":              "dev-master",
         "justinrainbow/json-schema": "~1.3",
         "engage360d/search-bundle": "dev-master",
-        "engage360d/security-bundle": "dev-master"
+        "engage360d/security-bundle": "dev-master",
+        "gointegro/raml": "dev-master",
+        "gointegro/json": "dev-master",
+        "gointegro/hateoas": "dev-master",
+        "gointegro/hateoas-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
