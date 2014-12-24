@@ -39,9 +39,9 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
-            new GoIntegro\Bundle\HateoasBundle\GoIntegroHateoasBundle(),
-
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new GoIntegro\Bundle\HateoasBundle\GoIntegroHateoasBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
 
             // our project bundles
 

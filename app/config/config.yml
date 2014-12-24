@@ -1,6 +1,5 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
 
 framework:
     #esi:             ~
@@ -72,8 +71,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-nelmio_api_doc: ~
 
 jms_serializer:
     metadata:
@@ -150,6 +147,12 @@ fos_elastica:
                             insert: true
                             update: true
                             delete: true
+
+lexik_jwt_authentication:
+    private_key_path: %kernel.root_dir%/var/jwt/private.pem   # ssh private key path
+    public_key_path:  %kernel.root_dir%/var/jwt/public.pem    # ssh public key path
+    pass_phrase:      %ssh_key.passphrase%                    # ssh key pass phrase
+    token_ttl:        86400                                   # token ttl - defaults to 86400
 
 sonata_block:
     default_contexts: [cms]

@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+    - { resource: security.yml }
 
 framework:
     router:
@@ -29,3 +30,9 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+lexik_jwt_authentication:
+    token_ttl: 157680000 # 5 years
+
+nelmio_api_doc: ~
+

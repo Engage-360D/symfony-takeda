@@ -20,6 +20,9 @@ parameters:
     locale:            ru
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    ssh_key.passphrase: YourPassPhrase
+    ssh_keys_dir: app/var/jwt
+
     facebook_client_id: 600516100052490
     facebook_client_secret: 833fada0cce3dc7d430727467420ae59
 
