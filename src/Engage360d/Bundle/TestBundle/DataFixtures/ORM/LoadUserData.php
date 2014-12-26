@@ -36,7 +36,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $user->setPlainPassword($row[0]);
             $user->setBirthday(new \DateTime());
             $user->setEnabled(true);
-            $user->setDoctor($row[1]);
+            $user->setIsDoctor($row[1]);
 
             foreach ($row[2] as $role) {
                 $user->addRole($role);

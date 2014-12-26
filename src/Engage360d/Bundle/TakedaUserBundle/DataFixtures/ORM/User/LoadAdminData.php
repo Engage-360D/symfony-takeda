@@ -37,8 +37,9 @@ class LoadAdminData
         $user->setPlainPassword('password');
         $user->setBirthday(new \DateTime());
         $user->setEnabled(true);
-        $user->setDoctor(true);
+        $user->setIsDoctor(true);
         $user->addRole('ROLE_ADMIN');
+        $user->setRegion($this->getReference('region_0'));
 
         $manager->persist($user);
         $manager->flush();

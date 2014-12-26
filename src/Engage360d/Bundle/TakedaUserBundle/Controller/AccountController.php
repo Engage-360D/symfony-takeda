@@ -35,7 +35,7 @@ class AccountController extends Controller
             ->get('engage360d_security.manager.user');
 
         $user = $userManager->findUserByConfirmationToken($token);
-        
+
         if (null === $user) {
             return new NotFoundHttpException();
         }
@@ -62,7 +62,7 @@ class AccountController extends Controller
         $client->setAllowedGrantTypes(array("token"));
         $clientManager->updateClient($client);
 
-        $params = $request->query->all(); 
+        $params = $request->query->all();
         $params['client_id'] = $client->getPublicId();
         $params['client_secret'] = $client->getSecret();
         $params['grant_type'] = 'client_credentials';
@@ -117,7 +117,7 @@ class AccountController extends Controller
     {
         $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
         $this->container->get("security.context")->setToken($token);
-     
+
         $request = $this->container->get("request");
         $event = new InteractiveLoginEvent($request, $token);
         $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);

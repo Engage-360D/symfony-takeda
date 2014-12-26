@@ -24,5 +24,6 @@ class Engage360dTakedaUserExtension extends Extension
         $loader->load('listener/resetting.yml');
         $loader->load('form/registration.yml');
         $loader->load('form/user.yml');
+        $loader->load('services.yml');
     }
 }
