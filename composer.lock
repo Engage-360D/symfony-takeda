@@ -1828,12 +1828,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AliochaRyzhkov/hateoas.git",
-                "reference": "2dc07ac7d1260ed59635c6152784310011e5d3ed"
+                "reference": "10782cc7b213ba832ac12a7a103b1ffa88a7f494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AliochaRyzhkov/hateoas/zipball/2dc07ac7d1260ed59635c6152784310011e5d3ed",
-                "reference": "2dc07ac7d1260ed59635c6152784310011e5d3ed",
+                "url": "https://api.github.com/repos/AliochaRyzhkov/hateoas/zipball/10782cc7b213ba832ac12a7a103b1ffa88a7f494",
+                "reference": "10782cc7b213ba832ac12a7a103b1ffa88a7f494",
                 "shasum": ""
             },
             "require": {
@@ -1906,7 +1906,7 @@
             "support": {
                 "source": "https://github.com/AliochaRyzhkov/hateoas/tree/master"
             },
-            "time": "2014-12-29 10:56:04"
+            "time": "2014-12-29 18:03:44"
         },
         {
             "name": "gointegro/hateoas-bundle",
