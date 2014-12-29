@@ -4,7 +4,7 @@ Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
     virtual_properties:
         getBmi:
             serialized_name: bmi
-        getScoreValue:
-            serialized_name: scoreValue
+        getScore:
+            serialized_name: score
         getRecommendations:
             serialized_name: recommendations

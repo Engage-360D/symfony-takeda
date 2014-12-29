@@ -20,7 +20,7 @@ TestResultRecommendations = React.createClass
       pageUrl: '/'
       state: 'ask'
       title: 'Дополнительная корректировка диеты'
-      aberration: null
+      subtitle: null
       note: 'Пройти опрос'
 
   getDefaultProps: ->
@@ -63,7 +63,7 @@ TestResultRecommendations = React.createClass
     else
       TestResultRecommendations.femaleMaxScoreValue / 100
 
-    maximumGradientTime = if @state.recommendations.dangerAlert
+    maximumGradientTime = if @state.recommendations.fullScreenAlert
       1
     else
       scoreValue / scoreValuePercent / 100
@@ -139,27 +139,27 @@ TestResultRecommendations = React.createClass
     maxScoreValue = if @props.sex is "male" then TestResultRecommendations.maleMaxScoreValue else TestResultRecommendations.femaleMaxScoreValue
     scoreOffset = Number(@props.scoreValue) / (maxScoreValue / 100)
     
-    scoreDescription = if @state.recommendations.scoreDescription
+    scoreNote = if @state.recommendations.scoreNote
       `(
         <div className="result__text">
-          <i className={'result__' + this.state.recommendations.scoreDescription.state}></i>
-          <div dangerouslySetInnerHTML={{__html: this.state.recommendations.scoreDescription.text.replace(/\n/g, '<br />')}} />
+          <i className={'result__' + this.state.recommendations.scoreNote.state}></i>
+          <div dangerouslySetInnerHTML={{__html: this.state.recommendations.scoreNote.text.replace(/\n/g, '<br />')}} />
         </div>
       )`
     else
       null
 
-    dangerAlert = if @state.recommendations.dangerAlert
+    fullScreenAlert = if @state.recommendations.fullScreenAlert
       `(
         <div className="result__text">
-          <i className={'result__' + this.state.recommendations.dangerAlert.state}></i>
-          <div dangerouslySetInnerHTML={{__html: this.state.recommendations.dangerAlert.text.replace(/\n/g, '<br />')}} />
+          <i className={'result__' + this.state.recommendations.fullScreenAlert.state}></i>
+          <div dangerouslySetInnerHTML={{__html: this.state.recommendations.fullScreenAlert.text.replace(/\n/g, '<br />')}} />
         </div>
       )`
     else
       null
 
-    mainRecommendation = if @state.recommendations.mainRecommendation and not dangerAlert
+    mainRecommendation = if @state.recommendations.mainRecommendation and not fullScreenAlert
       `(
         <div className="result__text">
           <div dangerouslySetInnerHTML={{__html: this.state.recommendations.mainRecommendation.text.replace(/\n/g, '<br />')}} />
@@ -168,7 +168,7 @@ TestResultRecommendations = React.createClass
     else
       null
 
-    banners = if not dangerAlert
+    banners = if not fullScreenAlert
       `(
         <div className="layout">
           <div className="layout__column">
@@ -209,7 +209,7 @@ TestResultRecommendations = React.createClass
     classes = cx
       "page": true
       #"page_step_3": true
-      #"is-red": not not dangerAlert
+      #"is-red": not not fullScreenAlert
       
     emailPopupClasses = cx
       "result__send": true
@@ -260,8 +260,8 @@ TestResultRecommendations = React.createClass
   					</div>
   					<div className="result__line"><i></i></div>
   				</div>
-          {scoreDescription}
-          {dangerAlert}
+          {scoreNote}
+          {fullScreenAlert}
           {mainRecommendation}
           {banners}
         </div>
@@ -279,8 +279,8 @@ TestResultRecommendationsBanner = React.createClass
     else
       null
       
-    aberration = if @props.banner.aberration
-      `(<p>Отклонение от нормы: {this.props.banner.aberration}</p>)`
+    subtitle = if @props.banner.subtitle
+      `(<p>Отклонение от нормы: {this.props.banner.subtitle}</p>)`
     else
       null
       
@@ -300,7 +300,7 @@ TestResultRecommendationsBanner = React.createClass
         <div className="recomm__item-sub">
           {title}
           <div className="recomm__text">
-            {aberration}
+            {subtitle}
             {note}
           </div>
         </div>

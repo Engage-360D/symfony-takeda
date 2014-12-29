@@ -75,6 +75,11 @@ class ApiTest
         return $this;
     }
 
+    public function getClient()
+    {
+        return $this->client;
+    }
+
     public function testResponse($callback)
     {
         $response = $this->client->getResponse();

@@ -17,8 +17,8 @@ class TestResultFiller
 
     public function fill(TestResult $testResult)
     {
-        $scoreValue = $this->scoreCalculator->calculate($testResult);
-        $testResult->setScoreValue($scoreValue);
+        $score = $this->scoreCalculator->calculate($testResult);
+        $testResult->setScore($score);
 
         $recommendations = $this->recommendationsMatcherFactory->factory($testResult)->match();
         $testResult->setRecommendations($recommendations);

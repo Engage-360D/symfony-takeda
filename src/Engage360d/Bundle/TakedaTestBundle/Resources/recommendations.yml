@@ -1,25 +1,25 @@
-scoreDescription:
+scoreNote:
   -
     visible:
-      - { scoreValue: [~, 4] }
+      - { score: [~, 4] }
     state: ok
     text: Категория низкого риска развития смертельных сердечно-сосудистых заболеваний в ближайшие 10 лет
   -
     visible:
-      - { scoreValue: [5, 9] }
+      - { score: [5, 9] }
     state: bell
     text: Категория среднего риска развития смертельных сердечно-сосудистых заболеваний в ближайшие 10 лет
   -
     visible:
-      - { scoreValue: [10, ~] }
+      - { score: [10, ~] }
     state: attention
     text: Категория высокого риска развития смертельных сердечно-сосудистых заболеваний в ближайшие 10 лет
 
 
-dangerAlert:
+fullScreenAlert:
   -
     visible:
-      - { heartAttackOrStroke: true }
+      - { hadHeartAttackOrStroke: true }
     state: attention
     text: |
       Наличие перенесенного инфаркта (инсульта/стентирования коронарных артерий/операции аортокоронарного шунтирования) автоматически приводит к очень высокому риску смерти от сердечно-сосудистых причин.
@@ -29,7 +29,7 @@ dangerAlert:
       проконсультируйтесь у врача о назначении вам этих препаратов.
   -
     visible:
-      - { diabetes: true }
+      - { hasDiabetes: true }
     state: attention
     text: |
       Наличие сахарного диабета автоматически приводит к (очень) высокому риску смерти от сердечно-сосудистых причин.
@@ -41,41 +41,41 @@ dangerAlert:
 mainRecommendation:
   -
     visible:
-      - { acetylsalicylicDrugs: true }
+      - { isAcetylsalicylicDrugsConsumer: true }
     text: |
       Прием препаратов ацетилсалициловой кислоты является фактором риска развития язвенной болезни желудка.
       Обратите внимание на специализированные препараты, снижающие этот риск, например, кардиомагнил.
   -
     visible:
-      - { acetylsalicylicDrugs: false }
+      - { isAcetylsalicylicDrugsConsumer: false }
     text: |
       Обратитесь к врачу для консультации о необходимости приема препаратов ацетилсалициловой кислоты для снижения риска тромбозов.
 
 
-institutionsUrl:
+placesLinkShouldBeVisible:
   visible:
-    - { heartAttackOrStroke: true }
-    - { diabetes: true }
-    - { acetylsalicylicDrugs: true }
+    - { hadHeartAttackOrStroke: true }
+    - { hasDiabetes: true }
+    - { isAcetylsalicylicDrugsConsumer: true }
 
 
 banners:
-  smoking:
+  isSmoker:
     -
       visible:
-        - { smoking: false }
+        - { isSmoker: false }
       pageUrl: false
       state: ok
       title: Курение
-      aberration: ~
+      subtitle: ~
       note: Все хорошо
     -
       visible:
-        - { smoking: true }
+        - { isSmoker: true }
       pageUrl: true
       state: attention
       title: Курение
-      aberration: ~
+      subtitle: ~
       note: Фактор риска
 
   arterialPressure:
@@ -85,7 +85,7 @@ banners:
       pageUrl: false
       state: ok
       title: Систолическое давление
-      aberration: близко к норме
+      subtitle: близко к норме
       note: Все хорошо
     -
       visible:
@@ -93,7 +93,7 @@ banners:
       pageUrl: true
       state: bell
       title: Систолическое давление
-      aberration: среднее отклонение
+      subtitle: среднее отклонение
       note: Необходимо улучшение
     -
       visible:
@@ -101,25 +101,25 @@ banners:
       pageUrl: true
       state: attention
       title: Систолическое давление
-      aberration: большое отклонение
+      subtitle: большое отклонение
       note: Фактор риска
 
-  extraSalt:
+  isAddingExtraSalt:
     -
       visible:
-        - { extraSalt: false }
+        - { isAddingExtraSalt: false }
       pageUrl: false
       state: ok
       title: Потребление соли
-      aberration: ~
+      subtitle: ~
       note: Все хорошо
     -
       visible:
-        - { extraSalt: true }
+        - { isAddingExtraSalt: true }
       pageUrl: true
       state: attention
       title: Потребление соли
-      aberration: ~
+      subtitle: ~
       note: Необходимо улучшение
 
   cholesterolLevel:
@@ -129,7 +129,7 @@ banners:
       pageUrl: false
       state: ok
       title: Уровень холестирина
-      aberration: близко к норме
+      subtitle: близко к норме
       note: Все хорошо
     -
       visible:
@@ -137,7 +137,7 @@ banners:
       pageUrl: true
       state: bell
       title: Уровень холестирина
-      aberration: среднее отклонение
+      subtitle: среднее отклонение
       note: Необходимо улучшение
     -
       visible:
@@ -145,33 +145,33 @@ banners:
       pageUrl: true
       state: attention
       title: Уровень холестирина
-      aberration: фактор риска
+      subtitle: фактор риска
       note: Группа риска
 
-  physicalActivity:
+  physicalActivityMinutes:
     -
       visible:
-        - { physicalActivity: [145, ~] }
+        - { physicalActivityMinutes: [145, ~] }
       pageUrl: false
       state: ok
       title: Физическая активность
-      aberration: близко к норме
+      subtitle: близко к норме
       note: Все хорошо
     -
       visible:
-        - { physicalActivity: [120, 144] }
+        - { physicalActivityMinutes: [120, 144] }
       pageUrl: true
       state: bell
       title: Физическая активность
-      aberration: среднее отклонение
+      subtitle: среднее отклонение
       note: Необходимо улучшение
     -
       visible:
-        - { physicalActivity: [~, 119] }
+        - { physicalActivityMinutes: [~, 119] }
       pageUrl: true
       state: attention
       title: Физическая активность
-      aberration: большое отклонение
+      subtitle: большое отклонение
       note: Необходимо улучшение
 
   bmi:
@@ -181,7 +181,7 @@ banners:
       pageUrl: false
       state: ok
       title: Вес
-      aberration: близко к норме
+      subtitle: близко к норме
       note: Все хорошо
     -
       visible:
@@ -189,7 +189,7 @@ banners:
       pageUrl: true
       state: bell
       title: Вес
-      aberration: среднее отклонение
+      subtitle: среднее отклонение
       note: Необходимо улучшение
     -
       visible:
@@ -197,49 +197,49 @@ banners:
       pageUrl: true
       state: attention
       title: Вес
-      aberration: большое отклонение
+      subtitle: большое отклонение
       note: Необходимо улучшение
 
-  sugarProblems:
+  hadSugarProblems:
     -
       visible:
-        - { sugarProblems: true, diabetes: false }
+        - { hadSugarProblems: true, hasDiabetes: false }
       pageUrl: false
       state: doctor
       title: ~
-      aberration: ~
+      subtitle: ~
       note: У вас отмечается повышение уровня сахара в крови. Вам необходимо обратиться к врачу.
 
-  arterialPressureDrugs:
+  isArterialPressureDrugsConsumer:
     -
       visible:
-        - { arterialPressureDrugs: false, arterialPressure: [160, ~] }
+        - { isArterialPressureDrugsConsumer: false, arterialPressure: [160, ~] }
       pageUrl: false
       state: doctor
       title: ~
-      aberration: ~
+      subtitle: ~
       note: У вас повышено артериальное давление – это опасный фактор риска. Вам необходимо обратиться к врачу.
 
-  cholesterolDrugs:
+  isCholesterolDrugsConsumer:
     -
       visible:
-        - { cholesterolDrugs: false, cholesterolLevel: [6.6, ~] }
+        - { isCholesterolDrugsConsumer: false, cholesterolLevel: [6.6, ~] }
       pageUrl: false
       state: doctor
       title: ~
-      aberration: ~
+      subtitle: ~
       note: У вас отмечается повышение уровня холестерина. Вам необходимо обратиться к врачу.
 
 
 pages:
-  smoking:
+  isSmoker:
     -
       visible:
-        - { smoking: true }
+        - { isSmoker: true }
       urlText: Курение
       title: Курение повышает риск смерти в 3-6 раз
       subtitle: Вам необходимо бросить курить.
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Курение повышает риск смерти в 3-6 раз от онкологических, сердечно-сосудистых заболеваний, дыхательной системы, системы пищеварения.
@@ -256,7 +256,7 @@ pages:
       urlText: Давление
       title: Ваше давление  - ?
       subtitle: Нормой является значение до 139
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         У вас повышено артериальное давление – это опасный фактор риска развития сердечно-сосудистых осложнений, таких как инфаркт миокарда и инсульт.
@@ -268,22 +268,22 @@ pages:
       urlText: Давление
       title: У вас высокое давление - ?
       subtitle: Нормой является значение до 139
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible:
-          - { arterialPressureDrugs: false }
+          - { isArterialPressureDrugsConsumer: false }
       text: |
         У вас повышено артериальное давление – это опасный фактор риска развития сердечно-сосудистых осложнений, таких как инфаркт миокарда и инсульт.
 
         Обратитесь к врачу для решения вопроса о назначении вам лекарственных препаратов, снижающих артериальное давление.
 
-  extraSalt:
+  isAddingExtraSalt:
     -
       visible:
-        - { extraSalt: true }
+        - { isAddingExtraSalt: true }
       urlText: Соль
       title: Потребление соли может приводить к повышению артериального давления.
       subtitle: ~
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Потребление соли может приводить к повышению артериального давления. Ограничьте потребление соли и продуктов, богатых натрием.
@@ -298,7 +298,7 @@ pages:
       urlText: Холестерин
       title: Ваш уровень холестерина - ? ммоль/л
       subtitle: Нормой является значение до 4,9 ммоль/л
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         У вас повышен уровень холестерина (более 4,9 ммоль/л) - это фактор риска сердечно-сосудистых заболеваний. Соблюдайте диету с ограничением животных жиров (кроме рыбы) и трансжиров.
@@ -312,9 +312,9 @@ pages:
       urlText: Холестерин
       title: У вас высокий уровень холестерина - ? ммоль/л
       subtitle: Нормой является значение до 4,9 ммоль/л
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible:
-          - { cholesterolDrugs: false }
+          - { isCholesterolDrugsConsumer: false }
       text: |
         У вас повышен уровень холестерина (более 4,9 ммоль/л) - это фактор риска сердечно-сосудистых заболеваний. Соблюдайте диету с ограничением животных жиров (кроме рыбы) и трансжиров.
 
@@ -322,14 +322,14 @@ pages:
 
         Животные жиры способствуют атеросклерозу сосудов, приводящему к инфаркту и инсульту, а растительные жиры (кроме кокосового и пальмового масла) и рыбий жир противодействуют атеросклерозу.
 
-  physicalActivity:
+  physicalActivityMinutes:
     -
       visible:
-        - { physicalActivity: [120, 144] }
+        - { physicalActivityMinutes: [120, 144] }
       urlText: Физическая активность
       title: У вас недостаточно физической активности ? минут в неделю
       subtitle: Нормой является значение от 150 минут в неделю
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Физическая активность является средством сохранения здоровья сердца и сосудов.
@@ -342,11 +342,11 @@ pages:
         Больным с заболеваниями сердца и сосудов режим нагрузок подбирается врачом индивидуально в соответствии с результатами электрокардиографического теста с физической нагрузкой.
     -
       visible:
-        - { physicalActivity: [~, 119] }
+        - { physicalActivityMinutes: [~, 119] }
       urlText: Физическая активность
       title: У вас недостаточно физической активности ? минут в неделю
       subtitle: Нормой является значение от 150 минут в неделю
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Физическая активность является средством сохранения здоровья сердца и сосудов.
@@ -365,7 +365,7 @@ pages:
       urlText: Вес
       title: У вас высокий индекс массы тела - ? кг/м2
       subtitle: Нормой является значение менее 25 кг/м2
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Ваш индекс массы тела превышает 25 кг/м2 – это избыточный вес. Избыточный вес тела является фактором повышенного риска болезней сердца и сосудов.
@@ -377,7 +377,7 @@ pages:
       urlText: Вес
       title: У вас высокий индекс массы тела - ? кг/м2
       subtitle: Нормой является значение менее 25 кг/м2
-      institutionsUrl:
+      placesLinkShouldBeVisible:
         visible: false
       text: |
         Ваш индекс массы тела превышает 30 кг/м2 – это ожирение. Избыточный вес тела и, особенно, его крайняя степень - ожирение, являются фактором повышенного риска болезней сердца и сосудов.

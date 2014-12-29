@@ -17,6 +17,7 @@ extractFields = (data) ->
 AccountMixin =
   load: (callback) ->
     reqwest
+      # TODO change this url
       url: "/api/users/me"
       type: "json"
       contentType: "application/json"
@@ -24,14 +25,14 @@ AccountMixin =
 
   loadTestResults: (callback) ->
     reqwest
-      url: "/api/test-results"
+      url: "/api/v1/account/test-results"
       type: "json"
       contentType: "application/json"
       success: callback
 
   save: (callback) ->
     reqwest
-      url: "/api/users/#{@state.id}"
+      url: "/api/v1/account"
       type: "json"
       method: "PUT"
       contentType: "application/json"
@@ -40,6 +41,6 @@ AccountMixin =
         callback JSON.parse error.response
       success: ->
         callback()
-    
+
 
 module.exports = AccountMixin

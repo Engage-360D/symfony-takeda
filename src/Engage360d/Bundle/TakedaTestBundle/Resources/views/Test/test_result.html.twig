@@ -6,17 +6,17 @@
 			<a href="#"><i></i><span>Москва</span></a>
 		</div>
 		<div class="title">
-			 Результаты тестирования 
+			 Результаты тестирования
 	  </div>
 	</div>
 
 	<script>
 	  window._test_result_recommendations_{{ testResult.id }} = {{ testResult.recommendations|json_encode|raw }};
 	</script>
-	
+
   <div data-react-component="TestResultRecommendations"
        data-test-result-id="{{ testResult.id }}"
-       data-score-value="{{ testResult.scoreValue }}"
+       data-score-value="{{ testResult.score }}"
        data-sex="{{ testResult.sex }}"
        data-recommendations="_test_result_recommendations_{{ testResult.id }}"></div>
 

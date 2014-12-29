@@ -2,6 +2,7 @@
 
 React = require "react"
 moment = require "moment"
+reqwest = require "reqwest"
 
 AccountMixin = require "../../mixins/AccountMixin"
 LinkedStateMixin = require "../../mixins/LinkedStateMixin"
@@ -62,7 +63,10 @@ Account = React.createClass
     => @setState active: tab
 
   handleLogout: ->
-    window.location = "/account/logout"
+    reqwest
+      url: "/api/v1/account/reset-password"
+      method: "POST"
+      success: () -> window.location = "/"
 
   handleSave: ->
     @setState showValidation: true
@@ -106,12 +110,12 @@ Account = React.createClass
         <div>
 				  <button className="btn" onClick={this.handleClose}>OK</button>
 				</div>
-      </div>  
+      </div>
     )`
 
   renderTests: ->
     return unless @state.testResults
-    
+
     @state.testResults.map (test) ->
       `(
         <TestResultRecommendations
@@ -262,7 +266,7 @@ Account = React.createClass
   render: ->
     `(
       <div>
-        <div className="account">	
+        <div className="account">
     			<div className="account__top">
     				<div className="account__tabs">
     				  <button

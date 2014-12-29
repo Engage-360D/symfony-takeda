@@ -42,9 +42,6 @@ security:
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
 
-    acl:
-        connection: default
-
     access_control:
 #        - { path: ^/user/connect, roles: [ IS_AUTHENTICATED_FULLY ] }
 #        - { path: ^/api/doc, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }

@@ -3,11 +3,12 @@ reqwest = require "reqwest"
 LoginMixin =
   login: (username, password, callback) ->
     reqwest
-      url: "/account/check"
+      url: "/api/v1/tokens"
       method: "POST"
       data:
-        _username: username
-        _password: password
+        tokens:
+          email: username
+          plainPassword: password
       error: (error) =>
         callback JSON.parse error.response
       success: (response) =>

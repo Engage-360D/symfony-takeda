@@ -16,7 +16,7 @@ class RecommendationsMatcher
     private $testResult;
     private $declaration;
     private $router;
-  
+
     public function __construct(TestResult $testResult, $declaration, RouterInterface $router)
     {
         $this->testResult = $testResult;
@@ -27,38 +27,38 @@ class RecommendationsMatcher
     public function match()
     {
         $recommendations = array(
-            'scoreDescription' => $this->choiceFirstVisible($this->declaration['scoreDescription']),
-            'dangerAlert' => $this->choiceFirstVisible($this->declaration['dangerAlert']),
+            'scoreNote' => $this->choiceFirstVisible($this->declaration['scoreNote']),
+            'fullScreenAlert' => $this->choiceFirstVisible($this->declaration['fullScreenAlert']),
             'mainRecommendation' => $this->choiceFirstVisible($this->declaration['mainRecommendation']),
-            'institutionsUrl' => $this->isVisible($this->declaration['institutionsUrl']),
+            'placesLinkShouldBeVisible' => $this->isVisible($this->declaration['placesLinkShouldBeVisible']),
             'banners' => array(
-                'smoking' => $this->choiceFirstVisible($this->declaration['banners']['smoking']),
+                'isSmoker' => $this->choiceFirstVisible($this->declaration['banners']['isSmoker']),
                 'arterialPressure' => $this->choiceFirstVisible($this->declaration['banners']['arterialPressure']),
-                'extraSalt' => $this->choiceFirstVisible($this->declaration['banners']['extraSalt']),
+                'isAddingExtraSalt' => $this->choiceFirstVisible($this->declaration['banners']['isAddingExtraSalt']),
                 'cholesterolLevel' => $this->choiceFirstVisible($this->declaration['banners']['cholesterolLevel']),
-                'physicalActivity' => $this->choiceFirstVisible($this->declaration['banners']['physicalActivity']),
+                'physicalActivityMinutes' => $this->choiceFirstVisible($this->declaration['banners']['physicalActivityMinutes']),
                 'bmi' => $this->choiceFirstVisible($this->declaration['banners']['bmi']),
-                'sugarProblems' => $this->choiceFirstVisible($this->declaration['banners']['sugarProblems']),
-                'arterialPressureDrugs' => $this->choiceFirstVisible($this->declaration['banners']['arterialPressureDrugs']),
-                'cholesterolDrugs' => $this->choiceFirstVisible($this->declaration['banners']['cholesterolDrugs']),
+                'hadSugarProblems' => $this->choiceFirstVisible($this->declaration['banners']['hadSugarProblems']),
+                'isArterialPressureDrugsConsumer' => $this->choiceFirstVisible($this->declaration['banners']['isArterialPressureDrugsConsumer']),
+                'isCholesterolDrugsConsumer' => $this->choiceFirstVisible($this->declaration['banners']['isCholesterolDrugsConsumer']),
             ),
-            'pages' => array(
-                'smoking' => $this->choiceFirstVisible($this->declaration['pages']['smoking']),
-                'arterialPressure' => $this->choiceFirstVisible($this->declaration['pages']['arterialPressure']),
-                'extraSalt' => $this->choiceFirstVisible($this->declaration['pages']['extraSalt']),
-                'cholesterolLevel' => $this->choiceFirstVisible($this->declaration['pages']['cholesterolLevel']),
-                'physicalActivity' => $this->choiceFirstVisible($this->declaration['pages']['physicalActivity']),
-                'bmi' => $this->choiceFirstVisible($this->declaration['pages']['bmi']),
-            ),
+            // 'pages' => array(
+            //     'isSmoker' => $this->choiceFirstVisible($this->declaration['pages']['isSmoker']),
+            //     'arterialPressure' => $this->choiceFirstVisible($this->declaration['pages']['arterialPressure']),
+            //     'isAddingExtraSalt' => $this->choiceFirstVisible($this->declaration['pages']['isAddingExtraSalt']),
+            //     'cholesterolLevel' => $this->choiceFirstVisible($this->declaration['pages']['cholesterolLevel']),
+            //     'physicalActivityMinutes' => $this->choiceFirstVisible($this->declaration['pages']['physicalActivityMinutes']),
+            //     'bmi' => $this->choiceFirstVisible($this->declaration['pages']['bmi']),
+            // ),
         );
 
         foreach ($recommendations['banners'] as $key => $banner) {
             $recommendations['banners'][$key] = $this->normalizeBanner($key, $banner);
         }
-        
-        foreach ($recommendations['pages'] as $key => $page) {
-            $recommendations['pages'][$key] = $this->normalizePage($key, $page);
-        }
+
+        // foreach ($recommendations['pages'] as $key => $page) {
+        //     $recommendations['pages'][$key] = $this->normalizePage($key, $page);
+        // }
 
         return $recommendations;
     }
@@ -75,17 +75,17 @@ class RecommendationsMatcher
         } else {
             $banner['pageUrl'] = null;
         }
-        
+
         return $banner;
     }
-    
+
     private function normalizePage($key, $page)
     {
         if (!is_array($page)) {
             return $page;
         }
 
-        $page['institutionsUrl'] = $this->isVisible($page['institutionsUrl']);
+        $page['placesLinkShouldBeVisible'] = $this->isVisible($page['placesLinkShouldBeVisible']);
         $page['title'] = str_replace('?', $this->getPropertyValue($key), $page['title']);
         return $page;
     }
@@ -102,17 +102,17 @@ class RecommendationsMatcher
 
         return null;
     }
-    
+
     private function isVisible($item)
     {
         if (!isset($item['visible'])) {
             return false;
         }
-        
+
         if (is_bool($item['visible'])) {
             return $item['visible'];
         }
-        
+
         foreach ($item['visible'] as $rule) {
             if ($this->testRule($rule)) {
                 return true;
@@ -121,7 +121,7 @@ class RecommendationsMatcher
 
         return false;
     }
-    
+
     private function testRule($rule)
     {
         foreach ($rule as $property => $matcher) {
@@ -148,7 +148,7 @@ class RecommendationsMatcher
     {
         return ($range[0] === null || $range[0] <= $value) && ($range[1] === null || $range[1] >= $value);
     }
-    
+
     private function matchBool($value, $match)
     {
         return $value === $match;
@@ -158,7 +158,7 @@ class RecommendationsMatcher
     {
         $isAccessorMethod = 'is' . ucfirst($property);
         $getAccessorMethod = 'get' . ucfirst($property);
-        
+
         if (is_callable(array($this->testResult, $isAccessorMethod))) {
             return $this->testResult->{$isAccessorMethod}();
         } else if (is_callable(array($this->testResult, $getAccessorMethod))) {

@@ -22,7 +22,7 @@ extractFields = (data) ->
 RegistrationMixin =
   register: (callback) ->
     reqwest
-      url: "/api/users"
+      url: "/api/v1/users"
       type: "json"
       method: "POST"
       contentType: "application/json"

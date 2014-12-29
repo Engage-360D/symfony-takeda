@@ -638,10 +638,10 @@ class ScoreCalculator
     {
         $sex = $testResult->getSex();
         $age = Helpers::roundToNearest($testResult->getBirthday()->diff(new \DateTime())->y, array(40, 50, 55, 60, 65));
-        $smoking = (int)$testResult->isSmoking();
+        $isSmoker = (int)$testResult->getIsSmoker();
         $arterialPressure = Helpers::roundToNearest($testResult->getArterialPressure(), array(120, 140, 160, 180));
         $cholesterolLevel = Helpers::roundToNearest($testResult->getCholesterolLevel(), array(4, 5, 6, 7, 8));
 
-        return self::$scoreMatrix[$sex][$age][$smoking][$arterialPressure][$cholesterolLevel];
+        return self::$scoreMatrix[$sex][$age][$isSmoker][$arterialPressure][$cholesterolLevel];
     }
 }
