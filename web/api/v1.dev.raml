@@ -1,0 +1,321 @@
+#%RAML 0.8
+title: Cardiomagnyl API
+version: v1
+
+baseUri: "{schema}://{domain}/api/{version}"
+baseUriParameters:
+  schema:
+    description: |
+      На рабочем сервере API не будет доступен по HTTP.
+    enum: [ http, https ]
+  domain:
+    description: |
+      * `cardiomagnyl.dev.iengage.ru` — сервер активной разработки, обновляется очень часто;
+      * `cardiomagnyl.iengage.ru` — сервер демонстрации заказчику, обновляется редко;
+      * `cardiomagnyl.ru` — рабочий сервер.
+    enum: [ cardiomagnyl.dev.iengage.ru, cardiomagnyl.iengage.ru, cardiomagnyl.ru ]
+
+securitySchemes:
+  - x-query-token:
+      type: x-query-token
+      describedBy:
+        queryParameters:
+          token:
+            type: string
+            example: "ACCESS_TOKEN"
+            description: |
+              Не забывайте экранировать токен, так как он может содержать специальные символы.
+        responses:
+          401:
+            description: |
+              Возвращается, если токен устарел или не существует.
+
+traits:
+  - secured:
+      securedBy: [ x-query-token ]
+      queryParameters:
+        token:
+          type: string
+          example: "ACCESS_TOKEN"
+          description: |
+            Не забывайте экранировать токен, так как он может содержать специальные символы.
+
+  - admin-only:
+      responses:
+        403:
+          description: |
+            Возвращается, если у пользователя нет роли `ROLE_ADMIN`.
+
+  - paged:
+      queryParameters:
+        page:
+          type: number
+          example: 1
+          description: |
+            Нумерация начинается с единицы.
+            Обязательно наличие параметра в запросе `limit`.
+        limit:
+          type: number
+          example: 10
+          description: |
+            Количество записей на страницу.
+            По умолчанию лимит не установлен.
+
+/regions:
+  get:
+    is: [ paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/regions/list.json
+            example: !include v1/examples/regions/list.json
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/regions/one.json
+              example: !include v1/examples/regions/one.json
+
+/users:
+  get:
+    is: [ secured, admin-only, paged ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/list.json
+            example: !include v1/examples/users/list.json
+  post:
+    description: |
+      Регистрация нового пользователя.
+    body:
+      application/json:
+        schema: !include v1/schemas/users/post.json
+        example: !include v1/examples/users/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/one.json
+            example: !include v1/examples/users/one.json
+  /{id}:
+    get:
+      is: [ secured, admin-only ]
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/users/one.json
+              example: !include v1/examples/users/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/users/put.json
+          example: !include v1/examples/users/put.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/users/one.json
+              example: !include v1/examples/users/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:
+    /reset-password:
+      post:
+        is: [ secured, admin-only ]
+        responses:
+          200:
+
+# /tokens:
+#   post:
+#     description: |
+#       Аутентификация пользователя.
+#     body:
+#       application/json:
+#         schema: !include v1/schemas/tokens/post.json
+#         example: !include v1/examples/tokens/post.json
+#     responses:
+#       201:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/tokens/one.json
+#             example: !include v1/examples/tokens/one.json
+#
+# /account:
+#   put:
+#     is: [ secured ]
+#     description: |
+#       Редактирование профиля пользователя.
+#     body:
+#       application/json:
+#         schema: !include v1/schemas/users/put.json
+#         example: !include v1/examples/users/put.json
+#     responses:
+#       200:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/users/one.json
+#             example: !include v1/examples/users/one.json
+#   /reset-password:
+#     post:
+#       is: [ secured ]
+#       responses:
+#         200:
+#   /test-results:
+#     get:
+#       is: [ secured ]
+#       description: |
+#         Получение результатов тестирования пользователя.
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/test-results/list.json
+#               example: !include v1/examples/test-results/list.json
+#     post:
+#       is: [ secured ]
+#       description: |
+#         Сохранение результатов тестирования пользователя.
+#       body:
+#         application/json:
+#           schema: !include v1/schemas/test-results/post.json
+#           example: !include v1/examples/test-results/post.json
+#       responses:
+#         201:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/test-results/one.json
+#               example: !include v1/examples/test-results/one.json
+#
+#
+# /test-results:
+#   get:
+#     is: [ secured, admin-only, paged ]
+#     responses:
+#       200:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/test-results/list.json
+#             example: !include v1/examples/test-results/list.json
+#   /{id}:
+#     get:
+#       is: [ secured, admin-only ]
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/test-results/one.json
+#               example: !include v1/examples/test-results/one.json
+#     /send-email:
+#       post:
+#         is: [ secured ]
+#         description: |
+#           Отправка результатов тестирования на email.
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/test-results/send-email/post.json
+#             example: !include v1/examples/test-results/send-email/post.json
+#         responses:
+#           200:
+#             body:
+#               application/json:
+#                 schema: !include v1/schemas/test-results/send-email/one.json
+#                 example: !include v1/examples/test-results/send-email/one.json
+#
+# /page-blocks:
+#   get:
+#     is: [ paged ]
+#     responses:
+#       200:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/page-blocks/list.json
+#             example: !include v1/examples/page-blocks/list.json
+#   post:
+#     is: [ secured, admin-only ]
+#     body:
+#       application/json:
+#         schema: !include v1/schemas/page-blocks/post.json
+#         example: !include v1/examples/page-blocks/post.json
+#     responses:
+#       201:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/page-blocks/one.json
+#             example: !include v1/examples/page-blocks/one.json
+#   /{id}:
+#     get:
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/page-blocks/one.json
+#               example: !include v1/examples/page-blocks/one.json
+#     put:
+#       is: [ secured, admin-only ]
+#       body:
+#         application/json:
+#           schema: !include v1/schemas/page-blocks/put.json
+#           example: !include v1/examples/page-blocks/put.json
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/page-blocks/one.json
+#               example: !include v1/examples/page-blocks/one.json
+#     delete:
+#       is: [ secured, admin-only ]
+#       responses:
+#         200:
+#
+# /pages:
+#   get:
+#     is: [ paged ]
+#     responses:
+#       200:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/pages/list.json
+#             example: !include v1/examples/pages/list.json
+#   post:
+#     is: [ secured, admin-only ]
+#     body:
+#       application/json:
+#         schema: !include v1/schemas/pages/post.json
+#         example: !include v1/examples/pages/post.json
+#     responses:
+#       201:
+#         body:
+#           application/json:
+#             schema: !include v1/schemas/pages/one.json
+#             example: !include v1/examples/pages/one.json
+#   /{id}:
+#     get:
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/pages/one.json
+#               example: !include v1/examples/pages/one.json
+#     put:
+#       is: [ secured, admin-only ]
+#       body:
+#         application/json:
+#           schema: !include v1/schemas/pages/put.json
+#           example: !include v1/examples/pages/put.json
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               schema: !include v1/schemas/pages/one.json
+#               example: !include v1/examples/pages/one.json
+#     delete:
+#       is: [ secured, admin-only ]
+#       responses:
+#         200:

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "478b7ceb92d8da959a85e4c74ae522b4",
+    "hash": "86d8a82d9a8bfd127e790df0498ab269",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1828,12 +1828,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AliochaRyzhkov/hateoas.git",
-                "reference": "c5ca71af57a7ba1c2e4572dc3f2befb1a1cc594c"
+                "reference": "2dc07ac7d1260ed59635c6152784310011e5d3ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AliochaRyzhkov/hateoas/zipball/c5ca71af57a7ba1c2e4572dc3f2befb1a1cc594c",
-                "reference": "c5ca71af57a7ba1c2e4572dc3f2befb1a1cc594c",
+                "url": "https://api.github.com/repos/AliochaRyzhkov/hateoas/zipball/2dc07ac7d1260ed59635c6152784310011e5d3ed",
+                "reference": "2dc07ac7d1260ed59635c6152784310011e5d3ed",
                 "shasum": ""
             },
             "require": {
@@ -1906,7 +1906,7 @@
             "support": {
                 "source": "https://github.com/AliochaRyzhkov/hateoas/tree/master"
             },
-            "time": "2014-12-26 10:06:26"
+            "time": "2014-12-29 10:56:04"
         },
         {
             "name": "gointegro/hateoas-bundle",

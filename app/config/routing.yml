@@ -1,10 +1,11 @@
-go_integro_hateoas:
-    resource: "@GoIntegroHateoasBundle/Resources/config/routing.yml"
-    prefix: /api/v1
-
 engage360d_search_api:
     resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
+
+engage360d_token_account_api:
+    resource: "@Engage360dTakedaUserBundle/Controller/Api"
+    type: annotation
+    prefix: /api/v1
 
 melodia_pages_api_:
     resource: "@MelodiaPageBundle/Resources/config/routing/api.yml"
@@ -17,6 +18,11 @@ engage360d_takeda_test_api:
 engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
+
+# the last api router
+go_integro_hateoas:
+    resource: "@GoIntegroHateoasBundle/Resources/config/routing.yml"
+    prefix: /api/v1
 
 engage360d_user_security:
     resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
@@ -73,3 +79,4 @@ engage360d_takeda_test:
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
+

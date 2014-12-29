@@ -160,5 +160,5 @@ sonata_block:
         sonata.block.service.text:
 
 go_integro_hateoas:
-    raml_doc: %kernel.root_dir%/../web/api/v1.raml
+    raml_doc: %kernel.root_dir%/../web/api/v1.dev.raml
     cache: ~
