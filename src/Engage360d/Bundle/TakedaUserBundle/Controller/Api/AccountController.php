@@ -133,10 +133,6 @@ class AccountController extends RestController
             return new JsonResponse("Unauthorized", 401);
         }
 
-        if (!$user->isDoctor() && count($user->getTestResults()) > 0) {
-            return new JsonResponse("Test already passed by user.", 400);
-        }
-
         $response = ["testResults" => []];
 
         foreach($user->getTestResults() as $result) {
