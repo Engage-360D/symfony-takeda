@@ -1,0 +1,7 @@
+Engage360d\Bundle\TakedaUserBundle\Entity\User\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+    properties:
+        email:
+            - Email: ~
+
