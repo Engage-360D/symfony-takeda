@@ -35,7 +35,7 @@ class TokenController extends Controller
 
         // Handle HTTP basic authentication
         if (!$email) {
-          $email = $request->headers->get('PHP_AUTH_USER');
+            $email = $request->headers->get('PHP_AUTH_USER');
         }
         if (!$plainPassword) {
             $plainPassword = $request->headers->get('PHP_AUTH_PW');
@@ -89,7 +89,7 @@ class TokenController extends Controller
                     "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
                     "specializationName" => $user->getSpecializationName(),
                     "roles" => $user->getRoles(),
-                    "enabled" => $user->getEnabled(),
+                    "isEnabled" => $user->getEnabled(),
                 ]
             ]
         ];
