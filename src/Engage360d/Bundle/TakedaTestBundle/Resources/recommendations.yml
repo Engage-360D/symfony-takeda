@@ -67,7 +67,7 @@ banners:
       pageUrl: false
       state: ok
       title: Курение
-      subtitle: ~
+      subtitle: ""
       note: Все хорошо
     -
       visible:
@@ -75,7 +75,7 @@ banners:
       pageUrl: true
       state: attention
       title: Курение
-      subtitle: ~
+      subtitle: ""
       note: Фактор риска
 
   arterialPressure:
@@ -111,7 +111,7 @@ banners:
       pageUrl: false
       state: ok
       title: Потребление соли
-      subtitle: ~
+      subtitle: ""
       note: Все хорошо
     -
       visible:
@@ -119,7 +119,7 @@ banners:
       pageUrl: true
       state: attention
       title: Потребление соли
-      subtitle: ~
+      subtitle: ""
       note: Необходимо улучшение
 
   cholesterolLevel:
@@ -206,8 +206,8 @@ banners:
         - { hadSugarProblems: true, hasDiabetes: false }
       pageUrl: false
       state: doctor
-      title: ~
-      subtitle: ~
+      title: ""
+      subtitle: ""
       note: У вас отмечается повышение уровня сахара в крови. Вам необходимо обратиться к врачу.
 
   isArterialPressureDrugsConsumer:
@@ -216,8 +216,8 @@ banners:
         - { isArterialPressureDrugsConsumer: false, arterialPressure: [160, ~] }
       pageUrl: false
       state: doctor
-      title: ~
-      subtitle: ~
+      title: ""
+      subtitle: ""
       note: У вас повышено артериальное давление – это опасный фактор риска. Вам необходимо обратиться к врачу.
 
   isCholesterolDrugsConsumer:
@@ -226,8 +226,8 @@ banners:
         - { isCholesterolDrugsConsumer: false, cholesterolLevel: [6.6, ~] }
       pageUrl: false
       state: doctor
-      title: ~
-      subtitle: ~
+      title: ""
+      subtitle: ""
       note: У вас отмечается повышение уровня холестерина. Вам необходимо обратиться к врачу.
 
 
@@ -282,7 +282,7 @@ pages:
         - { isAddingExtraSalt: true }
       urlText: Соль
       title: Потребление соли может приводить к повышению артериального давления.
-      subtitle: ~
+      subtitle: ""
       placesLinkShouldBeVisible:
         visible: false
       text: |
