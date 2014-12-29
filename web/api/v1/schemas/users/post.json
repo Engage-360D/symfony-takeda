@@ -93,7 +93,10 @@
 
           "properties": {
             "region": {
-              "type": "string"
+              "oneOf": [
+                {"type": "string"},
+                {"type": "null"}
+              ]
             }
           },
 
