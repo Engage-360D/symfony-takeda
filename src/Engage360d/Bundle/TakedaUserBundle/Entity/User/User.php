@@ -29,11 +29,6 @@ class User extends BaseUser implements ResourceEntityInterface
      */
     protected $id;
 
-    /**
-     * @var date $isDoctor
-     *
-     * @ORM\Column(name="isDoctor", type="boolean")
-     */
     private $isDoctor;
 
     /**
@@ -161,14 +156,11 @@ class User extends BaseUser implements ResourceEntityInterface
 
     public function setIsDoctor($isDoctor)
     {
-        $this->isDoctor = $isDoctor;
+        if ($isDoctor) {
+            $this->addRole('ROLE_DOCTOR');
+        }
 
         return $this;
-    }
-
-    public function getIsDoctor()
-    {
-        return $this->isDoctor;
     }
 
     public function setFirstname($firstname)
