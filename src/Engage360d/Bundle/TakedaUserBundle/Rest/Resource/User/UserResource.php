@@ -7,7 +7,6 @@ use GoIntegro\Hateoas\JsonApi\EntityResource;
 class UserResource extends EntityResource
 {
     public static $fieldWhitelist = [
-        'id',
         'email',
         'firstname',
         'lastname',
