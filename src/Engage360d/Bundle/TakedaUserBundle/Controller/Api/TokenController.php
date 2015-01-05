@@ -74,22 +74,26 @@ class TokenController extends Controller
             ],
             "linked" => [
                 "users" => [
-                    "id" => (String) $user->getId(),
-                    "email" => $user->getEmail(),
-                    "firstname" => $user->getFirstname(),
-                    "lastname" => $user->getLastname(),
-                    "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-                    "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null,
-                    "vkontakteId" => $user->getVkontakteId(),
-                    "facebookId" => $user->getFacebookId(),
-                    "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-                    "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-                    "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-                    "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-                    "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-                    "specializationName" => $user->getSpecializationName(),
-                    "roles" => $user->getRoles(),
-                    "isEnabled" => $user->getEnabled(),
+                    [
+                      "id" => (String) $user->getId(),
+                      "email" => $user->getEmail(),
+                      "firstname" => $user->getFirstname(),
+                      "lastname" => $user->getLastname(),
+                      "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
+                      "vkontakteId" => $user->getVkontakteId(),
+                      "facebookId" => $user->getFacebookId(),
+                      "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
+                      "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
+                      "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
+                      "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
+                      "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
+                      "specializationName" => $user->getSpecializationName(),
+                      "roles" => $user->getRoles(),
+                      "isEnabled" => $user->getEnabled(),
+                      "links" => [
+                          "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null,
+                      ]
+                    ]
                 ]
             ]
         ];

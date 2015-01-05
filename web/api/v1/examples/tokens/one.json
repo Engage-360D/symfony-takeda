@@ -20,7 +20,6 @@
       "firstname": "Vyacheslav",
       "lastname": "Slinko",
       "birthday": "1991-01-19T00:00:00+0000",
-      "region": "1",
       "vkontakteId": null,
       "facebookId": null,
       "specializationExperienceYears": null,
@@ -30,7 +29,10 @@
       "specializationInstitutionPhone": null,
       "specializationName": null,
       "roles": ["ROLE_USER"],
-      "isEnabled": true
+      "isEnabled": true,
+      "links": {
+        "region": "1"
+      }
     }]
   }
 }
