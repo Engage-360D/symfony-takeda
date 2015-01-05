@@ -6,7 +6,7 @@
     }
   },
 
-  "pages": [
+  "data": [
     {
       "id": "1",
       "url": "/about",

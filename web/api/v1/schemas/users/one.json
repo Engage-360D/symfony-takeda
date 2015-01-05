@@ -4,13 +4,13 @@
   "type": "object",
 
   "properties": {
-    "users": {
+    "data": {
       "$ref": "#/definitions/user"
     }
   },
 
   "required": [
-    "users"
+    "data"
   ],
 
   "definitions": {

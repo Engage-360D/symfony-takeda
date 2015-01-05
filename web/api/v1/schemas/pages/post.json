@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "pages": {
+    "data": {
       "type": "object",
 
       "properties": {
@@ -59,6 +59,6 @@
   },
 
   "required": [
-    "pages"
+    "data"
   ]
 }

@@ -4,13 +4,13 @@
   "type": "object",
 
   "properties": {
-    "regions": {
+    "data": {
       "ref": "#/definitions/region"
     }
   },
 
   "required": [
-    "regions"
+    "data"
   ],
 
   "definitions": {

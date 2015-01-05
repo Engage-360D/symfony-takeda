@@ -6,7 +6,7 @@
     }
   },
 
-  "users": {
+  "data": {
     "id": "1",
     "email": "vslinko@yahoo.com",
     "firstname": "Vyacheslav",

@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "pageBlocks": {
+    "data": {
       "type": "object",
 
       "properties": {
@@ -22,6 +22,6 @@
   },
 
   "required": [
-    "pageBlocks"
+    "data"
   ]
 }

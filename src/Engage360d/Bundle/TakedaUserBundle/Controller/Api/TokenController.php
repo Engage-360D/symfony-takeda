@@ -66,7 +66,7 @@ class TokenController extends Controller
                     "type" => "users"
                 ]
             ],
-            "tokens" => [
+            "data" => [
                 "id" => $token->getId(),
                 "links" => [
                     "user" => (String) $user->getId()

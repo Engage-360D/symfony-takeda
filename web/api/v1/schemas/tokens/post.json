@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "tokens": {
+    "data": {
       "type": "object",
 
       "properties": {
@@ -28,6 +28,6 @@
   },
 
   "required": [
-    "tokens"
+    "data"
   ]
 }

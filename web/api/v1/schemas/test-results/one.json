@@ -4,13 +4,13 @@
   "type": "object",
 
   "properties": {
-    "testResults": {
+    "data": {
       "$ref": "#/definitions/testResult"
     }
   },
 
   "required": [
-    "testResults"
+    "data"
   ],
 
   "definitions": {

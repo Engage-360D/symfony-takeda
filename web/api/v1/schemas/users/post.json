@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "users": {
+    "data": {
       "type": "object",
 
       "properties": {
@@ -133,6 +133,6 @@
   },
 
   "required": [
-    "users"
+    "data"
   ]
 }

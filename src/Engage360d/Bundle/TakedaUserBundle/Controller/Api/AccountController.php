@@ -54,7 +54,7 @@ class AccountController extends RestController
                     "type" => "regions"
                 ]
             ],
-            "users" => [
+            "data" => [
                 "id" => (String) $user->getId(),
                 "email" => $user->getEmail(),
                 "firstname" => $user->getFirstname(),
@@ -100,12 +100,12 @@ class AccountController extends RestController
         $json = $request->getContent();
         $data = json_decode($json, true);
 
-        if (!isset($data['testResults'])) {
+        if (!isset($data['data'])) {
             return new JsonResponse("Invalid request", 400);
         }
 
         $testResult = new TestResult;
-        foreach ($data['testResults'] as $property => $value) {
+        foreach ($data['data'] as $property => $value) {
             $method = 'set' . ucfirst($property);
             $testResult->$method($value);
         }
@@ -116,7 +116,7 @@ class AccountController extends RestController
         $em->flush();
 
         $response = [
-            "testResults" => $this->prepareTestResult($testResult)
+            "data" => $this->prepareTestResult($testResult)
         ];
 
         return new JsonResponse($response, 201);
@@ -133,10 +133,10 @@ class AccountController extends RestController
             return new JsonResponse("Unauthorized", 401);
         }
 
-        $response = ["testResults" => []];
+        $response = ["data" => []];
 
         foreach($user->getTestResults() as $result) {
-            $response["testResults"][] = $this->prepareTestResult($result);
+            $response["data"][] = $this->prepareTestResult($result);
         }
 
         return new JsonResponse($response, 200);

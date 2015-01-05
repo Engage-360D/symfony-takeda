@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "pages": {
+    "data": {
       "type": "array",
 
       "items": {
@@ -16,6 +16,6 @@
   },
 
   "required": [
-    "pages"
+    "data"
   ]
 }

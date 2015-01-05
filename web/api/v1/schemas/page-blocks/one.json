@@ -4,13 +4,13 @@
   "type": "object",
 
   "properties": {
-    "pageBlocks": {
+    "data": {
       "ref": "#/definitions/pageBlock"
     }
   },
 
   "required": [
-    "pageBlocks"
+    "data"
   ],
 
   "definitions": {

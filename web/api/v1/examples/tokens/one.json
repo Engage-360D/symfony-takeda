@@ -6,7 +6,7 @@
     }
   },
 
-  "tokens": {
+  "data": {
     "id": "ACCESS_TOKEN",
     "links": {
       "user": "1"

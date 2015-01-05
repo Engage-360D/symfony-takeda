@@ -16,6 +16,6 @@
   },
 
   "required": [
-    "testResults"
+    "data"
   ]
 }

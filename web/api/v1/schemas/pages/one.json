@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "pages": {
+    "data": {
       "$ref": "#/definitions/page"
     },
 
@@ -24,7 +24,7 @@
   },
 
   "required": [
-    "pages",
+    "data",
     "linked"
   ],
 
