@@ -17,3 +17,5 @@ app/var/*
 /phpunit.phar
 /.we.json
 *~
+.idea/
+auth.json
