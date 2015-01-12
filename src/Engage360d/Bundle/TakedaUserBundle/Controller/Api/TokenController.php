@@ -4,15 +4,11 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\User\UserInterface;
 use GoIntegro\Bundle\HateoasBundle\Controller\Controller;
 use Engage360d\Bundle\TakedaUserBundle\Rest\Ghost\Token;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use GoIntegro\Hateoas\JsonApi\DocumentPagination;
+use JsonSchema\Validator;
+use JsonSchema\Uri\UriRetriever;
 
 class TokenController extends Controller
 {
@@ -24,14 +20,47 @@ class TokenController extends Controller
         $email = null;
         $plainPassword = null;
 
+        // TODO extract it into a function isContentTypeValid()
+        if (!empty($request->request) && $request->headers->get('content-type') !== 'application/vnd.api+json') {
+            return new JsonResponse(
+                ["errors" => [
+                    "code" => 400,
+                    "message" => "The expected content type is \"application/vnd.api+json\""
+                ]],
+                400
+            );
+        }
+
         // Handle json request
         $body = $request->getContent();
-        $data = json_decode($body, true);
-        if (!isset($data['tokens']['email']) || !isset($data['tokens']['plainPassword'])) {
-            return new JsonResponse('Bad credentials', 400);
+        $data = json_decode($body);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            '/api/v1/schemas/tokens/post.json'
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            // TODO extract it into a function getErrorResponse(string:message|array, int:code)
+            // which should return JsonResponse
+            // The first argument may be error message or array of errors
+            $errors  = [];
+            foreach($validator->getErrors() as $error) {
+                $errors[] = [
+                    "code" => 400,
+                    "message" => $error['message'],
+                ];
+            }
+
+            return new JsonResponse(["errors" => $errors], 400);
         }
-        $email = $data['tokens']['email'];
-        $plainPassword = $data['tokens']['plainPassword'];
+
+        $email = $data->data->email;
+        $plainPassword = $data->data->plainPassword;
 
         // Handle HTTP basic authentication
         if (!$email) {
@@ -99,21 +128,5 @@ class TokenController extends Controller
         ];
 
         return new JsonResponse($response, 201);
-
-//         $resourceManager = $this->get('hateoas.resource_manager');
-//         $resource = $resourceManager->createResourceFactory()
-//             ->setEntity($token)
-//             ->create();
-//
-//         $pagination = new DocumentPagination();
-//
-//         $json = $this->get('hateoas.serializer.factory')
-//             ->setFields(['id'])
-//             ->setInclude(['id'])
-//             ->setPagination($pagination)
-//             ->setDocumentResources($resource)
-//             ->serialize();
-//
-//         return $this->createETagResponse($json);
     }
 }
