@@ -160,6 +160,20 @@ traits:
             application/json:
               schema: !include v1/schemas/tokens/one.json
               example: !include v1/examples/tokens/one.json
+  /vk:
+    post:
+      description: |
+        Аутентификация пользователя через vk.com.
+      body:
+        application/json:
+          schema: !include v1/schemas/tokens/vk/post.json
+          example: !include v1/examples/tokens/vk/post.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/tokens/one.json
+              example: !include v1/examples/tokens/one.json
 
 /account:
   put:
