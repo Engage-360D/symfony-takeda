@@ -14,6 +14,49 @@ class TokenController extends JsonApiController
 {
     const URI_TOKEN_ONE = '/api/v1/schemas/tokens/one.json';
     const URI_TOKEN_POST = '/api/v1/schemas/tokens/post.json';
+    const URI_TOKEN_POST_FACEBOOK = '/api/v1/schemas/tokens/facebook/post.json';
+
+    protected function getTokenResource($token, $user)
+    {
+        return [
+            "links" => [
+                "tokens.user" => [
+                    "href" => "https://cardiomagnyl.ru/api/v1/users/{tokens.user}",
+                    "type" => "users"
+                ]
+            ],
+            "data" => [
+                "id" => $token->getId(),
+                "links" => [
+                    "user" => (String) $user->getId()
+                ]
+            ],
+            "linked" => [
+                "users" => [
+                    [
+                        "id" => (String) $user->getId(),
+                        "email" => $user->getEmail(),
+                        "firstname" => $user->getFirstname(),
+                        "lastname" => $user->getLastname(),
+                        "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
+                        "vkontakteId" => $user->getVkontakteId(),
+                        "facebookId" => $user->getFacebookId(),
+                        "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
+                        "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
+                        "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
+                        "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
+                        "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
+                        "specializationName" => $user->getSpecializationName(),
+                        "roles" => $user->getRoles(),
+                        "isEnabled" => $user->getEnabled(),
+                        "links" => [
+                            "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null,
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
 
     /**
      * @Route("/tokens", name="api_post_token", methods="POST")
@@ -73,45 +116,65 @@ class TokenController extends JsonApiController
         $token = new Token($this->get('lexik_jwt_authentication.jwt_manager')->create($user));
         $token->setUser($user);
 
-        $response = [
-            "links" => [
-                "tokens.user" => [
-                    "href" => "https://cardiomagnyl.ru/api/v1/users/{tokens.user}",
-                    "type" => "users"
-                ]
-            ],
-            "data" => [
-                "id" => $token->getId(),
-                "links" => [
-                    "user" => (String) $user->getId()
-                ]
-            ],
-            "linked" => [
-                "users" => [
-                    [
-                      "id" => (String) $user->getId(),
-                      "email" => $user->getEmail(),
-                      "firstname" => $user->getFirstname(),
-                      "lastname" => $user->getLastname(),
-                      "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-                      "vkontakteId" => $user->getVkontakteId(),
-                      "facebookId" => $user->getFacebookId(),
-                      "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-                      "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-                      "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-                      "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-                      "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-                      "specializationName" => $user->getSpecializationName(),
-                      "roles" => $user->getRoles(),
-                      "isEnabled" => $user->getEnabled(),
-                      "links" => [
-                          "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null,
-                      ]
-                    ]
-                ]
-            ]
-        ];
-
-        return new JsonResponse($response, 201);
+        return new JsonResponse($this->getTokenResource($token, $user), 201);
     }
+
+    /**
+     * Sign in through facebook.com
+     * @Route("/tokens/facebook", name="api_post_token_facebook", methods="POST")
+     */
+    public function tokensFacebookAction(Request $request)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+        }
+
+        // Handle json request
+        $body = $request->getContent();
+        $data = json_decode($body);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_TOKEN_POST_FACEBOOK
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        $access_token = $data->data->access_token;
+
+        // verify that token is valid
+        $buzz = $this->container->get('buzz');
+        $response = $buzz->get('https://graph.facebook.com/v2.2/me?access_token=' . urlencode($access_token));
+
+        if (!$response->isSuccessful()) {
+            return $this->getErrorResponse("Bad credentials", 400);
+        }
+
+        $body = $response->getContent();
+        $data = json_decode($body);
+
+        $facebookId = isset($data->id) ? $data->id : null;
+
+        $user = $this->get('doctrine')
+            ->getRepository('Engage360dTakedaUserBundle:User\User')
+            ->findOneBy(array('facebookId' => $facebookId));
+
+        if (!$user) {
+            return $this->getErrorResponse("The user is not registered", 400);
+        }
+
+        $token = new Token($this->get('lexik_jwt_authentication.jwt_manager')->create($user));
+        $token->setUser($user);
+
+        return new JsonResponse($this->getTokenResource($token, $user), 201);
+    }
+
+
+
 }

@@ -42,6 +42,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new GoIntegro\Bundle\HateoasBundle\GoIntegroHateoasBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
 
             // our project bundles
 

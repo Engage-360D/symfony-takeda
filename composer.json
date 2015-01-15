@@ -51,7 +51,8 @@
         "gointegro/json": "dev-master",
         "gointegro/hateoas": "dev-master",
         "gointegro/hateoas-bundle": "dev-master",
-        "doctrine/dbal": "~2.4"
+        "doctrine/dbal": "~2.4",
+        "sensio/buzz-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
