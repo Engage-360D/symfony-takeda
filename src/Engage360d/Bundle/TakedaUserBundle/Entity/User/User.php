@@ -138,6 +138,11 @@ class User extends BaseUser implements ResourceEntityInterface
         return $this->enabled;
     }
 
+    public function getIsEnabled()
+    {
+        return $this->enabled;
+    }
+
     public function setEmail($email)
     {
         $this->email = $email;

@@ -1,0 +1,7 @@
+parameters:
+#    engage360d_json_api.example.class: Engage360d\Bundle\JsonApiBundle\Example
+
+services:
+#    engage360d_json_api.example:
+#        class: %engage360d_json_api.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
