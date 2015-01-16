@@ -36,7 +36,7 @@ class AccountController extends JsonApiController
         }
 
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         $json = $request->getContent();
@@ -115,7 +115,7 @@ class AccountController extends JsonApiController
         }
 
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         $json = $request->getContent();
@@ -164,7 +164,7 @@ class AccountController extends JsonApiController
         }
 
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         $response = ["data" => []];
@@ -188,7 +188,7 @@ class AccountController extends JsonApiController
         }
 
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         // TODO invalidate hwi and lexik tokens

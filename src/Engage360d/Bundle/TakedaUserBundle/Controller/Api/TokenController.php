@@ -68,7 +68,7 @@ class TokenController extends JsonApiController
         $plainPassword = null;
 
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         // Handle json request
@@ -127,7 +127,7 @@ class TokenController extends JsonApiController
     public function tokensFacebookAction(Request $request)
     {
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         // Handle json request
@@ -183,7 +183,7 @@ class TokenController extends JsonApiController
     public function tokensVkAction(Request $request)
     {
         if (!$this->isContentTypeValid($request)) {
-            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+            return $this->getInvalidContentTypeResponse();
         }
 
         // Handle json request
