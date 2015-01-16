@@ -13,13 +13,17 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Engage360d\Bundle\RestBundle\Controller\RestController;
 use Engage360d\Bundle\TakedaTestBundle\Entity\TestResult;
-
+use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use JsonSchema\Validator;
+use JsonSchema\Uri\UriRetriever;
 
-class AccountController extends RestController
+class AccountController extends JsonApiController
 {
+    const URI_USER_PUT = '/api/v1/schemas/users/put.json';
+    const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
+
     /**
      * @Route("/account", name="api_post_account", methods="PUT")
      */
@@ -31,14 +35,27 @@ class AccountController extends RestController
             return new JsonResponse("Unauthorized", 401);
         }
 
-        $json = $request->getContent();
-        $data = json_decode($json, true);
-
-        if (!isset($data['users'])) {
-            return new JsonResponse("Invalid request", 400);
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
         }
 
-        foreach ($data['users'] as $property => $value) {
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_USER_PUT
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        foreach ($data->data as $property => $value) {
             $method = 'set' . ucfirst($property);
             $user->$method($value);
         }
@@ -97,15 +114,28 @@ class AccountController extends RestController
             return new JsonResponse("Test already passed by user.", 400);
         }
 
-        $json = $request->getContent();
-        $data = json_decode($json, true);
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+        }
 
-        if (!isset($data['data'])) {
-            return new JsonResponse("Invalid request", 400);
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_TEST_RESULTS_POST
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
         $testResult = new TestResult;
-        foreach ($data['data'] as $property => $value) {
+        foreach ($data->data as $property => $value) {
             $method = 'set' . ucfirst($property);
             $testResult->$method($value);
         }
@@ -133,6 +163,10 @@ class AccountController extends RestController
             return new JsonResponse("Unauthorized", 401);
         }
 
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
+        }
+
         $response = ["data" => []];
 
         foreach($user->getTestResults() as $result) {
@@ -151,6 +185,10 @@ class AccountController extends RestController
 
         if (!$user instanceof UserInterface) {
             return new JsonResponse("Unauthorized", 401);
+        }
+
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getErrorResponse("The expected content type is \"application/vnd.api+json\"", 400);
         }
 
         // TODO invalidate hwi and lexik tokens
