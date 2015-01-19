@@ -8,6 +8,7 @@ class TokensTest extends ApiTestCase
 {
     public function testCreateToken()
     {
+        $this->markTestSkipped();return;
         $this->resource('POST', '/api/v1/tokens')
             ->setBody(
                 'https://cardiomagnyl.ru/api/v1/schemas/tokens/post.json',
