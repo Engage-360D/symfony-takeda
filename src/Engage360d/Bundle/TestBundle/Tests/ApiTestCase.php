@@ -166,7 +166,7 @@ class ApiTest
         }
 
         if ($this->body) {
-            $server['CONTENT_TYPE'] = 'application/json';
+            $server['CONTENT_TYPE'] = 'application/vnd.api+json';
             $content = json_encode($this->body);
         }
 
