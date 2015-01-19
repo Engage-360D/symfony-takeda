@@ -12,14 +12,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
-use GoIntegro\Hateoas\JsonApi\ResourceEntityInterface;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="RegionRepository")
  * @ORM\Table(name="regions")
  */
-class Region implements ResourceEntityInterface
+class Region
 {
+    const REPOSITORY = 'Engage360dTakedaUserBundle:Region\Region';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

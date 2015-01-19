@@ -2,7 +2,7 @@ engage360d_search_api:
     resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
 
-engage360d_token_account_api:
+engage360d_user_bundle_api:
     resource: "@Engage360dTakedaUserBundle/Controller/Api"
     type: annotation
     prefix: /api/v1
