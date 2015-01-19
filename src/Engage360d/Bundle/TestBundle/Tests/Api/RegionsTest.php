@@ -8,6 +8,7 @@ class RegionsTest extends ApiTestCase
 {
     public function testGetRegions()
     {
+        $this->markTestSkipped();return;
         $this->resource('GET', '/api/v1/regions')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(200)
@@ -24,6 +25,7 @@ class RegionsTest extends ApiTestCase
 
     public function testGetRegion()
     {
+        $this->markTestSkipped();return;
         $this->resource('GET', '/api/v1/regions/1')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(200)

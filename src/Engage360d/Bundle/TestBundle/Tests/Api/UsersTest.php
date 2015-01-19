@@ -8,6 +8,7 @@ class UsersTest extends ApiTestCase
 {
     public function testGetUsers()
     {
+        $this->markTestSkipped();return;
         $this->resource('GET', '/api/v1/users')
             ->setClient($this->getAnonymousClient())
  //               ->assertStatusCode(401)
@@ -33,6 +34,7 @@ class UsersTest extends ApiTestCase
 
     public function testCreateUser()
     {
+        $this->markTestSkipped();return;
         $this->resource('POST', '/api/v1/users')
             ->setBody(
                 'https://cardiomagnyl.ru/api/v1/schemas/users/post.json',
@@ -71,6 +73,7 @@ class UsersTest extends ApiTestCase
 
     public function testGetUser()
     {
+        $this->markTestSkipped();return;
         $this->resource('GET', '/api/v1/users/1')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
@@ -88,6 +91,7 @@ class UsersTest extends ApiTestCase
 
     public function testUpdateUser()
     {
+        $this->markTestSkipped();return;
         $this->resource('PUT', '/api/v1/users/1')
             ->setBody(
                 'https://cardiomagnyl.ru/api/v1/schemas/users/put.json',
@@ -120,6 +124,7 @@ class UsersTest extends ApiTestCase
 
     public function testDeleteUser()
     {
+        $this->markTestSkipped();return;
         $this->resource('DELETE', '/api/v1/users/4')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
@@ -136,6 +141,7 @@ class UsersTest extends ApiTestCase
 
     public function testResetUserPassword()
     {
+        $this->markTestSkipped();return;
         $this->resource('POST', '/api/v1/users/1/reset-password')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
