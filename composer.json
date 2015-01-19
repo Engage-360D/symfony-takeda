@@ -47,10 +47,6 @@
         "engage360d/search-bundle": "dev-master",
         "engage360d/security-bundle": "dev-master",
         "lexik/jwt-authentication-bundle": "~1.0",
-        "gointegro/raml": "dev-master",
-        "gointegro/json": "dev-master",
-        "gointegro/hateoas": "dev-master",
-        "gointegro/hateoas-bundle": "dev-master",
         "doctrine/dbal": "~2.4",
         "sensio/buzz-bundle": "dev-master"
     },
@@ -103,14 +99,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/melodia/MelodiaPageBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/AliochaRyzhkov/hateoas-bundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/AliochaRyzhkov/hateoas.git"
         }
     ],
     "minimum-stability": "stable",

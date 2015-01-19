@@ -158,7 +158,3 @@ sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.block.service.text:
-
-go_integro_hateoas:
-    raml_doc: %kernel.root_dir%/../web/api/v1.dev.raml
-    cache: ~

@@ -12,7 +12,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
-use GoIntegro\Hateoas\JsonApi\ResourceEntityInterface;
 use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
 
 /**
@@ -20,7 +19,7 @@ use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks()
  */
-class User extends BaseUser implements ResourceEntityInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
