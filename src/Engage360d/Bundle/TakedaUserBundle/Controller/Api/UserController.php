@@ -111,7 +111,7 @@ class UserController extends JsonApiController
 
         $user = $this->populateEntity(new User(), $data, ["region" => Region::REPOSITORY]);
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
 
         $duplicateUser = $em->getRepository(User::REPOSITORY)
             ->findOneBy(["email" => $user->getEmail()]);
@@ -172,7 +172,7 @@ class UserController extends JsonApiController
 
         $user = $this->populateEntity($user, $data, ["region" => Region::REPOSITORY]);
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
 
         $em->persist($user);
         $em->flush();
@@ -201,7 +201,7 @@ class UserController extends JsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
 
         $user = $em->getRepository(User::REPOSITORY)
             ->findOneById($id);

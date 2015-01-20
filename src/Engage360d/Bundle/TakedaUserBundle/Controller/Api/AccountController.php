@@ -60,7 +60,7 @@ class AccountController extends JsonApiController
             $user->$method($value);
         }
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $em->persist($user);
         $em->flush();
 
@@ -141,7 +141,7 @@ class AccountController extends JsonApiController
         }
         $testResult->setUser($user);
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $em->persist($testResult);
         $em->flush();
 
