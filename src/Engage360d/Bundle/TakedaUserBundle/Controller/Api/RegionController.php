@@ -47,9 +47,9 @@ class RegionController extends JsonApiController
     }
 
     /**
-     * @Route("/region/{id}", name="api_get_one_region", methods="GET")
+     * @Route("/regions/{id}", name="api_get_one_region", methods="GET")
      */
-    public function getRegionAction($id)
+    public function getRegionAction(Request $request, $id)
     {
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
