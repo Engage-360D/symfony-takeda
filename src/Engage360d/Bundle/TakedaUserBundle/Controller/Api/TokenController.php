@@ -5,7 +5,6 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller\Api;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
-use Engage360d\Bundle\TakedaUserBundle\Rest\Ghost\Token;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
@@ -27,7 +26,7 @@ class TokenController extends JsonApiController
                 ]
             ],
             "data" => [
-                "id" => $token->getId(),
+                "id" => $token,
                 "links" => [
                     "user" => (String) $user->getId()
                 ]
@@ -114,8 +113,7 @@ class TokenController extends JsonApiController
             return $this->getErrorResponse("Bad credentials", 400);
         }
 
-        $token = new Token($this->get('lexik_jwt_authentication.jwt_manager')->create($user));
-        $token->setUser($user);
+        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
         return new JsonResponse($this->getTokenResource($token, $user), 201);
     }
@@ -170,8 +168,7 @@ class TokenController extends JsonApiController
             return $this->getErrorResponse("The user is not registered", 400);
         }
 
-        $token = new Token($this->get('lexik_jwt_authentication.jwt_manager')->create($user));
-        $token->setUser($user);
+        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
         return new JsonResponse($this->getTokenResource($token, $user), 201);
     }
@@ -233,8 +230,7 @@ class TokenController extends JsonApiController
             return $this->getErrorResponse("The user is not registered", 400);
         }
 
-        $token = new Token($this->get('lexik_jwt_authentication.jwt_manager')->create($user));
-        $token->setUser($user);
+        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
         return new JsonResponse($this->getTokenResource($token, $user), 201);
     }
