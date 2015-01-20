@@ -12,7 +12,7 @@ class JsonApiController extends Controller
 
     protected function isContentTypeValid(Request $request)
     {
-        return empty($request->request) || $request->headers->get('content-type') === self::CONTENT_TYPE;
+        return $request->request->count() === 0 || $request->headers->get('content-type') === self::CONTENT_TYPE;
     }
 
     protected function getErrorResponse($data, $code)
