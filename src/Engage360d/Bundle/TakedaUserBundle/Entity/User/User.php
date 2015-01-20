@@ -15,12 +15,13 @@ use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks()
  */
 class User extends BaseUser
 {
+    const REPOSITORY = 'Engage360dTakedaUserBundle:User\User';
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
