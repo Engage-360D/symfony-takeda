@@ -43,21 +43,24 @@ security:
                     service: engage360d_security.oauth.provider
 
     access_control:
-#        - { path: ^/user/connect, roles: [ IS_AUTHENTICATED_FULLY ] }
 #        - { path: ^/api/doc, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
 #        - { path: ^/search, roles: [ ROLE_USER ], methods: [GET] }
 #
 #        # API
-#
-#        - { path: ^/api/v1/tokens, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
-#
-#        - { path: ^/api/v1/account, roles: [ ROLE_USER ], methods: [PUT] }
-#        - { path: ^/api/v1/account/reset-password, roles: [ ROLE_USER ], methods: [POST] }
-#
+
+        - { path: ^/api/v1/regions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+
         - { path: ^/api/v1/users, roles: [ROLE_ADMIN], methods: [GET] }
-#        - { path: ^/api/v1/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
-#        - { path: ^/api/v1/users/\d+/reset-password, roles: [ROLE_ADMIN], methods: [POST] }
-#        - { path: ^/api/v1/users/\d+, roles: [ROLE_ADMIN], methods: [PATCH, DELETE] }
+        - { path: ^/api/v1/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: ^/api/v1/users/\d+/reset-password, roles: [ROLE_ADMIN], methods: [POST] }
+        - { path: ^/api/v1/users/\d+, roles: [ROLE_ADMIN], methods: [PATCH, DELETE] }
+
+        # /tokens, /tokens/facebook, /tokens/vk
+        - { path: ^/api/v1/tokens, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
+
+        - { path: ^/api/v1/account, roles: [ ROLE_USER ] }
+
+
 #
 #
 #        - { path: ^/api/v1/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
