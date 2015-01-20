@@ -1,6 +1,2 @@
 services:
-    security.access.common_voter:
-        class: Engage360d\Bundle\TakedaUserBundle\Security\Authorization\Voter\CommonVoter
-        public: false
-        tags:
-            - { name: security.voter }
+
