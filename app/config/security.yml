@@ -49,9 +49,9 @@ security:
         - { path: ^/api/v1/regions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
         - { path: ^/api/v1/users, roles: [ROLE_ADMIN], methods: [GET] }
-        - { path: ^/api/v1/users, roles: [IS_AUTHENTICATED_ANONYMOUSLY], methods: [POST] }
         - { path: ^/api/v1/users/\d+/reset-password, roles: [ROLE_ADMIN], methods: [POST] }
         - { path: ^/api/v1/users/\d+, roles: [ROLE_ADMIN], methods: [PATCH, DELETE] }
+        - { path: ^/api/v1/users, roles: [IS_AUTHENTICATED_ANONYMOUSLY], methods: [POST] }
 
         # /tokens, /tokens/facebook, /tokens/vk
         - { path: ^/api/v1/tokens, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
