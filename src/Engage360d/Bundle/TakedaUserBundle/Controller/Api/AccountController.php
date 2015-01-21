@@ -25,6 +25,29 @@ class AccountController extends TakedaJsonApiController
     const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
 
     /**
+     * @Route("/account", name="api_get_account", methods="GET")
+     */
+    public function getAccountAction(Request $request)
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return new JsonResponse("Unauthorized", 401);
+        }
+
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $response = [
+            "links" => $this->getUsersRegionLink(),
+            "data" => $this->getUserArray($user)
+        ];
+
+        return new JsonResponse($response, 200);
+    }
+
+    /**
      * @Route("/account", name="api_post_account", methods="PUT")
      */
     public function putAccountAction(Request $request)
