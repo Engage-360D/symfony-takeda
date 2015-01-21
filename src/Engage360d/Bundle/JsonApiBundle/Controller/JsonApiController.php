@@ -25,7 +25,7 @@ class JsonApiController extends Controller
         foreach($data as $error) {
             $errors[] = [
                 "code" => $code,
-                "message" => $error['message'],
+                "title" => $error['message'],
             ];
         }
 
