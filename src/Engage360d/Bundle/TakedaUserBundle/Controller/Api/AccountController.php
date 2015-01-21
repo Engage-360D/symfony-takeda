@@ -18,6 +18,7 @@ use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
+use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
 
 class AccountController extends TakedaJsonApiController
 {
@@ -78,15 +79,18 @@ class AccountController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
+        $oldEmail = $user->getEmail();
         $user = $this->populateEntity($user, $data);
 
         $em = $this->get('doctrine')->getManager();
 
-        $duplicateUser = $em->getRepository(User::REPOSITORY)
-            ->findOneBy(["email" => $user->getEmail()]);
+        if ($oldEmail !== $user->getEmail()) {
+            $duplicateUser = $em->getRepository(User::REPOSITORY)
+                ->findOneBy(["email" => $user->getEmail()]);
 
-        if ($duplicateUser) {
-            return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+            if ($duplicateUser) {
+                return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+            }
         }
 
         $em->persist($user);
