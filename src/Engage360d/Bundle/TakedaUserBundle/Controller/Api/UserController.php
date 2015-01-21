@@ -174,6 +174,13 @@ class UserController extends TakedaJsonApiController
 
         $em = $this->get('doctrine')->getManager();
 
+        $duplicateUser = $em->getRepository(User::REPOSITORY)
+            ->findOneBy(["email" => $user->getEmail()]);
+
+        if ($duplicateUser) {
+            return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+        }
+
         $em->persist($user);
         $em->flush();
 
@@ -186,7 +193,7 @@ class UserController extends TakedaJsonApiController
     }
 
     /**
-     * @Route("/users", name="api_delete_user", methods="DELETE")
+     * @Route("/users/{id}", name="api_delete_user", methods="DELETE")
      */
     public function deleteUserAction(Request $request, $id)
     {

@@ -81,6 +81,14 @@ class AccountController extends TakedaJsonApiController
         $user = $this->populateEntity($user, $data);
 
         $em = $this->get('doctrine')->getManager();
+
+        $duplicateUser = $em->getRepository(User::REPOSITORY)
+            ->findOneBy(["email" => $user->getEmail()]);
+
+        if ($duplicateUser) {
+            return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+        }
+
         $em->persist($user);
         $em->flush();
 
