@@ -85,9 +85,11 @@ jms_serializer:
 
 fos_rest:
     param_fetcher_listener: force
+    exception: ~
     view:
         view_response_listener: force
         jsonp_handler: ~
+        exception_wrapper_handler: Engage360d\Bundle\TakedaBundle\Handler\ExceptionWrapperHandler
     serializer:
         serialize_null: true
     routing_loader:

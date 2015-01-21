@@ -5,6 +5,7 @@ namespace Engage360d\Bundle\JsonApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class JsonApiController extends Controller
 {
@@ -54,7 +55,7 @@ class JsonApiController extends Controller
 
         foreach ($links as $property => $value) {
             if (!isset($mappings[$property])) {
-                continue;
+                throw new NotFoundHttpException(sprintf("Link with name '%' not found", $property));
             }
 
             $mappedEntity = $this->get('doctrine')
@@ -62,7 +63,7 @@ class JsonApiController extends Controller
                 ->findOneById($value);
 
             if (!$mappedEntity) {
-                continue;
+                throw new NotFoundHttpException(sprintf("Link '%s' with id '%s' not found", $property, $value));
             }
 
             $method = 'set' . ucfirst($property);
