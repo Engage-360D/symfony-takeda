@@ -4,13 +4,13 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
+use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaUserBundle\Entity\Region\Region;
 
-class RegionController extends JsonApiController
+class RegionController extends TakedaJsonApiController
 {
     const URI_REGIONS_ONE = '/api/v1/schemas/regions/one.json';
     const URI_REGIONS_LIST = '/api/v1/schemas/regions/list.json';

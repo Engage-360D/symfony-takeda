@@ -14,12 +14,12 @@ use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Engage360d\Bundle\TakedaTestBundle\Entity\TestResult;
-use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
+use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 
-class AccountController extends JsonApiController
+class AccountController extends TakedaJsonApiController
 {
     const URI_USER_PUT = '/api/v1/schemas/users/put.json';
     const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
@@ -55,42 +55,15 @@ class AccountController extends JsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        foreach ($data->data as $property => $value) {
-            $method = 'set' . ucfirst($property);
-            $user->$method($value);
-        }
+        $user = $this->populateEntity($user, $data);
 
         $em = $this->get('doctrine')->getManager();
         $em->persist($user);
         $em->flush();
 
         $response = [
-            "links" => [
-                "tokens.user" => [
-                    "href" => "https://cardiomagnyl.ru/api/v1/regions/{users.region}",
-                    "type" => "regions"
-                ]
-            ],
-            "data" => [
-                "id" => (String) $user->getId(),
-                "email" => $user->getEmail(),
-                "firstname" => $user->getFirstname(),
-                "lastname" => $user->getLastname(),
-                "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-                "vkontakteId" => $user->getVkontakteId(),
-                "facebookId" => $user->getFacebookId(),
-                "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-                "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-                "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-                "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-                "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-                "specializationName" => $user->getSpecializationName(),
-                "roles" => $user->getRoles(),
-                "isEnabled" => $user->getEnabled(),
-                "links" => [
-                    "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
-                ]
-            ]
+            "links" => $this->getUsersRegionLink(),
+            "data" => $this->getUserArray($user)
         ];
 
         return new JsonResponse($response, 200);
@@ -146,7 +119,7 @@ class AccountController extends JsonApiController
         $em->flush();
 
         $response = [
-            "data" => $this->prepareTestResult($testResult)
+            "data" => $this->getTestResultArray($testResult)
         ];
 
         return new JsonResponse($response, 201);
@@ -167,11 +140,9 @@ class AccountController extends JsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        $response = ["data" => []];
-
-        foreach($user->getTestResults() as $result) {
-            $response["data"][] = $this->prepareTestResult($result);
-        }
+        $response = [
+            "data" => array_map([$this, 'getTestResultArray'], $user->getTestResults()->toArray())
+        ];
 
         return new JsonResponse($response, 200);
     }
@@ -196,31 +167,5 @@ class AccountController extends JsonApiController
         $this->get('request')->getSession()->invalidate();
 
         return new JsonResponse("Logged out.", 200);
-    }
-
-    private function prepareTestResult($testResult)
-    {
-        return [
-            "id" => (String) $testResult->getId(),
-            "sex" => $testResult->getSex(),
-            "birthday" => $testResult->getBirthday()->format(\DateTime::ISO8601),
-            "growth" => $testResult->getGrowth(),
-            "weight" => $testResult->getWeight(),
-            "isSmoker" => $testResult->getIsSmoker(),
-            "cholesterolLevel" => $testResult->getCholesterolLevel(),
-            "isCholesterolDrugsConsumer" => $testResult->getIsCholesterolDrugsConsumer(),
-            "hasDiabetes" => $testResult->getHasDiabetes(),
-            "hadSugarProblems" => $testResult->getHadSugarProblems(),
-            "isSugarDrugsConsumer" => $testResult->getIsSugarDrugsConsumer(),
-            "arterialPressure" => $testResult->getArterialPressure(),
-            "isArterialPressureDrugsConsumer" => $testResult->getIsArterialPressureDrugsConsumer(),
-            "physicalActivityMinutes"  => $testResult->getPhysicalActivityMinutes(),
-            "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
-            "isAddingExtraSalt" => $testResult->getIsAddingExtraSalt(),
-            "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
-            "bmi" => $testResult->getBmi(),
-            "score" => $testResult->getScore(),
-            "recommendations" => $testResult->getRecommendations()
-        ];
     }
 }

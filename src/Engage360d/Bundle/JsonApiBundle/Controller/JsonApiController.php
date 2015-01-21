@@ -37,7 +37,7 @@ class JsonApiController extends Controller
         return $this->getErrorResponse(sprintf("The expected content type is \"%s\"", self::CONTENT_TYPE), 400);
     }
 
-    protected function populateEntity($entity, $data, $mappings)
+    protected function populateEntity($entity, $data, $mappings = [])
     {
         // TODO check that $entity is doctrine entity
 
@@ -77,5 +77,10 @@ class JsonApiController extends Controller
         }
 
         return $entity;
+    }
+
+    protected function getBaseUrl()
+    {
+        return $this->container->getParameter('api.base_url');
     }
 }

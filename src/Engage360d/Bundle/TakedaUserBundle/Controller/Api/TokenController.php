@@ -4,12 +4,12 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
+use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 
-class TokenController extends JsonApiController
+class TokenController extends TakedaJsonApiController
 {
     const URI_TOKEN_ONE = '/api/v1/schemas/tokens/one.json';
     const URI_TOKEN_POST = '/api/v1/schemas/tokens/post.json';
@@ -21,7 +21,7 @@ class TokenController extends JsonApiController
         return [
             "links" => [
                 "tokens.user" => [
-                    "href" => "https://cardiomagnyl.ru/api/v1/users/{tokens.user}",
+                    "href" => $this->getBaseUrl() . "/users/{tokens.user}",
                     "type" => "users"
                 ]
             ],
@@ -32,28 +32,7 @@ class TokenController extends JsonApiController
                 ]
             ],
             "linked" => [
-                "users" => [
-                    [
-                        "id" => (String) $user->getId(),
-                        "email" => $user->getEmail(),
-                        "firstname" => $user->getFirstname(),
-                        "lastname" => $user->getLastname(),
-                        "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-                        "vkontakteId" => $user->getVkontakteId(),
-                        "facebookId" => $user->getFacebookId(),
-                        "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-                        "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-                        "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-                        "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-                        "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-                        "specializationName" => $user->getSpecializationName(),
-                        "roles" => $user->getRoles(),
-                        "isEnabled" => $user->getEnabled(),
-                        "links" => [
-                            "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null,
-                        ]
-                    ]
-                ]
+                "users" => [$this->getUserArray($user)]
             ]
         ];
     }
@@ -234,7 +213,4 @@ class TokenController extends JsonApiController
 
         return new JsonResponse($this->getTokenResource($token, $user), 201);
     }
-
-
-
 }

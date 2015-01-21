@@ -4,14 +4,14 @@ namespace Engage360d\Bundle\TakedaUserBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
+use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
 use Engage360d\Bundle\TakedaUserBundle\Entity\Region\Region;
 
-class UserController extends JsonApiController
+class UserController extends TakedaJsonApiController
 {
     const URI_USERS_LIST = '/api/v1/schemas/users/list.json';
     const URI_USERS_ONE = '/api/v1/schemas/users/one.json';
@@ -46,8 +46,8 @@ class UserController extends JsonApiController
         }
 
         $response = [
-            "links" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getRegionLink']),
-            "data" => array_map(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getUserJson'], $users)
+            "links" => $this->getUsersRegionLink(),
+            "data" => array_map([$this, 'getUserArray'], $users)
         ];
 
         return new JsonResponse($response, 200);
@@ -77,8 +77,8 @@ class UserController extends JsonApiController
         }
 
         $response = [
-            "links" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getRegionLink']),
-            "data" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getUserJson'], $user)
+            "links" => $this->getUsersRegionLink(),
+            "data" => $this->getUserArray($user)
         ];
 
         return new JsonResponse($response, 200);
@@ -124,8 +124,8 @@ class UserController extends JsonApiController
         $em->flush();
 
         $response = [
-            "links" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getRegionLink']),
-            "data" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getUserJson'], $user)
+            "links" => $this->getUsersRegionLink(),
+            "data" => $this->getUserArray($user)
         ];
 
         return new JsonResponse($response, 201);
@@ -178,8 +178,8 @@ class UserController extends JsonApiController
         $em->flush();
 
         $response = [
-            "links" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getRegionLink']),
-            "data" => call_user_func(['Engage360d\Bundle\TakedaUserBundle\Controller\Api\UserController', 'getUserJson'], $user)
+            "links" => $this->getUsersRegionLink(),
+            "data" => $this->getUserArray($user)
         ];
 
         return new JsonResponse($response, 200);
@@ -214,39 +214,5 @@ class UserController extends JsonApiController
         $em->flush();
 
         return new JsonResponse(null, 200);
-    }
-
-    public static function getRegionLink()
-    {
-        return [
-            "users.region" => [
-                "href" => "https://cardiomagnyl.ru/api/v1/regions/{users.region}",
-                "type" => "regions"
-            ]
-        ];
-    }
-
-    public static function getUserJson(User $user)
-    {
-        return [
-            "id" => (String) $user->getId(),
-            "email" => $user->getEmail(),
-            "firstname" => $user->getFirstname(),
-            "lastname" => $user->getLastname(),
-            "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-            "vkontakteId" => $user->getVkontakteId(),
-            "facebookId" => $user->getFacebookId(),
-            "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-            "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-            "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-            "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-            "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-            "specializationName" => $user->getSpecializationName(),
-            "roles" => $user->getRoles(),
-            "isEnabled" => $user->getEnabled(),
-            "links" => [
-                "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
-            ]
-        ];
     }
 }
