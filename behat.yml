@@ -1,0 +1,10 @@
+default:
+  suites:
+    test_suite:
+      type: symfony_bundle
+      bundle: Engage360dTestBundle
+      contexts:
+        - Engage360d\Bundle\TestBundle\Features\Context\FeatureContext:
+            client: "@test.client"
+  extensions:
+    Behat\Symfony2Extension: ~

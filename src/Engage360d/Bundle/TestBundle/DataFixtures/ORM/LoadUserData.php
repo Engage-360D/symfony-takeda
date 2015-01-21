@@ -42,6 +42,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $user->addRole($role);
             }
 
+            $user->setRegion($this->getReference('region-0'));
+
             $manager->persist($user);
         }
 
@@ -50,6 +52,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 }
