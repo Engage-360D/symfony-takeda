@@ -5,7 +5,7 @@
  *
  */
 
-namespace Engage360d\Bundle\TakedaUserBundle\EventListener;
+namespace Engage360d\Bundle\TakedaUserBundle\Event;
 
 use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 use Engage360d\Bundle\SecurityBundle\Event\UserEvent;

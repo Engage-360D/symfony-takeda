@@ -1,7 +1,7 @@
 services:
 
     engage360d_takeda_user.listener.reset_password:
-        class: Engage360d\Bundle\TakedaUserBundle\EventListener\ResetPasswordListener
+        class: Engage360d\Bundle\TakedaUserBundle\Event\ResetPasswordSubscriber
         arguments:
             - @mailer
             - @router
@@ -11,7 +11,7 @@ services:
             - { name: kernel.event_subscriber }
 
 #    engage360d_takeda_user.listener.email_confirmation:
-#        class: Engage360d\Bundle\TakedaUserBundle\EventListener\EmailConfirmationListener
+#        class: Engage360d\Bundle\TakedaUserBundle\Event\EmailConfirmationListener
 #        arguments:
 #            - @mailer
 #            - @fos_user.util.token_generator

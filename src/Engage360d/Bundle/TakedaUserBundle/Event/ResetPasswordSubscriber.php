@@ -5,7 +5,7 @@
  *
  */
 
-namespace Engage360d\Bundle\TakedaUserBundle\EventListener;
+namespace Engage360d\Bundle\TakedaUserBundle\Event;
 
 use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ResetPasswordListener implements EventSubscriberInterface
+class ResetPasswordSubscriber implements EventSubscriberInterface
 {
     private $mailer;
     private $tokenGenerator;
