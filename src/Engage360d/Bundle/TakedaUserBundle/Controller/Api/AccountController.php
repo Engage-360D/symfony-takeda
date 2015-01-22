@@ -19,6 +19,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
+use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
+use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 
 class AccountController extends TakedaJsonApiController
 {
@@ -197,10 +199,10 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        // TODO invalidate hwi and lexik tokens
-        $this->get('security.context')->setToken(null);
-        $this->get('request')->getSession()->invalidate();
+        $event = new UserEvent($user);
+        $this->get('event_dispatcher')
+            ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
 
-        return new JsonResponse("Logged out.", 200);
+        return new JsonResponse("The password has been reset.", 200);
     }
 }

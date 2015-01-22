@@ -10,6 +10,8 @@ use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
 use Engage360d\Bundle\TakedaUserBundle\Entity\Region\Region;
+use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
+use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 
 class UserController extends TakedaJsonApiController
 {
@@ -224,5 +226,35 @@ class UserController extends TakedaJsonApiController
         $em->flush();
 
         return new JsonResponse(null, 200);
+    }
+
+    /**
+     * @Route("/users/{id}/reset-password", name="api_post_user_reset_password", methods="POST")
+     */
+    function postUserResetPasswordAction(Request $request, $id)
+    {
+        // access control lets here only authorized users
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!in_array('ROLE_ADMIN', $user->getRoles())) {
+            return $this->getErrorResponse("Forbidden", 403);
+        }
+
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $user = $this->get('doctrine')->getRepository(User::REPOSITORY)
+            ->findOneById($id);
+
+        if (!$user) {
+            return $this->getErrorResponse(sprintf("User with id = %s not found", $id), 404);
+        }
+
+        $event = new UserEvent($user);
+        $this->get('event_dispatcher')
+            ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
+
+        return new JsonResponse("The password has been reset.", 200);
     }
 }
