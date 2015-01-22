@@ -4,6 +4,7 @@ namespace Engage360d\Bundle\TakedaTestBundle\Entity;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Engage360d\Bundle\TakedaTestBundle\Score\Calculator as ScoreCalculator;
 use Engage360d\Bundle\TakedaTestBundle\Recommendations;
@@ -11,6 +12,7 @@ use Engage360d\Bundle\TakedaTestBundle\Recommendations;
 /**
  * @ORM\Entity
  * @ORM\Table(name="test_results")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class TestResult
 {
@@ -115,6 +117,11 @@ class TestResult
      * @ORM\Column(type="datetime", name="created_at")
      */
     protected $createdAt;
+
+    /**
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
+     */
+    protected $deletedAt;
 
     public function __construct()
     {
@@ -520,5 +527,28 @@ class TestResult
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return TestResult
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }

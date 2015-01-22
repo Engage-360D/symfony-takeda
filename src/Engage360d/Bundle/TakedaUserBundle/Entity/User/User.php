@@ -10,6 +10,7 @@ namespace Engage360d\Bundle\TakedaUserBundle\Entity\User;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
@@ -18,6 +19,7 @@ use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class User extends BaseUser
 {
@@ -115,11 +117,16 @@ class User extends BaseUser
     protected $vkontakteAccessToken;
 
     /**
-     * @var date $registration
+     * @var datetime $registration
      *
-     * @ORM\Column(name="registration", type="date")
+     * @ORM\Column(name="registration", type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
+     */
+    private $deletedAt;
 
     public function __construct()
     {
@@ -477,5 +484,28 @@ class User extends BaseUser
     public function getSpecializationGraduationDate()
     {
         return $this->specializationGraduationDate;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return User
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }
