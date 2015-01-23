@@ -47,6 +47,9 @@
 		float: right
 		margin-top: 7px
 
+.btn-center
+	text-align: center
+
 .button
 	height: 48px
 	padding: 0 35px
@@ -396,7 +399,8 @@
 
 .btn-circles
 	font-size: 0
-	button
+	a
+		display: inline-block
 		margin-left: 12px
 		background: #e8e8e8
 		border-radius: 50%  
@@ -480,6 +484,12 @@
 	table-layout: fixed
 	&.field_no-wide
 		display: block
+	&.field_label-w60p
+		.field__label
+			&:first-child
+				width: 60%
+	&.field_right
+		text-align: right
 	&.field_checkbox-list
 		.field__checkbox
 			margin-top: 7px
@@ -510,6 +520,9 @@
 			display: block
 		.field__label
 			padding: 0 0 5px
+	&.field_border
+		padding-bottom: 20px
+		border-bottom: 1px solid $border 
 	&.is-error
 		.field__label
 			color: $red
@@ -680,35 +693,21 @@
 		padding: 20px 65px 20px 0
 		border-bottom: 1px solid $border 
 		font-size: 0
-		>.icon
-			position: absolute
-			top: 50%
-			right: 0
-			margin-top: -25px
-			color: #8F8F8F
-			border-radius: 50%
-			background: #e8e8e8 
-			font-size: 50px
-			&.is-active
-				width: 48px
-				height: 48px
-				background: $bll 
-				border: 1px solid #fff
-				color: #FFF 
-				&:before
-					position: relative
-					top: -1px
-					left: -1px
-			&.is-done
-				background: none 
-				color: $green 
-			&.is-error
-				background: none 
-				color: $red 
 	.timeline__title
 		margin-bottom: 10px
 		font-size: 16px
 		color: #000
+		a
+			position: relative
+			top: 2px
+			display: inline-block
+			margin-left: 10px
+			&:hover
+				.icon
+					color: $bll 
+		.icon
+			font-size: 20px 
+			color: #000 
 	.timeline__recomm
 		a
 			text-decoration: underline
@@ -724,10 +723,37 @@
 		text-align: center
 		p
 			text-align: left
+	.timeline__btn, .timeline__status
+		position: absolute
+		top: 50%
+		right: 0
+		margin-top: -25px
 		.icon
-			margin-bottom: 10px
-			font-size: 20px 
-			color: #000 
+			color: #8F8F8F
+			border-radius: 50%
+			font-size: 50px
+	.timeline__btn
+		&:hover
+			.icon
+				width: 48px
+				height: 48px
+				background: $bll 
+				border: 1px solid #fff
+				color: #FFF 
+				&:before
+					position: relative
+					top: -1px
+					left: -1px
+	.timeline__status
+		&.is-done
+			.icon
+				background: none 
+				color: $green 
+		&.is-error
+			.icon
+				background: none 
+				color: $red 
+
 	  
 .time
 	font-size: 0
@@ -902,7 +928,9 @@
 	padding: 15px 50px 50px 30px
 	background: #b779e0 
 	&.result_section
+		padding: 130px 50px 130px 30px
 		background: $red 
+		text-align: center
 	.result__top
 		position: relative
 		margin-bottom: 5px
@@ -1001,6 +1029,15 @@
 		width: 100%
 		margin-bottom: 30px
 		color: #FFF 
+	.result__text_big
+		.result__text-item	
+			width: auto
+			margin: 0 auto 30px
+		.result__text-ico
+			.icon
+				font-size: 50px 
+		.result__text-in
+			font-size: 28px
 	.result__text-ico, .result__text-in
 		display: table-cell
 		vertical-align: middle
@@ -1176,6 +1213,9 @@
 		bottom: 0
 		background: rgba(#fff,.8) 
 		z-index: 4
+		&:hover
+			.icon
+				color: $bl 
 		.icon
 			font-size: 26px
 			color: #898989 
@@ -1265,6 +1305,7 @@
 		display: inline-block
 		width: 19px
 		height: 19px
+		margin: 0 2px
 		border-radius: 10px
 		border: 1px solid transparent
 		vertical-align: top
@@ -1275,7 +1316,7 @@
 		&.is-active
 			background: $bl
 			border-color: $bl
-			color: #fff  
+			color: #fff
 		&:hover
 			border-color: $bl
 

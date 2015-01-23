@@ -1,15 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if IE 8]><html class="ie8"><![endif]-->
 <!--[if gt IE 8]><!--><html><!--<![endif]-->
 <head>
   <meta charset="UTF-8" />
-  <title>Кардиомагнил — {% block title %}{% endblock %}</title>
+  <title>Кардиомагнил - {% block title %}{% endblock %}</title>
   <meta name="viewport" content="initial-scale=1" />
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/screen.css') }}" />
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/frontend.css') }}" />
-  <!--[if IE]><script src="{{ asset('bundles/engage360dtakeda/js/html5shiv.js') }}""></script><![endif]-->
+  <!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
 </head>
 <body>
   {% block body %}{% endblock %}
+  <script src="{{ asset('assets/app.js') }}"></script>
 </body>
 </html>

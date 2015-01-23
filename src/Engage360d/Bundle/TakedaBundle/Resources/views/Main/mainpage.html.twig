@@ -2,159 +2,152 @@
 
 {% block title %}Главная{% endblock %}
 
-{% block content %}
-<!-- section -->
-<div class="section">
-  <!-- main -->
-  <div class="main">
-    <div class="main__blocks">
-      <!-- 1 -->
-      <div class="main__item main__item_1">
-        <!-- head -->
-        <div class="head">
-          <div class="head__right">
-            <div class="head__city">
-              <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
-            </div>
-          </div>
-          <div class="head__left">
-            <!-- h -->
-            <div class="h">Кардиомагнил Yomana</div>
-            <div class="head__text">Это единственная в России комбинация ацетилсалициловой кислоты и гидроксида магния для первичной и вторичной профилактики тромбообразования.</div>
+{% block section %}
+<!-- main -->
+<div class="main">
+  <div class="main__blocks">
+    <!-- 1 -->
+    <div class="main__item main__item_1">
+      <!-- head -->
+      <div class="head">
+        <div class="head__right">
+          <div class="head__city">
+            <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
           </div>
         </div>
-        <div class="main__item-in">
-          <div class="main__product">
-            <div class="main__product-pic" style="background-image: url(/bundles/engage360dtakeda/img/main-product.jpg)"></div>
-            <a class="link" href="#"><span>Подробнее</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-          </div>
-          <div class="main__info">
-            <!-- h -->
-            <div class="h h_2">Как жить с инфарктом и инсультом?</div>
-            <ul class="main__item-info-links">
-              <li><a class="link" href="#"><span>Оценка риска повторного тромбоза</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-              <li><a class="link" href="#"><span>Рекомендации по изменению образа жизни</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-              <li><a class="link" href="#"><span>Публикации по теме тромбоза</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-            </ul>
-          </div>
-          <div class="main__app">
-            <!-- h -->
-            <div class="h h_2">Персональный анализ рисков и рекоммендации</div>
-            <div class="main__text-in">Бесплатное приложение для профилактики СС заболеваний</div>
-            <div class="main__app-list">
-              <div class="main__app-item">
-                <div class="main__app-pic">
-                  <img src="/bundles/engage360dtakeda/img/main-app-desktop.png" alt="">
-                </div>
-                <a class="link" href="{{ path('engage360d_takeda_test_get_test') }}"><span>На сайте</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-              </div>
-              <div class="main__app-item">
-                <div class="main__app-pic">
-                  <img src="/bundles/engage360dtakeda/img/main-app-ios.png" alt="">
-                </div>
-                <a class="link" href="https://itunes.apple.com/us/app/kardiomagnil-zdorovoe-serdce/id862662989?mt=8"><span>Iphone</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-              </div>
-              <div class="main__app-item">
-                <div class="main__app-pic">
-                  <img src="/bundles/engage360dtakeda/img/main-app-android.png" alt="">
-                </div>
-                <a class="link" href="https://play.google.com/store/apps/details?id=ru.com.cardiomagnil&amp;hl=ru"><span>Android</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {#
-      <!-- 2 -->
-      <div class="main__item main__item_2">
-        <div class="main__item-in">
+        <div class="head__left">
           <!-- h -->
-          <div class="h">Статистика по заболевениям сердечно-сосудистой системы</div>
-          <!-- l -->
-          <div class="l">
-            <div class="l__column">
-              <!-- field -->
-              <div class="field field_rows field_radio-list">
-                <div class="field__label">Группы риска сердечно-сосудистых<br>заболеваний:</div>
-                <div class="field__in">
-                  <label class="field__radio"><input type="radio" name="type1" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
-                  <label class="field__radio"><input type="radio" name="type1"><span>Мужчины в возрасте 50- 60 лет</span></label>
-                  <label class="field__radio"><input type="radio" name="type1"><span>Женщины в возрасте 50 - 60 лет</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="l__column">
-              <!-- field -->
-              <div class="field field_rows field_radio-list">
-                <div class="field__label">Статистика по вторичной<br>профилактике:</div>
-                <div class="field__in">
-                  <label class="field__radio"><input type="radio" name="type2" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
-                  <label class="field__radio"><input type="radio" name="type2"><span>Мужчины в возрасте 50- 60 лет</span></label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="main__graph">
-            <img src="img/main-stats.png" alt="">
-          </div>
+          <div class="h">Кардиомагнил Yomana</div>
+          <div class="head__text">Это единственная в России комбинация ацетилсалициловой кислоты и гидроксида магния для первичной и вторичной профилактики тромбообразования.</div>
         </div>
       </div>
-      #}
-      {#
-      <!-- 3 -->
-      <div class="main__item main__item_3">
-        <div class="main__item-in">
-          <div class="main__map">
-            <!-- h -->
-            <div class="h">Карта учреждений в регионе <a href="#">Санкт-Петербург</a></div>
-            <a class="link" href="#"><span>Полный список</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-          </div>
-          <!-- map -->
-          <div class="map">
-            <div class="map__panel">
-              <div class="map__circle">
-                <i class="icon icon-circles-fill"></i>
-                <i class="icon icon-circles"></i>
+      <div class="main__item-in">
+        <div class="main__product">
+          <div class="main__product-pic" style="background-image: url(/bundles/engage360dtakeda/img/main-product.png)"></div>
+          <a class="link" href="#"><span>Подробнее</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
+        </div>
+        <div class="main__info">
+          <!-- h -->
+          <div class="h h_2">Как жить с инфарктом и инсультом?</div>
+          <ul class="main__item-info-links">
+            <li><a class="link" href="#"><span>Оценка риска повторного тромбоза</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+            <li><a class="link" href="#"><span>Рекомендации по изменению образа жизни</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+            <li><a class="link" href="#"><span>Публикации по теме тромбоза</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+          </ul>
+        </div>
+        <div class="main__app">
+          <!-- h -->
+          <div class="h h_2">Персональный анализ рисков и рекоммендации</div>
+          <div class="main__text-in">Бесплатное приложение для профилактики СС заболеваний</div>
+          <div class="main__app-list">
+            <div class="main__app-item">
+              <div class="main__app-pic">
+                <img src="/bundles/engage360dtakeda/img/main-app-desktop.png" alt="">
               </div>
-              <div class="map__plus">
-                <i class="icon icon-plus-fill"></i>
-                <i class="icon icon-plus"></i>
-              </div>
-              <ul class="map__zoom">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li class="map__zoom-drag" style="top: 50%"></li>
-              </ul>
-              <div class="map__minus">
-                <i class="icon icon-minus-fill"></i>
-                <i class="icon icon-minus"></i>
-              </div>
+              <a class="link" href="#"><span>На сайте</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
             </div>
-            <div class="map__container">
-              <div class="map__container-in">
-                <div class="point" style="top: 200px; left: 200px;">
-                  <i class="icon icon-marker"></i>
-                  <div class="point__tooltip">
-                    <div class="point__title">Профилактика</div>
-                    <div class="point__type">больница высшей категории</div>
-                    <div class="point__address">Москва, ул. Тверская, д.1.</div>
-                    <div class="point__phone">+7 (495) 555-55-55</div>
-                    <div class="point__mail"><a href="mailto:mail@mail.mail">mail@mail.mail</a></div>
-                  </div>
-                </div>
+            <div class="main__app-item">
+              <div class="main__app-pic">
+                <img src="/bundles/engage360dtakeda/img/main-app-ios.png" alt="">
               </div>
-              <i class="map__shadow"></i>
+              <a class="link" href="#"><span>Iphone</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
+            </div>
+            <div class="main__app-item">
+              <div class="main__app-pic">
+                <img src="/bundles/engage360dtakeda/img/main-app-android.png" alt="">
+              </div>
+              <a class="link" href="#"><span>Android</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
             </div>
           </div>
         </div>
       </div>
-      #}
+    </div>
+    <!-- 2 -->
+    <div class="main__item main__item_2">
+      <div class="main__item-in">
+        <!-- h -->
+        <div class="h">Статистика по заболевениям сердечно-сосудистой системы</div>
+        <!-- l -->
+        <div class="l">
+          <div class="l__column">
+            <!-- field -->
+            <div class="field field_rows field_radio-list">
+              <div class="field__label">Группы риска сердечно-сосудистых<br>заболеваний:</div>
+              <div class="field__in">
+                <label class="field__radio"><input type="radio" name="type1" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
+                <label class="field__radio"><input type="radio" name="type1"><span>Мужчины в возрасте 50- 60 лет</span></label>
+                <label class="field__radio"><input type="radio" name="type1"><span>Женщины в возрасте 50 - 60 лет</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="l__column">
+            <!-- field -->
+            <div class="field field_rows field_radio-list">
+              <div class="field__label">Статистика по вторичной<br>профилактике:</div>
+              <div class="field__in">
+                <label class="field__radio"><input type="radio" name="type2" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
+                <label class="field__radio"><input type="radio" name="type2"><span>Мужчины в возрасте 50- 60 лет</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main__graph">
+          <img src="/bundles/engage360dtakeda/img/main-stats.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="main__item main__item_3">
+      <div class="main__item-in">
+        <div class="main__map">
+          <!-- h -->
+          <div class="h">Карта учреждений в регионе <a href="#">Санкт-Петербург</a></div>
+          <a class="link" href="#"><span>Полный список</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
+        </div>
+        <!-- map -->
+        <div class="map">
+          <div class="map__panel">
+            <div class="map__circle">
+              <i class="icon icon-circles-fill"></i>
+              <i class="icon icon-circles"></i>
+            </div>
+            <div class="map__plus">
+              <i class="icon icon-plus-fill"></i>
+              <i class="icon icon-plus"></i>
+            </div>
+            <ul class="map__zoom">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li class="map__zoom-drag" style="top: 50%"></li>
+            </ul>
+            <div class="map__minus">
+              <i class="icon icon-minus-fill"></i>
+              <i class="icon icon-minus"></i>
+            </div>
+          </div>
+          <div class="map__container">
+            <div class="map__container-in">
+              <div class="point" style="top: 200px; left: 200px;">
+                <i class="icon icon-marker"></i>
+                <div class="point__tooltip">
+                  <div class="point__title">Профилактика</div>
+                  <div class="point__type">больница высшей категории</div>
+                  <div class="point__address">Москва, ул. Тверская, д.1.</div>
+                  <div class="point__phone">+7 (495) 555-55-55</div>
+                  <div class="point__mail"><a href="mailto:mail@mail.mail">mail@mail.mail</a></div>
+                </div>
+              </div>
+            </div>
+            <i class="map__shadow"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
