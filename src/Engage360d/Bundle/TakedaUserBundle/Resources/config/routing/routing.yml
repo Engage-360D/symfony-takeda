@@ -1,13 +1,5 @@
-engage360d_takeda_user_login:
-    path:      /account/login
-    defaults:  { _controller: Engage360dTakedaUserBundle:User:login }
-
 engage360d_takeda_user_login_check:
     path: /account/check
-
-engage360d_takeda_user_registration:
-    path: /user/registration
-    defaults: { _controller: Engage360dTakedaUserBundle:User:registration }
 
 engage360d_takeda_user_registration_confirm:
     path: /account/confirm/{token}
@@ -16,10 +8,6 @@ engage360d_takeda_user_registration_confirm:
 engage360d_takeda_user_reset_password:
     path: /account/reset/{token}
     defaults: { _controller: Engage360dTakedaUserBundle:Account:reset }
-
-engage360d_takeda_user_account:
-    path: /account
-    defaults: { _controller: Engage360dTakedaUserBundle:Account:account }
 
 engage360d_takeda_user_login_failuer:
     path: /account/failure

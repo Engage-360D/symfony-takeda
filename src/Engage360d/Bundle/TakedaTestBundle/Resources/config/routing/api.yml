@@ -1,3 +1,0 @@
-engage360d_takeda_test_api:
-  type:     rest
-  resource: Engage360d\Bundle\TakedaTestBundle\Controller\ApiController

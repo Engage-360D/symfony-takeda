@@ -1,14 +1,1 @@
-engage360d_takeda_test_get_test:
-    path: /category/test
-    methods: [GET]
-    defaults: { _controller: Engage360dTakedaTestBundle:Test:getTest }
 
-engage360d_takeda_test_get_test_result_recommendation:
-    path: /test-results/{id}/{type}
-    methods: [GET]
-    defaults: { _controller: Engage360dTakedaTestBundle:Test:getTestResultRecommendation }
-
-engage360d_takeda_test_get_test_result:
-    path: /test-results/{id}
-    methods: [GET]
-    defaults: { _controller: Engage360dTakedaTestBundle:Test:getTestResult }

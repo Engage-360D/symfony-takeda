@@ -16,19 +16,6 @@ use FOS\UserBundle\Model\UserInterface;
 
 class AccountController extends Controller
 {
-    public function accountAction()
-    {
-        $token = $this->container->get('security.context')->getToken();
-
-        if (null === $token || null === $token->getUser() || false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-          return $this->render('Engage360dTakedaUserBundle:Account:login.html.twig');
-        }
-
-        return $this->render('Engage360dTakedaUserBundle:Account:account.html.twig', array(
-            'user' => $token->getUser(),
-        ));
-    }
-
     public function confirmAction(Request $request, $token)
     {
         $userManager = $this->container

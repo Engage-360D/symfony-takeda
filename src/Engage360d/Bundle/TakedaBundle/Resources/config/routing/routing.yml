@@ -3,7 +3,3 @@ engage360d_takeda_main_mainpage:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }
 
-engage360d_takeda_search_results_page:
-    path: /search
-    methods: [GET]
-    defaults: { _controller: Engage360dTakedaBundle:Search:search }

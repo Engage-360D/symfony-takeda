@@ -28,18 +28,6 @@ class UserController extends Controller
         return $this->render('Engage360dTakedaUserBundle:User:login.html.twig', array());
     }
 
-    public function profileAction()
-    {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return $this->redirect($this->generateUrl("engage360d_takeda_user_login"));
-        }
-
-        return $this->render('Engage360dTakedaUserBundle:User:profile.html.twig', array(
-          "user" => $user
-        ));
-    }
 
     public function registrationAction(Request $request)
     {

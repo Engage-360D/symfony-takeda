@@ -11,10 +11,6 @@ melodia_pages_api_:
     resource: "@MelodiaPageBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
 
-engage360d_takeda_test_api:
-    resource: "@Engage360dTakedaTestBundle/Resources/config/routing/api.yml"
-    prefix:   /api/v1
-
 engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
