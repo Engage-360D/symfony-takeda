@@ -34,5 +34,7 @@ assetic:
 lexik_jwt_authentication:
     token_ttl: 157680000 # 5 years
 
+# Don't delete NelmioApiDocBundle,
+# because some of melodia bundles are dependent on it
 nelmio_api_doc: ~
 

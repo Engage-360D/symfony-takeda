@@ -1,3 +1,17 @@
+
+# Security routes
+
+facebook_login:
+    pattern: /sign-in/facebook
+
+vkontakte_login:
+    pattern: /sign-in/vkontakte
+
+engage360d_takeda_user_logout:
+    pattern: /logout
+
+# Api routes
+
 engage360d_search_api:
     resource: "@Engage360dSearchBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
@@ -15,58 +29,23 @@ engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
 
-engage360d_user_security:
-    resource: "@Engage360dSecurityBundle/Resources/config/routing/security.yml"
-    prefix:   /account
-
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
-
-fos_oauth_server_authorize:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
-
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-    prefix: /admin
+# Other routes
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /connect
+    prefix:   /oauth
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:   /connect
+    prefix:   /oauth
 
 hwi_oauth_connect_service:
-  pattern: /connect/service/{service}
+  pattern: /oauth/service/{service}
   defaults:  { _controller: Engage360dSecurityBundle:Security:connectService }
 
 hwi_oauth_connect_registration:
-  pattern: /registration/{key}
+  pattern: /oauth/registration/{key}
   defaults:  { _controller: Engage360dSecurityBundle:Security:connectRegistration }
-
-engage360d_account_not_linked:
-  pattern: /connet/failure
-  defaults:  { _controller: Engage360dSecurityBundle:Security:accountNotLinked }
-
-facebook_login:
-    pattern: /user/login_facebook
-
-vkontakte_login:
-    pattern: /user/login_vkontakte
-
-engage360d_takeda_user_logout:
-    pattern: /account/logout
-
-engage360d_takeda_user_modal_login_success:
-    pattern: /account/modal_success
-    defaults: { _controller: Engage360dTakedaUserBundle:Security:modalSuccess }
-
-engage360d_takeda_user:
-  resource: "@Engage360dTakedaUserBundle/Resources/config/routing/routing.yml"
-
-engage360d_takeda_test:
-  resource: "@Engage360dTakedaTestBundle/Resources/config/routing/routing.yml"
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"

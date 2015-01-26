@@ -16,29 +16,6 @@ use FOS\UserBundle\Model\UserInterface;
 
 class AccountController extends Controller
 {
-    public function confirmAction(Request $request, $token)
-    {
-        $userManager = $this->container
-            ->get('engage360d_security.manager.user');
-
-        $user = $userManager->findUserByConfirmationToken($token);
-
-        if (null === $user) {
-            return new NotFoundHttpException();
-        }
-
-        $user->setConfirmationToken(null);
-        $user->setEnabled(true);
-        $user->addRole("ROLE_CONFIRMED");
-
-        $userManager->updateUser($user);
-
-        $this->authenticateUser($user);
-
-        $url = $this->container->get('router')->generate('engage360d_takeda_user_account');
-        return new RedirectResponse($url);
-    }
-
     public function successTokenAuthAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();

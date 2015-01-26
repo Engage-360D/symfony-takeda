@@ -34,14 +34,13 @@ security:
                 resource_owners:
                     facebook:      facebook_login
                     vkontakte:     vkontakte_login
-                login_path:        /account
-                failure_path:      engage360d_security_user_connect
+                login_path:        /sign-in
+                failure_path:      /sign-in
                 use_forward:       false
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
 
     access_control:
-#        - { path: ^/api/doc, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
 #        - { path: ^/search, roles: [ ROLE_USER ], methods: [GET] }
 #
 #        # API
