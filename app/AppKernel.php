@@ -63,10 +63,6 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
-        if (in_array($this->getEnvironment(), array('test'))) {
-            $bundles[] = new Engage360d\Bundle\TestBundle\Engage360dTestBundle();
-        }
-
         return $bundles;
     }
 

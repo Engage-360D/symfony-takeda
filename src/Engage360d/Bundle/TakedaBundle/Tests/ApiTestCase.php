@@ -1,6 +1,6 @@
 <?php
 
-namespace Engage360d\Bundle\TestBundle\Tests;
+namespace Engage360d\Bundle\TakedaBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;

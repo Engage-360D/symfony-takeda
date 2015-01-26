@@ -1,6 +1,6 @@
 <?php
 
-namespace Engage360d\Bundle\TestBundle\Features\Context;
+namespace Engage360d\Bundle\TakedaBundle\Features\Context;
 
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\SnippetAcceptingContext;

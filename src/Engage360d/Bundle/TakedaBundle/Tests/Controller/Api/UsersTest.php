@@ -1,8 +1,8 @@
 <?php
 
-namespace Engage360d\Bundle\TestBundle\Tests\Api;
+namespace Engage360d\Bundle\TakedaBundle\Tests\Controller\Api;
 
-use Engage360d\Bundle\TestBundle\Tests\ApiTestCase;
+use Engage360d\Bundle\TakedaBundle\Tests\ApiTestCase;
 
 class UsersTest extends ApiTestCase
 {

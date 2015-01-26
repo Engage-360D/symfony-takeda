@@ -1,6 +1,6 @@
 <?php
 
-namespace Engage360d\Bundle\TestBundle\DataFixtures\ORM;
+namespace Engage360d\Bundle\TakedaBundle\Tests\DataFixtures\ORM;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;

@@ -1,18 +1,18 @@
 <?php
 
-namespace Engage360d\Bundle\TestBundle\Tests\Api;
+namespace Engage360d\Bundle\TakedaBundle\Tests\Controller\Api;
 
-use Engage360d\Bundle\TestBundle\Tests\ApiTestCase;
+use Engage360d\Bundle\TakedaBundle\Tests\ApiTestCase;
 
-class PagesTest extends ApiTestCase
+class PageBlocksTest extends ApiTestCase
 {
-    public function testGetPages()
+    public function testGetPageBlocks()
     {
         $this->markTestSkipped();return;
-        $this->resource('GET', '/api/v1/pages')
+        $this->resource('GET', '/api/v1/page-blocks')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/pages/list.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/page-blocks/list.json')
 
             ->setQuery(array('page' => 2, 'limit' => 1))
             ->setClient($this->getAdminClient())
@@ -23,10 +23,10 @@ class PagesTest extends ApiTestCase
                 });
     }
 
-    public function testCreatePage()
+    public function testCreatePageBlock()
     {
         $this->markTestSkipped();return;
-        $this->resource('POST', '/api/v1/pages')
+        $this->resource('POST', '/api/v1/page-blocks')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
 
@@ -38,22 +38,16 @@ class PagesTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
             ->setBody(
-                'https://cardiomagnyl.ru/api/v1/schemas/pages/post.json',
+                'https://cardiomagnyl.ru/api/v1/schemas/page-blocks/post.json',
                 (object) array(
-                    "pages" => (object) array(
-                        "url" => "/about",
-                        "title" => "О компании",
-                        "description" => "О компании",
-                        "keywords" => "О компании",
-                        "isActive" => true,
-                        "links" => (object) array(
-                            "pageBlocks" => ["1"]
-                        )
+                    "pageBlocks" => (object) array(
+                        "type" => "text",
+                        "json" => "{}"
                     )
                 )
             )
                 ->assertStatusCode(201)
-                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/pages/one.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/page-blocks/one.json')
 
             ->setBody(
                 null,
@@ -63,31 +57,24 @@ class PagesTest extends ApiTestCase
                 ->assertStatusCode(400);
     }
 
-    public function testGetPage()
+    public function testGetPageBlock()
     {
         $this->markTestSkipped();return;
-        $this->resource('GET', '/api/v1/pages/1')
+        $this->resource('GET', '/api/v1/page-blocks/1')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/pages/one.json');
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/page-blocks/one.json');
     }
 
-    public function testUpdatePage()
+    public function testUpdatePageBlock()
     {
         $this->markTestSkipped();return;
-        $this->resource('PUT', '/api/v1/pages/1')
+        $this->resource('PUT', '/api/v1/page-blocks/1')
             ->setBody(
-                'https://cardiomagnyl.ru/api/v1/schemas/pages/put.json',
+                'https://cardiomagnyl.ru/api/v1/schemas/page-blocks/put.json',
                 (object) array(
-                    "pages" => (object) array(
-                        "url" => "/about",
-                        "title" => "О компании",
-                        "description" => "О компании",
-                        "keywords" => "О компании",
-                        "isActive" => true,
-                        "links" => (object) array(
-                            "pageBlocks" => ["1"]
-                        )
+                    'pageBlocks' => (object) array(
+                        'json' => '{}'
                     )
                 )
             )
@@ -102,7 +89,7 @@ class PagesTest extends ApiTestCase
 
             ->setClient($this->getAdminClient())
                 ->assertStatusCode(200)
-                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/pages/one.json')
+                ->assertResponseBySchema('https://cardiomagnyl.ru/api/v1/schemas/page-blocks/one.json')
 
             ->setBody(
                 null,
@@ -112,10 +99,10 @@ class PagesTest extends ApiTestCase
                 ->assertStatusCode(400);
     }
 
-    public function testDeletePage()
+    public function testDeletePageBlock()
     {
         $this->markTestSkipped();return;
-        $this->resource('DELETE', '/api/v1/pages/4')
+        $this->resource('DELETE', '/api/v1/page-blocks/4')
             ->setClient($this->getAnonymousClient())
                 ->assertStatusCode(401)
 
