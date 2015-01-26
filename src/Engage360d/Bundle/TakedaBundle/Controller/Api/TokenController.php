@@ -4,6 +4,7 @@ namespace Engage360d\Bundle\TakedaBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
@@ -92,6 +93,10 @@ class TokenController extends TakedaJsonApiController
             return $this->getErrorResponse("Bad credentials", 400);
         }
 
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
+
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
         return new JsonResponse($this->getTokenResource($token, $user), 201);
@@ -146,6 +151,10 @@ class TokenController extends TakedaJsonApiController
         if (!$user) {
             return $this->getErrorResponse("The user is not registered", 400);
         }
+
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
 
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
@@ -208,6 +217,10 @@ class TokenController extends TakedaJsonApiController
         if (!$user) {
             return $this->getErrorResponse("The user is not registered", 400);
         }
+
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
 
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
