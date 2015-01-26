@@ -108,15 +108,15 @@ fos_oauth_server:
     service:
         user_provider: engage360d_security.manager.user
     db_driver: orm
-    client_class:        Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\Client
-    access_token_class:  Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\AccessToken
-    refresh_token_class: Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\RefreshToken
-    auth_code_class:     Engage360d\Bundle\TakedaUserBundle\Entity\OAuth\AuthCode
+    client_class:        Engage360d\Bundle\TakedaBundle\Entity\OAuth\Client
+    access_token_class:  Engage360d\Bundle\TakedaBundle\Entity\OAuth\AccessToken
+    refresh_token_class: Engage360d\Bundle\TakedaBundle\Entity\OAuth\RefreshToken
+    auth_code_class:     Engage360d\Bundle\TakedaBundle\Entity\OAuth\AuthCode
 
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Engage360d\Bundle\TakedaUserBundle\Entity\User\User
+    user_class: Engage360d\Bundle\TakedaBundle\Entity\User\User
 
 hwi_oauth:
     connect: true

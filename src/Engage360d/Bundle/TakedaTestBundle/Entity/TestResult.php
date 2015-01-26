@@ -104,7 +104,7 @@ class TestResult
     protected $isAcetylsalicylicDrugsConsumer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaUserBundle\Entity\User\User", inversedBy="testResults")
+     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\User\User", inversedBy="testResults")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

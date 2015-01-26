@@ -3,7 +3,7 @@
 namespace Engage360d\Bundle\TakedaBundle\Controller;
 
 use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
-use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
+use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 
 class TakedaJsonApiController extends JsonApiController
 {

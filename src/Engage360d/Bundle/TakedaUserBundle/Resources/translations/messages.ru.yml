@@ -1,4 +1,0 @@
-error:
-    invalid:
-        username: "Пользователя с данным email не существует"
-        password: "Неверный пароль"

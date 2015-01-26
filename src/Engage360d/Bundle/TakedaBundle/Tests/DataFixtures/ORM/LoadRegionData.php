@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Engage360d\Bundle\TakedaUserBundle\Entity\Region\Region;
+use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 
 class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

@@ -14,7 +14,7 @@
 		<!-- nav -->
 		<nav class="nav">
 			<ul>
-				<li class="nav__cabina {% if app.request.attributes.get('_route') == 'engage360d_takeda_user_account' %}is-active{% endif %}"><a href="{{ path('engage360d_takeda_user_account') }}"><span>Личный кабинет</span><i></i></a></li>
+				<li class="nav__cabina {% if app.request.attributes.get('_route') == 'engage360d_takeda_account' %}is-active{% endif %}"><a href="{{ path('engage360d_takeda_account') }}"><span>Личный кабинет</span><i></i></a></li>
         {% for menu in [] %}
           <li class="{% if app.request.requestUri == "" %}is-active{% endif %}">
             <a href="#">

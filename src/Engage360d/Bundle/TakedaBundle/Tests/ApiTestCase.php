@@ -5,7 +5,7 @@ namespace Engage360d\Bundle\TakedaBundle\Tests;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Engage360d\Bundle\TakedaUserBundle\Entity\User\User;
+use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 
 class UriRetriever extends \JsonSchema\Uri\UriRetriever
 {

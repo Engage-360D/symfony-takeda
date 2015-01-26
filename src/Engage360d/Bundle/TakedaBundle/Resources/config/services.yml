@@ -1,0 +1,67 @@
+services:
+
+    engage360d_takeda.listener.reset_password:
+        class: Engage360d\Bundle\TakedaBundle\Event\ResetPasswordSubscriber
+        arguments:
+            - @mailer
+            - @router
+            - @templating
+            - @service_container
+        tags:
+            - { name: kernel.event_subscriber }
+
+#    engage360d_takeda.listener.email_confirmation:
+#        class: Engage360d\Bundle\TakedaBundle\Event\EmailConfirmationListener
+#        arguments:
+#            - @mailer
+#            - @fos_user.util.token_generator
+#            - @router
+#            - @session
+#            - @templating
+#            - @service_container
+#        tags:
+#            - { name: kernel.event_subscriber }
+
+    # Forms
+
+    engage360d_takeda.form.user.post:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_post_user", null, { }]
+        tags:
+            - { name: rest.form, route: post_users }
+            - { name: rest.manager, route: post_users }
+
+    engage360d_takeda.form.security.post.type:
+        class: Engage360d\Bundle\TakedaBundle\Form\Type\PostUserFormType
+        arguments: [Engage360d\Bundle\TakedaBundle\Entity\User\User]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_post_user }
+
+    engage360d_takeda.form.user.put:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_put_user", null, { }]
+        tags:
+            - { name: rest.form, route: put_users }
+            - { name: rest.manager, route: put_users }
+
+    engage360d_takeda.form.security.put.type:
+        class: Engage360d\Bundle\TakedaBundle\Form\Type\PutUserFormType
+        arguments: [Engage360d\Bundle\TakedaBundle\Entity\User\User]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_put_user }
+
+    engage360d_takeda.form.registration:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: Symfony\Component\Form\Form
+        arguments: ["user", "engage360d_takeda_registration", null, { }]
+
+    engage360d_takeda.form.registration.type:
+        class: Engage360d\Bundle\TakedaBundle\Form\Type\RegistrationUserFormType
+        arguments: [%engage360d_security.entity.user.class%]
+        tags:
+            - { name: form.type, alias: engage360d_takeda_registration }

@@ -51,7 +51,6 @@ class AppKernel extends Kernel
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),
             new Engage360d\Bundle\CountriesBundle\Engage360dCountriesBundle(),
-            new Engage360d\Bundle\TakedaUserBundle\Engage360dTakedaUserBundle(),
             new Engage360d\Bundle\TakedaTestBundle\Engage360dTakedaTestBundle(),
             new Engage360d\Bundle\TakedaBundle\Engage360dTakedaBundle(),
             new Engage360d\Bundle\JsonApiBundle\Engage360dJsonApiBundle(),
