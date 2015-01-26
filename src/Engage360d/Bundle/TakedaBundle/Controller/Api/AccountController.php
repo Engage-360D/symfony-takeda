@@ -13,7 +13,7 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Engage360d\Bundle\TakedaTestBundle\Entity\TestResult;
+use Engage360d\Bundle\TakedaBundle\Entity\TestResult;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;

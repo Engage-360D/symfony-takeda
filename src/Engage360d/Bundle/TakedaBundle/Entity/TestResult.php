@@ -1,13 +1,13 @@
 <?php
 
-namespace Engage360d\Bundle\TakedaTestBundle\Entity;
+namespace Engage360d\Bundle\TakedaBundle\Entity;
 
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-use Engage360d\Bundle\TakedaTestBundle\Score\Calculator as ScoreCalculator;
-use Engage360d\Bundle\TakedaTestBundle\Recommendations;
+use Engage360d\Bundle\TakedaBundle\Score\Calculator as ScoreCalculator;
+use Engage360d\Bundle\TakedaBundle\Recommendations;
 
 /**
  * @ORM\Entity

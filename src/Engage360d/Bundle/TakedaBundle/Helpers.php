@@ -1,6 +1,6 @@
 <?php
 
-namespace Engage360d\Bundle\TakedaTestBundle;
+namespace Engage360d\Bundle\TakedaBundle;
 
 class Helpers
 {

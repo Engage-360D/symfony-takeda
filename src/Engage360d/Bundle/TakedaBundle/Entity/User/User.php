@@ -91,7 +91,7 @@ class User extends BaseUser
     private $specializationInstitutionName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaTestBundle\Entity\TestResult", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\TestResult", mappedBy="user")
      */
     protected $testResults;
 
@@ -456,9 +456,9 @@ class User extends BaseUser
     /**
      * Remove testResults
      *
-     * @param \Engage360d\Bundle\TakedaTestBundle\Entity\TestResult $testResults
+     * @param \Engage360d\Bundle\TakedaBundle\Entity\TestResult $testResults
      */
-    public function removeTestResult(\Engage360d\Bundle\TakedaTestBundle\Entity\TestResult $testResults)
+    public function removeTestResult(\Engage360d\Bundle\TakedaBundle\Entity\TestResult $testResults)
     {
         $this->testResults->removeElement($testResults);
     }

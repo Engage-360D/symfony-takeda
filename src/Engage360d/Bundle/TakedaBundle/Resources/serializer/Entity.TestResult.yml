@@ -1,4 +1,4 @@
-Engage360d\Bundle\TakedaTestBundle\Entity\TestResult:
+Engage360d\Bundle\TakedaBundle\Entity\TestResult:
     properties:
         user: { exclude: true }
     virtual_properties:

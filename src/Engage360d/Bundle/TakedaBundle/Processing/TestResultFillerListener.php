@@ -1,9 +1,9 @@
 <?php
 
-namespace Engage360d\Bundle\TakedaTestBundle\Processing;
+namespace Engage360d\Bundle\TakedaBundle\Processing;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Engage360d\Bundle\TakedaTestBundle\Entity\TestResult;
+use Engage360d\Bundle\TakedaBundle\Entity\TestResult;
 
 class TestResultFillerListener
 {

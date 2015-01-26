@@ -65,3 +65,31 @@ services:
         arguments: [%engage360d_security.entity.user.class%]
         tags:
             - { name: form.type, alias: engage360d_takeda_registration }
+
+    # Test Results
+
+    engage360d.takeda_test.processing.score_calculator:
+        class: Engage360d\Bundle\TakedaBundle\Processing\ScoreCalculator
+
+    engage360d.takeda_test.processing.recommendations_mather:
+        class: Engage360d\Bundle\TakedaBundle\Processing\RecommendationsMatcher
+
+    engage360d.takeda_test.processing.recommendations_mather_factory:
+        class: Engage360d\Bundle\TakedaBundle\Processing\RecommendationsMatcherFactory
+        arguments:
+            - @router
+
+    engage360d.takeda_test.processing.test_result_filler:
+        class: Engage360d\Bundle\TakedaBundle\Processing\TestResultFiller
+        arguments:
+            - @engage360d.takeda_test.processing.score_calculator
+            - @engage360d.takeda_test.processing.recommendations_mather_factory
+
+    engage360d.takeda_test.processing.test_result_filler_listener:
+        class: Engage360d\Bundle\TakedaBundle\Processing\TestResultFillerListener
+        arguments:
+            - @engage360d.takeda_test.processing.test_result_filler
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postLoad }

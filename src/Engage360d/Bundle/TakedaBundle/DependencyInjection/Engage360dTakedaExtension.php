@@ -21,5 +21,8 @@ class Engage360dTakedaExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->getDefinition('engage360d.takeda_test.processing.recommendations_mather_factory')
+            ->addArgument(__DIR__ . '/../Resources/recommendations.yml');
     }
 }
