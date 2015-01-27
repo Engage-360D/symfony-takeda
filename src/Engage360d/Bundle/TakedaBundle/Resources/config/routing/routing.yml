@@ -3,3 +3,8 @@ engage360d_takeda_main_mainpage:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }
 
+engage360d_takeda_test_get_test_result_recommendation:
+    path: /test-results/{id}/{type}
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Test:getTestResultRecommendation }
+
