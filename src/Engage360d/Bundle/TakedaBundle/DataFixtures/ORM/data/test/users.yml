@@ -1,0 +1,26 @@
+-
+  setFirstname: regular
+  setLastname: regular
+  setEmail: regular@example.com
+  setPlainPassword: regular
+  setBirthday: 1970-01-01T00:00:00+0000
+  setEnabled: true
+  setIsDoctor: false
+  addRole: ROLE_USER
+-
+  setFirstname: doctor
+  setLastname: doctor
+  setEmail: doctor@example.com
+  setPlainPassword: doctor
+  setBirthday: 1970-01-01T00:00:00+0000
+  setEnabled: true
+  setIsDoctor: true
+-
+  setFirstname: admin
+  setLastname: admin
+  setEmail: admin@example.com
+  setPlainPassword: admin
+  setBirthday: 1970-01-01T00:00:00+0000
+  setEnabled: true
+  setIsDoctor: false
+  addRole: ROLE_ADMIN

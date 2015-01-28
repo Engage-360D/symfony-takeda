@@ -6,23 +6,22 @@
 
 namespace Engage360d\Bundle\TakedaBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 
-class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
+class LoadRegionData extends AbstractDataFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $data = array(
-            'Москва',
-            'Санкт-Петербург',
-        );
+        $regions = $this->getData('regions.yml');
 
-        foreach ($data as $index => $name) {
+        foreach ($regions as $index => $data) {
             $region = new Region();
-            $region->setName($name);
+
+            foreach ($data as $methodName => $value) {
+                $region->$methodName($value);
+            }
 
             $manager->persist($region);
 
@@ -34,7 +33,7 @@ class LoadRegionData extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 10;
+        return 1;
     }
 }
 

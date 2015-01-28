@@ -16,7 +16,7 @@ passthru(sprintf(
 ));
 
 passthru(sprintf(
-    'php "%s/console" doctrine:fixtures:load --env=test --fixtures "%s/../src/Engage360d/Bundle/TakedaBundle/Tests/DataFixtures" --no-interaction',
+    'php "%s/console" doctrine:fixtures:load --env=test --no-interaction',
     __DIR__,
     __DIR__
 ));
