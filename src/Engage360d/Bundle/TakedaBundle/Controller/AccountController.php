@@ -16,74 +16,52 @@ use FOS\UserBundle\Model\UserInterface;
 
 class AccountController extends Controller
 {
-    public function successTokenAuthAction(Request $request)
+    public function logoutAction(Request $request)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        $this->get('security.context')->setToken(null);
+        $request->getSession()->invalidate();
 
-        $clientManager = $this->container->get('fos_oauth_server.client_manager.default');
-        $client = $clientManager->createClient();
-        $client->setRedirectUris(array("/"));
-        $client->setAllowedGrantTypes(array("token"));
-        $clientManager->updateClient($client);
-
-        $params = $request->query->all();
-        $params['client_id'] = $client->getPublicId();
-        $params['client_secret'] = $client->getSecret();
-        $params['grant_type'] = 'client_credentials';
-        $params['redirect_uri'] = '/';
-        $params['response_type'] = 'token';
-        $request->query->replace($params);
-
-        return $this->container
-            ->get('fos_oauth_server.server')
-            ->finishClientAuthorization(true, $user, $request, null);
+        return $this->redirect($this->generateUrl('engage360d_takeda_main_mainpage'));
     }
 
-    public function resetAction($token)
-    {
-        return $this->render('Engage360dTakedaBundle:Account:reset.html.twig', array(
-          'token' => $token,
-        ));
-    }
-
-    public function failureLoginAction(Request $request)
-    {
-        $response = array();
-        $request = $this->getRequest();
-        $session = $request->getSession();
-
-        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(
-                SecurityContext::AUTHENTICATION_ERROR
-            );
-        } else {
-            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-        }
-
-        if ($error instanceof BadCredentialsException) {
-            $user = $this->container
-                ->get('engage360d_security.manager.user')
-                ->findUserByUsernameOrEmail($error->getToken()->getUsername());
-
-            if (null === $user) {
-                $response['username'] = $this->get('translator')->trans('error.invalid.username');
-            } else {
-                $response['password'] = $this->get('translator')->trans('error.invalid.password');
-            }
-        } else {
-            $response['error'] = $error->getMessage();
-        }
-
-        return new JsonResponse($response, 401);
-    }
-
-    protected function authenticateUser(UserInterface $user)
-    {
-        $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
-        $this->container->get("security.context")->setToken($token);
-
-        $request = $this->container->get("request");
-        $event = new InteractiveLoginEvent($request, $token);
-        $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);
-    }
+//    public function failureLoginAction(Request $request)
+//    {
+//        $response = array();
+//        $request = $this->getRequest();
+//        $session = $request->getSession();
+//
+//        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+//            $error = $request->attributes->get(
+//                SecurityContext::AUTHENTICATION_ERROR
+//            );
+//        } else {
+//            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+//        }
+//
+//        if ($error instanceof BadCredentialsException) {
+//            $user = $this->container
+//                ->get('engage360d_security.manager.user')
+//                ->findUserByUsernameOrEmail($error->getToken()->getUsername());
+//
+//            if (null === $user) {
+//                $response['username'] = $this->get('translator')->trans('error.invalid.username');
+//            } else {
+//                $response['password'] = $this->get('translator')->trans('error.invalid.password');
+//            }
+//        } else {
+//            $response['error'] = $error->getMessage();
+//        }
+//
+//        return new JsonResponse($response, 401);
+//    }
+//
+//    protected function authenticateUser(UserInterface $user)
+//    {
+//        $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+//        $this->container->get("security.context")->setToken($token);
+//
+//        $request = $this->container->get("request");
+//        $event = new InteractiveLoginEvent($request, $token);
+//        $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+//    }
 }
