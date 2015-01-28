@@ -25,6 +25,7 @@ use Symfony\Component\Security\Http\SecurityEvents;
 use HWI\Bundle\OAuthBundle\Controller\ConnectController;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\VkontakteResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 class SecurityController extends ConnectController
 {
@@ -127,5 +128,38 @@ class SecurityController extends ConnectController
             ->connect($currentUser, $userInformation);
         $url = $this->container->get('router')->generate('engage360d_oauth_connect_success');
         return new RedirectResponse($url);
+    }
+
+    /**
+     * Override HWIOAuthBundle:Connect:redirectToService method
+     * in order to use our parameter default_target_path.
+     *
+     * @param Request $request
+     * @param string  $service
+     *
+     * @return RedirectResponse
+     */
+    public function redirectToServiceAction(Request $request, $service)
+    {
+        $authorizationUrl = $this->container->get('hwi_oauth.security.oauth_utils')->getAuthorizationUrl($request, $service);
+
+        // Check for a return path and store it before redirect
+        if ($request->hasSession()) {
+            // initialize the session for preventing SessionUnavailableException
+            $session = $request->getSession();
+            $session->start();
+
+            $providerKey = $this->container->getParameter('hwi_oauth.firewall_name');
+            $sessionKey = '_security.' . $providerKey . '.target_path';
+
+            $defaultTargetPath = $this->container->getParameter('engage360d.oauth.default_target_path');
+            if ($defaultTargetPath) {
+                $session->set($sessionKey, $defaultTargetPath);
+            } else {
+                return new ParameterNotFoundException();
+            }
+        }
+
+        return new RedirectResponse($authorizationUrl);
     }
 }

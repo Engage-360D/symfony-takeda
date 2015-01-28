@@ -1,6 +1,10 @@
 
 # OAuth
 
+engage360d_oauth_redirect_to_service:
+  pattern: /oauth/{service}
+  defaults:  { _controller: Engage360dTakedaBundle:Security:redirectToService }
+
 engage360d_oauth_connect_service:
   pattern: /oauth/service/{service}
   defaults:  { _controller: Engage360dTakedaBundle:Security:connectService }
