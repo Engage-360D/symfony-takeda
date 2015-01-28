@@ -471,6 +471,10 @@ class User extends BaseUser
      */
     public function setSpecializationGraduationDate($specializationGraduationDate)
     {
+        if (is_string($specializationGraduationDate)) {
+            $specializationGraduationDate = new \DateTime($specializationGraduationDate);
+        }
+
         $this->specializationGraduationDate = $specializationGraduationDate;
 
         return $this;
@@ -502,7 +506,7 @@ class User extends BaseUser
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
