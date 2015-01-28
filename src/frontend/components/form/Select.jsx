@@ -4,7 +4,7 @@
 
 var React = require('react');
 
-var selectStyle = {border: '1px solid black', background: 'white', width: '100%', padding: 5};
+var selectStyle = {border: '1px solid black', background: 'white', width: '100%', padding: 5, '-webkit-appearance': 'none'};
 var iconStyle = {fontSize: 8, position: 'absolute', marginLeft: -27, marginTop: -14, background: 'white', padding: 6};
 
 var Select = React.createClass({
