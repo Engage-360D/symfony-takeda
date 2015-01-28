@@ -1,14 +1,13 @@
-
 # Security routes
+
+logout:
+    pattern: /sign-out
 
 facebook_login:
     pattern: /sign-in/facebook
 
 vkontakte_login:
     pattern: /sign-in/vkontakte
-
-engage360d_takeda_logout:
-    pattern: /logout
 
 # Api routes
 
@@ -49,4 +48,3 @@ hwi_oauth_connect_registration:
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
-

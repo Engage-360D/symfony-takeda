@@ -24,7 +24,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'web', 'assets'),
     filename: 'app.js',
-    publicPath: '/assets/'
+    publicPath: '/assets/',
+    library: 'takeda'
   },
 
   module: {

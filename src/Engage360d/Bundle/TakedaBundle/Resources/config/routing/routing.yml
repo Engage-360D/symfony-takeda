@@ -3,3 +3,7 @@ engage360d_takeda_main_mainpage:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }
 
+engage360d_takeda_auth_signin:
+    path: /sign-in
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Auth:signin }

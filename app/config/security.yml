@@ -30,6 +30,9 @@ security:
             anonymous: true
             http_basic: ~
             context: shared_context
+            logout:
+              path: /sign-out
+              target: /sign-in
             oauth:
                 resource_owners:
                     facebook:      facebook_login
@@ -68,4 +71,3 @@ security:
         - { path: ^/api, roles: [ ROLE_ADMIN ] }
 
         #- { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
-
