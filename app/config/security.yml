@@ -30,15 +30,12 @@ security:
             anonymous: true
             http_basic: ~
             context: shared_context
-            logout:
-              path: /sign-out
-              target: /sign-in
             oauth:
                 resource_owners:
                     facebook:      facebook_login
                     vkontakte:     vkontakte_login
                 login_path:        /sign-in
-                failure_path:      /sign-in
+                failure_path:      engage360d_oauth_connect_failure
                 use_forward:       false
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider

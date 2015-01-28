@@ -1,14 +1,3 @@
-# Security routes
-
-logout:
-    pattern: /sign-out
-
-facebook_login:
-    pattern: /sign-in/facebook
-
-vkontakte_login:
-    pattern: /sign-in/vkontakte
-
 # Api routes
 
 engage360d_search_api:
@@ -28,23 +17,24 @@ engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
 
-# Other routes
 
-hwi_oauth_redirect:
-    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:   /oauth
+# Security routes
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /oauth
 
-hwi_oauth_connect_service:
-  pattern: /oauth/service/{service}
-  defaults:  { _controller: Engage360dSecurityBundle:Security:connectService }
+facebook_login:
+    pattern: /sign-in/facebook
 
-hwi_oauth_connect_registration:
-  pattern: /oauth/registration/{key}
-  defaults:  { _controller: Engage360dSecurityBundle:Security:connectRegistration }
+vkontakte_login:
+    pattern: /sign-in/vkontakte
+
+engage360d_takeda_logout:
+    pattern: /sign-out
+    defaults:  { _controller: Engage360dTakedaBundle:Account:logout }
+
+# Other routes
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"

@@ -1,3 +1,27 @@
+# OAuth
+
+engage360d_oauth_redirect_to_service:
+  pattern: /oauth/{service}
+  defaults:  { _controller: Engage360dTakedaBundle:Security:redirectToService }
+
+engage360d_oauth_connect_service:
+  pattern: /oauth/service/{service}
+  defaults:  { _controller: Engage360dTakedaBundle:Security:connectService }
+
+#engage360d_oauth_connect_registration:
+#  pattern: /oauth/registration/{key}
+#  defaults:  { _controller: Engage360dSecurityBundle:Security:connectRegistration }
+
+engage360d_oauth_connect_success:
+    pattern: /oauth/connect/success
+    defaults: { _controller: Engage360dTakedaBundle:Security:connectSuccess }
+
+engage360d_oauth_connect_failure:
+    pattern: /oauth/connect/failure
+    defaults: { _controller: Engage360dTakedaBundle:Security:connectFailure }
+
+# Other
+
 engage360d_takeda_main_mainpage:
     path: /
     methods: [GET]
@@ -7,3 +31,8 @@ engage360d_takeda_auth_signin:
     path: /sign-in
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Auth:signin }
+
+engage360d_takeda_test_get_test_result_recommendation:
+    path: /test-results/{id}/{type}
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Test:getTestResultRecommendation }
