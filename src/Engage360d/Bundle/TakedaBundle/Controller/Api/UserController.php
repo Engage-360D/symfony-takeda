@@ -4,6 +4,7 @@ namespace Engage360d\Bundle\TakedaBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
@@ -124,6 +125,10 @@ class UserController extends TakedaJsonApiController
 
         $em->persist($user);
         $em->flush();
+
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
 
         $response = [
             "links" => $this->getUsersRegionLink(),

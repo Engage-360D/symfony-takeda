@@ -1,4 +1,3 @@
-
 # OAuth
 
 engage360d_oauth_redirect_to_service:
@@ -28,8 +27,12 @@ engage360d_takeda_main_mainpage:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Main:mainpage }
 
+engage360d_takeda_auth_signin:
+    path: /sign-in
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Auth:signin }
+
 engage360d_takeda_test_get_test_result_recommendation:
     path: /test-results/{id}/{type}
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Test:getTestResultRecommendation }
-

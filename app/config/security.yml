@@ -68,4 +68,3 @@ security:
         - { path: ^/api, roles: [ ROLE_ADMIN ] }
 
         #- { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
-
