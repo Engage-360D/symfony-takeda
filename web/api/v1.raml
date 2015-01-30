@@ -206,6 +206,17 @@ traits:
             application/json:
               schema: !include v1/schemas/test-results/list.json
               example: !include v1/examples/test-results/list.json
+    /{id}/pages/{recommendation}:
+      get:
+        is: [ secured ]
+        description: |
+          Получение подробной информации о рекомендации.
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include v1/examples/test-results/pages/one.json
+
     post:
       is: [ secured ]
       description: |
