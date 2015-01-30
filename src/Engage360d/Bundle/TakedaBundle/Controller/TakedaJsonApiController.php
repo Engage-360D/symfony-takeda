@@ -7,6 +7,44 @@ use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 
 class TakedaJsonApiController extends JsonApiController
 {
+    protected function getFacebookId($accessToken)
+    {
+        $buzz = $this->container->get('buzz');
+        $response = $buzz->get('https://graph.facebook.com/v2.2/me?access_token=' . urlencode($accessToken));
+
+        if (!$response->isSuccessful()) {
+            return null;
+        }
+
+        $body = $response->getContent();
+        $data = json_decode($body);
+
+        return isset($data->id) ? $data->id : null;
+    }
+
+    protected function isVkontakteCredentialsValid($vkontakteId, $accessToken)
+    {
+        $buzz = $this->container->get('buzz');
+        $response = $buzz->get(sprintf(
+            'https://api.vk.com/method/users.isAppUser?v=5.27&user_id=%s&access_token=%s',
+            $vkontakteId,
+            urlencode($accessToken)
+        ));
+
+        if (!$response->isSuccessful()) {
+            return false;
+        }
+
+        $body = $response->getContent();
+        $data = json_decode($body);
+
+        if (!isset($data->response) || $data->response !== 1) {
+            return false;
+        }
+
+        return true;
+    }
+
     protected function getUserArray(User $user)
     {
         return [

@@ -129,20 +129,14 @@ class TokenController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $access_token = $data->data->access_token;
+        $accessToken = $data->data->access_token;
 
         // verify that token is valid
-        $buzz = $this->container->get('buzz');
-        $response = $buzz->get('https://graph.facebook.com/v2.2/me?access_token=' . urlencode($access_token));
+        $facebookId = $this->getFacebookId($accessToken);
 
-        if (!$response->isSuccessful()) {
+        if (!$facebookId) {
             return $this->getErrorResponse("Bad credentials", 400);
         }
-
-        $body = $response->getContent();
-        $data = json_decode($body);
-
-        $facebookId = isset($data->id) ? $data->id : null;
 
         $user = $this->get('doctrine')
             ->getRepository('Engage360dTakedaBundle:User\User')
@@ -188,25 +182,11 @@ class TokenController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $access_token = $data->data->access_token;
         $vkontakteId = $data->data->user_id;
+        $accessToken = $data->data->access_token;
 
         // verify that token is valid
-        $buzz = $this->container->get('buzz');
-        $response = $buzz->get(sprintf(
-            'https://api.vk.com/method/users.isAppUser?v=5.27&user_id=%s&access_token=%s',
-            $vkontakteId,
-            urlencode($access_token)
-        ));
-
-        if (!$response->isSuccessful()) {
-            return $this->getErrorResponse("Bad credentials", 400);
-        }
-
-        $body = $response->getContent();
-        $data = json_decode($body);
-
-        if (!isset($data->response) || $data->response !== 1) {
+        if (!$this->isVkontakteCredentialsValid($vkontakteId, $accessToken)) {
             return $this->getErrorResponse("Bad credentials", 400);
         }
 

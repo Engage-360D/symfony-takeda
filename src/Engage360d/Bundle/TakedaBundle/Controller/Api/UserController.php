@@ -112,6 +112,21 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
+        $vkontakteId = $data->data->vkontakteId;
+        $facebookId = $data->data->facebookId;
+        $accessToken = $data->data->accessToken;
+        unset($data->data->accessToken);
+
+        if ($vkontakteId && $facebookId || ($vkontakteId || $facebookId) && !$accessToken) {
+            return $this->getErrorResponse("To register via social network you should provide an acceessToken and exactly one user id", 400);
+        }
+
+        if ($facebookId && $facebookId !== $this->getFacebookId($accessToken)) {
+            return $this->getErrorResponse("Provided facebookId is not valid", 400);
+        } elseif ($vkontakteId && !$this->isVkontakteCredentialsValid($vkontakteId, $accessToken)) {
+            return $this->getErrorResponse("Provided vkontakteId is not valid", 400);
+        }
+
         $user = $this->populateEntity(new User(), $data, ["region" => Region::REPOSITORY]);
 
         $em = $this->get('doctrine')->getManager();

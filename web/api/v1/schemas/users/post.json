@@ -26,6 +26,27 @@
           "format": "date-time"
         },
 
+        "facebookId": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "vkontakteId": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "accessToken": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
         "specializationGraduationDate": {
           "description": "Дата выпуска из учебного заведения. Пустое значение если пользователь не доктор.",
           "oneOf": [
@@ -115,6 +136,10 @@
         "firstname",
         "lastname",
         "birthday",
+
+        "facebookId",
+        "vkontakteId",
+        "accessToken",
 
         "specializationExperienceYears",
         "specializationGraduationDate",
