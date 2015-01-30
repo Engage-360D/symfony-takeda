@@ -112,19 +112,20 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $vkontakteId = $data->data->vkontakteId;
-        $facebookId = $data->data->facebookId;
-        $accessToken = $data->data->accessToken;
-        unset($data->data->accessToken);
+        if (isset($data->data->facebookId)) {
+            $accessToken = isset($data->data->facebookToken) ? $data->data->facebookToken : "";
 
-        if ($vkontakteId && $facebookId || ($vkontakteId || $facebookId) && !$accessToken) {
-            return $this->getErrorResponse("To register via social network you should provide an acceessToken and exactly one user id", 400);
+            if ($data->data->facebookId !== $this->getFacebookId($accessToken)) {
+                return $this->getErrorResponse("Provided facebookToken is not valid", 400);
+            }
         }
 
-        if ($facebookId && $facebookId !== $this->getFacebookId($accessToken)) {
-            return $this->getErrorResponse("Provided facebookId is not valid", 400);
-        } elseif ($vkontakteId && !$this->isVkontakteCredentialsValid($vkontakteId, $accessToken)) {
-            return $this->getErrorResponse("Provided vkontakteId is not valid", 400);
+        if (isset($data->data->vkontakteId)) {
+            $accessToken = isset($data->data->vkontakteToken) ? $data->data->vkontakteToken : "";
+
+            if (!$this->isVkontakteCredentialsValid($data->data->vkontakteId, $accessToken)) {
+                return $this->getErrorResponse("Provided vkontakteId (or vkontakteToken) is not valid", 400);
+            }
         }
 
         $user = $this->populateEntity(new User(), $data, ["region" => Region::REPOSITORY]);

@@ -27,24 +27,19 @@
         },
 
         "facebookId": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "null"}
-          ]
+          "type": "string"
         },
 
         "vkontakteId": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "null"}
-          ]
+          "type": "string"
         },
 
-        "accessToken": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "null"}
-          ]
+        "facebookToken": {
+          "type": "string"
+        },
+
+        "vkontakteToken": {
+          "type": "string"
         },
 
         "specializationGraduationDate": {
@@ -136,10 +131,6 @@
         "firstname",
         "lastname",
         "birthday",
-
-        "facebookId",
-        "vkontakteId",
-        "accessToken",
 
         "specializationExperienceYears",
         "specializationGraduationDate",

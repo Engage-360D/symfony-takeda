@@ -50,7 +50,9 @@ class JsonApiController extends Controller
 
         foreach ($data->data as $property => $value) {
             $method = 'set' . ucfirst($property);
-            $entity->$method($value);
+            if (method_exists($entity, $method)) {
+                $entity->$method($value);
+            }
         }
 
         foreach ($links as $property => $value) {
