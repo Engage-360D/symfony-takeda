@@ -26,6 +26,22 @@
           "format": "date-time"
         },
 
+        "facebookId": {
+          "type": "string"
+        },
+
+        "facebookToken": {
+          "type": "string"
+        },
+
+        "vkontakteId": {
+          "type": "string"
+        },
+
+        "vkontakteToken": {
+          "type": "string"
+        },
+
         "specializationGraduationDate": {
           "description": "Дата выпуска из учебного заведения. Пустое значение если пользователь не доктор.",
           "oneOf": [
