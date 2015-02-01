@@ -1,0 +1,8 @@
+{% for article in weekSummary %}
+    <a class="press__item" href="{{ path('engage360d_takeda_press_center_article', {'articleType': article.type, 'id': article.id}) }}">
+        <div class="pres__item-in">
+            <div class="press__meta">{{ article.createdAt.format("d.m.Y") }}<span>|</span>{{ article.type == "news" ? "Новости" : "Мнения специалистов" }}</div>
+            <div class="press__text">{{ article.title }}</div>
+        </div>
+    </a>
+{% endfor %}

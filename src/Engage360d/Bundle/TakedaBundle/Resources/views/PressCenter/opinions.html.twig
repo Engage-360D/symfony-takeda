@@ -1,0 +1,38 @@
+<div class="post__row">
+    {% for opinion in opinions %}
+        {% if loop.index0 % 2 == 0 %}
+            <a class="post__cell" href="#">
+                <div class="post__man">
+                    <div class="post__img">
+                        <img src="{{ opinion.expert.photoUri }}" alt="">
+                    </div>
+                    <div class="post__data">
+                        <div class="post__name">{{ opinion.expert.name }}</div>
+                        <div class="post__position">{{ opinion.expert.description }}</div>
+                    </div>
+                </div>
+                <div class="post__title">{{ opinion.title }}</div>
+                <div class="post__text">{{ opinion.content }}</div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="post__row post__row_down">
+    {% for opinion in opinions %}
+        {% if loop.index0 % 2 == 1 %}
+            <a class="post__cell" href="#">
+                <div class="post__man">
+                    <div class="post__img">
+                        <img src="{{ opinion.expert.photoUri }}" alt="">
+                    </div>
+                    <div class="post__data">
+                        <div class="post__name">{{ opinion.expert.name }}</div>
+                        <div class="post__position">{{ opinion.expert.description }}</div>
+                    </div>
+                </div>
+                <div class="post__title">{{ opinion.title }}</div>
+                <div class="post__text">{{ opinion.content }}</div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>

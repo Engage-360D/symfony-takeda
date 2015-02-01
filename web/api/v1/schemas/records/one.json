@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "ref": "#/definitions/record"
+    }
+  },
+
+  "required": [
+    "data"
+  ],
+
+  "definitions": {
+    "record": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "data": {
+          "type": "string"
+        },
+
+        "keyword": {
+          "type": "string"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "data",
+        "keyword"
+      ]
+    }
+  }
+}

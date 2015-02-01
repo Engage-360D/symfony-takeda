@@ -4,9 +4,25 @@ namespace Engage360d\Bundle\TakedaBundle\Controller;
 
 use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
+use JsonSchema\Validator;
+use JsonSchema\Uri\UriRetriever;
 
 class TakedaJsonApiController extends JsonApiController
 {
+    protected function getSchemaValidatior($schemaFile, \stdClass $data)
+    {
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            $schemaFile
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        return $validator;
+    }
+
     protected function getFacebookId($accessToken)
     {
         $buzz = $this->container->get('buzz');
@@ -65,7 +81,7 @@ class TakedaJsonApiController extends JsonApiController
             "isEnabled" => $user->getEnabled(),
             "links" => [
                 "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
-            ]
+            ],
         ];
     }
 
@@ -75,7 +91,7 @@ class TakedaJsonApiController extends JsonApiController
             "users.region" => [
                 "href" => $this->getBaseUrl() . "/regions/{users.region}",
                 "type" => "regions"
-            ]
+            ],
         ];
     }
 
@@ -101,7 +117,73 @@ class TakedaJsonApiController extends JsonApiController
             "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
             "bmi" => $testResult->getBmi(),
             "score" => $testResult->getScore(),
-            "recommendations" => $testResult->getRecommendations()
+            "recommendations" => $testResult->getRecommendations(),
+        ];
+    }
+
+    protected function getNewsLink()
+    {
+        return [
+            "news.category" => [
+                "href" => $this->getBaseUrl() . "/records/{news.category}",
+                "type" => "records"
+            ],
+        ];
+    }
+
+    protected function getNewsArray($article) {
+        return [
+            "id" => (string) $article->getId(),
+            "title" => $article->getTitle(),
+            "content" => $article->getContent(),
+            "isActive" => $article->getIsActive(),
+            "createdAt" => $article->getCreatedAt(),
+            "links" => [
+                "category" => (string) $article->getCategory()->getId()
+            ],
+        ];
+    }
+
+    protected function getRecordArray($record)
+    {
+        return [
+            "id" => (string) $record->getId(),
+            "data" => $record->getData(),
+            "keyword" => $record->getKeyword(),
+        ];
+    }
+
+    protected function getOpinionLink()
+    {
+        return [
+            "opinions.expert" => [
+                "href" => $this->getBaseUrl() . "/experts/{opinions.expert}",
+                "type" => "experts"
+            ],
+        ];
+    }
+
+    protected function getOpinionArray($opinion)
+    {
+        return [
+            "id" => (string) $opinion->getId(),
+            "title" => $opinion->getTitle(),
+            "content" => $opinion->getContent(),
+            "isActive" => $opinion->getIsActive(),
+            "createdAt" => $opinion->getCreatedAt(),
+            "links" => [
+                "expert" => (string) $opinion->getExpert()->getId()
+            ],
+        ];
+    }
+
+    protected function getExpertArray($expert)
+    {
+        return [
+            "id" => (string) $expert->getId(),
+            "photoUri" => $expert->getPhotoUri(),
+            "name" => $expert->getName(),
+            "description" => $expert->getDescription(),
         ];
     }
 }

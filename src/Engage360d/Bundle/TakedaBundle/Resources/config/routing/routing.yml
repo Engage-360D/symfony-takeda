@@ -32,6 +32,14 @@ engage360d_takeda_auth_signin:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Auth:signin }
 
+engage360d_takeda_press_center:
+    path: /press-center
+    defaults: { _controller: Engage360dTakedaBundle:PressCenter:index }
+
+engage360d_takeda_press_center_article:
+    path: /press-center/{articleType}/{id}
+    defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
+
 engage360d_takeda_test_get_test_result_recommendation:
     path: /test-results/{id}/{type}
     methods: [GET]

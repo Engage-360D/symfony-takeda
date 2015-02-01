@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/news"
+    },
+
+    "linked": {
+      "type": "array",
+
+      "properties": {
+        "category": {
+          "$ref": "https://cardiomagnyl.ru/api/v1/schemas/records/one.json#"
+        }
+      },
+
+      "required": [
+        "category"
+      ]
+    }
+  },
+
+  "required": [
+    "data",
+    "linked"
+  ],
+
+  "definitions": {
+    "news": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "title": {
+          "type": "string"
+        },
+
+        "content": {
+          "type": "string"
+        },
+
+        "isActive": {
+          "type": "boolean"
+        },
+
+        "createdAt": {
+          "type": "date-time"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "category": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "category"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "title",
+        "content",
+        "isActive",
+        "createdAt",
+        "links"
+      ]
+    }
+  }
+}

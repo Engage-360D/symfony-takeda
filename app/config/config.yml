@@ -60,6 +60,9 @@ doctrine:
             softdeleteable:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                 enabled: true
+        dql:
+            datetime_functions:
+                date: Engage360d\Bundle\TakedaBundle\DQL\DateFunction
 
 stof_doctrine_extensions:
     orm:

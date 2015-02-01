@@ -1,0 +1,12 @@
+-
+  setId: NewsCategories
+  setName: Категории новостей
+  records:
+    -
+      setData: Лечение
+      setKeyword: is-blue
+      setOrder: 1
+    -
+      setData: Профилактика
+      setKeyword: is-green
+      setOrder: 2

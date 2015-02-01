@@ -1,0 +1,28 @@
+<div class="post__row">
+    {% for article in news %}
+        {% if loop.index0 % 2 == 0 %}
+            <a class="post__cell" href="#">
+                <div class="post__meta">
+                    <span class="post__date">{{ article.createdAt.format("d.m.Y") }}</span>
+                    <span class="post__type {{ article.category.keyword }}">{{ article.category.data }}</span>
+                </div>
+                <div class="post__title">{{ article.title }}</div>
+                <div class="post__text">{{ article.content }}</div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="post__row post__row_down">
+    {% for article in news %}
+        {% if loop.index0 % 2 == 1 %}
+            <a class="post__cell" href="#">
+                <div class="post__meta">
+                    <span class="post__date">{{ article.createdAt.format("d.m.Y") }}</span>
+                    <span class="post__type {{ article.category.keyword }}">{{ article.category.data }}</span>
+                </div>
+                <div class="post__title">{{ article.title }}</div>
+                <div class="post__text">{{ article.content }}</div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "ref": "#/definitions/expert"
+    }
+  },
+
+  "required": [
+    "data"
+  ],
+
+  "definitions": {
+    "expert": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "photoUri": {
+          "type": "string"
+        },
+
+        "name": {
+          "type": "string"
+        },
+
+        "description": {
+          "type": "string"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "photoUri",
+        "name",
+        "description"
+      ]
+    }
+  }
+}

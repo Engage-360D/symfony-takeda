@@ -47,6 +47,7 @@ class AppKernel extends Kernel
 
             new Melodia\UtilBundle\MelodiaUtilBundle(),
             new Melodia\PageBundle\MelodiaPageBundle(),
+            new Melodia\CatalogBundle\MelodiaCatalogBundle(),
             new Engage360d\Bundle\RestBundle\Engage360dRestBundle(),
             new Engage360d\Bundle\SecurityBundle\Engage360dSecurityBundle(),
             new Engage360d\Bundle\SearchBundle\Engage360dSearchBundle(),

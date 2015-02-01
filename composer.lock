@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "38302f4d984f47231885f2d11df8e355",
+    "hash": "582b0a3c2f5f1f346e9304635c576028",
     "packages": [
         {
             "name": "behat/behat",
@@ -3163,6 +3163,49 @@
             "time": "2014-09-16 18:49:21"
         },
         {
+            "name": "melodia/catalog-bundle",
+            "version": "dev-master",
+            "target-dir": "Melodia/CatalogBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/melodia/MelodiaCatalogBundle.git",
+                "reference": "cd5bd932f47ef2d1d9b561cfc17c5d57c54e2075"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/melodia/MelodiaCatalogBundle/zipball/cd5bd932f47ef2d1d9b561cfc17c5d57c54e2075",
+                "reference": "cd5bd932f47ef2d1d9b561cfc17c5d57c54e2075",
+                "shasum": ""
+            },
+            "require": {
+                "friendsofsymfony/rest-bundle": "~1.4",
+                "jms/serializer-bundle": "~0.13",
+                "nelmio/api-doc-bundle": "~2.7",
+                "stof/doctrine-extensions-bundle": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Melodia\\CatalogBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Ryzhkov",
+                    "email": "alioch@yandex.ru"
+                }
+            ],
+            "homepage": "http://github.com/melodia/MelodiaCatalogBundle",
+            "support": {
+                "source": "https://github.com/melodia/MelodiaCatalogBundle/tree/v1.0.0",
+                "issues": "https://github.com/melodia/MelodiaCatalogBundle/issues"
+            },
+            "time": "2014-11-26 15:50:32"
+        },
+        {
             "name": "melodia/page-bundle",
             "version": "v0.1.0",
             "target-dir": "Melodia/PageBundle",
@@ -5649,7 +5692,8 @@
         "engage360d/pages-bundle": 20,
         "engage360d/search-bundle": 20,
         "engage360d/security-bundle": 20,
-        "sensio/buzz-bundle": 20
+        "sensio/buzz-bundle": 20,
+        "melodia/catalog-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

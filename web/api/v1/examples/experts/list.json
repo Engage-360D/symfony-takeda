@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "photoUri": "http://placehold.it/94x94",
+      "name": "Сергей Иванов",
+      "description": "кардеолог"
+    }
+  ]
+}

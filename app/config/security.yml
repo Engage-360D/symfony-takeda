@@ -46,6 +46,7 @@ security:
 #        # API
 
         - { path: ^/api/v1/regions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+        - { path: ^/api/v1/records, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
         - { path: ^/api/v1/users, roles: [ROLE_ADMIN], methods: [GET] }
         - { path: ^/api/v1/users/\d+/reset-password, roles: [ROLE_ADMIN], methods: [POST] }
@@ -57,6 +58,10 @@ security:
 
         - { path: ^/api/v1/account, roles: [ ROLE_USER ] }
 
+        # Press-center
+        - { path: ^/api/v1/news, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+        - { path: ^/api/v1/opinions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+        - { path: ^/api/v1/experts, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
 #
 #

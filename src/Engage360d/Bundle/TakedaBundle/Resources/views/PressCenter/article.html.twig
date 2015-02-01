@@ -1,0 +1,31 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Пресс-центр &mdash; {{ article.title }}{% endblock %}
+
+{% block section %}
+    <!-- container -->
+    <div class="container">
+        <!-- head -->
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+                </div>
+            </div>
+            <div class="head__left">
+                <!-- h -->
+                <div class="h">{{ article.title }}</div>
+            </div>
+        </div>
+        <!-- details -->
+        <div class="details">
+            <div class="details__left">
+                <!-- content -->
+                <div class="content">
+                    <h2>{{ article.createdAt.format("d.m.Y") }}</h2>
+                    {{ article.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

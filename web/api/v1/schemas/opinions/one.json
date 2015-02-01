@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/opinions"
+    },
+
+    "linked": {
+      "type": "array",
+
+      "properties": {
+        "expert": {
+          "$ref": "https://cardiomagnyl.ru/api/v1/schemas/experts/one.json#"
+        }
+      },
+
+      "required": [
+        "expert"
+      ]
+    }
+  },
+
+  "required": [
+    "data",
+    "linked"
+  ],
+
+  "definitions": {
+    "opinions": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "title": {
+          "type": "string"
+        },
+
+        "content": {
+          "type": "string"
+        },
+
+        "isActive": {
+          "type": "boolean"
+        },
+
+        "createdAt": {
+          "type": "date-time"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "expert": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "expert"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "title",
+        "content",
+        "isActive",
+        "createdAt",
+        "links"
+      ]
+    }
+  }
+}
