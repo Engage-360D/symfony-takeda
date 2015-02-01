@@ -68,6 +68,7 @@ class AccountController extends TakedaJsonApiController
         $json = $request->getContent();
         $data = json_decode($json);
 
+        // TODO put all occurrences of this code into getSchemaValidator($shcemaFile, $data) method
         $retriever = new UriRetriever();
         $schema = $retriever->retrieve(
             'file://' . $this->get('kernel')->getRootDir() . '/../web' .
