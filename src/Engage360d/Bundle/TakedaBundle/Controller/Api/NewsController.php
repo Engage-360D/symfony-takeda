@@ -74,7 +74,7 @@ class NewsController extends TakedaJsonApiController
         $article = $repository->findOneById($id);
 
         if (!$article) {
-            return $this->getErrorResponse(sprintf("News article with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $response = [

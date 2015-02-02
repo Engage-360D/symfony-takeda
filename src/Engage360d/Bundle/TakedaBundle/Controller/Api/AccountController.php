@@ -222,13 +222,13 @@ class AccountController extends TakedaJsonApiController
         })->first();
 
         if (!$testResult) {
-            return $this->getErrorResponse(sprintf("Recommendation with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $recommendations = $testResult->getRecommendations();
 
         if (!isset($recommendations['pages'][$recommendation])) {
-            return $this->getErrorResponse(sprintf("'%s' recommendation not found", $recommendation), 404);
+            throw $this->createNotFoundException();
         }
 
         $page = $recommendations['pages'][$recommendation];

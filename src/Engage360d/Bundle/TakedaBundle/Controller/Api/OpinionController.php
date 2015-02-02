@@ -64,7 +64,7 @@ class OpinionController extends TakedaJsonApiController
         $opinion = $repository->findOneById($id);
 
         if (!$opinion) {
-            return $this->getErrorResponse(sprintf("Opinion article with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $response = [
