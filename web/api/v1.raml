@@ -62,6 +62,7 @@ traits:
             По умолчанию лимит не установлен.
 
 /regions:
+  description: for Web and Mobile
   get:
     is: [ paged ]
     responses:
@@ -81,6 +82,7 @@ traits:
 
 /users:
   get:
+    description: only for Web
     is: [ secured, admin-only, paged ]
     responses:
       200:
@@ -91,6 +93,7 @@ traits:
   post:
     description: |
       Регистрация нового пользователя.
+      for Web and Mobile
     body:
       application/json:
         schema: !include v1/schemas/users/post.json
@@ -102,6 +105,7 @@ traits:
             schema: !include v1/schemas/users/one.json
             example: !include v1/examples/users/one.json
   /{id}:
+    description: only for Web
     get:
       is: [ secured, admin-only ]
       responses:
@@ -127,12 +131,14 @@ traits:
       responses:
         200:
     /reset-password:
+      description: only for Web
       post:
         is: [ secured, admin-only ]
         responses:
           200:
 
 /tokens:
+  description: for Web and Mobile
   post:
     description: |
       Аутентификация пользователя.
@@ -176,6 +182,7 @@ traits:
               example: !include v1/examples/tokens/one.json
 
 /account:
+  description: for Web and Mobile
   put:
     is: [ secured ]
     description: |
@@ -234,6 +241,7 @@ traits:
 
 
 /test-results:
+  description: only for Web
   get:
     is: [ secured, admin-only, paged ]
     responses:
@@ -268,6 +276,7 @@ traits:
                 example: !include v1/examples/test-results/send-email/one.json
 
 /page-blocks:
+  description: only for Web
   get:
     is: [ paged ]
     responses:
@@ -314,6 +323,7 @@ traits:
         200:
 
 /pages:
+  description: only for Web
   get:
     is: [ paged ]
     responses:
@@ -360,6 +370,7 @@ traits:
         200:
 
 /news:
+  description: only for Web
   get:
     queryParameters:
       onlyActive:
@@ -395,6 +406,7 @@ traits:
               example: !include v1/examples/news/one.json
 
 /opinions:
+  description: only for Web
   get:
     queryParameters:
       onlyActive:
@@ -420,6 +432,7 @@ traits:
               example: !include v1/examples/opinions/one.json
 
 /experts:
+  description: only for Web
   get:
     responses:
       200:
@@ -437,6 +450,7 @@ traits:
               example: !include v1/examples/experts/one.json
 
 /records:
+  description: only for Web
   /{id}:
     get:
       responses:
