@@ -42,23 +42,23 @@ class RecommendationsMatcher
                 'isArterialPressureDrugsConsumer' => $this->choiceFirstVisible($this->declaration['banners']['isArterialPressureDrugsConsumer']),
                 'isCholesterolDrugsConsumer' => $this->choiceFirstVisible($this->declaration['banners']['isCholesterolDrugsConsumer']),
             ),
-            // 'pages' => array(
-            //     'isSmoker' => $this->choiceFirstVisible($this->declaration['pages']['isSmoker']),
-            //     'arterialPressure' => $this->choiceFirstVisible($this->declaration['pages']['arterialPressure']),
-            //     'isAddingExtraSalt' => $this->choiceFirstVisible($this->declaration['pages']['isAddingExtraSalt']),
-            //     'cholesterolLevel' => $this->choiceFirstVisible($this->declaration['pages']['cholesterolLevel']),
-            //     'physicalActivityMinutes' => $this->choiceFirstVisible($this->declaration['pages']['physicalActivityMinutes']),
-            //     'bmi' => $this->choiceFirstVisible($this->declaration['pages']['bmi']),
-            // ),
+            'pages' => array(
+                 'isSmoker' => $this->choiceFirstVisible($this->declaration['pages']['isSmoker']),
+                 'arterialPressure' => $this->choiceFirstVisible($this->declaration['pages']['arterialPressure']),
+                 'isAddingExtraSalt' => $this->choiceFirstVisible($this->declaration['pages']['isAddingExtraSalt']),
+                 'cholesterolLevel' => $this->choiceFirstVisible($this->declaration['pages']['cholesterolLevel']),
+                 'physicalActivityMinutes' => $this->choiceFirstVisible($this->declaration['pages']['physicalActivityMinutes']),
+                 'bmi' => $this->choiceFirstVisible($this->declaration['pages']['bmi']),
+            ),
         );
 
         foreach ($recommendations['banners'] as $key => $banner) {
             $recommendations['banners'][$key] = $this->normalizeBanner($key, $banner);
         }
 
-        // foreach ($recommendations['pages'] as $key => $page) {
-        //     $recommendations['pages'][$key] = $this->normalizePage($key, $page);
-        // }
+         foreach ($recommendations['pages'] as $key => $page) {
+             $recommendations['pages'][$key] = $this->normalizePage($key, $page);
+         }
 
         return $recommendations;
     }
@@ -68,10 +68,7 @@ class RecommendationsMatcher
         if (!is_array($banner)) {
             return $banner;
         } else if ($banner['pageUrl']) {
-            $banner['pageUrl'] = $this->router->generate('engage360d_takeda_test_get_test_result_recommendation', array(
-                'id' => $this->testResult->getId(),
-                'type' => $key,
-            ));
+            $banner['pageUrl'] = sprintf('/api/v1/account/test-results/%s/pages/%s', $this->testResult->getId(), $key);
         } else {
             $banner['pageUrl'] = null;
         }

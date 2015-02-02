@@ -12,7 +12,7 @@ class TestController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $testResult = $this->getDoctrine()->getManager()->getRepository('Engage360dTakedaTestBundle:TestResult')->find($id);
+        $testResult = $this->getDoctrine()->getManager()->getRepository('Engage360dTakedaBundle:TestResult')->find($id);
 
         if (!$testResult) {
             throw $this->createNotFoundException();

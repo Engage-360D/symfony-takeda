@@ -203,6 +203,41 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/test-results/{id}/pages/{recommendation}", name="api_get_account_test_results_pages_recommendations", methods="GET")
+     */
+    public function getAccountTestResultPagesRecommendationAction(Request $request, $id, $recommendation)
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return new JsonResponse("Unauthorized", 401);
+        }
+
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
+            return $elem->getId() == $id;
+        })->first();
+
+        if (!$testResult) {
+            return $this->getErrorResponse(sprintf("Recommendation with id = %s not found", $id), 404);
+        }
+
+        $recommendations = $testResult->getRecommendations();
+
+        if (!isset($recommendations['pages'][$recommendation])) {
+            return $this->getErrorResponse(sprintf("'%s' recommendation not found", $recommendation), 404);
+        }
+
+        $page = $recommendations['pages'][$recommendation];
+        $page = $this->getPageRecommendationArray($page);
+
+        return new JsonResponse($page, 200);
+    }
+
+    /**
      * @Route("/account/reset-password", name="api_post_account_reset_password", methods="POST")
      */
     public function accountResetPasswordAction(Request $request)

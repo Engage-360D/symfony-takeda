@@ -236,6 +236,7 @@ pages:
     -
       visible:
         - { isSmoker: true }
+      state: attention
       urlText: Курение
       title: Курение повышает риск смерти в 3-6 раз
       subtitle: Вам необходимо бросить курить.
@@ -253,6 +254,7 @@ pages:
     -
       visible:
         - { arterialPressure: [140, 159] }
+      state: bell
       urlText: Давление
       title: Ваше давление  - ?
       subtitle: Нормой является значение до 139
@@ -265,6 +267,7 @@ pages:
     -
       visible:
         - { arterialPressure: [160, ~] }
+      state: attention
       urlText: Давление
       title: У вас высокое давление - ?
       subtitle: Нормой является значение до 139
@@ -280,6 +283,7 @@ pages:
     -
       visible:
         - { isAddingExtraSalt: true }
+      state: attention
       urlText: Соль
       title: Потребление соли может приводить к повышению артериального давления.
       subtitle: ""
@@ -295,6 +299,7 @@ pages:
     -
       visible:
         - { cholesterolLevel: [5.0, 6.5] }
+      state: bell
       urlText: Холестерин
       title: Ваш уровень холестерина - ? ммоль/л
       subtitle: Нормой является значение до 4,9 ммоль/л
@@ -309,6 +314,7 @@ pages:
     -
       visible:
         - { cholesterolLevel: [6.6, ~] }
+      state: attention
       urlText: Холестерин
       title: У вас высокий уровень холестерина - ? ммоль/л
       subtitle: Нормой является значение до 4,9 ммоль/л
@@ -326,6 +332,7 @@ pages:
     -
       visible:
         - { physicalActivityMinutes: [120, 144] }
+      state: bell
       urlText: Физическая активность
       title: У вас недостаточно физической активности ? минут в неделю
       subtitle: Нормой является значение от 150 минут в неделю
@@ -343,6 +350,7 @@ pages:
     -
       visible:
         - { physicalActivityMinutes: [~, 119] }
+      state: attention
       urlText: Физическая активность
       title: У вас недостаточно физической активности ? минут в неделю
       subtitle: Нормой является значение от 150 минут в неделю
@@ -362,6 +370,7 @@ pages:
     -
       visible:
         - { bmi: [25, 29.9] }
+      state: bell
       urlText: Вес
       title: У вас высокий индекс массы тела - ? кг/м2
       subtitle: Нормой является значение менее 25 кг/м2
@@ -374,6 +383,7 @@ pages:
     -
       visible:
         - { bmi: [30, ~] }
+      state: attention
       urlText: Вес
       title: У вас высокий индекс массы тела - ? кг/м2
       subtitle: Нормой является значение менее 25 кг/м2

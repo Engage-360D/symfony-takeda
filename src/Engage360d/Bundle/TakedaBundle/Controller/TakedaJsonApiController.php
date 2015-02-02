@@ -97,6 +97,9 @@ class TakedaJsonApiController extends JsonApiController
 
     protected function getTestResultArray($testResult)
     {
+        $recommendations = $testResult->getRecommendations();
+        unset($recommendations['pages']);
+
         return [
             "id" => (String) $testResult->getId(),
             "sex" => $testResult->getSex(),
@@ -117,7 +120,17 @@ class TakedaJsonApiController extends JsonApiController
             "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
             "bmi" => $testResult->getBmi(),
             "score" => $testResult->getScore(),
-            "recommendations" => $testResult->getRecommendations(),
+            "recommendations" => $recommendations,
+        ];
+    }
+
+    protected function getPageRecommendationArray($pageRecommendation)
+    {
+        return [
+            "state" => $pageRecommendation['state'],
+            "title" => $pageRecommendation['title'],
+            "subtitle" => $pageRecommendation['subtitle'],
+            "text" => $pageRecommendation['text'],
         ];
     }
 
