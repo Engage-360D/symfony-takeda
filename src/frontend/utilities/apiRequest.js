@@ -2,11 +2,15 @@
  * cardiomagnyl
  */
 
-var Promise = require('bluebird');
 var $ = require('jquery');
 
-function apiRequest(method, url, data) {
-  return Promise.resolve($.ajax({
+function apiRequest(method, url, data, callback) {
+  if (!callback) {
+    callback = data;
+    data = null;
+  }
+
+  return $.ajax({
     data: data ? JSON.stringify({
       data: data
     }) : null,
@@ -16,8 +20,14 @@ function apiRequest(method, url, data) {
     },
     mimeType: 'application/vnd.api+json',
     type: method,
-    url: url
-  }));
+    url: url,
+    success: function(data) {
+      callback(null, data);
+    },
+    error: function(jqXhr) {
+      callback(jqXhr);
+    }
+  });
 }
 
 module.exports = apiRequest;

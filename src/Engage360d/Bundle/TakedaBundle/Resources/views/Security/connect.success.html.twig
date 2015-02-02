@@ -1,1 +1,10 @@
-{{ dump(data) }}
+{% extends "Engage360dTakedaBundle::base.html.twig" %}
+
+{% block scripts %}
+<script>
+  if (window.opener && window.opener.authDone) {
+    window.opener.authDone();
+  }
+  window.close();
+</script>
+{% endblock %}

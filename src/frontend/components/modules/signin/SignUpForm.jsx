@@ -95,18 +95,32 @@ var SignUpForm = React.createClass({
       data.specializationGraduationDate = formData.specializationGraduationDate.format('YYYY-MM-DDThh:mm:ssZ');
     }
 
-    apiRequest('POST', '/api/v1/users', data)
-                .then(function() {
-                  window.location.href = window.location.href;
-                }.bind(this))
-                .then(null, function(res) {
-                  this.setState({signUpProcess: false});
-                  try {
-                    alert(res.responseJSON.errors[0].title);
-                  } catch(e) {
-                    alert('Unknown error');
-                  }
-                }.bind(this));
+    if (this.props.auth) {
+      var auth = this.props.auth;
+      Object.keys(auth).map(function(key) {
+        data[key] = auth[key];
+      });
+    }
+
+    apiRequest('POST', '/api/v1/users', data, function(err, data) {
+      if (err) {
+        this.setState({signUpProcess: false});
+        try {
+          alert(res.responseJSON.errors[0].title);
+        } catch(e) {
+          alert('Unknown error');
+        }
+        return;
+      }
+
+      if (window.opener) {
+        window.opener.authDone();
+        window.close();
+      } else {
+        window.location.href = window.location.href;
+        window.location.reload();
+      }
+    })
   },
 
   getSpecializationExperienceYearsOptions: function() {

@@ -784,3 +784,9 @@ input::-webkit-inner-spin-button {
   border-width: 9px 0 0 9px;
   border-color: transparent transparent transparent #cdcdcd;
 }
+
+.button:disabled {
+  border-color: lightgray;
+  cursor: default;
+  color: lightgray;
+}

@@ -69,20 +69,21 @@ class SecurityController extends ConnectController
             ->getUserInformation($error->getRawToken());
         $resourceOwner = $this->getResourceOwnerByName($error->getResourceOwnerName());
 
-        $data = [
-            "user" => null,
-            "access_token" => $error->getRawToken()['access_token'],
-        ];
+        $auth = [];
 
         if ($resourceOwner instanceof FacebookResourceOwner) {
-            $data['facebookId'] = $userInformation->getUsername();
+            $auth['facebookId'] = $userInformation->getUsername();
+            $auth['facebookToken'] = $error->getRawToken()['access_token'];
         } else if ($resourceOwner instanceof VkontakteResourceOwner) {
-            $data['vkontakteId'] = $userInformation->getUsername();
+            $auth['vkontakteId'] = (string)$userInformation->getUsername();
+            $auth['vkontakteToken'] = $error->getRawToken()['access_token'];
         }
+
+        $regions = $this->container->get('doctrine')->getRepository('Engage360dTakedaBundle:Region\Region')->findAll();
 
         return $this->container->get('templating')->renderResponse(
             'Engage360dTakedaBundle:Security:connect.failure.html.twig',
-            ['data' => $data]
+            ['user' => null, 'auth' => $auth, 'regions' => $regions]
         );
     }
 

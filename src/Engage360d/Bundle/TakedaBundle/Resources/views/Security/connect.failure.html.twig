@@ -1,2 +1,17 @@
-{{ dump(data) }}
+{% extends "Engage360dTakedaBundle::base.html.twig" %}
 
+{% block title %}Вход{% endblock %}
+
+{% block body %}
+<div id="SignInAfterSocial"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  takeda.render(takeda.SignInAfterSocial, 'SignInAfterSocial', {
+    regions: {{ regions | serialize | raw }},
+    user: {{ user | serialize | raw }},
+    auth: {{ auth | serialize | raw }}
+  });
+</script>
+{% endblock %}

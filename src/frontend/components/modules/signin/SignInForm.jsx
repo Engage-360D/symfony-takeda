@@ -10,6 +10,12 @@ var FormMixin = require('vstack-form').FormMixin;
 var SignInForm = React.createClass({
   mixins: [FormMixin],
 
+  getDefaultProps: function() {
+    return {
+      hideSocial: false
+    };
+  },
+
   getInitialState: function() {
     return {
       signInProcess: false
@@ -39,21 +45,77 @@ var SignInForm = React.createClass({
 
     this.setState({signInProcess: true});
 
+    var error = function(res) {
+      this.setState({signInProcess: false});
+      try {
+        alert(res.responseJSON.errors[0].title);
+      } catch(e) {
+        alert('Unknown error');
+      }
+    }.bind(this);
+    var done = function() {
+      if (window.opener) {
+        window.opener.authDone();
+        window.close();
+      } else {
+        window.location.href = window.location.href;
+        window.location.reload();
+      }
+    }.bind(this);
+
     apiRequest('POST', '/api/v1/tokens', {
       email: this.state.formState.data.email,
       plainPassword: this.state.formState.data.plainPassword
-    })
-                 .then(function() {
-                   window.location.href = window.location.href;
-                 }.bind(this))
-                 .then(null, function(res) {
-                   this.setState({signInProcess: false});
-                   try {
-                     alert(res.responseJSON.errors[0].title);
-                   } catch(e) {
-                     alert('Unknown error');
-                   }
-                 }.bind(this));
+    }, function(err, data) {
+      if (err) {
+        return error(err);
+      }
+
+      if (!this.props.auth) {
+        return done();
+      }
+
+      apiRequest('PUT', '/api/v1/account', this.props.auth, function(err, date) {
+        if (err) {
+          return error(err);
+        }
+
+        done();
+      });
+
+    }.bind(this))
+  },
+
+  openVk: function(event) {
+    event.preventDefault();
+    window.authDone = function() {
+      window.location.href = window.location.href;
+      window.location.reload();
+    };
+    window.open('/oauth/vkontakte');
+  },
+
+  openFb: function(event) {
+    event.preventDefault();
+    window.authDone = function() {
+      window.location.href = window.location.href;
+      window.location.reload();
+    };
+    window.open('/oauth/facebook');
+  },
+
+  renderSocial: function() {
+    return (
+      <div className="field field_rows" style={{position: 'absolute', marginTop: -10}}>
+        <div className="field__in">
+          <ul className="social social_dark">
+            <li><a className="social__vk" href="#" onClick={this.openVk}><i className="icon icon-soc-vk"></i></a></li>
+            <li><a className="social__fb" href="#" onClick={this.openFb}><i className="icon icon-soc-fb"></i></a></li>
+            <li><a className="social__ok" href="#"><i className="icon icon-soc-ok"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    );
   },
 
   render: function() {
@@ -75,15 +137,7 @@ var SignInForm = React.createClass({
             {this.isFieldErrorVisible('plainPassword') && <i className="icon icon-attention-fill"></i>}
           </div>
         </div>
-        <div className="field field_rows" style={{position: 'absolute', marginTop: -10}}>
-          <div className="field__in">
-            <ul className="social social_dark">
-              <li><a className="social__vk" href="#"><i className="icon icon-soc-vk"></i></a></li>
-              <li><a className="social__fb" href="#"><i className="icon icon-soc-fb"></i></a></li>
-              <li><a className="social__ok" href="#"><i className="icon icon-soc-ok"></i></a></li>
-            </ul>
-          </div>
-        </div>
+        {!this.props.hideSocial && this.renderSocial()}
         <div className="field field_right">
           <div className="field__in">
             <a className="link link_black" href="#"><span>Забыли пароль</span><i className="icon icon-arr-circle-right"></i><i className="icon icon-arr-circle-right-fill"></i></a>
