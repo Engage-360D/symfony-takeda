@@ -77,6 +77,7 @@ class OpinionController extends TakedaJsonApiController
             ]
         ];
 
+        // TODO check why validation does not work
         $validator = $this->getSchemaValidatior(self::URI_OPINIONS_ONE, (object) $response);
 
         if (!$validator->isValid()) {
