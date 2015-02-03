@@ -8,7 +8,7 @@
       "type": "array",
 
       "items": {
-        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/opinions/one.json#/definitions/opinions"
+        "$ref": "https://cardiomagnyl.ru/api/v1/schemas/opinions/one.json#/definitions/opinion"
       },
 
       "uniqueItems": true

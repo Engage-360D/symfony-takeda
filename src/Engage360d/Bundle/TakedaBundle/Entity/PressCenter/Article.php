@@ -42,6 +42,11 @@ class Article
     protected $isActive;
 
     /**
+     * @ORM\Column(name="views_count", type="integer")
+     */
+    protected $viewsCount;
+
+    /**
      * @ORM\Column(name="created_at", type="datetime")
      */
     protected $createdAt;
@@ -54,6 +59,7 @@ class Article
     public function __construct()
     {
         $this->isActive = false;
+        $this->viewsCount = 0;
         $this->createdAt = new \DateTime();
     }
 
@@ -187,5 +193,28 @@ class Article
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set viewsCount
+     *
+     * @param integer $viewsCount
+     * @return Article
+     */
+    public function setViewsCount($viewsCount)
+    {
+        $this->viewsCount = $viewsCount;
+
+        return $this;
+    }
+
+    /**
+     * Get viewsCount
+     *
+     * @return integer 
+     */
+    public function getViewsCount()
+    {
+        return $this->viewsCount;
     }
 }

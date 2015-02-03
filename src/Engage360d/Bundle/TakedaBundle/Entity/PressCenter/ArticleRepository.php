@@ -30,7 +30,7 @@ class ArticleRepository extends JsonApiRepository
         return $this->findAllForLast12Months(true);
     }
 
-    public function findAllByCategory($category, $onlyActive)
+    public function findAllByCategory($category, $onlyActive = true)
     {
         $qb = $this->createQueryBuilder('entity');
         $qb->innerJoin('entity.category',  'category');
@@ -47,7 +47,7 @@ class ArticleRepository extends JsonApiRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllByDate($date, $onlyActive)
+    public function findAllByDate($date, $onlyActive = true)
     {
         $qb = $this->createQueryBuilder('entity');
 
@@ -61,5 +61,23 @@ class ArticleRepository extends JsonApiRepository
         $qb->orderBY('entity.createdAt', 'DESC');
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findLastFourExceptOne($articleId, $onlyActive = true)
+    {
+        $qb = $this->createQueryBuilder('entity');
+
+        $qb->where('entity.id != :articleId');
+        $qb->setParameter('articleId', $articleId);
+
+        if ($onlyActive) {
+            $qb->andWhere('entity.isActive = TRUE');
         }
+
+        $qb->orderBY('entity.createdAt', 'DESC');
+
+        $qb->setMaxResults(4);
+
+        return $qb->getQuery()->getResult();
+    }
 }

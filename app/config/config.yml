@@ -24,6 +24,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        facebook_client_id: %facebook_client_id%
+        vkontakte_client_id: %vkontakte_client_id%
 
 sensio_framework_extra:
     view: { annotations: false }

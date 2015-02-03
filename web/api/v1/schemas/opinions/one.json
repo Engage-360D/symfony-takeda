@@ -5,7 +5,7 @@
 
   "properties": {
     "data": {
-      "$ref": "#/definitions/opinions"
+      "$ref": "#/definitions/opinion"
     },
 
     "linked": {
@@ -29,7 +29,7 @@
   ],
 
   "definitions": {
-    "opinions": {
+    "opinion": {
       "type": "object",
 
       "properties": {
@@ -43,6 +43,10 @@
 
         "content": {
           "type": "string"
+        },
+
+        "viewsCount": {
+          "type": "integer"
         },
 
         "isActive": {
@@ -76,6 +80,7 @@
         "id",
         "title",
         "content",
+        "viewsCount",
         "isActive",
         "createdAt",
         "links"

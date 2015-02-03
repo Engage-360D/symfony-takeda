@@ -3,6 +3,7 @@
 namespace Engage360d\Bundle\TakedaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Engage360d\Bundle\TakedaBundle\Entity\PressCenter\News;
 use Engage360d\Bundle\TakedaBundle\Entity\PressCenter\Opinion;
 
@@ -44,8 +45,12 @@ class PressCenterController extends Controller
         );
     }
 
-    public function articleAction($articleType, $id)
+    public function articleAction(Request $request, $articleType, $id)
     {
+        if (!in_array($articleType, [News::TYPE_NEWS, News::TYPE_OPINION])) {
+            throw $this->createNotFoundException();
+        }
+
         $repository = $this->get('doctrine')->getRepository(
             $articleType === News::TYPE_NEWS ? News::REPOSITORY : Opinion::REPOSITORY
         );
@@ -56,6 +61,26 @@ class PressCenterController extends Controller
             return $this->createNotFoundException();
         }
 
-        return $this->render('Engage360dTakedaBundle:PressCenter:article.html.twig', ["article" => $article]);
+        $recentArticles = $repository->findLastFourExceptOne($id);
+
+        // Increment views counter.
+        // Allow only one view per session.
+        $session = $request->getSession();
+        if (!$session->get('is_seen_article_' . $id)) {
+            $article->setViewsCount($article->getViewsCount() + 1);
+            $session->set('is_seen_article_' . $id, true);
+
+            $em = $this->get('doctrine')->getManager();
+            $em->persist($article);
+            $em->flush();
+        }
+
+        return $this->render(
+            sprintf('Engage360dTakedaBundle:PressCenter:article_%s.html.twig', $articleType),
+            [
+                "article" => $article,
+                "recentArticles" => $recentArticles,
+            ]
+        );
     }
 }

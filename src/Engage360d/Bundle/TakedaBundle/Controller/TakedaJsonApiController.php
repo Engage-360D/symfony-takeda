@@ -183,6 +183,7 @@ class TakedaJsonApiController extends JsonApiController
             "title" => $opinion->getTitle(),
             "content" => $opinion->getContent(),
             "isActive" => $opinion->getIsActive(),
+            "viewsCount" => $opinion->getViewsCount(),
             "createdAt" => $opinion->getCreatedAt(),
             "links" => [
                 "expert" => (string) $opinion->getExpert()->getId()

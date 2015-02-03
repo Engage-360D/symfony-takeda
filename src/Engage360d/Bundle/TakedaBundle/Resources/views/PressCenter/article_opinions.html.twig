@@ -1,0 +1,57 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Пресс-центр - Мнения специалистов &mdash; {{ article.title }}{% endblock %}
+
+{% block og_url %}{{ url('engage360d_takeda_press_center_article', {'articleType': article.type, 'id': article.id}) }}{% endblock %}
+
+{% block section %}
+    <div class="container">
+        <!-- head -->
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+                </div>
+            </div>
+            <div class="head__left">
+                <!-- h -->
+                <div class="h">Мнения специалистов</div>
+            </div>
+        </div>
+        <!-- details -->
+        <div class="details">
+            <div class="details__left">
+                <!-- content -->
+                <div class="content">
+                    <div class="opinion_expert">
+                        <div class="opinion_expert__img"><img src="{{ article.expert.photoUri }}" /></div>
+                        <div class="opinion_expert__data">
+                            <div class="opinion_expert__name">{{ article.expert.name }}</div>
+                            <div class="opinion_expert__position">{{ article.expert.description }}</div>
+                        </div>
+                    </div>
+                    <h2>{{ article.title }}</h2>
+                    {{ article.content | raw }}
+                    <p class="article_opinion_date">{{ article.createdAt.format('d.m.Y') }}</p>
+                    {{ include('Engage360dTakedaBundle:PressCenter:social_buttons.html.twig') }}
+                </div>
+            </div>
+            <div class="details__right">
+                <!-- h -->
+                <div class="h h_2">Последние новости:</div>
+                <ul class="details__links">
+                    {% for opinion in recentArticles %}
+                        <li>
+                            <span class="muted_text">{{ opinion.expert.name }}</span>
+                            <a class="link link_black" href="{{ path('engage360d_takeda_press_center_article', {'articleType': opinion.type, 'id': opinion.id}) }}">
+                                <span>{{ opinion.title }}</span>
+                                <i class="icon icon-arr-circle-right"></i>
+                                <i class="icon icon-arr-circle-right-fill"></i>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

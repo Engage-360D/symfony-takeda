@@ -790,3 +790,79 @@ input::-webkit-inner-spin-button {
   cursor: default;
   color: lightgray;
 }
+
+.details__links .muted_text {
+  display: block;
+  padding-left: 30px;
+  font-size: 13px;
+  color: #D1D2D1;
+}
+
+.article_meta {
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+
+.article_meta .article_meta__type {
+  padding: 3px 5px;
+  color: #fff;
+}
+
+.article_meta .article_meta__type.is-blue {
+  background: #00acdb;
+}
+
+.article_meta .article_meta__type.is-green {
+  background: #2269c8;
+}
+
+.content .article_opinion_date {
+  border-top: 1px solid #E7E7E7;
+  margin-top: 15px;
+  padding-top: 15px;
+  font-size: 13px;
+}
+
+.opinion_expert {
+  margin-bottom: 10px;
+}
+
+.opinion_expert__img {
+  width: 94px;
+  height: 94px;
+  margin-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.opinion_expert__img img {
+  display: block;
+  border-radius: 50%;
+}
+
+.opinion_expert__data {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.opinion_expert__name {
+  font-size: 18px;
+}
+
+.opinion_expert__position {
+  font-size: 13px;
+}
+
+.social_buttons {
+  margin-top: 40px;
+}
+
+#vk_like {
+  clear: none;
+  display: inline-block;
+}
+
+.fb-like > span {
+  height: 26px !important;
+  margin-right: 15px;
+}
