@@ -1,5 +1,7 @@
 services:
 
+    # Listeners/Subscribers
+
     engage360d_takeda.listener.reset_password:
         class: Engage360d\Bundle\TakedaBundle\Event\ResetPasswordSubscriber
         arguments:

@@ -56,7 +56,7 @@ class ExpertController extends TakedaJsonApiController
         $expert = $repository->findOneById($id);
 
         if (!$expert) {
-            return $this->getErrorResponse(sprintf("Expert with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $response = [

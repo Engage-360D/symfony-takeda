@@ -76,7 +76,7 @@ class UserController extends TakedaJsonApiController
             ->findOneById($id);
 
         if (!$user) {
-            return $this->getErrorResponse(sprintf("User with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $response = [
@@ -174,7 +174,7 @@ class UserController extends TakedaJsonApiController
             ->findOneById($id);
 
         if (!$user) {
-            return $this->getErrorResponse(sprintf("User with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $json = $request->getContent();
@@ -240,7 +240,7 @@ class UserController extends TakedaJsonApiController
             ->findOneById($id);
 
         if (!$user) {
-            return $this->getErrorResponse(sprintf("User with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $em->remove($user);
@@ -269,7 +269,7 @@ class UserController extends TakedaJsonApiController
             ->findOneById($id);
 
         if (!$user) {
-            return $this->getErrorResponse(sprintf("User with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $event = new UserEvent($user);

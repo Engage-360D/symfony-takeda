@@ -25,7 +25,7 @@ class RecordController extends TakedaJsonApiController
         $record = $repository->findOneById($id);
 
         if (!$record) {
-            return $this->getErrorResponse(sprintf("Record with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $response = [

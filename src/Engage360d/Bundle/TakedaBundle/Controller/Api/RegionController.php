@@ -59,7 +59,7 @@ class RegionController extends TakedaJsonApiController
             ->findOneById($id);
 
         if (!$region) {
-            return $this->getErrorResponse(sprintf("Region with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         return ["data" => [

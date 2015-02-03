@@ -45,6 +45,9 @@ engage360d_takeda_press_center_article:
     path: /press-center/{articleType}/{id}
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
 
+engage360d_account_recommendations:
+    path: /account/recommendations
+
 engage360d_takeda_test_get_test_result_recommendation:
     path: /test-results/{id}/{type}
     methods: [GET]

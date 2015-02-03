@@ -203,6 +203,53 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/test-results/{id}/send-email", name="api_post_account_test_results_send_email", methods="POST")
+     */
+    public function getAccountTestResultSendEmailAction(Request $request, $id)
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if (!$user instanceof UserInterface) {
+            return new JsonResponse("Unauthorized", 401);
+        }
+
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
+            return $elem->getId() == $id;
+        })->first();
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+
+        // TODO consider to put this code into service
+        $subject = "Test result";
+        $fromEmail = $this->container->getParameter('mailer_sender_email');
+        if (!$fromEmail) {
+            throw new \RuntimeException("The mandatory parameter 'mailer_sender_email' is not set", 500);
+        }
+        $body = $this->render(
+            'Engage360dTakedaBundle:Test:email__test_result.txt.twig',
+            ['testResult' => $testResult]
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($fromEmail)
+            ->setTo($user->getEmail())
+            ->setBody($body);
+
+        // With spooling turned off Swift_SwiftException will be caught
+        // by FOSRestBundle Exception Handler and formatted by ExceptionWrapperHandler
+        $this->get('mailer')->send($message);
+
+        return new JsonResponse("Email has been sent", 200);
+    }
+
+    /**
      * @Route("/account/test-results/{id}/pages/{recommendation}", name="api_get_account_test_results_pages_recommendations", methods="GET")
      */
     public function getAccountTestResultPagesRecommendationAction(Request $request, $id, $recommendation)
@@ -222,13 +269,13 @@ class AccountController extends TakedaJsonApiController
         })->first();
 
         if (!$testResult) {
-            return $this->getErrorResponse(sprintf("Recommendation with id = %s not found", $id), 404);
+            throw $this->createNotFoundException();
         }
 
         $recommendations = $testResult->getRecommendations();
 
         if (!isset($recommendations['pages'][$recommendation])) {
-            return $this->getErrorResponse(sprintf("'%s' recommendation not found", $recommendation), 404);
+            throw $this->createNotFoundException();
         }
 
         $page = $recommendations['pages'][$recommendation];
