@@ -116,9 +116,8 @@ var SignUpForm = React.createClass({
       if (window.opener) {
         window.opener.authDone();
         window.close();
-      } else {
-        window.location.href = window.location.href;
-        window.location.reload();
+      } else if (this.props.onAuthDone) {
+        this.props.onAuthDone();
       }
     })
   },

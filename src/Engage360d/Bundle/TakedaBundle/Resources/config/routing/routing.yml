@@ -32,6 +32,11 @@ engage360d_takeda_auth_signin:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Auth:signin }
 
+engage360d_takeda_risk_analysis:
+    path: /risk-analysis
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:RiskAnalysis:index }
+
 engage360d_takeda_press_center:
     path: /press-center
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:index }

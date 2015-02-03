@@ -57,9 +57,8 @@ var SignInForm = React.createClass({
       if (window.opener) {
         window.opener.authDone();
         window.close();
-      } else {
-        window.location.href = window.location.href;
-        window.location.reload();
+      } else if (this.props.onAuthDone) {
+        this.props.onAuthDone();
       }
     }.bind(this);
 
@@ -89,18 +88,16 @@ var SignInForm = React.createClass({
   openVk: function(event) {
     event.preventDefault();
     window.authDone = function() {
-      window.location.href = window.location.href;
-      window.location.reload();
-    };
+      this.props.onAuthDone();
+    }.bind(this);
     window.open('/oauth/vkontakte');
   },
 
   openFb: function(event) {
     event.preventDefault();
     window.authDone = function() {
-      window.location.href = window.location.href;
-      window.location.reload();
-    };
+      this.props.onAuthDone();
+    }.bind(this);
     window.open('/oauth/facebook');
   },
 

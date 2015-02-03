@@ -7,6 +7,11 @@ var SignInForm = require('./SignInForm');
 var SignUpForm = require('./SignUpForm');
 
 var SignIn = React.createClass({
+  onAuthDone: function() {
+    window.location.href = window.location.href;
+    window.location.reload();
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -26,11 +31,11 @@ var SignIn = React.createClass({
         <div className="l">
           <div className="l__column">
             <div className="h h_2">Вход</div>
-            <SignInForm />
+            <SignInForm onAuthDone={this.onAuthDone} />
           </div>
           <div className="l__column">
             <div className="h h_2">Регистрация</div>
-            <SignUpForm regions={this.props.regions} />
+            <SignUpForm onAuthDone={this.onAuthDone} regions={this.props.regions} />
           </div>
         </div>
       </div>
