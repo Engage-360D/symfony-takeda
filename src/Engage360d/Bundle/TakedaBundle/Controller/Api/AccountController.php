@@ -246,7 +246,7 @@ class AccountController extends TakedaJsonApiController
         // by FOSRestBundle Exception Handler and formatted by ExceptionWrapperHandler
         $this->get('mailer')->send($message);
 
-        return new JsonResponse("Email has been sent", 200);
+        return new JsonResponse(["data" => []], 200);
     }
 
     /**
