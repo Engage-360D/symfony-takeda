@@ -35,6 +35,57 @@ class PressCenterController extends Controller
             return $timestampB - $timestampA;
         });
 
+        $opinions = array_map(function ($opinion) {
+            // TODO refactor
+            return [
+                "id" => (string) $opinion->getId(),
+                "title" => $opinion->getTitle(),
+                "content" => $opinion->getContent(),
+                "isActive" => $opinion->getIsActive(),
+                "viewsCount" => $opinion->getViewsCount(),
+                "createdAt" => $opinion->getCreatedAt(),
+                "uri" => $this->get('router')->generate(
+                        'engage360d_takeda_press_center_article',
+                        [
+                            "articleType" => $opinion->getType(),
+                            "id" => $opinion->getId(),
+                        ]
+                ),
+                "links" => [
+                    "expert" => [
+                        "id" => (string) $opinion->getExpert()->getId(),
+                        "photoUri" => $opinion->getExpert()->getPhotoUri(),
+                        "name" => $opinion->getExpert()->getName(),
+                        "description" => $opinion->getExpert()->getDescription(),
+                    ]
+                ],
+            ];
+        }, $opinions);
+
+        $news = array_map(function ($article) {
+            // TODO refactor
+            return [
+                "id" => (string) $article->getId(),
+                "title" => $article->getTitle(),
+                "content" => $article->getContent(),
+                "isActive" => $article->getIsActive(),
+                "createdAt" => $article->getCreatedAt(),
+                "uri" => $this->get('router')->generate(
+                        'engage360d_takeda_press_center_article',
+                        [
+                            "articleType" => $article->getType(),
+                            "id" => $article->getId(),
+                        ]
+                    ),
+                "links" => [
+                    "category" => [
+                        "id" => (string) $article->getCategory()->getId(),
+                        "data" => $article->getCategory()->getData(),
+                        "keyword" => $article->getCategory()->getKeyword(),
+                    ]
+                ],
+            ];
+        }, $news);
 
         return $this->render('Engage360dTakedaBundle:PressCenter:index.html.twig',
             [

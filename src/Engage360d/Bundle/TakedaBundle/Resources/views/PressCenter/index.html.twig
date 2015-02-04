@@ -54,131 +54,18 @@
             </div>
         </div>
     </div>
-    <!-- h-wrap -->
-    <div class="h-wrap">
-        <!-- h -->
-        <div class="h">Новости</div>
-        <!-- sorter -->
-        <div class="sorter">
-            <a href="#">все</a>
-            <a href="#">лечение</a>
-            <a class="is-active" href="#">профилактика</a>
-        </div>
-        <!-- dp -->
-        <div class="dp">
-            <div class="dp__value">выбрать дату</div>
-            <div class="dp__button">
-                <i class="icon icon-calendar"></i>
-                <i class="icon icon-calendar-fill"></i>
-            </div>
-            <div class="dp__in">
-                <button class="dp__close">
-                    <i class="icon icon-close"></i>
-                </button>
-                <div class="dp__title">Дата рождения</div>
-                <div class="dp__date">
-                    <div class="dp__row">
-                        <div class="dp__cell">
-                            <button class="dp__up">
-                                <i class="icon icon-arr-top"></i>
-                            </button>
-                        </div>
-                        <div class="dp__cell">
-                            <button class="dp__up">
-                                <i class="icon icon-arr-top"></i>
-                            </button>
-                        </div>
-                        <div class="dp__cell">
-                            <button class="dp__up">
-                                <i class="icon icon-arr-top"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="dp__row">
-                        <div class="dp__cell">Июль</div>
-                        <div class="dp__cell">28</div>
-                        <div class="dp__cell">1999</div>
-                    </div>
-                    <div class="dp__row is-active">
-                        <div class="dp__cell">Август</div>
-                        <div class="dp__cell">29</div>
-                        <div class="dp__cell">2000</div>
-                    </div>
-                    <div class="dp__row">
-                        <div class="dp__cell">Сентябрь</div>
-                        <div class="dp__cell">30</div>
-                        <div class="dp__cell">2001</div>
-                    </div>
-                    <div class="dp__row">
-                        <div class="dp__cell">
-                            <button class="dp__down">
-                                <i class="icon icon-arr-down"></i>
-                            </button>
-                        </div>
-                        <div class="dp__cell">
-                            <button class="dp__down">
-                                <i class="icon icon-arr-down"></i>
-                            </button>
-                        </div>
-                        <div class="dp__cell">
-                            <button class="dp__down">
-                                <i class="icon icon-arr-down"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="dp__footer">
-                    <button class="button">Выбрать</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- post -->
-    <div class="post">
-        <button class="post__next">
-            <i class="icon icon-arr-right"></i>
-        </button>
-        <div class="post__table">
-            {{ include('Engage360dTakedaBundle:PressCenter:index__news_block.html.twig') }}
-        </div>
-    </div>
-    <!-- pager -->
-    <div class="pager">
-        <a class="is-active" href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">...</a>
-    </div>
-    <!-- h-wrap -->
-    <div class="h-wrap">
-        <!-- h -->
-        <div class="h">Мнения специалистов</div>
-        <!-- sorter -->
-        <div class="sorter">
-            <a href="#">самые популярные</a>
-            <a class="is-active" href="#">новые</a>
-        </div>
-    </div>
-    <!-- post -->
-    <div class="post">
-        <button class="post__prev">
-            <i class="icon icon-arr-left"></i>
-        </button>
-        <button class="post__next">
-            <i class="icon icon-arr-right"></i>
-        </button>
-        <div class="post__table">
-            {{ include('Engage360dTakedaBundle:PressCenter:index__opinions_block.html.twig') }}
-        </div>
-    </div>
-    <!-- pager -->
-    <div class="pager">
-        <a class="is-active" href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">...</a>
-    </div>
+    <div id="NewsList"></div>
+    <div id="OpinionList"></div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        takeda.render(takeda.NewsList, 'NewsList', {
+            articles: {{ news | serialize | raw }}
+        });
+        takeda.render(takeda.OpinionList, 'OpinionList', {
+            opinions: {{ opinions | serialize | raw }}
+        });
+    </script>
 {% endblock %}
