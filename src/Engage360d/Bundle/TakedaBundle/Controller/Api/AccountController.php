@@ -195,8 +195,29 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
+        $testResults = $user->getTestResults()->toArray();
+
+        // TODO check whether $sinceDate is in ISO8601 format?
+        $sinceDate = $request->query->get("sinceDate");
+        $sinceId = $request->query->get("sinceId");
+
+        if ($sinceDate) {
+            $sinceDate = new \DateTime($sinceDate);
+            $testResults = array_filter($testResults, function ($testResult) use ($sinceDate) {
+                return $testResult->getCreatedAt()->format('U') >= $sinceDate->format('U');
+            });
+            $testResults = array_values($testResults);
+        }
+
+        if ($sinceId) {
+            $testResults = array_filter($testResults, function ($testResult) use ($sinceId) {
+                return $testResult->getId() >= (int) $sinceId;
+            });
+            $testResults = array_values($testResults);
+        }
+
         $response = [
-            "data" => array_map([$this, 'getTestResultArray'], $user->getTestResults()->toArray())
+            "data" => array_map([$this, 'getTestResultArray'], $testResults)
         ];
 
         return new JsonResponse($response, 200);
