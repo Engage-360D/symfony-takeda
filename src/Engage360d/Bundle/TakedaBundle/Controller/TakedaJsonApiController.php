@@ -72,7 +72,7 @@ class TakedaJsonApiController extends JsonApiController
             "vkontakteId" => $user->getVkontakteId(),
             "facebookId" => $user->getFacebookId(),
             "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-            "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
+            "specializationGraduationDate" => $user->getSpecializationGraduationDate() ? $user->getSpecializationGraduationDate()->format(\DateTime::ISO8601) : null,
             "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
             "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
             "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
@@ -151,7 +151,7 @@ class TakedaJsonApiController extends JsonApiController
             "title" => $article->getTitle(),
             "content" => $article->getContent(),
             "isActive" => $article->getIsActive(),
-            "createdAt" => $article->getCreatedAt(),
+            "createdAt" => $article->getCreatedAt()->format(\DateTime::ISO8601),
             "links" => [
                 "category" => (string) $article->getCategory()->getId()
             ],
@@ -185,7 +185,7 @@ class TakedaJsonApiController extends JsonApiController
             "content" => $opinion->getContent(),
             "isActive" => $opinion->getIsActive(),
             "viewsCount" => $opinion->getViewsCount(),
-            "createdAt" => $opinion->getCreatedAt(),
+            "createdAt" => $opinion->getCreatedAt()->format(\DateTime::ISO8601),
             "links" => [
                 "expert" => (string) $opinion->getExpert()->getId()
             ],
