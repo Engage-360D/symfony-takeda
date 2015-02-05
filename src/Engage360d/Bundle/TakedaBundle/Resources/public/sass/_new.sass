@@ -1201,11 +1201,6 @@
 	overflow: hidden
 	.post__table
 		position: relative
-		display: table
-		width: 100%
-		table-layout: fixed
-		border-spacing: 0
-		border-collapse: collapse
 		z-index: 2
 	.post__next, .post__prev
 		position: absolute
@@ -1226,22 +1221,28 @@
 		left: 0
 		width: 30px
 	.post__row
-		display: table-row
+		font-size: 0
+		white-space: nowrap
 	.post__row_down
+		margin-top: -1px
 		.post__cell
 			padding: 15px 20px 30px 30px
-			border-width: 0 1px 0 0
-			&:first-child
-				padding: 15px 20px 30px 10px
-				border-width: 0 1px 0 0  
+			border-width: 1px 1px 0 0
+			// &:first-child
+			// 	padding: 15px 20px 30px 10px
+			// 	border-width: 0 1px 0 0  
 	.post__cell
-		display: table-cell
+		display: inline-block
 		width: 360px
-		padding: 10px 20px 30px 30px 
+		min-height: 300px
+		padding: 10px 20px 10px 30px 
 		border: 1px solid #ebebeb
-		border-width: 0 1px 1px 1px
+		border-width: 0 1px 1px 0
 		box-sizing: border-box
 		color: #414140 
+		white-space: normal
+		vertical-align: top
+		font-size: 14px
 		&:hover	
 			background: $bl
 			color: #FFF 
@@ -1252,9 +1253,9 @@
 				&.is-blue
 					background: #fff 
 		&:first-child
-			width: 330px
-			padding: 10px 20px 30px 10px 
-			border-width: 0 1px 1px 0
+			// width: 330px
+			// padding: 10px 20px 30px 10px 
+			// border-width: 0 1px 1px 0
 	.post__meta
 		margin-bottom: 10px
 		font-size: 0

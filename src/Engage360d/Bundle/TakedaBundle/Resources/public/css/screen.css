@@ -677,21 +677,20 @@ button { background: none; }
 .soc-widget .soc-widget__in { width: 455px; height: 217px; padding: 10px; margin-top: -1px; border: 1px solid #e5e5e5; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
 .post { position: relative; margin: 0 -50px 40px -30px; padding-left: 30px; overflow: hidden; }
-.post .post__table { position: relative; display: table; width: 100%; table-layout: fixed; border-spacing: 0; border-collapse: collapse; z-index: 2; }
+.post .post__table { position: relative; z-index: 2; }
 .post .post__next, .post .post__prev { position: absolute; top: 0; bottom: 0; background: rgba(255, 255, 255, 0.8); z-index: 4; }
 .post .post__next:hover .icon, .post .post__prev:hover .icon { color: #2269c8; }
 .post .post__next .icon, .post .post__prev .icon { font-size: 26px; color: #898989; }
 .post .post__next { right: 0; width: 80px; }
 .post .post__prev { left: 0; width: 30px; }
-.post .post__row { display: table-row; }
-.post .post__row_down .post__cell { padding: 15px 20px 30px 30px; border-width: 0 1px 0 0; }
-.post .post__row_down .post__cell:first-child { padding: 15px 20px 30px 10px; border-width: 0 1px 0 0; }
-.post .post__cell { display: table-cell; width: 360px; padding: 10px 20px 30px 30px; border: 1px solid #ebebeb; border-width: 0 1px 1px 1px; box-sizing: border-box; color: #414140; }
+.post .post__row { font-size: 0; white-space: nowrap; }
+.post .post__row_down { margin-top: -1px; }
+.post .post__row_down .post__cell { padding: 15px 20px 30px 30px; border-width: 1px 1px 0 0; }
+.post .post__cell { display: inline-block; width: 360px; min-height: 300px; padding: 10px 20px 10px 30px; border: 1px solid #ebebeb; border-width: 0 1px 1px 0; box-sizing: border-box; color: #414140; white-space: normal; vertical-align: top; font-size: 14px; }
 .post .post__cell:hover { background: #2269c8; color: white; }
 .post .post__cell:hover .post__type { color: #2269c8; }
 .post .post__cell:hover .post__type.is-green { background: white; }
 .post .post__cell:hover .post__type.is-blue { background: white; }
-.post .post__cell:first-child { width: 330px; padding: 10px 20px 30px 10px; border-width: 0 1px 1px 0; }
 .post .post__meta { margin-bottom: 10px; font-size: 0; }
 .post .post__date, .post .post__type { display: inline-block; margin-right: 5px; vertical-align: middle; font-size: 12px; }
 .post .post__type { padding: 3px 5px; color: white; }
