@@ -121,6 +121,7 @@ class TakedaJsonApiController extends JsonApiController
             "bmi" => $testResult->getBmi(),
             "score" => $testResult->getScore(),
             "recommendations" => $recommendations,
+            "createdAt" => $testResult->getCreatedAt()->format(\DateTime::ISO8601),
         ];
     }
 

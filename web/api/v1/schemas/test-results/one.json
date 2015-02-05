@@ -262,6 +262,10 @@
             "placesLinkShouldBeVisible",
             "banners"
           ]
+        },
+
+        "createdAt": {
+          "type": "date-time"
         }
       },
 
@@ -287,7 +291,8 @@
         "isAcetylsalicylicDrugsConsumer",
         "bmi",
         "score",
-        "recommendations"
+        "recommendations",
+        "createdAt"
       ]
     }
   }
