@@ -26,6 +26,7 @@ class AccountController extends TakedaJsonApiController
 {
     const URI_USER_PUT = '/api/v1/schemas/users/put.json';
     const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
+    const URI_USER_RESET_PASSWORD_POST = '/api/v1/schemas/users/reset-password/post.json';
 
     /**
      * @Route("/account", name="api_get_account", methods="GET")
@@ -313,20 +314,37 @@ class AccountController extends TakedaJsonApiController
      */
     public function accountResetPasswordAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
 
-        $event = new UserEvent($user);
-        $this->get('event_dispatcher')
-            ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
+        $json = $request->getContent();
+        $data = json_decode($json);
 
-        return new JsonResponse("The password has been reset.", 200);
+        // TODO put all occurrences of this code into getSchemaValidator($shcemaFile, $data) method
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_USER_RESET_PASSWORD_POST
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        $user = $this->get('doctrine')->getManager()
+            ->getRepository(User::REPOSITORY)
+            ->findOneBy(["email" => $data->data->email]);
+
+        if ($user) {
+            $event = new UserEvent($user);
+            $this->get('event_dispatcher')
+                ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
+        }
+
+        return new JsonResponse(["data" => []], 200);
     }
 }

@@ -56,6 +56,7 @@ security:
         # /tokens, /tokens/facebook, /tokens/vk
         - { path: ^/api/v1/tokens, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
 
+        - { path: ^/api/v1/account/reset-password$, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
         - { path: ^/api/v1/account, roles: [ ROLE_USER ] }
 
         # Press-center

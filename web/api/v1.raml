@@ -134,6 +134,10 @@ traits:
       description: only for Web
       post:
         is: [ secured, admin-only ]
+        body:
+          application/json:
+            schema: !include v1/schemas/users/reset-password/post.json
+            example: !include v1/examples/users/reset-password/post.json
         responses:
           200:
 
@@ -199,7 +203,12 @@ traits:
             example: !include v1/examples/users/one.json
   /reset-password:
     post:
-      is: [ secured ]
+      description: |
+        Метод всегда возвращает 200, даже если пользователя с таким email не существует.
+      body:
+        application/json:
+          schema: !include v1/schemas/users/reset-password/post.json
+          example: !include v1/examples/users/reset-password/post.json
       responses:
         200:
   /test-results:
