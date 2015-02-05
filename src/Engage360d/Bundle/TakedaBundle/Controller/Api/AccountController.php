@@ -135,11 +135,14 @@ class AccountController extends TakedaJsonApiController
             return new JsonResponse("Unauthorized", 401);
         }
 
-        // TODO tune voter to not interfere with security context
-        // and use
-        // !$this->get('security.context')->isGranted('ROLE_DOCTOR')
-        if (!(in_array('ROLE_DOCTOR', $user->getRoles()) || in_array('ROLE_ADMIN', $user->getRoles())) && count($user->getTestResults()) > 0) {
-            return new JsonResponse("Test already passed by user.", 400);
+        // Note, that a user with ROLE_ADMIN is always granted a role ROLE_DOCTOR.
+        // See role_hierarchy in security settings.
+        if (!$this->get('security.context')->isGranted('ROLE_DOCTOR')) {
+            foreach ($user->getTestResults()->toArray() as $result) {
+                if ($result->getCreatedAt()->diff(new \DateTime())->m === 0) {
+                    return $this->getErrorResponse("You're allowed to take the test only once a month.", 409);
+                }
+            }
         }
 
         if (!$this->isContentTypeValid($request)) {
