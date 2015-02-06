@@ -117,9 +117,9 @@ class User extends BaseUser
     protected $vkontakteAccessToken;
 
     /**
-     * @var datetime $registration
+     * @var datetime $createdAt
      *
-     * @ORM\Column(name="registration", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
