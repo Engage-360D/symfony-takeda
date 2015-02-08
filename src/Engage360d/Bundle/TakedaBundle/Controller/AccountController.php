@@ -16,12 +16,52 @@ use FOS\UserBundle\Model\UserInterface;
 
 class AccountController extends Controller
 {
+    public function recommendationsAction()
+    {
+        $user = $this->getUser();
+        $testResults = array_map([$this, 'getTestResultArray'], $user->getTestResults()->toArray());
+
+        return $this->render('Engage360dTakedaBundle:Account:recommendations.html.twig', [
+            'testResults' => $testResults,
+        ]);
+    }
+
     public function logoutAction(Request $request)
     {
         $this->get('security.context')->setToken(null);
         $request->getSession()->invalidate();
 
         return $this->redirect($this->generateUrl('engage360d_takeda_main_mainpage'));
+    }
+
+    // TODO: refactor me please
+    public function getTestResultArray($testResult)
+    {
+        $recommendations = $testResult->getRecommendations();
+        unset($recommendations['pages']);
+
+        return [
+            "id" => (String) $testResult->getId(),
+            "sex" => $testResult->getSex(),
+            "birthday" => $testResult->getBirthday()->format(\DateTime::ISO8601),
+            "growth" => $testResult->getGrowth(),
+            "weight" => $testResult->getWeight(),
+            "isSmoker" => $testResult->getIsSmoker(),
+            "cholesterolLevel" => $testResult->getCholesterolLevel(),
+            "isCholesterolDrugsConsumer" => $testResult->getIsCholesterolDrugsConsumer(),
+            "hasDiabetes" => $testResult->getHasDiabetes(),
+            "hadSugarProblems" => $testResult->getHadSugarProblems(),
+            "isSugarDrugsConsumer" => $testResult->getIsSugarDrugsConsumer(),
+            "arterialPressure" => $testResult->getArterialPressure(),
+            "isArterialPressureDrugsConsumer" => $testResult->getIsArterialPressureDrugsConsumer(),
+            "physicalActivityMinutes"  => $testResult->getPhysicalActivityMinutes(),
+            "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
+            "isAddingExtraSalt" => $testResult->getIsAddingExtraSalt(),
+            "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
+            "bmi" => $testResult->getBmi(),
+            "score" => $testResult->getScore(),
+            "recommendations" => $recommendations,
+        ];
     }
 
 //    public function failureLoginAction(Request $request)

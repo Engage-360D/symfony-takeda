@@ -1,0 +1,15 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Мои рекомендации{% endblock %}
+
+{% block section %}
+<div id="TestResultList"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  takeda.render(takeda.TestResultList, 'TestResultList', {
+    testResults: {{ testResults | serialize | raw }}
+  });
+</script>
+{% endblock %}

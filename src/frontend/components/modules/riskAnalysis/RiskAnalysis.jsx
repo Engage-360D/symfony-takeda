@@ -13,9 +13,60 @@ var Range = require('../../form/Range');
 var NumberInput = require('../../form/NumberInput');
 var TestResult = require('./TestResult');
 var LargeSpin = require('engage-360d-spin/components/LargeSpin');
+var validator = require('vstack-validator');
+var createForm = require('vstack-form').createForm;
+var FormMixin = require('vstack-form').FormMixin;
+var moment = require('moment');
+
+var constraints = validator.constraints;
+
+var riskAnalysisValidator = constraints.object({
+  mapping: {
+    birthday: validator.createConstraint({
+      name: 'isMoment',
+      validator: function (value) {
+        return {valid: moment.isMoment(value), message: 'Invalid moment'};
+      }
+    })(),
+    growth: constraints.all({
+      validators: [
+        constraints.notEmpty(),
+        constraints.isNumber(),
+        validator.createConstraint({
+          name: 'limits',
+          validator: function (value) {
+            return {valid: value >= 30 && value <= 300, message: 'Invalid moment'};
+          }
+        })()
+      ]
+    }),
+    weight: constraints.all({
+      validators: [
+        constraints.notEmpty(),
+        constraints.isNumber(),
+        validator.createConstraint({
+          name: 'limits',
+          validator: function (value) {
+            return {valid: value >= 30 && value <= 700, message: 'Invalid moment'};
+          }
+        })()
+      ]
+    })
+  }
+});
+
+var riskAnalysisForm = createForm(riskAnalysisValidator);
 
 var RiskAnalysis = React.createClass({
-  mixins: [require('linked-state-mixin')],
+  mixins: [require('linked-state-mixin'), FormMixin],
+
+  getInitialFormState: function() {
+    return riskAnalysisForm({
+      birthday: null,
+      growth: null,
+      weight: null
+    }).markBlured('birthday');
+  },
 
   getInitialState: function() {
     return {
@@ -26,9 +77,6 @@ var RiskAnalysis = React.createClass({
       error: false,
       user: null,
       sex: 'male',
-      birthday: null,
-      growth: null,
-      weight: null,
       isSmoker: false,
       cholesterolLevel: 4,
       isCholesterolDrugsConsumer: false,
@@ -57,6 +105,12 @@ var RiskAnalysis = React.createClass({
   },
 
   openSecondStep: function() {
+    if (this.isFormInvalid()) {
+      return this.setState({
+        formState: this.state.formState.markAll()
+      });
+    }
+
     if (this.props.user) {
       this.openResultsStep();
     } else {
@@ -73,9 +127,9 @@ var RiskAnalysis = React.createClass({
 
     var data = {
       sex: this.state.sex,
-      birthday: this.state.birthday.format(),
-      growth: this.state.growth,
-      weight: this.state.weight,
+      birthday: this.state.formState.data.birthday.format(),
+      growth: this.state.formState.data.growth,
+      weight: this.state.formState.data.weight,
       isSmoker: this.state.isSmoker,
       cholesterolLevel: this.state.cholesterolLevel,
       isCholesterolDrugsConsumer: this.state.cholesterolLevel >= 5 ? this.state.isCholesterolDrugsConsumer : null,
@@ -95,14 +149,14 @@ var RiskAnalysis = React.createClass({
         return this.setState({error: err, fetching: false});
       }
 
-      this.setState({results: results, fetching: false});
+      this.setState({results: results.data, fetching: false});
     }.bind(this));
   },
 
   renderResultsStep: function() {
     return (
       <div>
-        <TestResult results={this.state.results} />
+        <TestResult testResult={this.state.results} />
       </div>
     );
   },
@@ -145,21 +199,21 @@ var RiskAnalysis = React.createClass({
                   <RadioGroup valueLink={this.linkState('sex')}
                               options={[{value: 'male', text: 'муж.'}, {value: 'female', text: 'жен.'}]} />
                 </div>
-                <div className="field">
+                <div className={"field " + (this.isFieldErrorVisible('birthday') && 'is-error' || '')}>
                   <div className="field__label">Возраст</div>
-                  <DateInput valueLink={this.linkState('birthday')} />
+                  <DateInput valueLink={this.linkForm('birthday')} />
                 </div>
-                <div className="field">
+                <div className={"field " + (this.isFieldErrorVisible('growth') && 'is-error' || '')}>
                   <div className="field__label">Рост</div>
                   <div className="field__in">
-                    <NumberInput valueLink={this.linkState('growth')} />
+                    <NumberInput valueLink={this.linkForm('growth')} />
                     <div className="field__info">см</div>
                   </div>
                 </div>
-                <div className="field">
+                <div className={"field " + (this.isFieldErrorVisible('weight') && 'is-error' || '')}>
                   <div className="field__label">Вес<div className="field__error-text">Минимальный вес - 30 кг</div></div>
                   <div className="field__in">
-                    <NumberInput valueLink={this.linkState('weight')} />
+                    <NumberInput valueLink={this.linkForm('weight')} />
                     <div className="field__info">кг</div>
                   </div>
                 </div>
