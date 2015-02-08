@@ -27,6 +27,7 @@ class AccountController extends TakedaJsonApiController
     const URI_USER_PUT = '/api/v1/schemas/users/put.json';
     const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
     const URI_USER_RESET_PASSWORD_POST = '/api/v1/schemas/users/reset-password/post.json';
+    const URI_TEST_RESULTS_SEND_EMAIL_POST = '/api/v1/schemas/test-results/send-email/post.json';
 
     /**
      * @Route("/account", name="api_get_account", methods="GET")
@@ -242,6 +243,22 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_TEST_RESULTS_SEND_EMAIL_POST
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
             return $elem->getId() == $id;
         })->first();
@@ -264,7 +281,7 @@ class AccountController extends TakedaJsonApiController
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom($fromEmail)
-            ->setTo($user->getEmail())
+            ->setTo($data->data->email)
             ->setBody($body);
 
         // With spooling turned off Swift_SwiftException will be caught

@@ -4,7 +4,7 @@
   "type": "object",
 
   "properties": {
-    "sendEmail": {
+    "data": {
       "type": "object",
 
       "properties": {
@@ -23,6 +23,6 @@
   },
 
   "required": [
-    "sendEmail"
+    "data"
   ]
 }
