@@ -119,7 +119,7 @@ var SignUpForm = React.createClass({
       } else if (this.props.onAuthDone) {
         this.props.onAuthDone();
       }
-    })
+    }.bind(this))
   },
 
   getSpecializationExperienceYearsOptions: function() {

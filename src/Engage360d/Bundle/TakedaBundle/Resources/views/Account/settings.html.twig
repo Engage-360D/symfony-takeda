@@ -1,6 +1,6 @@
 {% extends "Engage360dTakedaBundle::layout.html.twig" %}
 
-{% block title %}Мои рекомендации{% endblock %}
+{% block title %}Мои данные{% endblock %}
 
 {% block section %}
 <div class="container">
@@ -18,20 +18,20 @@
     </div>
   </div>
   <div class="tabs">
-    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button is-active">Мои рекомендации</a>
+    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button">Мои рекомендации</a>
     <a class="button">Мой таймлайн</a>
     <a class="button">Мои отчеты</a>
-    <a href="{{ path('engage360d_takeda_account_settings') }}" class="button">Мои данные</a>
+    <a href="{{ path('engage360d_takeda_account_settings') }}" class="button is-active">Мои данные</a>
   </div>
-  <div id="TestResultList"></div>
+  <div id="Settings"></div>
 </div>
-
 {% endblock %}
 
 {% block scripts %}
 <script>
-  takeda.render(takeda.TestResultList, 'TestResultList', {
-    testResults: {{ testResults | serialize | raw }}
+  takeda.render(takeda.Settings, 'Settings', {
+    user: {{ user | serialize | raw }},
+    regions: {{ regions | serialize | raw }}
   });
 </script>
 {% endblock %}

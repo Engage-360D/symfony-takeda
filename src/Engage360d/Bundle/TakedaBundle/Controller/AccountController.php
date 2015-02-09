@@ -21,8 +21,20 @@ class AccountController extends Controller
         $user = $this->getUser();
         $testResults = array_map([$this, 'getTestResultArray'], $user->getTestResults()->toArray());
 
+        if (count($testResults) === 0) {
+          return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
+        }
+
         return $this->render('Engage360dTakedaBundle:Account:recommendations.html.twig', [
             'testResults' => $testResults,
+        ]);
+    }
+
+    public function settingsAction()
+    {
+        return $this->render('Engage360dTakedaBundle:Account:settings.html.twig', [
+            'user' => $this->getUserArray($this->getUser()),
+            'regions' => $this->getDoctrine()->getRepository('Engage360dTakedaBundle:Region\Region')->findAll()
         ]);
     }
 
@@ -32,6 +44,31 @@ class AccountController extends Controller
         $request->getSession()->invalidate();
 
         return $this->redirect($this->generateUrl('engage360d_takeda_main_mainpage'));
+    }
+
+    // TODO: refactor me please
+    protected function getUserArray($user)
+    {
+        return [
+            "id" => (String) $user->getId(),
+            "email" => $user->getEmail(),
+            "firstname" => $user->getFirstname(),
+            "lastname" => $user->getLastname(),
+            "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
+            "vkontakteId" => $user->getVkontakteId(),
+            "facebookId" => $user->getFacebookId(),
+            "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
+            "specializationGraduationDate" => $user->getSpecializationGraduationDate() ? $user->getSpecializationGraduationDate()->format(\DateTime::ISO8601) : null,
+            "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
+            "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
+            "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
+            "specializationName" => $user->getSpecializationName(),
+            "roles" => $user->getRoles(),
+            "isEnabled" => $user->getEnabled(),
+            "links" => [
+                "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
+            ],
+        ];
     }
 
     // TODO: refactor me please

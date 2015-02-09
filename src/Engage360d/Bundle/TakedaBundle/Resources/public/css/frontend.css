@@ -866,3 +866,9 @@ input::-webkit-inner-spin-button {
   height: 26px !important;
   margin-right: 15px;
 }
+
+.tabs a.button {
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 38px;
+}

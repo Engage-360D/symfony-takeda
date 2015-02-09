@@ -119,7 +119,8 @@ var DateInput = React.createClass({
       moment(value).add(1, 'year'),
     ];
 
-    var setter = function(value) {
+    var setter = function(value, event) {
+      event.preventDefault();
       this.setState({value: value});
     }.bind(this);
 

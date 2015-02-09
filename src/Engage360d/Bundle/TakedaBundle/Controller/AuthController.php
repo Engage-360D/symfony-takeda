@@ -12,7 +12,7 @@ class AuthController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
 
         if ($user instanceof UserInterface) {
-            return $this->redirect($this->generateUrl('engage360d_takeda_main_mainpage'));
+            return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));
         }
 
         $regions = $this->getDoctrine()->getRepository('Engage360dTakedaBundle:Region\Region')->findAll();

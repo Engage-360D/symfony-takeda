@@ -88,6 +88,25 @@
             {"type": "string"},
             {"type": "null"}
           ]
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "region": {
+              "oneOf": [
+                {"type": "string"},
+                {"type": "null"}
+              ]
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "region"
+          ]
         }
       },
 

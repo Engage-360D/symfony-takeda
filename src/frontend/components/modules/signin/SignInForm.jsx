@@ -6,6 +6,7 @@ var React = require('react');
 var apiRequest = require('../../../utilities/apiRequest');
 var signInForm = require('./signInForm.js');
 var FormMixin = require('vstack-form').FormMixin;
+var social = require('../../../utilities/social');
 
 var SignInForm = React.createClass({
   mixins: [FormMixin],
@@ -87,18 +88,16 @@ var SignInForm = React.createClass({
 
   openVk: function(event) {
     event.preventDefault();
-    window.authDone = function() {
+    social.openVk(function() {
       this.props.onAuthDone();
-    }.bind(this);
-    window.open('/oauth/vkontakte');
+    }.bind(this));
   },
 
   openFb: function(event) {
     event.preventDefault();
-    window.authDone = function() {
+    social.openFb(function() {
       this.props.onAuthDone();
-    }.bind(this);
-    window.open('/oauth/facebook');
+    }.bind(this));
   },
 
   renderSocial: function() {

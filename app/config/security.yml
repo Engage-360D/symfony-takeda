@@ -41,7 +41,7 @@ security:
                     service: engage360d_security.oauth.provider
 
     access_control:
-        - { path: ^/account/recommendations, roles: [ ROLE_USER ], methods: [GET] }
+        - { path: ^/account, roles: [ ROLE_USER ] }
 
 #        # API
 

@@ -12,17 +12,7 @@ var TestResultList = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
-        <div className="head">
-          <div className="head__right">
-            <div className="head__city">
-              <a href="#"><i className="icon icon-marker"></i><span>Москва</span></a>
-            </div>
-          </div>
-          <div className="head__left">
-            <div className="h">Мои рекомендации</div>
-          </div>
-        </div>
+      <div>
         {this.props.testResults.map(this.renderTestResult)}
       </div>
     );

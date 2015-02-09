@@ -42,6 +42,11 @@ engage360d_takeda_account_recommendations:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Account:recommendations }
 
+engage360d_takeda_account_settings:
+    path: /account/settings
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Account:settings }
+
 engage360d_takeda_press_center:
     path: /press-center
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:index }
