@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
+use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
 use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 
@@ -102,7 +103,7 @@ class AccountController extends TakedaJsonApiController
         }
 
         $oldEmail = $user->getEmail();
-        $user = $this->populateEntity($user, $data);
+        $user = $this->populateEntity($user, $data, ["region" => Region::REPOSITORY]);
 
         $em = $this->get('doctrine')->getManager();
 
