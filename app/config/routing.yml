@@ -30,7 +30,7 @@ facebook_login:
 vkontakte_login:
     pattern: /sign-in/vkontakte
 
-engage360d_takeda_logout:
+engage360d_takeda_sign_out:
     pattern: /sign-out
     defaults:  { _controller: Engage360dTakedaBundle:Account:logout }
 
