@@ -57,7 +57,7 @@ class JsonApiController extends Controller
 
         foreach ($links as $property => $value) {
             if (!isset($mappings[$property])) {
-                throw new NotFoundHttpException(sprintf("Link with name '%' not found", $property));
+                throw new NotFoundHttpException(sprintf("Link with name '%s' not found", $property));
             }
 
             $mappedEntity = $this->get('doctrine')
