@@ -20,8 +20,10 @@ use JsonSchema\Validator;
 use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
+use Engage360d\Bundle\TakedaBundle\Entity\Pill;
 use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
 use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
+use Engage360d\Bundle\TakedaBundle\Utils\Timeline;
 
 class AccountController extends TakedaJsonApiController
 {
@@ -29,6 +31,9 @@ class AccountController extends TakedaJsonApiController
     const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
     const URI_USER_RESET_PASSWORD_POST = '/api/v1/schemas/users/reset-password/post.json';
     const URI_TEST_RESULTS_SEND_EMAIL_POST = '/api/v1/schemas/test-results/send-email/post.json';
+    const URI_PILLS_POST = '/api/v1/schemas/pills/post.json';
+    const URI_PILLS_PUT = '/api/v1/schemas/pills/put.json';
+    const URI_TIMELINE_TASKS_PUT = '/api/v1/schemas/timelines/tasks/put.json';
 
     /**
      * @Route("/account", name="api_get_account", methods="GET")
@@ -371,5 +376,198 @@ class AccountController extends TakedaJsonApiController
         }
 
         return new JsonResponse(["data" => []], 200);
+    }
+
+    /**
+     * @Route("/account/pills", name="api_get_account_pills", methods="GET")
+     */
+    public function getAccountPillsAction(Request $request)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+        $pills = $user->getPills()->toArray();
+
+        $response = [
+            "data" => array_map([$this, 'getPillArray'], $pills)
+        ];
+
+        return new JsonResponse($response, 200);
+    }
+
+    /**
+     * @Route("/account/pills", name="api_post_account_pills", methods="POST")
+     */
+    public function postAccountPillsAction(Request $request)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_PILLS_POST
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        $pill = new Pill;
+        $this->populateEntity($pill, $data, $mappings = ["user" => User::REPOSITORY]);
+
+        $em = $this->get('doctrine')->getManager();
+        $em->persist($pill);
+        $em->flush();
+
+        $response = [
+            "data" => $this->getPillArray($pill)
+        ];
+
+        return new JsonResponse($response, 201);
+    }
+
+    /**
+     * @Route("/account/pills/{id}", name="api_put_account_pills", methods="PUT")
+     */
+    public function putAccountPillsAction(Request $request, $id)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_PILLS_PUT
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+        foreach ($user->getPills() as $p) {
+            if ($p->getId() == $id) {
+                $pill = $p;
+            }
+        }
+
+        if (!isset($pill)) {
+            return $this->createNotFoundException();
+        }
+
+        $this->populateEntity($pill, $data, $mappings = ["user" => User::REPOSITORY]);
+
+        $em = $this->get('doctrine')->getManager();
+        $em->persist($pill);
+        $em->flush();
+
+        $response = [
+            "data" => $this->getPillArray($pill)
+        ];
+
+        return new JsonResponse($response, 200);
+    }
+
+    /**
+     * @Route("/account/pills/{id}", name="api_delete_account_pills", methods="DELETE")
+     */
+    public function deleteAccountPillAction(Request $request, $id)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $pill = null;
+        foreach ($user->getPills()->toArray() as $p) {
+            if ($p->getId() == $id) {
+                $pill = $p;
+            }
+        }
+
+        if (!$pill) {
+            throw $this->createNotFoundException();
+        }
+
+        $user->removePill($pill);
+
+        $em = $this->get('doctrine')->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return new JsonResponse(null, 200);
+    }
+
+    /**
+     * @Route("/account/timeline", name="api_get_account_timeline", methods="GET")
+     */
+    public function getAccountTimelineAction(Request $request)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $timelineManager = $this->get('engage360d_takeda.timeline_manager');
+        $timelineManager->setUser($user);
+
+        $timeline = $timelineManager->getTimeline();
+        unset($timeline["_id"]);
+
+        return new JsonResponse($timeline, 200);
+    }
+
+    /**
+     * @Route("/account/timeline/tasks/{id}", name="api_put_account_timeline", methods="PUT")
+     */
+    public function putAccountTimelineTaskAction(Request $request, $id)
+    {
+        if (!$this->isContentTypeValid($request)) {
+            return $this->getInvalidContentTypeResponse();
+        }
+
+        $json = $request->getContent();
+        $data = json_decode($json);
+
+        $retriever = new UriRetriever();
+        $schema = $retriever->retrieve(
+            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
+            self::URI_TIMELINE_TASKS_PUT
+        );
+
+        $validator = new Validator();
+        $validator->check($data, $schema);
+
+        if (!$validator->isValid()) {
+            return $this->getErrorResponse($validator->getErrors(), 400);
+        }
+
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $timelineManager = $this->get('engage360d_takeda.timeline_manager');
+        $timelineManager->setUser($user);
+
+        $task = $timelineManager->updateTask($id, $data);
+
+        return new JsonResponse(["data" => $task], 200);
     }
 }

@@ -274,7 +274,56 @@ traits:
             application/json:
               schema: !include v1/schemas/test-results/one.json
               example: !include v1/examples/test-results/one.json
-
+  /pills:
+    get:
+      is: [ secured ]
+      description: |
+        Получение списка таблеток, добавленных пользователем.
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/pills/list.json
+              example: !include v1/examples/pills/list.json
+    post:
+      is: [ secured ]
+      description: |
+        Создание новой таблетки.
+      body:
+        application/json:
+          schema: !include v1/schemas/pills/post.json
+          example: !include v1/examples/pills/post.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/pills/one.json
+              example: !include v1/examples/pills/one.json
+    /{id}:
+      delete:
+        is: [ secured, admin-only ]
+        responses:
+          200:
+  /timeline:
+    get:
+      is: [ secured ]
+      description: |
+        Получение таймлайна пользователя.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/timelines/one.json
+              example: !include v1/examples/timelines/one.json
+    /task/{id}:
+      put:
+        is: [ secured ]
+        description: |
+          Изменение таска.
+        body:
+          application/json:
+            schema: !include v1/schemas/timelines/tasks/put.json
+            example: !include v1/examples/timelines/tasks/put.json
 
 /test-results:
   description: only for Web

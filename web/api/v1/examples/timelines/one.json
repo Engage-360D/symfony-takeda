@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "date": "1970-01-01",
+      "links": {
+        "tasks": ["1970010101", "1970010102", "1970010103", "1970010104"]
+      }
+    }
+  ],
+  "linked": {
+    "tasks": [
+      {
+        "id": "1970010101",
+        "type": "exercise",
+        "exerciseMins": 31,
+        "isCompleted": true
+      },
+      {
+        "id": "1970010102",
+        "type": "pill",
+        "isCompleted": null,
+        "links": {
+          "pill": "1"
+        }
+      },
+      {
+        "id": "1970010103",
+        "type": "pill",
+        "isCompleted": false,
+        "links": {
+          "pill": "2"
+        }
+      },
+      {
+        "id": "1970010104",
+        "type": "diet",
+        "isCompleted": null
+      }
+    ]
+  }
+}

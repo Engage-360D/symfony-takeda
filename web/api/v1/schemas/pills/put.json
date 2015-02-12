@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "type": "object",
+
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+
+        "quantity": {
+          "type": "number"
+        },
+
+        "repeat": {
+          "enum": ["daily", "everyTwoDays"]
+        },
+
+        "time": {
+          "type": "string",
+          "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+        },
+
+        "sinceDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "tillDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "name",
+        "quantity",
+        "repeat",
+        "time",
+        "sinceDate",
+        "tillDate"
+      ]
+    }
+  },
+
+  "required": [
+    "data"
+  ]
+}

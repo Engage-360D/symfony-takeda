@@ -95,3 +95,9 @@ services:
             - { name: doctrine.event_listener, event: postPersist }
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: postLoad }
+
+    # Other
+
+    engage360d_takeda.timeline_manager:
+        class: Engage360d\Bundle\TakedaBundle\Services\TimelineManager
+        arguments: [ @service_container ]

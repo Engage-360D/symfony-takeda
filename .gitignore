@@ -20,3 +20,4 @@ app/var/*
 *~
 .idea/
 auth.json
+/mongo

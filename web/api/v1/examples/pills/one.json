@@ -1,0 +1,21 @@
+{
+  "links": {
+    "pills.user": {
+      "href": "https://cardiomagnyl.ru/api/v1/users/{pills.user}",
+      "type": "users"
+    }
+  },
+
+  "data": {
+    "id": "1",
+    "name": "Кардиомагнил",
+    "quantity": 2,
+    "time": "00:00:00",
+    "repeat": "daily",
+    "sinceDate": "1970-01-01T00:00:00+0000",
+    "tillDate": "1970-01-01T00:00:00+0000",
+    "links": {
+      "user": "1"
+    }
+  }
+}

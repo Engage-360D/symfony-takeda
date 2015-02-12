@@ -24,6 +24,7 @@ use Engage360d\Bundle\SecurityBundle\Entity\User\User as BaseUser;
 class User extends BaseUser
 {
     const REPOSITORY = 'Engage360dTakedaBundle:User\User';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -117,6 +118,18 @@ class User extends BaseUser
     protected $vkontakteAccessToken;
 
     /**
+     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\Pill", mappedBy="user", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    protected $pills;
+
+    /**
+     * @var string $timelineId
+     *
+     * @ORM\Column(name="timeline_id", type="string", nullable=true)
+     */
+    protected $timelineId;
+
+    /**
      * @var datetime $createdAt
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -132,6 +145,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->testResults = new ArrayCollection();
+        $this->pills = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
 
@@ -511,5 +525,61 @@ class User extends BaseUser
     public function getDeletedAt()
     {
         return $this->deletedAt;
+    }
+
+    /**
+     * Add pills
+     *
+     * @param \Engage360d\Bundle\TakedaBundle\Entity\Pill $pills
+     * @return User
+     */
+    public function addPill(\Engage360d\Bundle\TakedaBundle\Entity\Pill $pills)
+    {
+        $this->pills[] = $pills;
+
+        return $this;
+    }
+
+    /**
+     * Remove pills
+     *
+     * @param \Engage360d\Bundle\TakedaBundle\Entity\Pill $pills
+     */
+    public function removePill(\Engage360d\Bundle\TakedaBundle\Entity\Pill $pills)
+    {
+        $this->pills->removeElement($pills);
+    }
+
+    /**
+     * Get pills
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPills()
+    {
+        return $this->pills;
+    }
+
+    /**
+     * Set timelineId
+     *
+     * @param string $timelineId
+     * @return User
+     */
+    public function setTimelineId($timelineId)
+    {
+        $this->timelineId = $timelineId;
+
+        return $this;
+    }
+
+    /**
+     * Get timelineId
+     *
+     * @return string 
+     */
+    public function getTimelineId()
+    {
+        return $this->timelineId;
     }
 }

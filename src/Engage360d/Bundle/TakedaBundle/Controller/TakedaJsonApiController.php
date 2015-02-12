@@ -201,4 +201,20 @@ class TakedaJsonApiController extends JsonApiController
             "description" => $expert->getDescription(),
         ];
     }
+
+    protected function getPillArray($pill)
+    {
+        return [
+            "id" => (string) $pill->getId(),
+            "name" => $pill->getName(),
+            "quantity" => $pill->getQuantity(),
+            "repeat" => $pill->getRepeat(),
+            "time" => $pill->getTime()->format('H:i:s'),
+            "sinceDate" => $pill->getSinceDate()->format(\DateTime::ISO8601),
+            "tillDate" => $pill->getTillDate()->format(\DateTime::ISO8601),
+            "links" => [
+                "user" => (string) $pill->getUser()->getId()
+            ]
+        ];
+    }
 }

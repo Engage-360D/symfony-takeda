@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "$ref": "#/definitions/pill"
+    }
+  },
+
+  "required": [
+    "data"
+  ],
+
+  "definitions": {
+    "pill": {
+      "type": "object",
+
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+
+        "name": {
+          "type": "string"
+        },
+
+        "quantity": {
+          "type": "number"
+        },
+
+        "time": {
+          "type": "string",
+          "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+        },
+
+        "repeat": {
+          "enum": ["daily", "everyTwoDays"]
+        },
+
+        "sinceDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "tillDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+
+        "links": {
+          "type": "object",
+
+          "properties": {
+            "user": {
+              "type": "string"
+            }
+          },
+
+          "additionalProperties": false,
+
+          "required": [
+            "user"
+          ]
+        }
+      },
+
+      "additionalProperties": false,
+
+      "required": [
+        "id",
+        "name",
+        "quantity",
+        "time",
+        "repeat",
+        "sinceDate",
+        "tillDate",
+        "links"
+      ]
+    }
+  }
+}

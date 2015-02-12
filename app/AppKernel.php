@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             // doctrine bundles
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
 
             // jsm bundles
             new JMS\AopBundle\JMSAopBundle(),

@@ -67,6 +67,16 @@ doctrine:
             datetime_functions:
                 date: Engage360d\Bundle\TakedaBundle\DQL\DateFunction
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: mongodb://127.0.0.1:27017
+            options: {}
+    default_database: "%database_name%_%kernel.environment%"
+    document_managers:
+        default:
+            auto_mapping: true
+
 stof_doctrine_extensions:
     orm:
         default:

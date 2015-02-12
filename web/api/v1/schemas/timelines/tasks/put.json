@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "type": "object",
+
+      "properties": {
+        "isCompleted": {
+          "type": "boolean"
+        },
+
+        "exerciseMins": {
+          "type": "integer"
+        }
+      },
+
+      "additionalProperties": false,
+      "minProperties": 1,
+      "maxProperties": 1,
+
+      "required": []
+    }
+  },
+
+  "required": [
+    "data"
+  ]
+}
