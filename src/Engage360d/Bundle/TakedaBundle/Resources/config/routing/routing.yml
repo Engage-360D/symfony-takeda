@@ -37,6 +37,11 @@ engage360d_takeda_risk_analysis:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:RiskAnalysis:index }
 
+engage360d_takeda_institutions:
+    path: /institutions
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Institutions:institutions }
+
 engage360d_takeda_account_recommendations:
     path: /account/recommendations
     methods: [GET]

@@ -119,7 +119,7 @@ var SignInForm = React.createClass({
       <form className="fieldset" onSubmit={this.signIn}>
         <div className={"field field_rows " + (this.isFieldErrorVisible('email') && 'is-error' || '')}>
           <div className="field__in">
-            <input className="input" type="text" placeholder="Имя"
+            <input className="input" type="text" placeholder="Email"
                    valueLink={this.linkForm('email')}
                    onBlur={this.formBlurMaker('email')} />
             {this.isFieldErrorVisible('email') && <i className="icon icon-attention-fill"></i>}

@@ -11,6 +11,7 @@
     "react": "~0.12",
     "jquery": "~1.11",
     "moment": "~2.9",
+    "async": "~0.9",
     "vstack-validator": "~0.2",
     "attreactive-mixins": "~0.1",
     "engage-360d-spin": "git+https://github.com/attreactive/engage-360d-spin.git",
