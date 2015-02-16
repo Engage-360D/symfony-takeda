@@ -11,5 +11,6 @@ module.exports = {
   NewsList: require('./components/modules/pressCenter/NewsList'),
   TestResultList: require('./components/modules/riskAnalysis/TestResultList'),
   Settings: require('./components/modules/account/Settings'),
-  Timeline: require('./components/modules/account/Timeline')
+  Timeline: require('./components/modules/account/Timeline'),
+  Institutions: require('./components/modules/intitutions/Institutions')
 };

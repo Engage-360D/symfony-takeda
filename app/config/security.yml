@@ -64,6 +64,7 @@ security:
         - { path: ^/api/v1/opinions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
         - { path: ^/api/v1/experts, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
+        - { path: ^/api/v1/institutions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 #
 #
 #        - { path: ^/api/v1/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }

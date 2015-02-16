@@ -10,6 +10,11 @@ function apiRequest(method, url, data, callback) {
     data = null;
   }
 
+  if (method === 'GET') {
+    url += '?' + $.param(data);
+    data = null;
+  }
+
   return $.ajax({
     data: data ? JSON.stringify({
       data: data

@@ -1,0 +1,18 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Поиск учереждений{% endblock %}
+
+{% block section %}
+<div id="Institutions"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script>
+  takeda.render(takeda.Institutions, 'Institutions', {
+    parsedTowns: {{ parsedTowns | serialize | raw }},
+    specializations: {{ specializations | serialize | raw }},
+    results: {{ results | serialize | raw }}
+  });
+</script>
+{% endblock %}
