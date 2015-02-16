@@ -49,7 +49,7 @@ engage360d_takeda_account_recommendations:
 
 engage360d_takeda_account_timeline:
     path: /account/timeline
-    defaults: { _controller: Engage360dTakedaBundle:Timeline:index }
+    defaults: { _controller: Engage360dTakedaBundle:Account:timeline }
 
 engage360d_takeda_account_settings:
     path: /account/settings
