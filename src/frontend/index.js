@@ -10,5 +10,6 @@ module.exports = {
   OpinionList: require('./components/modules/pressCenter/OpinionList'),
   NewsList: require('./components/modules/pressCenter/NewsList'),
   TestResultList: require('./components/modules/riskAnalysis/TestResultList'),
-  Settings: require('./components/modules/settings/Settings')
+  Settings: require('./components/modules/account/Settings'),
+  Timeline: require('./components/modules/account/Timeline')
 };

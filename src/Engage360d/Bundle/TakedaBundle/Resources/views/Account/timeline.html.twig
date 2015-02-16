@@ -1,0 +1,32 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Мой таймлайн{% endblock %}
+
+{% block section %}
+    <div class="container">
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+                </div>
+                <div class="head__out">
+                    <a href="/sign-out">Выход</a>
+                </div>
+            </div>
+            <div class="head__left">
+                <div class="h">{{app.user.fullName}}</div>
+            </div>
+        </div>
+        {{ include('Engage360dTakedaBundle:Account:tabs.html.twig') }}
+        <div id="Timeline"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        takeda.render(takeda.Timeline, 'Timeline', {
+            timeline: {{ timeline | raw }},
+            pills: {{ pills | raw }}
+        });
+    </script>
+{% endblock %}

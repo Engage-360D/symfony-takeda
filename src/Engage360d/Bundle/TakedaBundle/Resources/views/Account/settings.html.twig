@@ -17,12 +17,7 @@
       <div class="h">{{app.user.fullName}}</div>
     </div>
   </div>
-  <div class="tabs">
-    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button">Мои рекомендации</a>
-    <a class="button">Мой таймлайн</a>
-    <a class="button">Мои отчеты</a>
-    <a href="{{ path('engage360d_takeda_account_settings') }}" class="button is-active">Мои данные</a>
-  </div>
+  {{ include('Engage360dTakedaBundle:Account:tabs.html.twig') }}
   <div id="Settings"></div>
 </div>
 {% endblock %}
