@@ -16,9 +16,11 @@ class RiskAnalysisController extends Controller
         }
 
         // Prohibit a user who had a heart attack or stroke from taking another test.
-        $lastTestResult = $user->getTestResults()->last();
-        if ($lastTestResult && $lastTestResult->getHadHeartAttackOrStroke()) {
+        if ($user) {
+          $lastTestResult = $user->getTestResults()->last();
+          if ($lastTestResult && $lastTestResult->getHadHeartAttackOrStroke()) {
             return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));
+          }
         }
 
         $regions = $this->getDoctrine()->getRepository('Engage360dTakedaBundle:Region\Region')->findAll();

@@ -1,0 +1,88 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Поиск - {{ searchQuery }}{% endblock %}
+
+{% block section %}
+<!-- container -->
+<div class="container">
+  <!-- head -->
+  <div class="head">
+    <div class="head__right">
+      <div class="head__city">
+        <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+      </div>
+    </div>
+    <div class="head__left">
+      <!-- h -->
+      <div class="h">Поиск</div>
+    </div>
+  </div>
+  <!-- searcher -->
+  <div class="searcher">
+    <form>
+      <!-- field -->
+      <div class="field field_wide">
+        <div class="field__in">
+          <input class="input input_big" type="text" name="query" value="{{ searchQuery }}" />
+        </div>
+      </div>
+    </form>
+    <div class="searcher__result">
+      {#
+      <div class="searcher__result-item">
+        <!-- h -->
+        <div class="h h_2">Препарат</div>
+        <div class="searcher__result-preparation"><a href="#">...помогает в лечении сердечно-сосудистых заболеваний...</a></div>
+      </div>
+      #}
+      {% if result.institution|length > 0 %}
+      <div class="searcher__result-item">
+        <!-- h -->
+        <div class="h h_2">Мнения специалистов</div>
+        {% for item in result.institution %}
+        <div class="searcher__result-institution">
+          <a href="#">{{ item.entity.name }}</a>
+          <span>{{ item.entity.normalizedAddress }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="searcher__result-item">
+        <!-- h -->
+        <div class="h h_2">Анализ рисков</div>
+        <form method="get" action="{{ path('engage360d_takeda_risk_analysis') }}">
+          <div class="searcher__result-analiz">
+            <!-- field -->
+            <div class="field field_no-wide field_radio-row">
+              <div class="field__label">Был ли у вас инфаркт/инсульт?</div>
+              <div class="field__in">
+                <label class="field__radio"><input type="radio" name="hadHeartAttackOrStroke" value="1"><span>Да</span></label>
+                <label class="field__radio"><input type="radio" name="hadHeartAttackOrStroke" value="0"><span>Нет</span></label>
+              </div>
+            </div>
+            <button class="button">Пройти тест</button>
+          </div>
+        </form>
+      </div>
+      {% if result.news|length > 0 %}
+      <div class="searcher__result-item">
+        <!-- h -->
+        <div class="h h_2">Новости</div>
+        {% for item in result.news %}
+        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: item.type, id:item.id}) }}">{{ item.entity.title }}</a></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if result.opinion|length > 0 %}
+      <div class="searcher__result-item">
+        <!-- h -->
+        <div class="h h_2">Мнения специалистов</div>
+        {% for item in result.opinion %}
+        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: item.type, id:item.id}) }}">{{ item.entity.title }}</a></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

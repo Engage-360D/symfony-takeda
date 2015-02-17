@@ -4,6 +4,7 @@ namespace Engage360d\Bundle\TakedaBundle\Entity\PressCenter;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity
@@ -28,11 +29,13 @@ class Article
 
     /**
      * @ORM\Column(type="string")
+     * @Serializer\Groups({"elastica"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Serializer\Groups({"elastica"})
      */
     protected $content;
 
@@ -66,7 +69,7 @@ class Article
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -89,7 +92,7 @@ class Article
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -112,7 +115,7 @@ class Article
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -163,7 +166,7 @@ class Article
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
@@ -188,7 +191,7 @@ class Article
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -211,7 +214,7 @@ class Article
     /**
      * Get viewsCount
      *
-     * @return integer 
+     * @return integer
      */
     public function getViewsCount()
     {
