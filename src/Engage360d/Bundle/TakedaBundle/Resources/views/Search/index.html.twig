@@ -69,7 +69,7 @@
         <!-- h -->
         <div class="h h_2">Новости</div>
         {% for item in result.news %}
-        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: item.type, id:item.id}) }}">{{ item.entity.title }}</a></div>
+        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: 'news', id:item.id}) }}">{{ item.entity.title }}</a></div>
         {% endfor %}
       </div>
       {% endif %}
@@ -78,7 +78,7 @@
         <!-- h -->
         <div class="h h_2">Мнения специалистов</div>
         {% for item in result.opinion %}
-        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: item.type, id:item.id}) }}">{{ item.entity.title }}</a></div>
+        <div class="searcher__result-publication">{{ item.entity.createdAt|date('d.m.Y') }}<span>|</span><a href="{{ path('engage360d_takeda_press_center_article', {articleType: 'opinions', id:item.id}) }}">{{ item.entity.title }}</a></div>
         {% endfor %}
       </div>
       {% endif %}
