@@ -286,8 +286,8 @@ class AccountController extends TakedaJsonApiController
         if (!$fromEmail) {
             throw new \RuntimeException("The mandatory parameter 'mailer_sender_email' is not set", 500);
         }
-        $body = $this->render(
-            'Engage360dTakedaBundle:Test:email__test_result.txt.twig',
+        $body = $this->renderView(
+            'Engage360dTakedaBundle:Test:email__test_result.html.twig',
             ['testResult' => $testResult]
         );
 
@@ -295,7 +295,7 @@ class AccountController extends TakedaJsonApiController
             ->setSubject($subject)
             ->setFrom($fromEmail)
             ->setTo($data->data->email)
-            ->setBody($body);
+            ->setBody($body, 'text/html');
 
         // With spooling turned off Swift_SwiftException will be caught
         // by FOSRestBundle Exception Handler and formatted by ExceptionWrapperHandler
