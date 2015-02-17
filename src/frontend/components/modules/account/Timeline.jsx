@@ -205,7 +205,7 @@ var Task = React.createClass({
 
   getInitialState: function () {
     return {
-      exerciseMins: 0,
+      exerciseMins: this.props.task.exerciseMins || 0,
       isCompleted: this.props.task.type === Task.TYPE_DIET ? null : false
     };
   },
