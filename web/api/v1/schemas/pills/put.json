@@ -13,7 +13,7 @@
         },
 
         "quantity": {
-          "type": "number"
+          "type": "integer"
         },
 
         "repeat": {

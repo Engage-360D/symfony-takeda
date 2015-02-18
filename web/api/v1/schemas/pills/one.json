@@ -27,7 +27,7 @@
         },
 
         "quantity": {
-          "type": "number"
+          "type": "integer"
         },
 
         "time": {
