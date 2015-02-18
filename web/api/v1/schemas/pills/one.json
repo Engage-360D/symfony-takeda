@@ -36,7 +36,7 @@
         },
 
         "repeat": {
-          "enum": ["daily", "everyTwoDays"]
+          "enum": ["DAILY", "EVERY_2_DAYS"]
         },
 
         "sinceDate": {

@@ -15,6 +15,9 @@ class Pill
 {
     const REPOSITORY = 'Engage360dTakedaBundle:Timeline\Pill';
 
+    const REPEAT_TYPE_DAILY        = 'DAILY';
+    const REPEAT_TYPE_EVERY_2_DAYS = 'EVERY_2_DAYS';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
