@@ -61,7 +61,15 @@ var Institutions = React.createClass({
       ymaps.geocode(address, {results: 1, json: true})
            .then(function(res) {
              var coords = res.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').map(Number).reverse();
-             this.map.geoObjects.add(new ymaps.Placemark(coords));
+             this.map.geoObjects.add(new ymaps.Placemark(coords, {}, {
+               iconLayout: 'default#image',
+               iconImageHref: '/img/icons/mapicon.png',
+               iconImageSize: [31, 40],
+               iconShape: {
+                 type: 'Rectangle',
+                 coordinates: [[0, 0], [31, 40]]
+               }
+             }));
              callback(null);
            }.bind(this), function(err) {
              callback(err);

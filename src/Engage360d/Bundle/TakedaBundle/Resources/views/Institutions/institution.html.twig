@@ -53,7 +53,15 @@
              zoom: 7
            });
 
-           map.geoObjects.add(new ymaps.Placemark(coords));
+           map.geoObjects.add(new ymaps.Placemark(coords, {}, {
+               iconLayout: 'default#image',
+               iconImageHref: '/img/icons/mapicon.png',
+               iconImageSize: [31, 40],
+               iconShape: {
+                 type: 'Rectangle',
+                 coordinates: [[0, 0], [31, 40]]
+               }
+             }));
          });
   }.bind(this));
 </script>
