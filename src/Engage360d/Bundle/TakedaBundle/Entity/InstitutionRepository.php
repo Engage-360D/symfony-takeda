@@ -9,10 +9,10 @@ class InstitutionRepository extends JsonApiRepository
     public function findParsedTowns()
     {
         $parsedTowns = $this->createQueryBuilder('i')
-            ->select('i.parsedTown')
-            ->distinct()
+            ->select('i.parsedTown, COUNT(i.parsedTown) as HIDDEN c')
             ->where('i.parsedTown != :empty')
-            ->orderBy('i.parsedTown')
+            ->groupBy('i.parsedTown')
+            ->orderBy('c', 'DESC')
             ->setParameter('empty', "")
             ->getQuery()
             ->getArrayResult();
