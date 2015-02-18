@@ -87,7 +87,7 @@ var RiskAnalysis = React.createClass({
       arterialPressure: 120,
       isArterialPressureDrugsConsumer: false,
       physicalActivityMinutes: 120,
-      hadHeartAttackOrStroke: false,
+      hadHeartAttackOrStroke: window.location.href.indexOf('hadHeartAttackOrStroke=1') >= 0,
       isAddingExtraSalt: false
     };
   },

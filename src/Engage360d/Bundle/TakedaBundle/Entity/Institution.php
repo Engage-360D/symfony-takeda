@@ -4,6 +4,7 @@ namespace Engage360d\Bundle\TakedaBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="InstitutionRepository")
@@ -25,6 +26,7 @@ class Institution
      * @var string $name
      *
      * @ORM\Column(type="string")
+     * @Serializer\Groups({"elastica"})
      */
     protected $name;
 
@@ -35,6 +37,7 @@ class Institution
 
     /**
      * @ORM\Column(type="string")
+     * @Serializer\Groups({"elastica"})
      */
     protected $address;
 
@@ -367,5 +370,21 @@ class Institution
     public function getParsedRegion()
     {
         return $this->parsedRegion;
+    }
+
+    public function getNormalizedAddress()
+    {
+        $parts = array(
+            $this->getParsedTown(),
+            $this->getParsedStreet(),
+            $this->getParsedHouse(),
+            $this->getParsedCorpus(),
+            $this->getParsedBuilding(),
+            $this->getParsedRegion(),
+        );
+
+        $parts = array_filter($parts, function ($part) { return strlen(trim($part)) > 0; });
+
+        return implode(', ', $parts);
     }
 }

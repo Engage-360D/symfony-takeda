@@ -158,12 +158,34 @@ fos_elastica:
         website:
             client: default
             types:
-                page:
+                news:
                     serializer:
-                        groups: [elastica, Default]
+                        groups: [elastica]
                     persistence:
                         driver: orm
-                        model: Melodia\PageBundle\Entity\Page
+                        model: Engage360d\Bundle\TakedaBundle\Entity\PressCenter\News
+                        provider: ~
+                        listener:
+                            insert: true
+                            update: true
+                            delete: true
+                institution:
+                    serializer:
+                        groups: [elastica]
+                    persistence:
+                        driver: orm
+                        model: Engage360d\Bundle\TakedaBundle\Entity\Institution
+                        provider: ~
+                        listener:
+                            insert: true
+                            update: true
+                            delete: true
+                opinion:
+                    serializer:
+                        groups: [elastica]
+                    persistence:
+                        driver: orm
+                        model: Engage360d\Bundle\TakedaBundle\Entity\PressCenter\Opinion
                         provider: ~
                         listener:
                             insert: true
