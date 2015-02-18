@@ -109,7 +109,7 @@ var Institutions = React.createClass({
 
     return (
       <div className="searcher__item" key={index}>
-        <a className="searcher__link" href="#">
+        <a className="searcher__link" href={"/institutions/" + item.id}>
           <div className="searcher__cell">
             <p><span>{item.name}</span></p>
             <p>{item.specialization}</p>

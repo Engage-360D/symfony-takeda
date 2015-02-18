@@ -37,39 +37,14 @@ class InstitutionsController extends Controller
             'specializations' => $specializations,
             'results' => $results,
         ));
-        // if (!$this->isContentTypeValid($request)) {
-        //     return $this->getInvalidContentTypeResponse();
-        // }
+    }
 
-        // $limit = $request->query->get("limit");
-        // $page = $request->query->get("page");
+    public function institutionAction($id)
+    {
+        $institution = $this->getDoctrine()->getRepository('Engage360dTakedaBundle:Institution')->findOneById($id);
 
-        // $repository = $this->get('doctrine')->getRepository(Institution::REPOSITORY);
-
-        // if ($page && $limit) {
-        //     $institutions = $repository->findSubset($page, $limit);
-        // } else {
-        //     $institutions = $repository->findSubset(1, 100);
-        // }
-
-        // $response = ["data" => []];
-        // foreach($institutions as $institution) {
-        //     $response["data"][] = [
-        //         "id" => (String) $institution->getId(),
-        //         "name" => $institution->getName(),
-        //         "specialization" => $institution->getSpecialization(),
-        //         "address" => $institution->getAddress(),
-        //         "googleAddress" => $institution->getGoogleAddress(),
-        //         "region" => $institution->getRegion(),
-        //         "parsedTown" => $institution->getParsedTown(),
-        //         "parsedStreet" => $institution->getParsedStreet(),
-        //         "parsedHouse" => $institution->getParsedHouse(),
-        //         "parsedCorpus" => $institution->getParsedCorpus(),
-        //         "parsedBuilding" => $institution->getParsedBuilding(),
-        //         "parsedRegion" => $institution->getParsedRegion(),
-        //     ];
-        // }
-
-        // return $response;
+        return $this->render('Engage360dTakedaBundle:Institutions:institution.html.twig', array(
+            'institution' => $institution,
+        ));
     }
 }

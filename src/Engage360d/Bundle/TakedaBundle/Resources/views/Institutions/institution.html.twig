@@ -1,0 +1,60 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Поиск учереждений - {{ institution.name }}{% endblock %}
+
+{% block section %}
+<!-- container -->
+<div class="container">
+  <!-- head -->
+  <div class="head">
+    <div class="head__right">
+      <div class="head__city">
+        <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+      </div>
+    </div>
+    <div class="head__left">
+      <!-- h -->
+      <div class="h">Поиск учереждений</div>
+    </div>
+  </div>
+  <!-- map -->
+  <div class="map">
+    <div id="map"></div>
+  </div>
+  <!-- h -->
+  <div class="h h_2">{{ institution.name }}</div>
+  <!-- content -->
+  <div class="content content_border">
+    <p>{{ institution.normalizedAddress }}</p>
+  </div>
+  {#
+  <!-- attention -->
+  <div class="attention">
+    <i class="icon icon-info-fill"></i>
+    <div class="attention__text">Лучшее учреждение для лечение сердечно-сосудистых заболеваний</div>
+  </div>
+  #}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script>
+  ymaps.load(function() {
+    ymaps.geocode({{institution.normalizedAddress|serialize|raw}}, {results: 1, json: true})
+         .then(function(res) {
+           var coords = res.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').map(Number).reverse();
+
+           var node = document.getElementById('map');
+           node.style.height = '300px';
+
+           var map = new ymaps.Map(node, {
+             center: coords,
+             zoom: 7
+           });
+
+           map.geoObjects.add(new ymaps.Placemark(coords));
+         });
+  }.bind(this));
+</script>
+{% endblock %}

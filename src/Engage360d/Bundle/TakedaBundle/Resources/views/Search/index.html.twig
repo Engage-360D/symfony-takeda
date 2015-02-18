@@ -41,7 +41,7 @@
         <div class="h h_2">Лечебные учереждения</div>
         {% for item in result.institution %}
         <div class="searcher__result-institution">
-          <a href="#">{{ item.entity.name }}</a>
+          <a href="{{ path('engage360d_takeda_institution', {id: item.entity.id}) }}">{{ item.entity.name }}</a>
           <span>{{ item.entity.normalizedAddress }}</span>
         </div>
         {% endfor %}
