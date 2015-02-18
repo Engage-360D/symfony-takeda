@@ -21,7 +21,13 @@ class SearchController extends Controller
 
         foreach ($keys as $key => $repoName) {
             $result[$key] = [];
-            $elasticaResult = $this->get('fos_elastica.index.website.'.$key)->search($searchQuery);
+            $search = $this->get('fos_elastica.index.website.'.$key)->createSearch($searchQuery);
+            if ($key === 'institution') {
+              $query = $search->getQuery();
+              $query = $query->addSort(['priority' => ['order' => 'desc']]);
+              $search->setQuery($query);
+            }
+            $elasticaResult = $search->search();
             foreach ($elasticaResult as $item) {
                 $repo = $this->getDoctrine()->getRepository($repoName);
                 $result[$key][] = array(

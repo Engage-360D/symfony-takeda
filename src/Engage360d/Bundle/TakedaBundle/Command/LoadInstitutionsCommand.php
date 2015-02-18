@@ -51,6 +51,7 @@ class LoadInstitutionsCommand extends ContainerAwareCommand
             $institution->setParsedCorpus($row[8]);
             $institution->setParsedBuilding($row[9]);
             $institution->setParsedRegion($row[10]);
+            $institution->setPriority($row[11]);
 
             $em->persist($institution);
 

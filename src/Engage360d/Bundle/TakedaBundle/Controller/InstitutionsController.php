@@ -28,6 +28,7 @@ class InstitutionsController extends Controller
                 "parsedCorpus" => $institution->getParsedCorpus(),
                 "parsedBuilding" => $institution->getParsedBuilding(),
                 "parsedRegion" => $institution->getParsedRegion(),
+                "priority" => $institution->getPriority(),
             ];
         }, $results);
 

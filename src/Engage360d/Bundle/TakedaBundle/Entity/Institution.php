@@ -82,6 +82,12 @@ class Institution
     protected $parsedRegion;
 
     /**
+     * @ORM\Column(type="integer")
+     * @Serializer\Groups({"elastica"})
+     */
+    protected $priority;
+
+    /**
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     protected $deletedAt;
@@ -386,5 +392,28 @@ class Institution
         $parts = array_filter($parts, function ($part) { return strlen(trim($part)) > 0; });
 
         return implode(', ', $parts);
+    }
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Institution
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 }

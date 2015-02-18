@@ -32,7 +32,7 @@ class InstitutionsController extends TakedaJsonApiController
         if ($parsedTown || $specialization) {
             $institutions = $repository->filter($parsedTown, $specialization);
         } else {
-            $institutions = $repository->findSubset(1, 100);
+            $institutions = $repository->filter('', '', 100);
         }
 
         $response = ["data" => []];
@@ -50,6 +50,7 @@ class InstitutionsController extends TakedaJsonApiController
                 "parsedCorpus" => $institution->getParsedCorpus(),
                 "parsedBuilding" => $institution->getParsedBuilding(),
                 "parsedRegion" => $institution->getParsedRegion(),
+                "priority" => $institution->getPriority(),
             ];
         }
 

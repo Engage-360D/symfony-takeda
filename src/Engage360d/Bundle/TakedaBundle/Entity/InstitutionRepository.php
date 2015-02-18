@@ -12,6 +12,7 @@ class InstitutionRepository extends JsonApiRepository
             ->select('i.parsedTown')
             ->distinct()
             ->where('i.parsedTown != :empty')
+            ->orderBy('i.parsedTown')
             ->setParameter('empty', "")
             ->getQuery()
             ->getArrayResult();
@@ -25,6 +26,7 @@ class InstitutionRepository extends JsonApiRepository
             ->select('i.specialization')
             ->distinct()
             ->where('i.specialization != :empty')
+            ->orderBy('i.specialization')
             ->setParameter('empty', "")
             ->getQuery()
             ->getArrayResult();
@@ -32,7 +34,7 @@ class InstitutionRepository extends JsonApiRepository
         return array_map(function($row) { return $row['specialization']; }, $specializations);
     }
 
-    public function filter($parsedTown, $specialization)
+    public function filter($parsedTown, $specialization, $limit = null)
     {
         $q = $this->createQueryBuilder('i')
             ->select('i');
@@ -45,6 +47,12 @@ class InstitutionRepository extends JsonApiRepository
         if ($specialization && count($specialization) > 0) {
             $q = $q->andWhere('i.specialization = :specialization')
                 ->setParameter('specialization', $specialization);
+        }
+
+        $q = $q->orderBy('i.priority', 'DESC');
+
+        if ($limit) {
+          $q = $q->setMaxResults($limit);
         }
 
         return $q->getQuery()->getResult();
