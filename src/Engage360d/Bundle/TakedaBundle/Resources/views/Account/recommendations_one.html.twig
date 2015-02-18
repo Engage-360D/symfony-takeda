@@ -1,0 +1,64 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Мои рекомендации{% endblock %}
+
+{% block section %}
+<div class="container">
+    <div class="head">
+        <div class="head__right">
+            <div class="head__city">
+                <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+            </div>
+            <div class="head__out">
+                <a href="/sign-out">Выход</a>
+            </div>
+        </div>
+        <div class="head__left head__left-recommendation">
+            <div class="h">Рекомендации</div>
+        </div>
+    </div>
+    {{ include('Engage360dTakedaBundle:Account:tabs.html.twig') }}
+
+    <div class="page">
+        <div class="info">
+            <div class="info__item">
+                <div class="info__cholesterol">
+                    <div class="title title_level-2"><i class="icon icon-bell"></i>{{page.title}}</div>
+                    <ul class="info__cholesterol-info">
+                        <li>{{page.subtitle}}</li>
+                    </ul>
+                </div>
+            </div>
+            {#
+            <div class="info__item">
+                <div class="info__md">
+                    <div class="info__md-title">Обратитесь к врачу для решения вопроса о необходимости приема лекарств, снижающих уровень холестерина<i class="ico-md"></i></div>
+                    <button class="btn">Подобрать мед. учереждение по близости</button>
+                </div>
+            </div>
+            #}
+            <div class="info__item">
+                <div class="content">
+                    {{page.text|nl2br}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="activity">
+        <div class="activity__table">
+            <div class="activity__row">
+                <div class="activity__cell">
+                    <a href="{{ path('engage360d_takeda_account_recommendations', {id: testResult.id}) }}">Общие рекомендации&nbsp;&nbsp;<i class="icon icon-arr-right"></i></a>
+                </div>
+                {% for key, page in pages %}
+                <div class="activity__cell">
+                    <a href="{{ path('engage360d_takeda_account_one_recommendation', {id: testResult.id, type: key}) }}">{{page.urlText}}&nbsp;&nbsp;<i class="icon icon-arr-right"></i></a>
+                </div>
+                {% if (loop.index + 1) is divisibleby(4) and pages|length > 4 %}</div><div class="activity__row">{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

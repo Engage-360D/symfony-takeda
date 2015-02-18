@@ -872,3 +872,46 @@ input::-webkit-inner-spin-button {
   text-align: center;
   line-height: 38px;
 }
+
+/* old styles */
+
+.activity { background: #e8e8e8; }
+
+.activity__table { display: table; padding: 20px 50px; }
+
+.activity__row { display: table-row; }
+.activity__row:first-child .activity__cell { padding: 0 0 0 50px; }
+.activity__row:first-child .activity__cell:first-child { padding: 0; }
+
+.activity__cell { display: table-cell; padding: 20px 0 0 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.activity__cell:first-child { padding: 20px 0 0 0; }
+.activity__cell.is-active a { background: #2269c8; color: white; }
+.activity__cell.is-active a:after { display: none; }
+.activity__cell a { position: relative; display: block; padding: 1px 25px 1px 10px; font-size: 16px; color: #414141; }
+.activity__cell a:hover { color: #2269c8; }
+.activity__cell a:hover:after { background-position: 0 -2829px; }
+
+.page { padding: 0px 30px 20px 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+.page_narrow { padding: 20px 40px; }
+.page_step-1 { min-height: 522px; }
+.page_step-2 { min-height: 589px; }
+.page_step_3 { background: #b779e0; }
+.page_step_3.is-red { background: #d45e98; }
+
+
+.title_level-2 { margin-bottom: 20px; font-size: 20px; }
+.title_level-2 .icon-bell { position: absolute; top: 4px; left: 0px; }
+
+.info__item { border-top: 1px solid #d9d9d9; }
+.info__item .content { padding-top: 15px; }
+
+.info__cholesterol { padding: 10px 10px 15px; }
+.info__cholesterol .title { position: relative; padding-left: 25px; margin-bottom: 10px; }
+.info__cholesterol .title .ico-bell { position: absolute; top: 2px; left: 0; }
+
+.info__cholesterol-info { font-weight: bold; color: black; }
+
+.info__md { padding: 15px 10px 20px; }
+
+.info__md-title { position: relative; padding-left: 23px; margin-bottom: 15px; }
+.info__md-title .ico-md { position: absolute; top: -1px; left: 0; }

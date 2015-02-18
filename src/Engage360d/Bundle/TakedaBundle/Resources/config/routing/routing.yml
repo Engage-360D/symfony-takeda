@@ -52,6 +52,11 @@ engage360d_takeda_account_recommendations:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Account:recommendations }
 
+engage360d_takeda_account_one_recommendation:
+    path: /account/recommendations/{id}/{type}
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Account:recommendation }
+
 engage360d_takeda_account_timeline:
     path: /account/timeline
     defaults: { _controller: Engage360dTakedaBundle:Account:timeline }
@@ -73,7 +78,3 @@ engage360d_takeda_press_center_article:
     path: /press-center/{articleType}/{id}
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
 
-engage360d_takeda_test_get_test_result_recommendation:
-    path: /test-results/{id}/{type}
-    methods: [GET]
-    defaults: { _controller: Engage360dTakedaBundle:Test:getTestResultRecommendation }

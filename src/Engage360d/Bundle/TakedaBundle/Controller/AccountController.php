@@ -31,6 +31,47 @@ class AccountController extends Controller
         ]);
     }
 
+    public function recommendationAction($id, $type)
+    {
+        if (!in_array(
+            $type,
+            [
+                'bmi',
+                'isSmoker',
+                'arterialPressure',
+                'cholesterolLevel',
+                'isAddingExtraSalt',
+                'physicalActivityMinutes',
+            ]
+        )) {
+            throw $this->createNotFoundException();
+        }
+
+        $testResult = $this->getUser()->getTestResults()->filter(function ($testResult) use ($id) {
+            return $testResult->getId() == $id;
+        })->first();
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+
+        $recommendations = $testResult->getRecommendations();
+        $page = $recommendations['pages'][$type];
+
+        if (!$page) {
+            throw $this->createNotFoundException();
+        }
+
+        $pages = array_filter($recommendations['pages']);
+
+        return $this->render('Engage360dTakedaBundle:Account:recommendations_one.html.twig', array(
+            'testResult' => $testResult,
+            'type' => $type,
+            'pages' => $pages,
+            'page' => $page,
+        ));
+    }
+
     public function settingsAction()
     {
         return $this->render('Engage360dTakedaBundle:Account:settings.html.twig', [
