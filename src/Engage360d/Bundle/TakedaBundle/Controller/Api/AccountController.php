@@ -422,8 +422,9 @@ class AccountController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $pill = new Pill;
-        $this->populateEntity($pill, $data, $mappings = ["user" => User::REPOSITORY]);
+        $pill = new Pill();
+        $this->populateEntity($pill, $data);
+        $pill->setUser($this->getUser());
 
         $em = $this->get('doctrine')->getManager();
         $em->persist($pill);
