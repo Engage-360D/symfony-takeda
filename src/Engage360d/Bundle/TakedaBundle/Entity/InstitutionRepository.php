@@ -17,7 +17,11 @@ class InstitutionRepository extends JsonApiRepository
             ->getQuery()
             ->getArrayResult();
 
-        return array_map(function($row) { return $row['parsedTown']; }, $parsedTowns);
+        $parsedTowns = array_map(function($row) { return $row['parsedTown']; }, $parsedTowns);
+        $popular = array_splice($parsedTowns, 0, 3);
+        sort($parsedTowns);
+        $parsedTowns = array_merge($popular, $parsedTowns);
+        return $parsedTowns;
     }
 
     public function findSpecializations()
