@@ -13,11 +13,11 @@
         },
 
         "quantity": {
-          "type": "number"
+          "type": "integer"
         },
 
         "repeat": {
-          "enum": ["daily", "everyTwoDays"]
+          "enum": ["DAILY", "EVERY_2_DAYS"]
         },
 
         "time": {
@@ -33,22 +33,6 @@
         "tillDate": {
           "type": "string",
           "format": "date-time"
-        },
-
-        "links": {
-          "type": "object",
-
-          "properties": {
-            "user": {
-              "type": "string"
-            }
-          },
-
-          "additionalProperties": false,
-
-          "required": [
-            "user"
-          ]
         }
       },
 
@@ -60,8 +44,7 @@
         "repeat",
         "time",
         "sinceDate",
-        "tillDate",
-        "links"
+        "tillDate"
       ]
     }
   },

@@ -27,7 +27,7 @@
         },
 
         "quantity": {
-          "type": "number"
+          "type": "integer"
         },
 
         "time": {
@@ -36,7 +36,7 @@
         },
 
         "repeat": {
-          "enum": ["daily", "everyTwoDays"]
+          "enum": ["DAILY", "EVERY_2_DAYS"]
         },
 
         "sinceDate": {

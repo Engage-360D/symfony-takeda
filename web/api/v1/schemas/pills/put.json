@@ -13,11 +13,11 @@
         },
 
         "quantity": {
-          "type": "number"
+          "type": "integer"
         },
 
         "repeat": {
-          "enum": ["daily", "everyTwoDays"]
+          "enum": ["DAILY", "EVERY_2_DAYS"]
         },
 
         "time": {
