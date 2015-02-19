@@ -50,6 +50,8 @@ class InstitutionsController extends TakedaJsonApiController
                 "parsedCorpus" => $institution->getParsedCorpus(),
                 "parsedBuilding" => $institution->getParsedBuilding(),
                 "parsedRegion" => $institution->getParsedRegion(),
+                "lat" => $institution->getLat(),
+                "lng" => $institution->getLng(),
                 "priority" => $institution->getPriority(),
             ];
         }
@@ -86,6 +88,9 @@ class InstitutionsController extends TakedaJsonApiController
             "parsedCorpus" => $institution->getParsedCorpus(),
             "parsedBuilding" => $institution->getParsedBuilding(),
             "parsedRegion" => $institution->getParsedRegion(),
+            "lat" => $institution->getLat(),
+            "lng" => $institution->getLng(),
+            "priority" => $institution->getPriority(),
         ]];
     }
 }

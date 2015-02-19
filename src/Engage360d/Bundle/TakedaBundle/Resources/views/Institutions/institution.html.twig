@@ -41,28 +41,23 @@
 <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <script>
   ymaps.load(function() {
-    ymaps.geocode({{institution.normalizedAddress|serialize|raw}}, {results: 1, json: true})
-         .then(function(res) {
-           var coords = res.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').map(Number).reverse();
-
            var node = document.getElementById('map');
            node.style.height = '300px';
 
            var map = new ymaps.Map(node, {
-             center: coords,
-             zoom: 7
+             center: [{{institution.lat}}, {{institution.lng}}],
+             zoom: 14
            });
 
-           map.geoObjects.add(new ymaps.Placemark(coords, {}, {
-               iconLayout: 'default#image',
-               iconImageHref: '/img/icons/mapicon.png',
-               iconImageSize: [31, 40],
-               iconShape: {
-                 type: 'Rectangle',
-                 coordinates: [[0, 0], [31, 40]]
-               }
-             }));
-         });
-  }.bind(this));
+           map.geoObjects.add(new ymaps.Placemark([{{institution.lat}}, {{institution.lng}}], {
+        balloonContentHeader: {{institution.name|serialize|raw}},
+        balloonContentBody: '<p>{{institution.normalizedAddress}}</p><p>{{institution.specialization}}</p>'
+      }, {
+        iconLayout: 'default#image',
+        iconImageHref: '/img/icons/mapicon.png',
+        iconImageSize: [31, 40],
+        iconImageOffset: [-15, -40]
+      }));
+  });
 </script>
 {% endblock %}

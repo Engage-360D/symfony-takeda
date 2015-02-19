@@ -56,35 +56,39 @@ var Institutions = React.createClass({
 
     this.map.geoObjects.removeAll();
 
-    async.map(this.state.items, function(item, callback) {
-      var address = itemAddress(item);
-      ymaps.geocode(address, {results: 1, json: true})
-           .then(function(res) {
-             var coords = res.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').map(Number).reverse();
-             this.map.geoObjects.add(new ymaps.Placemark(coords, {}, {
-               iconLayout: 'default#image',
-               iconImageHref: '/img/icons/mapicon.png',
-               iconImageSize: [31, 40],
-               iconShape: {
-                 type: 'Rectangle',
-                 coordinates: [[0, 0], [31, 40]]
-               }
-             }));
-             callback(null);
-           }.bind(this), function(err) {
-             callback(err);
-           });
-    }.bind(this), function(err) {
-      var bounds = this.map.geoObjects.getBounds();
-      if (bounds) {
-        this.map.setBounds(bounds);
-        var zoom = this.map.getZoom() - 1;
-        if (zoom > 10) {
-          zoom = 10;
-        }
-        this.map.setZoom(zoom)
-      }
+    var target;
+    if (this.state.items.length > 30) {
+      target = new ymaps.Clusterer();
+    } else {
+      target = this.map.geoObjects;
+    }
+
+    this.state.items.forEach(function(item) {
+      target.add(new ymaps.Placemark([item.lat, item.lng], {
+        clusterCaption: item.name,
+        balloonContentHeader: '<a href="/institutions/'+item.id+'" target="blank">'+item.name+'</a>',
+        balloonContentBody: '<p>'+itemAddress(item)+'</p><p>'+item.specialization+'</p>'
+      }, {
+        iconLayout: 'default#image',
+        iconImageHref: '/img/icons/mapicon.png',
+        iconImageSize: [31, 40],
+        iconImageOffset: [-15, -40]
+      }));
     }.bind(this));
+
+    if (target !== this.map.getObjects) {
+      this.map.geoObjects.add(target);
+    }
+
+    var bounds = target.getBounds();
+    if (bounds) {
+      this.map.setBounds(bounds);
+      var zoom = this.map.getZoom();
+      if (zoom > 10) {
+        zoom = 10;
+      }
+      this.map.setZoom(zoom);
+    }
   },
 
   reloadItems: function() {
