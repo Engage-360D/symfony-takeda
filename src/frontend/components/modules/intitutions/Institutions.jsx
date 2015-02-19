@@ -22,7 +22,7 @@ var Institutions = React.createClass({
   getInitialState: function() {
     return {
       items: this.props.results,
-      parsedTown: this.props.parsedTowns[0],
+      parsedTown: this.props.parsedTown,
       specialization: ""
     };
   },

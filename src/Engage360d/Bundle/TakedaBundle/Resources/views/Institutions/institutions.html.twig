@@ -11,6 +11,7 @@
 <script>
   takeda.render(takeda.Institutions, 'Institutions', {
     parsedTowns: {{ parsedTowns | serialize | raw }},
+    parsedTown: {{ parsedTown | serialize | raw }},
     specializations: {{ specializations | serialize | raw }},
     results: {{ results | serialize | raw }}
   });
