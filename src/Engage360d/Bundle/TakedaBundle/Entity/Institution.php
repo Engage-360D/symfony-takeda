@@ -82,6 +82,16 @@ class Institution
     protected $parsedRegion;
 
     /**
+     * @ORM\Column(type="floan")
+     */
+    protected $lat;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    protected $lng;
+
+    /**
      * @ORM\Column(type="integer")
      * @Serializer\Groups({"elastica"})
      */
@@ -415,5 +425,51 @@ class Institution
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param \floan $lat
+     * @return Institution
+     */
+    public function setLat(\floan $lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return \floan 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set lng
+     *
+     * @param float $lng
+     * @return Institution
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get lng
+     *
+     * @return float 
+     */
+    public function getLng()
+    {
+        return $this->lng;
     }
 }
