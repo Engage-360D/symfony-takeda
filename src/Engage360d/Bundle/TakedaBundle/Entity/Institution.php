@@ -433,7 +433,7 @@ class Institution
      * @param float $lat
      * @return Institution
      */
-    public function setLat(\floan $lat)
+    public function setLat($lat)
     {
         $this->lat = $lat;
 
