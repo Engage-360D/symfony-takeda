@@ -174,24 +174,27 @@ class TimelineManager
         }
 
         // Delete old excessive tasks
-        // Don't use unset or array_splice within the loop, it will cause side effects.
+        // Step 1
         $linkedTasksCopy = [];
-        for ($i = 0; $i < count($timeline["linked"]["tasks"]); $i++) {
-            $task = $timeline["linked"]["tasks"][$i];
-            if (!in_array($task["id"], $newTaskIds)) {
-                $dayIndex = $oldDateToIndexMapping[$this->getTaskDateStr($task)];
-                $tasksCopy = [];
-                for ($j = 0; $j < count($timeline["data"][$dayIndex]["links"]["tasks"]); $j++) {
-                    if ($timeline["data"][$dayIndex]["links"]["tasks"][$j] !== $task["id"]) {
-                        $tasksCopy[] = $timeline["data"][$dayIndex]["links"]["tasks"][$j];
-                    }
-                }
-                $timeline["data"][$dayIndex]["links"]["tasks"] = $tasksCopy;
-            } else {
-                $linkedTasksCopy[] = $timeline["linked"]["tasks"][$i];
+        foreach ($timeline["linked"]["tasks"] as $task) {
+            if (in_array($task["id"], $newTaskIds)) {
+                $linkedTasksCopy[] = $task;
             }
         }
         $timeline["linked"]["tasks"] = $linkedTasksCopy;
+
+        // Step 2
+        // Warning! Don't use unset or array_splice within the loop,
+        // it will cause side effects.
+        for ($i = 0; $i < count($timeline["data"]); $i++) {
+            $taskIdsCopy = [];
+            for ($j = 0; $j < count($timeline["data"][$i]["links"]["tasks"]); $j++) {
+                if (in_array($timeline["data"][$i]["links"]["tasks"][$j], $newTaskIds)) {
+                    $taskIdsCopy[] = $timeline["data"][$i]["links"]["tasks"][$j];
+                }
+            }
+            $timeline["data"][$i]["links"]["tasks"] = $taskIdsCopy;
+        }
 
         // Add new tasks to old timeline
         for ($i = 0; $i < count($newTimeline["linked"]["tasks"]); $i++) {
