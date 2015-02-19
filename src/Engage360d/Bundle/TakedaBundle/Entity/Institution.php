@@ -82,7 +82,7 @@ class Institution
     protected $parsedRegion;
 
     /**
-     * @ORM\Column(type="floan")
+     * @ORM\Column(type="float")
      */
     protected $lat;
 
@@ -443,7 +443,7 @@ class Institution
     /**
      * Get lat
      *
-     * @return \floan 
+     * @return \floan
      */
     public function getLat()
     {
@@ -466,7 +466,7 @@ class Institution
     /**
      * Get lng
      *
-     * @return float 
+     * @return float
      */
     public function getLng()
     {
