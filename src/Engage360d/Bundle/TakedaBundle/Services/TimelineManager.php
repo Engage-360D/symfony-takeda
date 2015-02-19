@@ -209,7 +209,9 @@ class TimelineManager
                     $oldDateToIndexMapping[$this->getTaskDateStr($task)] : null;
 
                 if (!is_null($oldDayIndex)) {
-                    $timeline["data"][$oldDayIndex]["links"]["tasks"][] = $task["id"];
+                    if (!in_array($task["id"], $timeline["data"][$oldDayIndex]["links"]["tasks"])) {
+                        $timeline["data"][$oldDayIndex]["links"]["tasks"][] = $task["id"];
+                    }
                 } else {
                     $timeline["data"][] = $newTimeline["data"][$newDayIndex];
                     $oldDateToIndexMapping[$this->getTaskDateStr($task)] = count($timeline["data"]) - 1;
