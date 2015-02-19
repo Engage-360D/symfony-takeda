@@ -1,5 +1,5 @@
 <div class="tabs">
-    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_recommendations' ? 'is-active' : '' }}">Мои рекомендации</a>
+    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_recommendations' or app.request.get('_route') == 'engage360d_takeda_account_one_recommendation' ? 'is-active' : '' }}">Мои рекомендации</a>
     <a href="{{ path('engage360d_takeda_account_timeline') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_timeline' ? 'is-active' : '' }}">Мой таймлайн</a>
     <a class="button">Мои отчеты</a>
     <a href="{{ path('engage360d_takeda_account_settings') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_settings' ? 'is-active' : '' }}">Мои данные</a>

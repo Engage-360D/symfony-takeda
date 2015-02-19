@@ -68,7 +68,10 @@ class RecommendationsMatcher
         if (!is_array($banner)) {
             return $banner;
         } else if ($banner['pageUrl']) {
-            $banner['pageUrl'] = sprintf('/api/v1/account/test-results/%s/pages/%s', $this->testResult->getId(), $key);
+            $banner['pageUrl'] = $this->router->generate('engage360d_takeda_account_one_recommendation', array(
+                'id' => $this->testResult->getId(),
+                'type' => $key,
+            ));
         } else {
             $banner['pageUrl'] = null;
         }
