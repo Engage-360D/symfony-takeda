@@ -430,7 +430,7 @@ class Institution
     /**
      * Set lat
      *
-     * @param \floan $lat
+     * @param float $lat
      * @return Institution
      */
     public function setLat(\floan $lat)
@@ -443,7 +443,7 @@ class Institution
     /**
      * Get lat
      *
-     * @return \floan
+     * @return float
      */
     public function getLat()
     {
