@@ -3,6 +3,8 @@ var async = require('async');
 var Select = require('../../form/Select');
 var apiRequest = require('../../../utilities/apiRequest');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
+var InputDatalist = require('react-input-datalist');
+require('react-input-datalist/react-input-datalist.css');
 
 function itemAddress(item) {
   return [
@@ -30,7 +32,9 @@ var Institutions = React.createClass({
   },
 
   componentDidUpdate: function(nextProps, nextState) {
-    if (this.state.parsedTown !== nextState.parsedTown || this.state.specialization !== nextState.specialization) {
+    var parsedTowns = this.props.parsedTowns.map(function(p) { return p.toLowerCase(); });
+
+    if ((this.state.parsedTown !== nextState.parsedTown || this.state.specialization !== nextState.specialization) && parsedTowns.indexOf(this.state.parsedTown.toLowerCase()) >= 0) {
       this.reloadItems();
     }
   },
@@ -184,7 +188,12 @@ var Institutions = React.createClass({
           <div className="field field_no-wide">
             <div className="field__label">Список учреждений в регионе</div>
             <div className="field__in">
-              <Select options={this.getParsedTownOptions()} valueLink={this.linkState('parsedTown')} />
+              <InputDatalist datalist={this.props.parsedTowns}
+                             className="input"
+                             style={{lineHeight: '24px'}}
+                             predicate={function(string, substring) { return string.toLowerCase().indexOf(substring.toLowerCase()) >= 0; }}
+                             value={this.state.parsedTown}
+                             onChange={this.linkState('parsedTown').requestChange} />
             </div>
           </div>
           <div className="sorter">
