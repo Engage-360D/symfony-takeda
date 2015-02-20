@@ -12,7 +12,7 @@
       <div class="head">
         <div class="head__right">
           <div class="head__city">
-            <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+            {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
           </div>
         </div>
         <div class="head__left">
@@ -96,59 +96,7 @@
         </div>
       </div>
     </div>
-    <!-- 3 -->
-    <div class="main__item main__item_3">
-      <div class="main__item-in">
-        <div class="main__map">
-          <!-- h -->
-          <div class="h">Карта учреждений в регионе <a href="#">Санкт-Петербург</a></div>
-          <a class="link" href="#"><span>Полный список</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a>
-        </div>
-        <!-- map -->
-        <div class="map">
-          <div class="map__panel">
-            <div class="map__circle">
-              <i class="icon icon-circles-fill"></i>
-              <i class="icon icon-circles"></i>
-            </div>
-            <div class="map__plus">
-              <i class="icon icon-plus-fill"></i>
-              <i class="icon icon-plus"></i>
-            </div>
-            <ul class="map__zoom">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li class="map__zoom-drag" style="top: 50%"></li>
-            </ul>
-            <div class="map__minus">
-              <i class="icon icon-minus-fill"></i>
-              <i class="icon icon-minus"></i>
-            </div>
-          </div>
-          <div class="map__container">
-            <div class="map__container-in">
-              <div class="point" style="top: 200px; left: 200px;">
-                <i class="icon icon-marker"></i>
-                <div class="point__tooltip">
-                  <div class="point__title">Профилактика</div>
-                  <div class="point__type">больница высшей категории</div>
-                  <div class="point__address">Москва, ул. Тверская, д.1.</div>
-                  <div class="point__phone">+7 (495) 555-55-55</div>
-                  <div class="point__mail"><a href="mailto:mail@mail.mail">mail@mail.mail</a></div>
-                </div>
-              </div>
-            </div>
-            <i class="map__shadow"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+    {{ render(controller("Engage360dTakedaBundle:Institutions:mapBlock")) }}
   </div>
 </div>
 {% endblock %}

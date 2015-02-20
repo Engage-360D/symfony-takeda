@@ -9,6 +9,7 @@
 {% block scripts %}
 <script>
   takeda.render(takeda.RiskAnalysis, 'RiskAnalysis', {
+    geoIPCity: {{ geo_ip_city | serialize | raw }},
     regions: {{ regions | serialize | raw }},
     user: {{ user | serialize | raw }}
   });
