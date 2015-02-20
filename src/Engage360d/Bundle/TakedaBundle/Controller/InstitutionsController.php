@@ -2,8 +2,6 @@
 
 namespace Engage360d\Bundle\TakedaBundle\Controller;
 
-require(__DIR__ . '/../ipgeobase.php/ipgeobase.php');
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Engage360d\Bundle\TakedaBundle\Entity\Institution;
 
@@ -11,10 +9,7 @@ class InstitutionsController extends Controller
 {
     public function institutionsAction()
     {
-        $gb = new \IPGeoBase();
-        $ip = $this->getRequest()->getClientIp();
-        $data = $gb->getRecord($ip);
-        $city = $data ? iconv('CP1251', 'UTF-8', $data['city']) : null;
+        $city = $this->get('engage360d_takeda.geo_ip_resolver')->getCityName();
 
         $repo = $this->getDoctrine()->getRepository(Institution::REPOSITORY);
         $parsedTowns = $repo->findParsedTowns();
@@ -67,10 +62,7 @@ class InstitutionsController extends Controller
 
     public function mapBlockAction()
     {
-        $gb = new \IPGeoBase();
-        $ip = $this->getRequest()->getClientIp();
-        $data = $gb->getRecord($ip);
-        $city = $data ? iconv('CP1251', 'UTF-8', $data['city']) : null;
+        $city = $this->get('engage360d_takeda.geo_ip_resolver')->getCityName();
 
         $repo = $this->getDoctrine()->getRepository(Institution::REPOSITORY);
         $parsedTowns = $repo->findParsedTowns();

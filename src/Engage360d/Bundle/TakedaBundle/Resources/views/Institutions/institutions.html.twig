@@ -10,6 +10,7 @@
 <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <script>
   takeda.render(takeda.Institutions, 'Institutions', {
+    geoIPCity: {{ geo_ip_city | serialize | raw }},
     parsedTowns: {{ parsedTowns | serialize | raw }},
     parsedTown: {{ parsedTown | serialize | raw }},
     specializations: {{ specializations | serialize | raw }},

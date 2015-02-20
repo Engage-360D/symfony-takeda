@@ -1,5 +1,17 @@
 services:
 
+    engage360d_takeda.twig.takeda_extension:
+        class: Engage360d\Bundle\TakedaBundle\Twig\TakedaExtension
+        arguments:
+          - @engage360d_takeda.geo_ip_resolver
+        tags:
+          - { name: twig.extension }
+
+    engage360d_takeda.geo_ip_resolver:
+        class: Engage360d\Bundle\TakedaBundle\GeoIPResolver
+        arguments:
+          - @request_stack
+
     # Listeners/Subscribers
 
     engage360d_takeda.listener.reset_password:

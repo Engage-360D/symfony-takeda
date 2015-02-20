@@ -174,7 +174,7 @@ var Institutions = React.createClass({
         <div className="head">
           <div className="head__right">
             <div className="head__city">
-              <a href="#"><i className="icon icon-marker"></i><span>Москва</span></a>
+              <a href="/institutions"><i className="icon icon-marker"></i><span>{this.props.geoIPCity}</span></a>
             </div>
           </div>
           <div className="head__left">

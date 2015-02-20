@@ -9,6 +9,7 @@
 {% block scripts %}
 <script>
   takeda.render(takeda.SignIn, 'SignIn', {
+    geoIPCity: {{ geo_ip_city | serialize | raw }},
     regions: {{ regions | serialize | raw }}
   });
 </script>
