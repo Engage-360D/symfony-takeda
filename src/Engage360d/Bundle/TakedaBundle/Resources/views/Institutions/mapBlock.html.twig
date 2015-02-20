@@ -1,0 +1,9 @@
+<div id="InstitutionsMap"></div>
+
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script>
+  takeda.render(takeda.InstitutionsMap, 'InstitutionsMap', {
+    parsedTown: {{ parsedTown | serialize | raw }},
+    results: {{ results | serialize | raw }}
+  });
+</script>
