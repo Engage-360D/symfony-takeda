@@ -63,6 +63,7 @@ class TimelineManager
             $em->flush();
         } else {
             $timeline = $this->updateTimeline($timeline);
+            $this->getCollection()->save($timeline);
         }
 
         return $timeline;
@@ -142,7 +143,7 @@ class TimelineManager
         return $timeline;
     }
 
-    private function getTaskDate($task)
+    private function getTaskDateStr($task)
     {
         return sprintf(
             "%s-%s-%s",
@@ -156,15 +157,11 @@ class TimelineManager
     {
         $newTimeline = $this->generateTimeline();
 
-        // There's no need to update
-        if (count($timeline["linked"]["tasks"]) === count($newTimeline["linked"]["tasks"])) {
-            return $timeline;
-        }
-
         $newTaskIds = [];
         $newDateToIndexMapping = [];
         foreach ($newTimeline["data"] as $index => $day) {
             $newTaskIds = array_merge($newTaskIds, $day["links"]["tasks"]);
+            $newTaskIds = array_unique($newTaskIds);
             $newDateToIndexMapping[$day["date"]] = $index;
         }
 
@@ -172,21 +169,31 @@ class TimelineManager
         $oldDateToIndexMapping = [];
         foreach ($timeline["data"] as $index => $day) {
             $oldTaskIds = array_merge($oldTaskIds, $day["links"]["tasks"]);
+            $oldTaskIds = array_unique($oldTaskIds);
             $oldDateToIndexMapping[$day["date"]] = $index;
         }
 
         // Delete old excessive tasks
-        for ($i = 0; $i < count($timeline["linked"]["tasks"]); $i++) {
-            $task = $timeline["linked"]["tasks"][$i];
-            if (!in_array($task["id"], $newTaskIds)) {
-                $dayIndex = $oldDateToIndexMapping[$this->getTaskDate($task)];
-                for ($j = 0; $j < count($timeline["data"][$dayIndex]["links"]["tasks"]); $j++) {
-                    if ($timeline["data"][$dayIndex]["links"]["tasks"][$j] === $task["id"]) {
-                        unset($timeline["data"][$dayIndex]["links"]["tasks"][$j]);
-                    }
-                }
-                unset($timeline["linked"]["tasks"][$i]);
+        // Step 1
+        $linkedTasksCopy = [];
+        foreach ($timeline["linked"]["tasks"] as $task) {
+            if (in_array($task["id"], $newTaskIds)) {
+                $linkedTasksCopy[] = $task;
             }
+        }
+        $timeline["linked"]["tasks"] = $linkedTasksCopy;
+
+        // Step 2
+        // Warning! Don't use unset or array_splice within the loop,
+        // it will cause side effects.
+        for ($i = 0; $i < count($timeline["data"]); $i++) {
+            $taskIdsCopy = [];
+            for ($j = 0; $j < count($timeline["data"][$i]["links"]["tasks"]); $j++) {
+                if (in_array($timeline["data"][$i]["links"]["tasks"][$j], $newTaskIds)) {
+                    $taskIdsCopy[] = $timeline["data"][$i]["links"]["tasks"][$j];
+                }
+            }
+            $timeline["data"][$i]["links"]["tasks"] = $taskIdsCopy;
         }
 
         // Add new tasks to old timeline
@@ -197,15 +204,17 @@ class TimelineManager
                 $timeline["linked"]["tasks"][] = $task;
 
                 // Add task ID to data object
-                $newDayIndex = $newDateToIndexMapping[$this->getTaskDate($task)];
-                $oldDayIndex = isset($oldDateToIndexMapping[$this->getTaskDate($task)]) ?
-                    $oldDateToIndexMapping[$this->getTaskDate($task)] : null;
+                $newDayIndex = $newDateToIndexMapping[$this->getTaskDateStr($task)];
+                $oldDayIndex = isset($oldDateToIndexMapping[$this->getTaskDateStr($task)]) ?
+                    $oldDateToIndexMapping[$this->getTaskDateStr($task)] : null;
 
                 if (!is_null($oldDayIndex)) {
-                    $timeline["data"][$oldDayIndex]["links"]["tasks"][] = $task["id"];
+                    if (!in_array($task["id"], $timeline["data"][$oldDayIndex]["links"]["tasks"])) {
+                        $timeline["data"][$oldDayIndex]["links"]["tasks"][] = $task["id"];
+                    }
                 } else {
                     $timeline["data"][] = $newTimeline["data"][$newDayIndex];
-                    $oldDateToIndexMapping[$this->getTaskDate($task)] = count($timeline["data"]) - 1;
+                    $oldDateToIndexMapping[$this->getTaskDateStr($task)] = count($timeline["data"]) - 1;
                 }
             }
         }
