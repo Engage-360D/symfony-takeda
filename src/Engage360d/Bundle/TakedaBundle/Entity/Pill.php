@@ -162,6 +162,7 @@ class Pill
     {
         if (is_string($sinceDate)) {
             $this->sinceDate = new \DateTime($sinceDate);
+            $this->sinceDate->setTime(0, 0, 0);
         }
 
         return $this;
@@ -187,6 +188,7 @@ class Pill
     {
         if (is_string($tillDate)) {
             $this->tillDate = new \DateTime($tillDate);
+            $this->tillDate->setTime(0, 0, 0);
         }
 
         return $this;

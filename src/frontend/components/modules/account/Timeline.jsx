@@ -35,12 +35,12 @@ var CellExercise = React.createClass({
         <div className={cellClass}>
           <div className="time__in">
             <button className="time__up"
-              onClick={this.props.valueLink.requestChange.bind(null, this.props.valueLink.value + 1)}>
+              onClick={this.props.valueLink.requestChange.bind(null, this.props.valueLink.value + 10)}>
               <i className="icon icon-arr-top"></i>
             </button>
             <div className="time__value">{this.props.valueLink.value}</div>
             <button className="time__down"
-              onClick={this.props.valueLink.requestChange.bind(null, Math.max(0, this.props.valueLink.value - 1))}>
+              onClick={this.props.valueLink.requestChange.bind(null, Math.max(0, this.props.valueLink.value - 10))}>
               <i className="icon icon-arr-down"></i>
             </button>
           </div>
