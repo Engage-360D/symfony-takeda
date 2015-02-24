@@ -99,22 +99,25 @@ class JsonApiController extends Controller
                 throw new NotFoundHttpException(sprintf("Link with name '%s' not found", $property));
             }
 
-            $mappedEntity = $this->get('doctrine')
-                ->getRepository($mappings[$property])
-                ->findOneById($value);
+            $ids = is_string($value) ? [$value] : $value;
+            foreach ($ids as $id) {
+                $mappedEntity = $this->get('doctrine')
+                    ->getRepository($mappings[$property])
+                    ->findOneById($id);
 
-            if (!$mappedEntity) {
-                throw new NotFoundHttpException(sprintf("Link '%s' with id '%s' not found", $property, $value));
-            }
+                if (!$mappedEntity) {
+                    throw new NotFoundHttpException(sprintf("Link '%s' with id '%s' not found", $property, $id));
+                }
 
-            $method = 'set' . ucfirst($property);
-            if (method_exists($entity, $method)) {
-                $entity->$method($mappedEntity);
-            }
+                $method = 'set' . ucfirst($property);
+                if (method_exists($entity, $method)) {
+                    $entity->$method($mappedEntity);
+                }
 
-            $method = 'add' . ucfirst($property);
-            if (method_exists($entity, $method)) {
-                $entity->$method($mappedEntity);
+                $method = 'add' . ucfirst($property);
+                if (method_exists($entity, $method)) {
+                    $entity->$method($mappedEntity);
+                }
             }
         }
 
