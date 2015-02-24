@@ -40,6 +40,7 @@
         "hwi/oauth-bundle":                     "dev-master",
         "nickcernis/html-to-markdown":          "dev-master",
         "engage360d/rest-bundle":               "dev-master",
+        "engage360d/subscription-bundle":       "dev-master",
         "melodia/util-bundle": "~0.1",
         "melodia/page-bundle": "~0.1",
         "engage360d/pages-bundle":              "dev-master",
@@ -108,6 +109,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/melodia/MelodiaCatalogBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Engage-360D/SubscriptionBundle.git"
         }
     ],
     "minimum-stability": "stable",

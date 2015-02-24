@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f2759b3e9a10b06b99f6c46bead9f683",
+    "hash": "5f25d6908337b3db8a876845cb453b4b",
     "packages": [
         {
             "name": "behat/behat",
@@ -1725,6 +1725,76 @@
                 "issues": "https://github.com/Engage-360D/SecurityBundle/issues"
             },
             "time": "2014-12-24 15:41:07"
+        },
+        {
+            "name": "engage360d/subscription-bundle",
+            "version": "dev-master",
+            "target-dir": "Engage360d/Bundle/SubscriptionBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Engage-360D/SubscriptionBundle.git",
+                "reference": "889a23e50dd41ec8e86b36ed61ba91896737acdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Engage-360D/SubscriptionBundle/zipball/889a23e50dd41ec8e86b36ed61ba91896737acdf",
+                "reference": "889a23e50dd41ec8e86b36ed61ba91896737acdf",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer-bundle": ">=0.13.0",
+                "symfony/symfony": ">=2.3.0",
+                "vslinko/unisender": "0.1.*"
+            },
+            "require-dev": {
+                "nelmio/api-doc-bundle": "dev-master",
+                "sensio/distribution-bundle": "dev-master",
+                "symfony/monolog-bundle": "2.3.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony-app-dir": "Tests/app",
+                "symfony-web-dir": "Tests/app"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Engage360d\\Bundle\\SubscriptionBundle": ""
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ],
+                "post-update-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vyacheslav Slinko",
+                    "email": "vyacheslav.slinko@gmail.com"
+                }
+            ],
+            "description": "Engage360dSubscriptionBundle",
+            "homepage": "http://github.com/engage-360d",
+            "keywords": [
+                "360D",
+                "Engage"
+            ],
+            "support": {
+                "source": "https://github.com/Engage-360D/SubscriptionBundle/tree/master",
+                "issues": "https://github.com/Engage-360D/SubscriptionBundle/issues"
+            },
+            "time": "2015-02-24 10:30:11"
         },
         {
             "name": "facebook/php-sdk",
@@ -5784,6 +5854,33 @@
             "time": "2014-10-17 12:53:44"
         },
         {
+            "name": "vslinko/unisender",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vslinko/unisender.git",
+                "reference": "bbd88e7619d1fc4b40e49344a5d47c811e498063"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vslinko/unisender/zipball/bbd88e7619d1fc4b40e49344a5d47c811e498063",
+                "reference": "bbd88e7619d1fc4b40e49344a5d47c811e498063",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "unisender_api.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Unisender API",
+            "time": "2014-03-19 15:23:14"
+        },
+        {
             "name": "willdurand/jsonp-callback-validator",
             "version": "v1.1.0",
             "source": {
@@ -5897,6 +5994,7 @@
         "hwi/oauth-bundle": 20,
         "nickcernis/html-to-markdown": 20,
         "engage360d/rest-bundle": 20,
+        "engage360d/subscription-bundle": 20,
         "engage360d/pages-bundle": 20,
         "engage360d/search-bundle": 20,
         "engage360d/security-bundle": 20,

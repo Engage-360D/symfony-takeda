@@ -38,3 +38,7 @@ engage360d_takeda_sign_out:
 
 engage360d_takeda:
   resource: "@Engage360dTakedaBundle/Resources/config/routing/routing.yml"
+
+engage360d_subscription:
+  resource: "@Engage360dSubscriptionBundle/Resources/config/routing/api.yml"
+  prefix: /api/v1
