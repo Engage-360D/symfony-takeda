@@ -10,11 +10,28 @@ class ExceptionWrapperHandler implements ExceptionWrapperHandlerInterface
     {
         $exception = $data['exception'];
 
-        return ["errors" => [
-            [
+        $errors = [];
+
+        // Check if exception text is json
+        $messages = json_decode($exception->getMessage(), true);
+        if (is_array($messages)) {
+            foreach ($messages as $message) {
+                if (isset($message["message"])) {
+                    $errors[] = [
+                        "code" => $exception->getStatusCode(),
+                        "title" => $message["message"],
+                    ];
+                }
+            }
+        }
+
+        if (empty($errors)) {
+            $errors[] = [
                 "code" => $exception->getStatusCode(),
-                "title" => $exception->getMessage()
-            ]
-        ]];
+                "title" => $exception->getMessage(),
+            ];
+        }
+
+        return ["errors" => $errors];
     }
 }
