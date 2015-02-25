@@ -1,0 +1,105 @@
+-
+    setUrl: /disease
+    setTitle: Болезни группы риска
+    setDescription: Болезни группы риска
+    setKeywords: болезнь, группа риска
+    setIsActive: true
+    pageBlocks: [disease.main.graph]
+-
+    setUrl: /disease/obesity
+    setTitle: Ожирение
+    setDescription: Ожирение
+    setKeywords: Ожирение
+    setIsActive: true
+    pageBlocks: [disease.obesity]
+-
+    setUrl: /disease/hyperlipidemia
+    setTitle: Гиперлипидемия
+    setDescription: Гиперлипидемия
+    setKeywords: Гиперлипидемия
+    setIsActive: true
+    pageBlocks: [disease.hyperlipidemia]
+-
+    setUrl: /disease/chronic_renal_failure
+    setTitle: Хроническая почечная недостаточность
+    setDescription: Хроническая почечная недостаточность
+    setKeywords: Хроническая почечная недостаточность
+    setIsActive: true
+    pageBlocks: [disease.chronic_renal_failure]
+-
+    setUrl: /disease/smoking
+    setTitle: Курение
+    setDescription: Курение
+    setKeywords: Курение
+    setIsActive: true
+    pageBlocks: [disease.smoking]
+-
+    setUrl: /disease/arterial_hypertension
+    setTitle: Артериальная гипертензия
+    setDescription: Артериальная гипертензия
+    setKeywords: Артериальная гипертензия
+    setIsActive: true
+    pageBlocks: [disease.arterial_hypertension]
+-
+    setUrl: /disease/aging
+    setTitle: Пожилой возраст
+    setDescription: Пожилой возраст
+    setKeywords: Пожилой возраст
+    setIsActive: true
+    pageBlocks: [disease.aging]
+-
+    setUrl: /disease/diabetes
+    setTitle: Сахарный диабет
+    setDescription: Сахарный диабет
+    setKeywords: Сахарный диабет
+    setIsActive: true
+    pageBlocks: [disease.diabetes_1, disease.diabetes_2]
+-
+    setUrl: /about/about
+    setTitle: Компания Такеда
+    setDescription: Компания Такеда
+    setKeywords: Компания Такеда
+    setIsActive: true
+    pageBlocks: [about.about_1, about.about_2]
+-
+    setUrl: /about/mission
+    setTitle: Миссия
+    setDescription: Миссия
+    setKeywords: Миссия
+    setIsActive: true
+    pageBlocks: [about.mission]
+-
+    setUrl: /about/dealer
+    setTitle: Информация по закупкам
+    setDescription: Информация по закупкам
+    setKeywords: Информация по закупкам
+    setIsActive: true
+    pageBlocks: [about.dealer]
+-
+    setUrl: /about/facilities
+    setTitle: Оборудование
+    setDescription: Оборудование
+    setKeywords: Оборудование
+    setIsActive: true
+    pageBlocks: [about.facilities]
+-
+    setUrl: /history
+    setTitle: История
+    setDescription: История
+    setKeywords: История
+    setIsActive: true
+    pageBlocks: [history]
+-
+    setUrl: /contacts
+    setTitle: Контакты
+    setDescription: Контакты
+    setKeywords: Контакты
+    setIsActive: true
+    pageBlocks: [contacts_1, contacts_2]
+-
+    setUrl: /certificates
+    setTitle: Сертификаты
+    setDescription: Сертификаты
+    setKeywords: Сертификаты
+    setIsActive: true
+    pageBlocks: [certificates]

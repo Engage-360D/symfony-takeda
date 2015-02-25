@@ -1,0 +1,36 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block section %}
+    <!-- container -->
+    <div class="container">
+        <!-- head -->
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
+                </div>
+            </div>
+            <div class="head__left">
+                <!-- h -->
+                <div class="h">{{ page.title }}</div>
+            </div>
+        </div>
+
+        {# Pages: History, Contacts, Certificates #}
+        {% if app.request.get('url') matches '/^(history|contacts|certificates)/' %}
+            {% include "Engage360dTakedaBundle:Page:about.top.menu.html.twig" %}
+        {% endif %}
+
+        {% for block in blocks %}
+            {{ sonata_block_render({ 'type': block.type }, block.getJsonDecoded) }}
+        {% endfor %}
+    </div>
+
+    {# Page: one disease #}
+    {% if diseaseFooterMenu is defined and diseaseFooterMenu | length > 0 %}
+        {% include "Engage360dTakedaBundle:Page:disease.footer.menu.html.twig" %}
+    {% endif %}
+
+{% endblock %}

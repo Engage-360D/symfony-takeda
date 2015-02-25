@@ -3485,17 +3485,17 @@
         },
         {
             "name": "melodia/page-bundle",
-            "version": "v0.1.0",
+            "version": "v0.2.2",
             "target-dir": "Melodia/PageBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/melodia/MelodiaPageBundle.git",
-                "reference": "9316b6778425d76eb49f96d522e0176021e53e6b"
+                "reference": "a5295c5435fa621be4c2a3dbfa2b56726e34df8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/melodia/MelodiaPageBundle/zipball/9316b6778425d76eb49f96d522e0176021e53e6b",
-                "reference": "9316b6778425d76eb49f96d522e0176021e53e6b",
+                "url": "https://api.github.com/repos/melodia/MelodiaPageBundle/zipball/a5295c5435fa621be4c2a3dbfa2b56726e34df8a",
+                "reference": "a5295c5435fa621be4c2a3dbfa2b56726e34df8a",
                 "shasum": ""
             },
             "require": {
@@ -3524,10 +3524,10 @@
                 "page"
             ],
             "support": {
-                "source": "https://github.com/melodia/MelodiaPageBundle/tree/v0.1.0",
+                "source": "https://github.com/melodia/MelodiaPageBundle/tree/v0.2.2",
                 "issues": "https://github.com/melodia/MelodiaPageBundle/issues"
             },
-            "time": "2014-11-28 14:06:52"
+            "time": "2015-02-25 09:15:53"
         },
         {
             "name": "melodia/user-bundle",

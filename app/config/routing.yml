@@ -9,10 +9,6 @@ engage360d_takeda_bundle_api:
     type: annotation
     prefix: /api/v1
 
-melodia_pages_api_:
-    resource: "@MelodiaPageBundle/Resources/config/routing/api.yml"
-    prefix:   /api/v1
-
 engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
@@ -42,3 +38,9 @@ engage360d_takeda:
 engage360d_subscription:
   resource: "@Engage360dSubscriptionBundle/Resources/config/routing/api.yml"
   prefix: /api/v1
+
+melodia_page_wildcard:
+    pattern:  /{url}
+    defaults: { _controller: Engage360dTakedaBundle:Page:index, url: null }
+    requirements:
+        url: ".+"

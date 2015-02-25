@@ -9,6 +9,7 @@ use JsonSchema\Uri\UriRetriever;
 
 class TakedaJsonApiController extends JsonApiController
 {
+    // TODO remove
     protected function getSchemaValidatior($schemaFile, \stdClass $data)
     {
         $retriever = new UriRetriever();
@@ -214,6 +215,47 @@ class TakedaJsonApiController extends JsonApiController
             "tillDate" => $pill->getTillDate()->format(\DateTime::ISO8601),
             "links" => [
                 "user" => (string) $pill->getUser()->getId()
+            ]
+        ];
+    }
+
+    protected function getPageBlockArray($pageBlock)
+    {
+        return [
+            "id" => (string) $pageBlock->getId(),
+            "type" => $pageBlock->getType(),
+            "keyword" => $pageBlock->getKeyword(),
+            "json" => $pageBlock->getJson(),
+        ];
+    }
+
+    protected function getPageBlockId($pageBlock)
+    {
+        return (string) $pageBlock->getId();
+    }
+
+    protected function getPageLink()
+    {
+        return [
+            "pages.pageBlocks" => [
+                "href" => $this->getBaseUrl() . "/page-blocks/{pages.pageBlocks}",
+                "type" => "pageBlocks"
+            ]
+        ];
+    }
+
+    protected function getPageArray($page)
+    {
+        return [
+            "id" => (string) $page->getId(),
+            "url" => $page->getUrl(),
+            "title" => $page->getTitle(),
+            "description" => $page->getDescription(),
+            "keywords" => $page->getKeywords(),
+            "isActive" => $page->getIsActive(),
+            "isEditable" => $page->getIsEditable(),
+            "links" => [
+                "pageBlocks" => array_map([$this, 'getPageBlockId'], $page->getPageBlocks()->toArray())
             ]
         ];
     }

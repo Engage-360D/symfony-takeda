@@ -1,0 +1,21 @@
+<div class="map" id="map-{{ blockId }}"></div>
+
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script>
+    ymaps.ready(function() {
+        var map = new ymaps.Map('map-{{ blockId }}', {
+            center: [{{ map.lat }}, {{ map.lon }}],
+            zoom: {{ map.zoom }},
+            controls: ['smallMapDefaultSet']
+        });
+
+        {% for placemark in placemarks %}
+        map.geoObjects.add(new ymaps.Placemark(
+                [{{ placemark.lat }}, {{ placemark.lon }}],
+                {{ placemark.settings | serialize | raw }}
+        ));
+
+        map.behaviors.disable('scrollZoom');
+        {% endfor %}
+    });
+</script>

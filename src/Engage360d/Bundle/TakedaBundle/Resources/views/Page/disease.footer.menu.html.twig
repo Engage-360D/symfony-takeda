@@ -1,0 +1,16 @@
+{# TODO replace it with block #}
+
+<div class="diseases">
+    <!-- h -->
+    <div class="h">Другие болезни группы риска</div>
+    <div class="diseases__list">
+        <ul>
+            {% for item in diseaseFooterMenu %}
+                <li><a class="link link_black" href="{{ item.url }}"><span>{{ item.title }}</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+                {% if loop.index == 3 %}
+                    </ul><ul>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
