@@ -43,7 +43,7 @@
       <li><a class="social__ok" href="#"><i class="icon icon-soc-ok"></i></a></li>
     </ul>
     <!-- subscribe -->
-    <form class="subscribe" id="subscribe">
+    <form class="subscribe js-subscribe">
       <label>
         <input type="text" placeholder="Подписка на обновления">
         <button class="subscribe__btn"><i class="icon icon-mail"></i></button>
@@ -52,20 +52,25 @@
     <script>
       (function() {
         var $ = takeda.$;
+        var progress = false;
 
         $(function(){
-          var $form = $('#subscribe');
+          $('.js-subscribe').each(function(){
+          var $form = $(this);
           var $input = $form.find('input');
 
           $form.submit(function(event) {
             event.preventDefault();
+            if (progress) return;
             var email = $input.val();
             if (!/.+@.+\..+/.test(email)) {
               return alert('Неверный адрес электронной почты');
             }
+            progress = true;
             $.post('/api/v1/subscription-contacts', {
               data: {email: email}
             }, function(data) {
+              progress = false;
               if (data.data) {
                 $input.val('');
                 alert('Вы успешно подписаны на обновления');
@@ -73,6 +78,7 @@
                 alert('Произошла неизвестная ошибка, пожалуйста попробуйте позже');
               }
             });
+          });
           });
         });
       })();
