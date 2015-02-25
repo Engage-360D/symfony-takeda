@@ -151,7 +151,7 @@ var InstitutionsMap = React.createClass({
               </div>
             </div>
             <div className="map__container">
-              <div className="map__container-in" ref="map">
+              <div className="map__container-in" ref="map" style={{overflow: 'hidden'}}>
               </div>
               <i className="map__shadow"></i>
             </div>
