@@ -242,6 +242,70 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/test-results/{id}/diet-questions", name="api_post_account_test_results_diet_questions", methods="GET")
+     */
+    public function getAccountTestResultDietQuestionsAction(Request $request, $id)
+    {
+        $questions = $this->container->getParameter('engage360d_diet_questions');
+        return new JsonResponse($questions, 200);
+    }
+
+    /**
+     * @Route("/account/test-results/{id}/diet-recommendations", name="api_post_account_test_results_diet_recommendations", methods="GET")
+     */
+    public function getAccountTestResultDietRecommendationsAction(Request $request, $id)
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
+            return $elem->getId() == $id;
+        })->first();
+
+        $questions = $this->container->getParameter('engage360d_diet_questions');
+        $hasBad = false;
+        $answers = $request->query->get('answers');
+        if (!is_array($answers)) $answers = array();
+        foreach ($questions['data'] as $question) {
+          if (isset($answers[$question['id']]) && $answers[$question['id']] !== '1') {
+            $hasBad = true;
+          }
+        }
+
+        $messages = array();
+        if ($testResult->getIsAddingExtraSalt()) {
+          $messages[] = 'Потребление соли может приводить к повышению артериального давления. Ограничьте потребление соли и продуктов, богатых натрием. Старайтесь не досаливать пищу. Для улучшения вкусовых качеств пищи используйте различные травы, специи, лимонный сок, чеснок.';
+        }
+        if ($hasBad) {
+          $messages[] = 'Здоровое питание способствует снижению уровня основных факторов риска сердечно-сосудистых заболеваний, связанных с атеросклерозом. Потребление жира при нормальном весе должно соответствовать для мужчин 75-90 г, для женщин - 50-65 г в сутки. Насыщенные жиры (животные, твердые растительные жиры) могут составлять 1/3 потребляемых жиров, остальные 2/3 жиров должны быть ненасыщенными, жидкими жирами. Это растительные масла (подсолнечное, оливковое, льняное) и жир рыбы. Ограничение потребления животных жиров ведет к снижению потребления содержащегося в них холестерина.';
+        }
+        if (count($messages) === 0) {
+          $messages[] = 'Здоровое питание способствует снижению уровня основных факторов риска сердечно-сосудистых заболеваний, связанных с атеросклерозом. Потребление жира при нормальном весе должно соответствовать для мужчин 75-90 г, для женщин - 50-65 г в сутки. Насыщенные жиры (животные, твердые растительные жиры) могут составлять 1/3 потребляемых жиров, остальные 2/3 жиров должны быть ненасыщенными, жидкими жирами. Это растительные масла (подсолнечное, оливковое, льняное) и жир рыбы. Ограничение потребления животных жиров ведет к снижению потребления содержащегося в них холестерина.';
+        }
+
+        $banners = $this->container->getParameter('engage360d_diet_messages');
+        $red = array();
+        $blue = array();
+        foreach ($banners['should_change'] as $id => $banner) {
+          if (isset($answers[$id]) && $answers[$id] === "3") {
+            $red[] = $banner;
+          }
+        }
+        foreach ($banners['should_less'] as $id => $banner) {
+          if (isset($answers[$id]) && $answers[$id] === "2") {
+            $blue[] = $banner;
+          }
+        }
+
+        return new JsonResponse(array(
+          'data' => array(
+            'messages' => $messages,
+            'red' => $red,
+            'blue' => $blue,
+          )
+        ), 200);
+    }
+
+    /**
      * @Route("/account/test-results/{id}/send-email", name="api_post_account_test_results_send_email", methods="POST")
      */
     public function getAccountTestResultSendEmailAction(Request $request, $id)

@@ -233,6 +233,24 @@ traits:
             application/json:
               schema: !include v1/schemas/test-results/list.json
               example: !include v1/examples/test-results/list.json
+    /{id}/diet-questions:
+      get:
+        is: [ secured ]
+        description: |
+          Вопросы для теста по диете.
+        responses:
+          200: ~
+    /{id}/diet-recommendations:
+      get:
+        is: [ secured ]
+        queryParameters:
+          answers:
+            description: |
+              Хеш, где ключ это id вопроса, а значение это id ответа, например `?answers[1]=1&answers[2]=3`.
+        description: |
+          Результаты теста по диете.
+        responses:
+          200: ~
     /{id}/send-email:
       post:
         is: [ secured ]
@@ -544,4 +562,3 @@ traits:
             application/json:
               schema: !include v1/schemas/records/one.json
               example: !include v1/examples/records/one.json
-

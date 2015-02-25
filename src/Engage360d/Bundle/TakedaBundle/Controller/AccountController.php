@@ -17,6 +17,24 @@ use JMS\Serializer\SerializationContext;
 
 class AccountController extends Controller
 {
+    public function dietAction($id)
+    {
+        $questions = $this->container->getParameter('engage360d_diet_questions');
+
+        $testResult = $this->getUser()->getTestResults()->filter(function ($testResult) use ($id) {
+            return $testResult->getId() == $id;
+        })->first();
+
+        if (!$testResult) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('Engage360dTakedaBundle:Account:diet.html.twig', [
+            'questions' => $questions,
+            'testResult' => $testResult,
+        ]);
+    }
+
     public function recommendationsAction()
     {
         $user = $this->getUser();

@@ -47,6 +47,11 @@ engage360d_takeda_institution:
     methods: [GET]
     defaults: { _controller: Engage360dTakedaBundle:Institutions:institution }
 
+engage360d_takeda_account_recommendations_diet:
+    path: /account/recommendations/{id}/diet
+    methods: [GET]
+    defaults: { _controller: Engage360dTakedaBundle:Account:diet }
+
 engage360d_takeda_account_recommendations:
     path: /account/recommendations
     methods: [GET]
@@ -77,4 +82,3 @@ engage360d_takeda_press_center:
 engage360d_takeda_press_center_article:
     path: /press-center/{articleType}/{id}
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
-

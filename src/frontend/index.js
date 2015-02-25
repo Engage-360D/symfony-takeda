@@ -13,6 +13,7 @@ module.exports = {
   TestResultList: require('./components/modules/riskAnalysis/TestResultList'),
   Settings: require('./components/modules/account/Settings'),
   Timeline: require('./components/modules/account/Timeline'),
+  Diet: require('./components/modules/account/Diet'),
   Institutions: require('./components/modules/intitutions/Institutions'),
   InstitutionsMap: require('./components/modules/intitutions/InstitutionsMap')
 };

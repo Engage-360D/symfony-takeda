@@ -188,7 +188,7 @@ var TestResult = React.createClass({
                 <div className="recomm__title">Диета</div>
                 {banner(recommendations.banners.isAddingExtraSalt)}
                 {banner({
-                  pageUrl: '/',
+                  pageUrl: '/account/recommendations/'+testResult.id+'/diet',
                   state: 'ask',
                   title: 'Дополнительная корректировка диеты',
                   subtitle: '',

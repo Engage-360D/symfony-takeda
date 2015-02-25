@@ -1,0 +1,59 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Рекомендации по диете{% endblock %}
+
+{% block section %}
+<div class="container">
+	<!-- head -->
+	<div class="head">
+		<div class="head__right">
+			<div class="head__city">
+        {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
+			</div>
+		</div>
+		<div class="head__left">
+			<div class="head__back">
+				<a class="link link_black" href="{{ path('engage360d_takeda_account_recommendations') }}"><span>Вернуться к результатам</span><i class="icon icon-arr-circle-left"></i><i class="icon icon-arr-circle-left-fill"></i></a>
+			</div>
+			<!-- h -->
+			<div class="h">Рекомендации по диете</div>
+		</div>
+	</div>
+	<!-- h -->
+	<div class="h h_2 h_center">Узнайте, насколько правильно вы питаетесь</div>
+  <div id="Diet"></div>
+	<!-- recomm -->
+
+  {#
+  <!-- l -->
+  <div class="l">
+	  <div class="l__column">
+		  <!-- list-links -->
+		  <ul class="list-links">
+			  <li><a class="link link_black" href="#"><span>Холестерин</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+			  <li><a class="link link_black" href="#"><span>Давление</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+			  <li><a class="link link_black" href="#"><span>Курение</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+			  <li><a class="link link_black" href="#"><span>Вес</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+		  </ul>
+	  </div>
+	  <div class="l__column">
+		  <ul class="list-links">
+			  <li><a class="link link_black" href="#"><span>Холестерин</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+			  <li><a class="link link_black" href="#"><span>Давление</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+			  <li><a class="link link_black" href="#"><span>Курение</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
+		  </ul>
+	  </div>
+  </div>
+  #}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  takeda.render(takeda.Diet, 'Diet', {
+    questions: {{ questions.data | serialize | raw }},
+    answers: {{ questions.links.answers | serialize | raw }},
+    testResultId: {{ testResult.id }}
+  });
+</script>
+{% endblock %}
