@@ -178,7 +178,7 @@ var RiskAnalysis = React.createClass({
             <SignUpForm onAuthDone={this.onAuthDone} regions={this.props.regions} />
           </div>
         </div>
-        <div className="h h_2 h_center h_button" onClick={this.openThirdStep}>Шаг 3. Регистрация<i className="icon icon-arr-down"></i></div>
+        <div className="h h_2 h_center h_button" onClick={this.openThirdStep}>Шаг 3. Результаты<i className="icon icon-arr-down"></i></div>
       </div>
     );
   },
