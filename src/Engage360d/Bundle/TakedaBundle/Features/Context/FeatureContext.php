@@ -5,6 +5,7 @@ namespace Engage360d\Bundle\TakedaBundle\Features\Context;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Gherkin\Node\PyStringNode;
 
 class UriRetriever extends \JsonSchema\Uri\UriRetriever
 {
@@ -141,5 +142,25 @@ class FeatureContext implements SnippetAcceptingContext
     {
         $this->username = $username;
         $this->password = $password;
+    }
+
+    /**
+     * @Then response data value under key :key should be :value
+     */
+    public function responseDataValueUnderKeyShouldBe($key, $value)
+    {
+        $responseBody = json_decode($this->client->getResponse()->getContent());
+        \PHPUnit_Framework_Assert::assertEquals(
+          $responseBody->data->{$key},
+          $value
+        );
+    }
+
+    /**
+     * @Given request body is:
+     */
+    public function requestBodyIs(PyStringNode $string)
+    {
+        $this->requestBody = (string) $string;
     }
 }
