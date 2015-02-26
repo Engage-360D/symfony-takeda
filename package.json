@@ -16,7 +16,7 @@
     "attreactive-mixins": "~0.1",
     "engage-360d-spin": "git+https://github.com/attreactive/engage-360d-spin.git",
     "html-truncate": "~1.0.5",
-    "react-input-datalist": "~2.0"
+    "react-select": "~0.3"
   },
   "devDependencies": {
     "yargs": "~1.3",

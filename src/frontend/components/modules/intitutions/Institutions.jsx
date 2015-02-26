@@ -3,8 +3,6 @@ var async = require('async');
 var Select = require('../../form/Select');
 var apiRequest = require('../../../utilities/apiRequest');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
-var InputDatalist = require('react-input-datalist');
-require('react-input-datalist/react-input-datalist.css');
 
 function itemAddress(item) {
   return [
@@ -187,13 +185,9 @@ var Institutions = React.createClass({
         <div className="searcher">
           <div className="field field_no-wide">
             <div className="field__label">Список учреждений в регионе</div>
-            <div className="field__in">
-              <InputDatalist datalist={this.props.parsedTowns}
-                             className="input"
-                             style={{lineHeight: '24px'}}
-                             predicate={function(string, substring) { return string.toLowerCase().indexOf(substring.toLowerCase()) >= 0; }}
-                             value={this.state.parsedTown}
-                             onChange={this.linkState('parsedTown').requestChange} />
+            <div className="field__in" style={{width: 200}}>
+              <Select options={this.getParsedTownOptions()}
+                      valueLink={this.linkState('parsedTown')} />
             </div>
           </div>
           <div className="sorter">

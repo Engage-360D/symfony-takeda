@@ -1,0 +1,36 @@
+.Select-control {
+  border: 1px solid #424549;
+  border-radius: 0;
+  padding: 3px;
+}
+
+.is-focused:not(.is-open) > .Select-control {
+  border-color: #424549;
+  box-shadow: none;
+}
+
+.is-open > .Select-control {
+  border: 1px solid #424549;
+}
+
+.Select-menu {
+  border: 1px solid #424549;
+  border-radius: 0;
+}
+
+.Select-option {
+  color: #414141;
+}
+
+.Select-placeholder {
+  padding-top: 4px;
+}
+
+.Select-arrow {
+  top: 10px;
+  border-color: #424549 transparent transparent;
+}
+
+.is-open > .Select-control > .Select-arrow {
+  border-color: transparent transparent #424549;
+}

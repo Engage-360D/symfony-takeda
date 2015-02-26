@@ -3,9 +3,10 @@
  */
 
 var React = require('react');
+var ReactSelect = require('react-select');
 
-var selectStyle = {border: '1px solid black', background: 'white', width: '100%', padding: 5, '-webkit-appearance': 'none', borderRadius: 0};
-var iconStyle = {fontSize: 8, position: 'absolute', marginLeft: -27, marginTop: -14, background: 'white', padding: 6};
+require('react-select/dist/default.css');
+require('./Select.css');
 
 var Select = React.createClass({
   getDefaultProps: function() {
@@ -25,7 +26,7 @@ var Select = React.createClass({
     );
   },
 
-  getLink: function() {
+  getValue: function() {
     if (!this.props.valueLink) {
       return null;
     }
@@ -43,27 +44,20 @@ var Select = React.createClass({
       }
     }
 
-    return {
-      value: hash,
-      requestChange: this.handleChange
-    };
-  },
-
-  renderOption: function(option, index) {
-    return (
-      <option value={option.hash} key={index}>{option.text}</option>
-    );
+    return hash;
   },
 
   render: function() {
+    var options = this.props.options.map(function(option) {
+      return {value: option.hash, label: option.text};
+    });
+
     return (
-      <div>
-        <select style={selectStyle}
-                valueLink={this.getLink()}>
-          {this.props.options.map(this.renderOption)}
-        </select>
-        <button><i className="icon icon-arr-down" style={iconStyle}></i></button>
-      </div>
+      <ReactSelect options={options}
+                   value={this.getValue()}
+                   onChange={this.handleChange}
+                   clearable={false}
+                   matchProp="label" />
     );
   }
 });
