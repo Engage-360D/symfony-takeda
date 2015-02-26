@@ -1,0 +1,33 @@
+{# Replace with block #}
+
+{%
+    set menuItems = [
+        {
+            'url': '/about/about',
+            'title': 'О компании'
+        },
+        {
+            'url': '/history',
+            'title': 'История'
+        },
+        {
+            'url': '/contacts',
+            'title': 'Контакты'
+        },
+        {
+            'url': '/certificates',
+            'title': 'Сертификаты'
+        },
+    ]
+%}
+
+
+<div class="tabs">
+    {% for item in menuItems %}
+        <a
+                class="button {% if item.url starts with '/' ~ app.request.get('url')|split('/')[0] %}is-active{% endif %}"
+                href="{{ item.url }}"
+        >{{ item.title }}</a>
+    {% endfor %}
+
+</div>

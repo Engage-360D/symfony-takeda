@@ -53,6 +53,16 @@ class JsonApiController extends Controller
         }
     }
 
+    protected function assertEntityIsValid($entity)
+    {
+        $validator = $this->get('validator');
+        $errors = $validator->validate($entity);
+
+        if (count($errors) > 0) {
+            throw new HttpException(400, (string) $errors);
+        }
+    }
+
     protected function getErrorResponse($data, $code)
     {
         if (is_string($data)) {
@@ -114,7 +124,7 @@ class JsonApiController extends Controller
                     $entity->$method($mappedEntity);
                 }
 
-                $method = 'add' . ucfirst($property);
+                $method = 'add' . ucfirst(preg_replace("/s$/", "", $property));
                 if (method_exists($entity, $method)) {
                     $entity->$method($mappedEntity);
                 }

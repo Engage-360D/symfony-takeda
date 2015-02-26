@@ -41,11 +41,13 @@ security:
                     service: engage360d_security.oauth.provider
 
     access_control:
+
         - { path: ^/account, roles: [ ROLE_USER ] }
 
-#        # API
+        # API
 
         - { path: ^/api/v1/regions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+
         - { path: ^/api/v1/records, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
         - { path: ^/api/v1/users, roles: [ROLE_ADMIN], methods: [GET] }
@@ -67,13 +69,12 @@ security:
         - { path: ^/api/v1/institutions, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
 
         - { path: ^/api/v1/subscription-contacts, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [POST] }
-#
-#
-#        - { path: ^/api/v1/search, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-#        - { path: ^/api/v1/test-results, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api/v1/countries, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
-#
-#
-        - { path: ^/api, roles: [ ROLE_ADMIN ] }
 
-        #- { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        # Static pages
+        - { path: ^/api/v1/pages, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+        - { path: ^/api/v1/pages, roles: [ ROLE_ADMIN ] }
+        - { path: ^/api/v1/page-blocks, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [GET] }
+        - { path: ^/api/v1/page-blocks, roles: [ ROLE_ADMIN ] }
+
+
+        - { path: ^/api, roles: [ ROLE_ADMIN ] }

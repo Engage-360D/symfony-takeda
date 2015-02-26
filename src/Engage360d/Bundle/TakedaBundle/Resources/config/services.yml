@@ -108,6 +108,16 @@ services:
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: postLoad }
 
+    # Bocks
+
+    engage360d_takeda.block.map:
+        class: Engage360d\Bundle\TakedaBundle\Block\Map
+        arguments:
+            - engage360d_takeda.block.map
+            - @templating
+        tags:
+            - { name: sonata.block }
+
     # Other
 
     engage360d_takeda.timeline_manager:

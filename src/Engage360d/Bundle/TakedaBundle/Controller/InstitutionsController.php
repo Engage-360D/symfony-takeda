@@ -70,7 +70,7 @@ class InstitutionsController extends Controller
         if (in_array($city, $parsedTowns)) {
             $parsedTown = $city;
         } else {
-            $parsedTown = $parsedTowns[0];
+            $parsedTown = isset($parsedTowns[0]) ? $parsedTowns[0] : null;
         }
 
         $results = $repo->filter($parsedTown, "");

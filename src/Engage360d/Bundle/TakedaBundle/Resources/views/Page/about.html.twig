@@ -1,0 +1,70 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block section %}
+    <!-- container -->
+    <div class="container">
+        <!-- head -->
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
+                </div>
+            </div>
+            <div class="head__left">
+                <!-- h -->
+                <div class="h">Компания Такеда</div>
+            </div>
+        </div>
+        {% include "Engage360dTakedaBundle:Page:about.top.menu.html.twig" %}
+        <!-- details -->
+        <div class="details">
+            <div class="details__left">
+                {% if blocks[0] is defined %}
+                    {{ sonata_block_render({ 'type': blocks[0].type }, blocks[0].getJsonDecoded) }}
+                {% endif %}
+            </div>
+            {%
+                set rightMenuItems = [
+                    {
+                        'url': '/about/about',
+                        'title': 'О компании'
+                    },
+                    {
+                        'url': '/about/mission',
+                        'title': 'Миссия'
+                    },
+                    {
+                        'url': '/about/dealer',
+                        'title': 'Информация по закупкам'
+                    },
+                    {
+                        'url': '/about/facilities',
+                        'title': 'Оборудование'
+                    }
+                ]
+            %}
+            <div class="details__right">
+                <ul class="details__links">
+                    {% for item in rightMenuItems %}
+                        {% if item.url != '/' ~ app.request.get('url') %}
+                            <li>
+                                <a class="link link_black" href="{{ item.url }}">
+                                    <span>{{ item.title }}</span>
+                                    <i class="icon icon-arr-circle-right"></i>
+                                    <i class="icon icon-arr-circle-right-fill"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% for block in blocks %}
+            {% if loop.index > 1 %}
+                {{ sonata_block_render({ 'type': block.type }, block.getJsonDecoded) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
