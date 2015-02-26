@@ -399,8 +399,11 @@ class AccountController extends TakedaJsonApiController
 
         $page = $recommendations['pages'][$recommendation];
         $page = $this->getPageRecommendationArray($page);
+        $page['id'] = $id . "_" . $recommendation;
 
-        return new JsonResponse($page, 200);
+        return new JsonResponse(array(
+          'data' => $page,
+        ), 200);
     }
 
     /**
