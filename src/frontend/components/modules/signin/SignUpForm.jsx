@@ -35,9 +35,9 @@ var SignUpForm = React.createClass({
       specializationInstitutionPhone: '',
       specializationInstitutionName: '',
       specializationGraduationDate: '',
-      isSubscribed: true,
-      agreedPersonal: true,
-      agreedRecommendation: true
+      isSubscribed: false,
+      agreedPersonal: false,
+      agreedRecommendation: false
     });
 
     return form.markBlured('birthday')
