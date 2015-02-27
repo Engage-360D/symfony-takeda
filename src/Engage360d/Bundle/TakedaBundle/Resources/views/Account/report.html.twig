@@ -205,14 +205,14 @@
                         0: { side: 'top', label: 'February'}
                     }
                 },
-                bar: { groupWidth: "96%" }
+                bar: { groupWidth: "96%" },
+                vAxis: {
+                    minValue: 0
+                }
             };
 
             if (reportPeriodFormat === 'W') {
-                options.vAxis = {
-                    minValue: 0,
-                    maxValue: 100
-                }
+                options.vAxis.maxValue = 100;
             }
 
             var chart = new google.visualization.ColumnChart(document.getElementById('google-chart'));

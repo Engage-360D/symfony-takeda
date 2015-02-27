@@ -212,7 +212,6 @@ class ReportsManager
             } else {
                 $valueNote = 'За прошулю неделю он не изменился';
             }
-
         }
 
         return $valueNote;
@@ -286,13 +285,19 @@ class ReportsManager
             $data[] = [
                 'date' => date('Y-m-d', $timestamp),
                 'value' => $value,
-                'isDynamicPositive' => $value == 100,
+                'isDynamicPositive' => $reportType === self::TYPE_EXERCISE ?
+                    $this->isEnoughtExercisePerWeek($value) : $value == 100,
             ];
 
             $timestamp = strtotime("+1 week", $this->getWeekTimestamp($week, $year));
         }
 
         return $data;
+    }
+
+    public function isEnoughtExercisePerWeek($exerciseMins)
+    {
+        return $exerciseMins >= 150;
     }
 
     /**

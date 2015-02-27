@@ -15,7 +15,7 @@
     setHadHeartAttackOrStroke: false
     setIsAddingExtraSalt: false
     setIsAcetylsalicylicDrugsConsumer: false
-    setCreatedAt: "2014-12-01T00:00:00+0000"
+    setCreatedAt: "2014-11-01T00:00:00+0000"
 -
     setSex: male
     setBirthday: "1991-01-19T00:00:00+0000"
