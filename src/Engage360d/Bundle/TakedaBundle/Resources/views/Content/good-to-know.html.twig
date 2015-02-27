@@ -57,10 +57,6 @@
       <div class="h">Полезно знать</div>
     </div>
   </div>
-  <!-- content -->
-  <div class="content">
-    <p>Запомните, что единственным фактором риска инфаркта и инсульта, который нельзя устранить, является возраст. Кстати, этот фактор считается не самым важным, врачи утверждают, что здоровье сердца и сосудов зависит от самого пациента. Поэтому – бросаем курить, худеем и следим за давлением!</p>
-  </div>
   <div class="GoodToKnow">
     {% for block in blocks %}
     <div class="GoodToKnow-Block" style="background: {{ block.color }}">
@@ -68,9 +64,11 @@
         <div class="GoodToKnow-Aside">
           <div class="GoodToKnow-Image" style="background-image: url({{ block.image }})">
           </div>
+          {#
           <button class="GoodToKnow-Button">
             Поделиться
           </button>
+          #}
         </div>
         <div class="GoodToKnow-Section">
           <div class="content">
