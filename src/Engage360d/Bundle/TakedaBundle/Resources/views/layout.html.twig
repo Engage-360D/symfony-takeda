@@ -74,6 +74,8 @@
               if (data.data) {
                 $input.val('');
                 alert('Вы успешно подписаны на обновления');
+              } else if (data.errors) {
+                alert(data.errors[0]);
               } else {
                 alert('Произошла неизвестная ошибка, пожалуйста попробуйте позже');
               }
