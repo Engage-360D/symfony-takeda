@@ -66,6 +66,14 @@ engage360d_takeda_account_timeline:
     path: /account/timeline
     defaults: { _controller: Engage360dTakedaBundle:Account:timeline }
 
+engage360d_takeda_account_reports_list:
+    path: /account/reports
+    defaults: { _controller: Engage360dTakedaBundle:Account:reportsList }
+
+engage360d_takeda_account_report:
+    path: /account/reports/{reportType}
+    defaults: { _controller: Engage360dTakedaBundle:Account:report }
+
 engage360d_takeda_account_settings:
     path: /account/settings
     methods: [GET]

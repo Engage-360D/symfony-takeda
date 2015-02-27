@@ -123,3 +123,6 @@ services:
     engage360d_takeda.timeline_manager:
         class: Engage360d\Bundle\TakedaBundle\Services\TimelineManager
         arguments: [ @service_container ]
+    engage360d_takeda.reports_manager:
+        class: Engage360d\Bundle\TakedaBundle\Services\ReportsManager
+        arguments: [ @service_container ]

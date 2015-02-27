@@ -30,4 +30,19 @@ class Helpers
 
         return $result;
     }
+
+    public static function inclineNounByNumber($n, $options = ["слово", "слова", "слов"])
+    {
+        $n = $n % 100;
+
+        if ($n > 10 && $n < 20) {
+            return $options[2];
+        } else if ($n % 10 === 1) {
+            return $options[0];
+        } else if ($n % 10 > 1 && $n % 10 < 5) {
+            return $options[1];
+        } else {
+            return $options[2];
+        }
+    }
 }

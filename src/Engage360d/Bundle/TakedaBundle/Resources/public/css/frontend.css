@@ -887,14 +887,33 @@ input::-webkit-inner-spin-button {
   line-height: 52px;
   box-sizing: border-box;
 }
-.g-diseases .g-diseases__row a:hover { background: white; color: #2269c8; }
-.g-diseases .g-diseases__row a:after { content: ""; position: absolute; top: -1500px; right: -2px; height: 1498px; border-left: 1px dashed #fcd9a5; }
+
+.g-diseases .g-diseases__row a:hover {
+  background: white;
+  color: #2269c8;
+}
+
+.g-diseases .g-diseases__row a:after {
+  content: "";
+  position: absolute;
+  top: -1500px;
+  right: -2px;
+  height: 1498px;
+  border-left: 1px dashed #fcd9a5;
+}
 
 .map {
   min-height: 400px;
 }
 
-/* old styles */
+.icon-dash-circle-big:before {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background: url("/img/icons/icon-dash-circle-big.png");
+}
+
+/* old styles START */
 
 .activity { background: #e8e8e8; }
 

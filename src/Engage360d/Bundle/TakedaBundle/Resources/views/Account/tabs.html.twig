@@ -1,6 +1,14 @@
 <div class="tabs">
-    <a href="{{ path('engage360d_takeda_account_recommendations') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_recommendations' or app.request.get('_route') == 'engage360d_takeda_account_one_recommendation' ? 'is-active' : '' }}">Мои рекомендации</a>
-    <a href="{{ path('engage360d_takeda_account_timeline') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_timeline' ? 'is-active' : '' }}">Мой таймлайн</a>
-    <a class="button">Мои отчеты</a>
-    <a href="{{ path('engage360d_takeda_account_settings') }}" class="button {{ app.request.get('_route') == 'engage360d_takeda_account_settings' ? 'is-active' : '' }}">Мои данные</a>
+    {# pages #}
+    {% set recommendations    = 'engage360d_takeda_account_recommendations' %}
+    {% set one_recommendation = 'engage360d_takeda_account_one_recommendation' %}
+    {% set timeline           = 'engage360d_takeda_account_timeline' %}
+    {% set reports_list       = 'engage360d_takeda_account_reports_list' %}
+    {% set report             = 'engage360d_takeda_account_report' %}
+    {% set settings           = 'engage360d_takeda_account_settings' %}
+
+    <a href="{{ path(recommendations) }}" class="button {{ app.request.get('_route') == recommendations or app.request.get('_route') == one_recommendation ? 'is-active' : '' }}">Мои рекомендации</a>
+    <a href="{{ path(timeline) }}" class="button {{ app.request.get('_route') == timeline ? 'is-active' : '' }}">Мой таймлайн</a>
+    <a href="{{ path(reports_list) }}" class="button {{ app.request.get('_route') == reports_list or app.request.get('_route') == report ? 'is-active' : '' }}">Мои отчеты</a>
+    <a href="{{ path(settings) }}" class="button {{ app.request.get('_route') == settings ? 'is-active' : '' }}">Мои данные</a>
 </div>

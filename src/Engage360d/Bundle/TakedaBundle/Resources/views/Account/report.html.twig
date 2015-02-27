@@ -1,0 +1,262 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Мои отчеты{% endblock %}
+
+{% block section %}
+    <div class="container">
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+                </div>
+                <div class="head__out">
+                    <a href="/sign-out">Выход</a>
+                </div>
+            </div>
+            <div class="head__left">
+                <div class="h">{{app.user.fullName}}</div>
+            </div>
+        </div>
+        {{ include('Engage360dTakedaBundle:Account:tabs.html.twig') }}
+        <!-- report -->
+        <div class="report">
+            <div class="report__in">
+                <table class="report__table">
+                    <tr>
+                        <td><a class="link link_black" href="{{ path('engage360d_takeda_account_reports_list') }}"><span>Список отчетов</span><i class="icon icon-arr-circle-left"></i><i class="icon icon-arr-circle-left-fill"></i></a></td>
+                        <td>Текущее значение</td>
+                        <td>Динамика</td>
+                    </tr>
+                    <tr>
+                        <td>{{ report.title | raw }}</td>
+                        <td><strong>{{ report.currentValue }}</strong></td>
+                        <td><i class="icon {{ report.statusClass }}"></i></td>
+                    </tr>
+                </table>
+                <div class="report__right">
+                    <!-- button -->
+                    <div class="btn-circles">
+                        <a href="#" onclick="(function(){window.print();}()); return false;">
+                            <i class="icon icon-print-circle"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icon icon-main-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                {% if app.request.get("reportType") == "isr" %}
+                    <div class="h h_2 h_center">
+                        <p>{{ report.currentValue }} - настолько вы соблюдаете рекомендации </p>
+                        {% if report.valueNote %}
+                            <p>{{ report.valueNote }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if report.isWarningVisible %}
+                    <button class="button button_wide" onclick="window.location = '{{ path("engage360d_takeda_institutions") }}';">
+                        <i class="icon icon-info-triangle-big"></i>
+                        <span>Обратиться к врачу</span>
+                    </button>
+                {% endif %}
+            </div>
+            <!-- h-wrap -->
+            <div class="h-wrap h-wrap_h2 h-wrap_center">
+                <!-- h -->
+                <div class="h h_2">Отчет за:</div>
+                <!-- sorter -->
+                <div class="sorter">
+                    {% if report.periodFormat == 'W' %}
+                    <a class="is-active" href="#" data-period="MONTH">месяц</a>
+                    {% endif %}
+                    <a href="#" class="{{ report.periodFormat == 'M' ? 'is-active' : '' }}" data-period="QUARTER">квартал</a>
+                    <a href="#" data-period="YEAR">год</a>
+                </div>
+            </div>
+            <!-- graph -->
+            <div class="graph">
+                <div class="graph__cell">
+                    <button class="graph__prev">
+                        <i class="icon icon-arr-left"></i>
+                    </button>
+                </div>
+                <div id="google-chart" class="graph__cell" style="width: 720px; height: 500px;">
+                </div>
+                <div class="graph__cell">
+                    <button class="graph__next">
+                        <i class="icon icon-arr-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% if app.request.get("reportType") == "isr" %}
+            <!-- content -->
+            <div class="content">
+                <p>Индекс соблюдения рекомендаций (ИСР) - наглядный параметр, показывающий как хорошо вы выполняете рекомендации и следите за своим здоровьем.</p>
+                <p>Чем выше ИСР - тем выше вероятность, что при следующем SCORE анализе ваши результаты улучшаться.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1.1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawStuff);
+
+        function drawStuff(e, currentPage, currentPeriod) {
+            var moment = takeda.moment;
+            var $ = takeda.$;
+            var color = {
+                'red': '#FF3442',
+                'blue': '#43BAE4',
+                'grey': '#E7E7E7'
+            };
+            var period = {
+                'month': 'MONTH',
+                'quarter': 'QUARTER',
+                'year': 'YEAR'
+            };
+
+            var reportData = {{ report.data | serialize | raw }};
+            var reportPeriodFormat = {{ report.periodFormat | serialize | raw }};
+
+            if (reportData.length === 0) {
+                return;
+            }
+
+            function getColor(isDynamicPositive) {
+                if (isDynamicPositive === undefined) {
+                    return color.grey;
+                } else if (isDynamicPositive) {
+                    return color.blue;
+                } else {
+                    return color.red;
+                }
+            }
+
+            function getData(currentPage, currentPeriod) {
+                var data = [["Month", "Value", { role: "style" } ]];
+                var startDate;
+                var endDate;
+                var currentDate;
+                var i;
+
+                switch (currentPeriod) {
+                    case period.month:
+                        startDate = moment().startOf('month').add(currentPage, 'month');
+                        endDate = startDate.clone().add(1, 'month');
+                        break;
+                    case period.quarter:
+                        startDate = moment().startOf('quarter').add(currentPage, 'quarter');
+                        endDate = startDate.clone().add(1, 'quarter');
+                        break;
+                    case period.year:
+                        startDate = moment().startOf('year').add(currentPage, 'year');
+                        endDate = startDate.clone().add(1, 'year');
+                        break;
+                }
+
+                for (i = 0; i < reportData.length; i++) {
+                    currentDate = moment(reportData[i].date).add(1, 'second');
+                    if (currentDate.isBetween(startDate, endDate, 'second')) {
+                        data.push([
+                            currentDate.format(reportPeriodFormat),
+                            Math.round(Number(reportData[i].value)),
+                            getColor(reportData[i].isDynamicPositive)
+                        ]);
+                    }
+                }
+
+                return data;
+            }
+
+            currentPage = currentPage ? currentPage : 0;
+            currentPeriod = currentPeriod || reportPeriodFormat == 'W' ? period.month : period.quarter;
+
+            var data = getData(currentPage, currentPeriod);
+
+            var view = new google.visualization.DataView(
+                    google.visualization.arrayToDataTable(data)
+            );
+
+            view.setColumns([
+                0,
+                1,
+                {
+                    calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation"
+                },
+                2
+            ]);
+
+            var options = {
+                width: 720,
+                legend: {position: 'none'},
+                chartArea: {
+                  width: '90%',
+                  left: '5%'
+                },
+                tooltip: {trigger: 'none'},
+                axes: {
+                    x: {
+                        0: { side: 'top', label: 'February'}
+                    }
+                },
+                bar: { groupWidth: "96%" },
+                vAxis: {
+                    minValue: 0
+                }
+            };
+
+            if (reportPeriodFormat === 'W') {
+                options.vAxis.maxValue = 100;
+            }
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('google-chart'));
+            chart.draw(view, options);
+
+            $('button.graph__next').on('click', function showNextPage() {
+                if (getData(currentPage + 1, currentPeriod).length === 1) {
+                    return;
+                }
+                $('button.graph__next, button.graph__prev').off('click');
+                drawStuff(null, currentPage + 1, currentPeriod);
+            });
+            $('button.graph__prev').on('click', function showPrevPage() {
+                if (getData(currentPage - 1, currentPeriod).length === 1) {
+                    return;
+                }
+                $('button.graph__next, button.graph__prev').off('click');
+                drawStuff(null, currentPage - 1, currentPeriod);
+            });
+
+            var buttons = $('.sorter a');
+
+            buttons.on('click', function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('is-active')) {
+                    return;
+                }
+                $('button.graph__next, button.graph__prev').off('click');
+                buttons.off();
+                buttons.removeClass('is-active');
+                $(this).addClass('is-active');
+
+                switch ($(this).data('period')) {
+                    case period.month:
+                        drawStuff(null, null, period.month);
+                        break;
+                    case period.quarter:
+                        drawStuff(null, null, period.quarter);
+                        break;
+                    case period.year:
+                        drawStuff(null, null, period.year);
+                        break;
+                }
+            });
+        }
+    </script>
+{% endblock %}
