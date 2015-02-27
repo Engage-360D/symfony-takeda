@@ -1,0 +1,42 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Мои отчеты{% endblock %}
+
+{% block section %}
+    <div class="container">
+        <div class="head">
+            <div class="head__right">
+                <div class="head__city">
+                    <a href="#"><i class="icon icon-marker"></i><span>Москва</span></a>
+                </div>
+                <div class="head__out">
+                    <a href="/sign-out">Выход</a>
+                </div>
+            </div>
+            <div class="head__left">
+                <div class="h">{{app.user.fullName}}</div>
+            </div>
+        </div>
+        {{ include('Engage360dTakedaBundle:Account:tabs.html.twig') }}
+        <!-- report -->
+        <div class="report">
+            <div class="report__list">
+                <div class="report__list-head">
+                    <div class="report__list-cell">Рекомендация</div>
+                    <div class="report__list-cell">Текущее значение</div>
+                    <div class="report__list-cell">Динамика</div>
+                </div>
+                {% for item in list %}
+                    <div class="report__list-item">
+                        <a class="report__list-link" href="{{ path('engage360d_takeda_account_report', {reportType: item.uri}) }}">
+                            <div class="report__list-cell">{{ item.title | raw }}</div>
+                            <div class="report__list-cell"><span>{{ item.value }}</span></div>
+                            <div class="report__list-cell"><i class="icon {{ item.statusClass }}"></i></div>
+                            <i class="icon icon-arr-right"></i>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

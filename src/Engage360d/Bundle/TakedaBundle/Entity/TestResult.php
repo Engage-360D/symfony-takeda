@@ -104,7 +104,7 @@ class TestResult
     protected $isAcetylsalicylicDrugsConsumer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\User\User", inversedBy="testResults")
+     * @ORM\ManyToOne(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\User\User", inversedBy="testResults", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
@@ -501,6 +501,10 @@ class TestResult
      */
     public function setCreatedAt($createdAt)
     {
+        if (is_string($createdAt)) {
+            $createdAt = new \DateTime($createdAt);
+        }
+
         $this->createdAt = $createdAt;
 
         return $this;

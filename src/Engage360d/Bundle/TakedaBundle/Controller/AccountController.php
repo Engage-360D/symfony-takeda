@@ -127,6 +127,38 @@ class AccountController extends Controller
         ));
     }
 
+    public function reportsListAction()
+    {
+        $user = $this->getUser();
+        if ($user->getTestResults()->isEmpty()) {
+            return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
+        }
+
+        $reportsManager = $this->get('engage360d_takeda.reports_manager');
+        $reportsManager->init($user);
+
+        return $this->render('Engage360dTakedaBundle:Account:reports.list.html.twig', [
+            'list' => $reportsManager->getReportsList(),
+        ]);
+    }
+
+    public function reportAction(Request $request)
+    {
+        $user = $this->getUser();
+        if ($user->getTestResults()->isEmpty()) {
+            return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
+        }
+
+        $reportsManager = $this->get('engage360d_takeda.reports_manager');
+        $reportsManager->init($user);
+
+        $report = $reportsManager->getReport($request->get('reportType'));
+
+        return $this->render('Engage360dTakedaBundle:Account:report.html.twig', [
+            'report' => $report,
+        ]);
+    }
+
     public function logoutAction(Request $request)
     {
         $this->get('security.context')->setToken(null);
