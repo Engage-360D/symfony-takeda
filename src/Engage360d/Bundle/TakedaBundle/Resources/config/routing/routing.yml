@@ -86,3 +86,7 @@ engage360d_takeda_press_center_article:
 engage360d_takeda_good_to_know:
     path: /good-to-know
     defaults: { _controller: Engage360dTakedaBundle:Content:goodToKnow }
+
+engage360d_takeda_about:
+    path: /about
+    defaults: { _controller: Engage360dTakedaBundle:Content:about }

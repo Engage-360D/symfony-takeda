@@ -117,4 +117,9 @@ class ContentController extends Controller
             'blocks' => $blocks,
         ]);
     }
+
+    public function aboutAction()
+    {
+        return $this->render('Engage360dTakedaBundle:Content:about.html.twig');
+    }
 }
