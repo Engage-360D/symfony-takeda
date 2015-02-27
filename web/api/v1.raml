@@ -534,6 +534,30 @@ traits:
               schema: !include v1/schemas/opinions/one.json
               example: !include v1/examples/opinions/one.json
 
+/institution-parsed-towns:
+  get:
+    responses:
+      200: ~
+
+/institution-specializations:
+  get:
+    responses:
+      200: ~
+
+/institutions:
+  get:
+    queryParameters:
+      parsedTown:
+        type: string
+      specialization:
+        type: string
+    responses:
+      200: ~
+  /{id}:
+    get:
+      responses:
+        200: ~
+
 /experts:
   description: only for Web
   get:

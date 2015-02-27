@@ -16,6 +16,40 @@ class InstitutionsController extends TakedaJsonApiController
     // const URI_REGIONS_LIST = '/api/v1/schemas/regions/list.json';
 
     /**
+     * @Route("/institution-specializations", name="api_get_institution_specializations", methods="GET")
+     */
+    public function getInstitutionSpecializations()
+    {
+        $repo = $this->getDoctrine()->getRepository(Institution::REPOSITORY);
+        $specializations = $repo->findSpecializations();
+
+        $specializations = array_map(function($p) {
+            return ['id' => $p];
+        }, $specializations);
+
+        return [
+            'data' => $specializations,
+        ];
+    }
+
+    /**
+     * @Route("/institution-parsed-towns", name="api_get_institution_parsed_towns", methods="GET")
+     */
+    public function getInstitutionParsedTowns()
+    {
+        $repo = $this->getDoctrine()->getRepository(Institution::REPOSITORY);
+        $parsedTowns = $repo->findParsedTowns();
+
+        $parsedTowns = array_map(function($p) {
+            return ['id' => $p];
+        }, $parsedTowns);
+
+        return [
+            'data' => $parsedTowns,
+        ];
+    }
+
+    /**
      * @Route("/institutions", name="api_get_institutions", methods="GET")
      */
     public function getInstitutionsAction(Request $request)
