@@ -1,0 +1,87 @@
+{% extends "Engage360dTakedaBundle::layout.html.twig" %}
+
+{% block title %}Полезно знать{% endblock %}
+
+{% block section %}
+<style>
+  .GoodToKnow {
+    margin-top: 30px;
+  }
+
+
+  .GoodToKnow-Block {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    color: white;
+    height: 250px;
+  }
+
+  .GoodToKnow-Image {
+    height: 125px;
+    background: no-repeat center center;
+  }
+
+  .GoodToKnow-Content {
+    margin: 30px;
+  }
+
+  .GoodToKnow-Aside, .GoodToKnow-Section {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .GoodToKnow-Aside {
+    width: 200px;
+    text-align: center;
+  }
+
+  .GoodToKnow-Button {
+    color: white;
+    border: 1px solid white;
+    margin-top: 20px;
+    padding: 13px;
+    width: 80%;
+  }
+</style>
+
+<div class="container">
+  <div class="head">
+    <div class="head__right">
+      <div class="head__city">
+        {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
+      </div>
+    </div>
+    <div class="head__left">
+      <!-- h -->
+      <div class="h">Полезно знать</div>
+    </div>
+  </div>
+  <!-- content -->
+  <div class="content">
+    <p>Запомните, что единственным фактором риска инфаркта и инсульта, который нельзя устранить, является возраст. Кстати, этот фактор считается не самым важным, врачи утверждают, что здоровье сердца и сосудов зависит от самого пациента. Поэтому – бросаем курить, худеем и следим за давлением!</p>
+  </div>
+  <div class="GoodToKnow">
+    {% for block in blocks %}
+    <div class="GoodToKnow-Block" style="background: {{ block.color }}">
+      <div class="GoodToKnow-Content">
+        <div class="GoodToKnow-Aside">
+          <div class="GoodToKnow-Image" style="background-image: url({{ block.image }})">
+          </div>
+          <button class="GoodToKnow-Button">
+            Поделиться
+          </button>
+        </div>
+        <div class="GoodToKnow-Section">
+          <div class="content">
+            <h2>{{ block.title }}</h2>
+            <p>{{ block.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 250px"></div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

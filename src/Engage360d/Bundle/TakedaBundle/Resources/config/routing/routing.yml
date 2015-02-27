@@ -82,3 +82,7 @@ engage360d_takeda_press_center:
 engage360d_takeda_press_center_article:
     path: /press-center/{articleType}/{id}
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
+
+engage360d_takeda_good_to_know:
+    path: /good-to-know
+    defaults: { _controller: Engage360dTakedaBundle:Content:goodToKnow }
