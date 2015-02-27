@@ -127,7 +127,7 @@ var GeneralForm = React.createClass({
     apiRequest('PUT', '/api/v1/account', {
       firstname: this.state.formState.data.firstname,
       lastname: this.state.formState.data.lastname,
-      email: this.state.formState.data.remail,
+      email: this.state.formState.data.email,
       links: {
         region: this.state.formState.data.region
       }
