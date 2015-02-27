@@ -28,13 +28,13 @@
       </div>
     </form>
     <div class="searcher__result">
-      {#
+      {% for item in result.pages %}
       <div class="searcher__result-item">
         <!-- h -->
-        <div class="h h_2">Препарат</div>
-        <div class="searcher__result-preparation"><a href="#">...помогает в лечении сердечно-сосудистых заболеваний...</a></div>
+        <div class="h h_2">{{ item.entity.title }}</div>
+        <div class="searcher__result-preparation"><a href="{{ item.entity.url }}">{{ item.entity.title }}</a></div>
       </div>
-      #}
+      {% endfor %}
       {% if result.institution|length > 0 %}
       <div class="searcher__result-item">
         <!-- h -->

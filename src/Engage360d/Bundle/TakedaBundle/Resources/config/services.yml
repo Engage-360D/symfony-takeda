@@ -7,6 +7,9 @@ services:
         tags:
           - { name: twig.extension }
 
+    engage360d_page_elastica_transformer:
+        class: Engage360d\Bundle\TakedaBundle\PageToElasticaTransformer
+
     engage360d_takeda.geo_ip_resolver:
         class: Engage360d\Bundle\TakedaBundle\GeoIPResolver
         arguments:

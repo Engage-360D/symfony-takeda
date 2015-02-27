@@ -13,6 +13,7 @@ class SearchController extends Controller
             'opinion' => 'Engage360dTakedaBundle:PressCenter\Opinion',
             'news' => 'Engage360dTakedaBundle:PressCenter\News',
             'institution' => 'Engage360dTakedaBundle:Institution',
+            'pages' => 'MelodiaPageBundle:Page',
         );
 
         $searchQuery = $this->getRequest()->query->get('query');

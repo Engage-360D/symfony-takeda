@@ -267,6 +267,20 @@ fos_elastica:
                             insert: true
                             update: true
                             delete: true
+                pages:
+                    mappings:
+                        title: ~
+                        content: ~
+                    persistence:
+                        driver: orm
+                        model: Melodia\PageBundle\Entity\Page
+                        provider: ~
+                        model_to_elastica_transformer:
+                          service: engage360d_page_elastica_transformer
+                        listener:
+                            insert: true
+                            update: true
+                            delete: true
 
 lexik_jwt_authentication:
     private_key_path: %kernel.root_dir%/var/jwt/private.pem   # ssh private key path
