@@ -203,6 +203,16 @@ class TakedaJsonApiController extends JsonApiController
         ];
     }
 
+    protected function getPillLink()
+    {
+        return [
+            "pills.user" => [
+                "href" => $this->getBaseUrl() . "/users/{pills.user}",
+                "type" => "users"
+            ]
+        ];
+    }
+
     protected function getPillArray($pill)
     {
         return [

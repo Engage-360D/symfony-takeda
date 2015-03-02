@@ -458,7 +458,8 @@ class AccountController extends TakedaJsonApiController
         $pills = $user->getPills()->toArray();
 
         $response = [
-            "data" => array_map([$this, 'getPillArray'], $pills)
+            "links" => $this->getPillLink(),
+            "data" => array_map([$this, 'getPillArray'], $pills),
         ];
 
         return new JsonResponse($response, 200);
@@ -498,7 +499,8 @@ class AccountController extends TakedaJsonApiController
         $em->flush();
 
         $response = [
-            "data" => $this->getPillArray($pill)
+            "links" => $this->getPillLink(),
+            "data" => $this->getPillArray($pill),
         ];
 
         return new JsonResponse($response, 201);
@@ -547,7 +549,8 @@ class AccountController extends TakedaJsonApiController
         $em->flush();
 
         $response = [
-            "data" => $this->getPillArray($pill)
+            "links" => $this->getPillLink(),
+            "data" => $this->getPillArray($pill),
         ];
 
         return new JsonResponse($response, 200);

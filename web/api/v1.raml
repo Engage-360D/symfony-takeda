@@ -318,8 +318,22 @@ traits:
               schema: !include v1/schemas/pills/one.json
               example: !include v1/examples/pills/one.json
     /{id}:
+      put:
+        is: [ secured ]
+        description: |
+          Редактирование таблетки
+        body:
+          application/json:
+            schema: !include v1/schemas/pills/put.json
+            example: !include v1/examples/pills/put.json
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include v1/schemas/pills/one.json
+                example: !include v1/examples/pills/one.json
       delete:
-        is: [ secured, admin-only ]
+        is: [ secured ]
         responses:
           200:
   /timeline:
