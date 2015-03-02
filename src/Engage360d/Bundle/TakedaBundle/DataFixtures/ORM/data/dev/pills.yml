@@ -1,0 +1,14 @@
+-
+    setName: First pill
+    setQuantity: 1
+    setRepeat: DAILY
+    setTime: 12:00
+    setSinceDate: 2015-02-25T00:00:00+0000
+    setTillDate: 2015-03-19T00:00:00+0000
+-
+    setName: Second pill
+    setQuantity: 1
+    setRepeat: EVERY_2_DAYS
+    setTime: 14:00
+    setSinceDate: 2015-02-24T00:00:00+0000
+    setTillDate: 2015-03-19T00:00:00+0000

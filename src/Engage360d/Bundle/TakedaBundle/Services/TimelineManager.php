@@ -6,6 +6,7 @@ use Elastica\Exception\NotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Engage360d\Bundle\TakedaBundle\Entity\Pill;
 
 class TimelineManager
 {
@@ -116,7 +117,13 @@ class TimelineManager
             foreach ($this->user->getPills() as $index => $pill) {
                 if (
                     $timelineDate->format('U') >= $pill->getSinceDate()->format('U') &&
-                    $timelineDate->format('U') <= $pill->getTillDate()->format('U')
+                    $timelineDate->format('U') <= $pill->getTillDate()->format('U') &&
+                    (
+                        // daily
+                        $pill->getRepeat() === Pill::REPEAT_TYPE_DAILY ||
+                        // every two days
+                        $timelineDate->diff($pill->getSinceDate(), true)->d % 2 === 0
+                    )
                 ) {
                     // Use pill ID as a suffix of a task ID,
                     // to make the latter unequivocally map to the former.

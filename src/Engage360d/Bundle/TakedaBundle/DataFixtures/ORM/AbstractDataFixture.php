@@ -45,6 +45,6 @@ abstract class AbstractDataFixture extends AbstractFixture implements ContainerA
         $yaml = new Parser();
         $data = $yaml->parse(file_get_contents($path));
 
-        return $data;
+        return $data ? $data : array();
     }
 }
