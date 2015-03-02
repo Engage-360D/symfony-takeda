@@ -172,7 +172,9 @@
             }
 
             currentPage = currentPage ? currentPage : 0;
-            currentPeriod = currentPeriod || reportPeriodFormat == 'W' ? period.month : period.quarter;
+            if (!currentPeriod) {
+                currentPeriod = reportPeriodFormat == 'W' ? period.month : period.quarter;
+            }
 
             var data = getData(currentPage, currentPeriod);
 
