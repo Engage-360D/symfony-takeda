@@ -35,3 +35,5 @@ parameters:
 
     unisender_key: 59qajmg4aqh4pwgesqtpftj1apm9hutxa3iufrro
     unisender_list: 3354164
+
+    bcrypt_cost: 17    # bcrypt_cost can be in the range of 4-31

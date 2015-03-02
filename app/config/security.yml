@@ -5,7 +5,9 @@ jms_security_extra:
 
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface:
+            algorithm: bcrypt
+            cost: %bcrypt_cost%
 
     role_hierarchy:
         ROLE_DOCTOR: ROLE_USER
