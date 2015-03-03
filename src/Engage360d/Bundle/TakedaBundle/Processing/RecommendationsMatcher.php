@@ -28,7 +28,7 @@ class RecommendationsMatcher
     {
         $recommendations = array(
             'scoreNote' => $this->choiceFirstVisible($this->declaration['scoreNote']),
-            'fullScreenAlert' => $this->choiceFirstVisible($this->declaration['fullScreenAlert']),
+            'fullScreenAlert' => $this->getFullScreenAlert(),
             'mainRecommendation' => $this->choiceFirstVisible($this->declaration['mainRecommendation']),
             'placesLinkShouldBeVisible' => $this->isVisible($this->declaration['placesLinkShouldBeVisible']),
             'banners' => array(
@@ -166,5 +166,18 @@ class RecommendationsMatcher
         }
 
         throw new \Exception();
+    }
+
+    private function getFullScreenAlert()
+    {
+        $fullScreenAlert = $this->choiceFirstVisible($this->declaration['fullScreenAlert']);
+        if (is_array($fullScreenAlert)) {
+            $fullScreenAlert = array_merge(
+                $fullScreenAlert,
+                array('placesLink' => $this->router->generate('engage360d_takeda_institutions'))
+            );
+        }
+
+        return $fullScreenAlert;
     }
 }

@@ -98,15 +98,18 @@ var TestResult = React.createClass({
               <div className="result__text-ico">
                 <i className="icon icon-info-triangle-big"></i>
               </div>
-              <div className="result__text-in">Инфаркт.</div>
+              <div className="result__text-in">{recommendations.fullScreenAlert.title}</div>
             </div>
           </div>
           <div className="result__content">
             <div className="result__content-in">
-              <p>{'Наличие перенесенного инфаркта (инсульта/стентирования коронарных артерий/операции аортокоронарного шунтирования*) автоматически приводит к очень высокому риску смерти от сердечно-сосудистых причин. Рекомендовано наблюдение у кардиолога, **, соблюдение диеты, регулярный контроль уровня холестерина (общий ХС<4,0, ЛПНП<1,8  ммоль/л), артериального давления (менее 140/90 мм рт. ст.). Для снижения риска смерти  необходимо постоянно принимать препараты ацетилсалициловой кислоты, препараты снижающие артериальное давление и  статины при отсутствии противопоказаний, проконсультируйтесь у врача о назначении вам этих препаратов.'}</p>
+              <p>{recommendations.fullScreenAlert.text}</p>
               {recommendations.placesLinkShouldBeVisible &&
               <div className="result__content-find">
-                <a href="#"><span>Подобрать мед. учереждение по близости</span><i className="icon icon-arr-right"></i></a>
+                <a href={recommendations.fullScreenAlert.placesLink}>
+                  <span>Подобрать мед. учереждение поблизости</span>
+                  <i className="icon icon-arr-right"></i>
+                </a>
               </div>
               }
             </div>
