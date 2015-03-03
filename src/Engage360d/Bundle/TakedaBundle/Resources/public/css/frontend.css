@@ -913,6 +913,12 @@ input::-webkit-inner-spin-button {
   background: url("/img/icons/icon-dash-circle-big.png");
 }
 
+.content h3 {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }
