@@ -136,7 +136,7 @@ class UserController extends TakedaJsonApiController
             ->findOneBy(["email" => $user->getEmail()]);
 
         if ($duplicateUser) {
-            return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+            return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 409);
         }
 
         $em->persist($user);
@@ -203,7 +203,7 @@ class UserController extends TakedaJsonApiController
                 ->findOneBy(["email" => $user->getEmail()]);
 
             if ($duplicateUser) {
-                return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 400);
+                return $this->getErrorResponse(sprintf("User with email '%s' already exists", $user->getEmail()), 409);
             }
         }
 
