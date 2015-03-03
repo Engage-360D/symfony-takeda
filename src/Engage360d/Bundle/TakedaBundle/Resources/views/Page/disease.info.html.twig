@@ -26,12 +26,20 @@
             </div>
             <div class="details__right">
                 <!-- h -->
-                <div class="h h_2">Статьи по теме:</div>
-                <ul class="details__links">
-                    <li><a class="link link_black" href="#"><span>Причины, симптомы, последствия</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-                    <li><a class="link link_black" href="#"><span>Почему «диабет», почему «сахарный»</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-                    <li><a class="link link_black" href="#"><span>Что такое типы сахарного диабета</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-                </ul>
+                {% if diseaseArticles|length > 0 %}
+                    <div class="h h_2">Статьи по теме:</div>
+                    <ul class="details__links">
+                        {% for article in diseaseArticles %}
+                            <li>
+                                <a class="link link_black" href="{{ article.url }}">
+                                    <span>{{ article.title }}</span>
+                                    <i class="icon icon-arr-circle-right"></i>
+                                    <i class="icon icon-arr-circle-right-fill"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
         {% for block in blocks %}

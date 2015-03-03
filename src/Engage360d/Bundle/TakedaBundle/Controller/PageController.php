@@ -19,23 +19,40 @@ class PageController extends Controller
         }
 
         // Disease info page
-        $diseaseFooterMenu = [];
-        if (preg_match("/^disease\\/.+/", $url)) {
+        if (preg_match("/^disease\\/[^\\/]+/", $url, $matches)) {
+            $categoryUrl = $matches[0];
+            $diseaseFooterMenu = [];
+            $diseaseArticles = [];
+
             $pages = $this->getDoctrine()
                 ->getRepository(Page::REPOSITORY)
                 ->findByUrlPart('/disease/');
+
             foreach ($pages as $p) {
-                if (preg_match("/disease\\/[^\\/]+$/", $p->getUrl()) && strpos($p->getUrl(), $url) === false) {
+                if (
+                        strpos($p->getUrl(), $categoryUrl) === false &&
+                        preg_match("/^\\/disease\\/[^\\/]+$/", $p->getUrl())
+                ) {
                     $diseaseFooterMenu[] = [
+                        "url" => $p->getUrl(),
+                        "title" => $p->getTitle(),
+                    ];
+                } else if (
+                        strpos($p->getUrl(), $categoryUrl) !== false &&
+                        $p->getUrl() !== '/' . $url
+                ) {
+                    $diseaseArticles[] = [
                         "url" => $p->getUrl(),
                         "title" => $p->getTitle(),
                     ];
                 }
             }
+
             return $this->render('Engage360dTakedaBundle:Page:disease.info.html.twig',
                 [
                     'page' => $page,
                     'blocks' => $page->getPageBlocks(),
+                    'diseaseArticles' => $diseaseArticles,
                     'diseaseFooterMenu' => $diseaseFooterMenu,
                 ]
             );
