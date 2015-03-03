@@ -3578,17 +3578,17 @@
         },
         {
             "name": "melodia/util-bundle",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "target-dir": "Melodia/UtilBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/melodia/MelodiaUtilBundle.git",
-                "reference": "9e97c69120963399f47f0a8f420ad193be30a6f2"
+                "reference": "4fa2d66bf2cfa9ce80ce575d4a173c681d2e191b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/melodia/MelodiaUtilBundle/zipball/9e97c69120963399f47f0a8f420ad193be30a6f2",
-                "reference": "9e97c69120963399f47f0a8f420ad193be30a6f2",
+                "url": "https://api.github.com/repos/melodia/MelodiaUtilBundle/zipball/4fa2d66bf2cfa9ce80ce575d4a173c681d2e191b",
+                "reference": "4fa2d66bf2cfa9ce80ce575d4a173c681d2e191b",
                 "shasum": ""
             },
             "type": "library",
@@ -3614,10 +3614,10 @@
                 "util"
             ],
             "support": {
-                "source": "https://github.com/melodia/MelodiaUtilBundle/tree/v0.1.0",
+                "source": "https://github.com/melodia/MelodiaUtilBundle/tree/v0.2.0",
                 "issues": "https://github.com/melodia/MelodiaUtilBundle/issues"
             },
-            "time": "2014-11-27 12:38:33"
+            "time": "2015-03-03 14:43:24"
         },
         {
             "name": "michelf/php-markdown",
