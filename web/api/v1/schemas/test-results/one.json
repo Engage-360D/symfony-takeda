@@ -154,6 +154,11 @@
           ]
         },
 
+        "hadBypassSurgery": {
+          "description": "Коронарное шунтирование.",
+          "type": "boolean"
+        },
+
         "isSugarDrugsConsumer": {
           "description": "Пустое значение если у пользователя нет диабета.",
 

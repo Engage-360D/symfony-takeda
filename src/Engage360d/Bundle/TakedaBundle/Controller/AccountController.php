@@ -106,6 +106,10 @@ class AccountController extends Controller
             return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
         }
 
+        if (!$this->get('security.context')->isGranted('ROLE_DOCTOR') && $user->getTestResults()->last()->wasThereIncident()) {
+            return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));
+        }
+
         $timelineManager = $this->get('engage360d_takeda.timeline_manager');
         $timelineManager->setUser($user);
 
@@ -134,6 +138,10 @@ class AccountController extends Controller
             return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
         }
 
+        if (!$this->get('security.context')->isGranted('ROLE_DOCTOR') && $user->getTestResults()->last()->wasThereIncident()) {
+            return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));
+        }
+
         $reportsManager = $this->get('engage360d_takeda.reports_manager');
         $reportsManager->init($user);
 
@@ -147,6 +155,10 @@ class AccountController extends Controller
         $user = $this->getUser();
         if ($user->getTestResults()->isEmpty()) {
             return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
+        }
+
+        if (!$this->get('security.context')->isGranted('ROLE_DOCTOR') && $user->getTestResults()->last()->wasThereIncident()) {
+            return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));
         }
 
         $reportsManager = $this->get('engage360d_takeda.reports_manager');
@@ -214,6 +226,7 @@ class AccountController extends Controller
             "isArterialPressureDrugsConsumer" => $testResult->getIsArterialPressureDrugsConsumer(),
             "physicalActivityMinutes"  => $testResult->getPhysicalActivityMinutes(),
             "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
+            "hadBypassSurgery" => $testResult->getHadBypassSurgery(),
             "isAddingExtraSalt" => $testResult->getIsAddingExtraSalt(),
             "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
             "bmi" => $testResult->getBmi(),

@@ -3,6 +3,7 @@
 namespace Engage360d\Bundle\TakedaBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -34,6 +35,9 @@ class AccountController extends TakedaJsonApiController
     const URI_PILLS_POST = '/api/v1/schemas/pills/post.json';
     const URI_PILLS_PUT = '/api/v1/schemas/pills/put.json';
     const URI_TIMELINE_TASKS_PUT = '/api/v1/schemas/timelines/tasks/put.json';
+
+    // TODO: update lines above
+    const URI_INCIDENTS_POST = 'v1/schemas/incidents/post.json';
 
     /**
      * @Route("/account", name="api_get_account", methods="GET")
@@ -146,10 +150,10 @@ class AccountController extends TakedaJsonApiController
         // Note, that a user with ROLE_ADMIN is always granted a role ROLE_DOCTOR.
         // See role_hierarchy in security settings.
         if (!$this->get('security.context')->isGranted('ROLE_DOCTOR')) {
-            // Prohibit a user who had a heart attack or stroke from taking another test.
+            // Prohibit a user who had an incident from taking another test.
             $lastTestResult = $user->getTestResults()->last();
-            if ($lastTestResult && $lastTestResult->getHadHeartAttackOrStroke()) {
-                return $this->getErrorResponse("Go to the doctor, quick!", 409);
+            if ($lastTestResult && $lastTestResult->wasThereIncident()) {
+                return $this->getErrorResponse("You got an indicend. Go to the doctor, quick!", 409);
             }
 
             // Allow a user to take a test only once a month.
@@ -443,6 +447,35 @@ class AccountController extends TakedaJsonApiController
         }
 
         return new JsonResponse(["data" => []], 200);
+    }
+
+    /**
+     * Sets hasDiabetes, hadHeartAttackOrStroke, hadBypassSurgery values of the
+     * last TestResult to true.
+     *
+     * @Route("/account/incidents", name="api_post_account_incidents", methods="POST")
+     */
+    public function postAccountIncidentAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $data = $this->getData($request);
+
+        $this->assertDataMatchesSchema($data, self::URI_INCIDENTS_POST);
+
+        $user = $this->getUser();
+        $lastTestResult = $user->getTestResults()->last();
+        if (!$lastTestResult) {
+            throw new HttpException(409, "First take the test.");
+        }
+
+        $this->populateEntity($lastTestResult, $data);
+
+        $em = $this->get('doctrine')->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return new JsonResponse(new \stdClass(), 201);
     }
 
     /**

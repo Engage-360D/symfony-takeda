@@ -50,6 +50,18 @@ class TimelineManager
 
     public function getTimeline()
     {
+        if ($this->user->getTestResults()->isEmpty()) {
+            throw new HttpException(409, "Timeline will be created when you pass the test.");
+        }
+
+        // Suspend timeline for a user with an incident
+        if (
+            !$this->container->get('security.context')->isGranted('ROLE_DOCTOR') &&
+            $this->user->getTestResults()->last()->wasThereIncident()
+        ) {
+            throw new HttpException(409, "You got an incident. Go to the doctor!");
+        }
+
         $collection = $this->getCollection();
 
         $timeline = $collection->findOne(["_id" => new \MongoId($this->user->getTimelineId())]);
@@ -73,9 +85,6 @@ class TimelineManager
     public function generateTimeline()
     {
         $firstTestResult = $this->user->getTestResults()->first();
-        if (!$firstTestResult) {
-            throw new NotFoundHttpException("Timeline will be created when you pass the test.");
-        }
 
         $timelineDate = $firstTestResult->getCreatedAt();
         $timelineDate->setTime(0, 0, 0);

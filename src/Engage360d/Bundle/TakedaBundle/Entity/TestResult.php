@@ -94,6 +94,11 @@ class TestResult
     protected $hadHeartAttackOrStroke;
 
     /**
+     * @ORM\Column(type="boolean", name="had_bypass_surgery")
+     */
+    protected $hadBypassSurgery;
+
+    /**
      * @ORM\Column(type="boolean", name="is_adding_extrasalt")
      */
     protected $isAddingExtraSalt;
@@ -126,6 +131,7 @@ class TestResult
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->hadBypassSurgery = false;
     }
 
     public function getId()
@@ -448,6 +454,27 @@ class TestResult
     }
 
     /**
+     * @param $hadBypassSurgery
+     * @return $this
+     */
+    public function setHadBypassSurgery($hadBypassSurgery)
+    {
+        if ($hadBypassSurgery !== null) {
+            $this->hadBypassSurgery = $hadBypassSurgery;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHadBypassSurgery()
+    {
+        return $this->hadBypassSurgery;
+    }
+
+    /**
      * Set isAddingExtraSalt
      *
      * @param boolean $isAddingExtraSalt
@@ -531,6 +558,16 @@ class TestResult
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * @return bool
+     */
+    public function wasThereIncident()
+    {
+        return $this->hadBypassSurgery ||
+            $this->hadHeartAttackOrStroke ||
+            $this->hasDiabetes;
     }
 
     /**

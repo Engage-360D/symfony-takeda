@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "type": "object",
+
+  "properties": {
+    "data": {
+      "type": "object",
+
+      "properties": {
+        "hadBypassSurgery": {
+          "enum": [true]
+        },
+        "hadHeartAttackOrStroke": {
+          "enum": [true]
+        },
+        "hasDiabetes": {
+          "enum": [true]
+        }
+      },
+
+      "additionalProperties": false,
+      "minProperties": 1,
+      "maxProperties": 1,
+
+      "required": []
+    }
+  },
+
+  "required": [
+    "data"
+  ]
+}

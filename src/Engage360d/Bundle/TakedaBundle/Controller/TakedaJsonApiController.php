@@ -117,6 +117,7 @@ class TakedaJsonApiController extends JsonApiController
             "isArterialPressureDrugsConsumer" => $testResult->getIsArterialPressureDrugsConsumer(),
             "physicalActivityMinutes"  => $testResult->getPhysicalActivityMinutes(),
             "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
+            "hadBypassSurgery" => $testResult->getHadBypassSurgery(),
             "isAddingExtraSalt" => $testResult->getIsAddingExtraSalt(),
             "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
             "bmi" => $testResult->getBmi(),

@@ -292,6 +292,17 @@ traits:
             application/json:
               schema: !include v1/schemas/test-results/one.json
               example: !include v1/examples/test-results/one.json
+  /incidents:
+    post:
+      is: [ secured ]
+      description: |
+        Сообщить об инциденте.
+      body:
+        application/json:
+          schema: !include v1/schemas/incidents/post.json
+          example: !include v1/examples/incidents/post.json
+      responses:
+        201:
   /pills:
     get:
       is: [ secured ]

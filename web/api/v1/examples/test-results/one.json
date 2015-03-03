@@ -15,6 +15,7 @@
     "isArterialPressureDrugsConsumer": null,
     "physicalActivityMinutes": 100,
     "hadHeartAttackOrStroke": true,
+    "hadBypassSurgery": false,
     "isAddingExtraSalt": true,
     "isAcetylsalicylicDrugsConsumer": true,
 
