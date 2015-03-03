@@ -150,17 +150,16 @@ class AccountController extends TakedaJsonApiController
         // Note, that a user with ROLE_ADMIN is always granted a role ROLE_DOCTOR.
         // See role_hierarchy in security settings.
         if (!$this->get('security.context')->isGranted('ROLE_DOCTOR')) {
-            // Prohibit a user who had an incident from taking another test.
             $lastTestResult = $user->getTestResults()->last();
+
+            // Prohibit a user who had an incident from taking another test.
             if ($lastTestResult && $lastTestResult->wasThereIncident()) {
                 return $this->getErrorResponse("You got an indicend. Go to the doctor, quick!", 409);
             }
 
             // Allow a user to take a test only once a month.
-            foreach ($user->getTestResults()->toArray() as $result) {
-                if ($result->getCreatedAt()->diff(new \DateTime())->m === 0) {
-                    return $this->getErrorResponse("You're allowed to take the test only once a month.", 409);
-                }
+            if ($lastTestResult && !$lastTestResult->hasMonthPassedSinceItWasCreated()) {
+                return $this->getErrorResponse("You're allowed to take the test only once a month.", 409);
             }
         }
 

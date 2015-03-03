@@ -570,6 +570,11 @@ class TestResult
             $this->hasDiabetes;
     }
 
+    public function hasMonthPassedSinceItWasCreated()
+    {
+        return $this->getCreatedAt()->diff(new \DateTime(), true)->m > 0;
+    }
+
     /**
      * Set deletedAt
      *
