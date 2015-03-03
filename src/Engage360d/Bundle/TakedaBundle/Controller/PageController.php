@@ -25,7 +25,7 @@ class PageController extends Controller
                 ->getRepository(Page::REPOSITORY)
                 ->findByUrlPart('/disease/');
             foreach ($pages as $p) {
-                if (strpos($p->getUrl(), $url) === false) {
+                if (preg_match("/disease\\/[^\\/]+$/", $p->getUrl()) && strpos($p->getUrl(), $url) === false) {
                     $diseaseFooterMenu[] = [
                         "url" => $p->getUrl(),
                         "title" => $p->getTitle(),
