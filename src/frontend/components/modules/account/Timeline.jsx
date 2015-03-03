@@ -64,12 +64,18 @@ var CellDiet = React.createClass({
       }
     ];
 
+    var fieldClass = cx({
+      'field': true,
+      'field_radio-list': true,
+      'is-error': this.props.task.isCompleted === false
+    });
+
     return (
       <div className="timeline__cell">
-        <div className="field field_radio-list">
+        <div className={fieldClass}>
           {this.props.task.isCompleted === null ?
             <RadioGroup options={options} valueLink={this.props.valueLink} /> :
-            <p>{this.props.task.isCompleted ? options[0].text : options[1].text}</p>
+            <p className="field__label">{this.props.task.isCompleted ? options[0].text : options[1].text}</p>
           }
         </div>
       </div>
@@ -90,10 +96,15 @@ var CellPill = React.createClass({
       inflectPills(pill.quantity)
     ].join(' ');
 
+    var fieldClass = cx({
+      'field': true,
+      'field_checkbox-list': true,
+      'is-error': this.props.task.isCompleted === false
+    });
+
     return (
       <div className="timeline__cell">
-        <div className="field field_checkbox-list">
-
+        <div className={fieldClass}>
            {this.props.task.isCompleted === null ? (
              <label className="field__checkbox">
                <input type="checkbox"
@@ -103,7 +114,7 @@ var CellPill = React.createClass({
                <span>{prescription}<i className="icon icon-ok"></i></span>
              </label>
            ) : (
-             <p>{prescription}</p>
+             <p className="field__label">{prescription}</p>
            )}
         </div>
       </div>
@@ -176,14 +187,14 @@ var Task = React.createClass({
       var link = {};
 
       switch (task.type) {
-        case Task.TYPE_EXERCISE:
-          link.text = 'Мои рекомендации по физической нагрузке';
-          link.href = '#';
-          break;
-        case Task.TYPE_DIET:
-          link.text = 'Мои рекомендации по диете';
-          link.href = '#';
-          break;
+        //case Task.TYPE_EXERCISE:
+        //  link.text = 'Мои рекомендации по физической нагрузке';
+        //  link.href = '#';
+        //  break;
+        //case Task.TYPE_DIET:
+        //  link.text = 'Мои рекомендации по диете';
+        //  link.href = '#';
+        //  break;
         case Task.TYPE_PILL:
           link.text = '';
           link.href = '#';
@@ -206,12 +217,17 @@ var Task = React.createClass({
   getInitialState: function () {
     return {
       exerciseMins: this.props.task.exerciseMins || 0,
-      isCompleted: this.props.task.type === Task.TYPE_DIET ? null : false
+      isCompleted: this.props.task.type === Task.TYPE_DIET ? null : false,
+      isSubmitting: false
     };
   },
 
   submitTask: function (e) {
     e.preventDefault();
+
+    if (this.state.isSubmitting) {
+      return;
+    }
 
     var data = {};
 
@@ -224,11 +240,14 @@ var Task = React.createClass({
       data.isCompleted = this.state.isCompleted;
     }
 
+    this.setState({isSubmitting: true});
     apiRequest(
       'POST',
       '/api/v1/account/timeline/tasks/' + this.props.task.id + '?_method=PUT',
       data,
       function(err, data) {
+        this.setState({isSubmitting: false});
+
         if (err) {
           alert("Ошибка. Попробуйте позже.");
           return;
@@ -377,6 +396,17 @@ var Timeline = React.createClass({
     return this.state.completedTasks.filter(function (completedTask) {
       return task.id == completedTask.id;
     }).length === 1;
+  },
+
+  componentWillMount: function () {
+    var tasks = this.props.timeline.linked.tasks.slice();
+    tasks = tasks.filter(function (task) {
+      return task.isCompleted === null;
+    });
+
+    if (tasks.length === 0) {
+      this.setState({activeTab: Timeline.TAB_COMPLETED});
+    }
   },
 
   render: function () {
