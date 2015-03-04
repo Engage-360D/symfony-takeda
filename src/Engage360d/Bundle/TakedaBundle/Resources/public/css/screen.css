@@ -205,9 +205,9 @@ button { background: none; }
 .social.social_gray li:first-child { margin: 0; }
 .social.social_gray a { width: 52px; height: 52px; }
 .social .social__vk:hover { background: #6082a7; }
-.social .social__fb:hover { background: #3c5b97; }
-.social .social__ok:hover { background: #f4863f; }
-.social .social__gplus:hover { background: #c24232; }
+.social .social__fb:hover { background: #3b579d; }
+.social .social__ok:hover { background: #fd821c; }
+.social .social__gplus:hover { background: #d6553a; }
 
 .subscribe { margin-bottom: 12px; padding: 11px 0 12px; }
 .subscribe input { padding: 0 25px 0 6px; }

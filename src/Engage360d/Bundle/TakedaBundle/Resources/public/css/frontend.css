@@ -917,6 +917,9 @@ input::-webkit-inner-spin-button {
   background: url("/img/icons/icon-dash-circle-big.png");
   */
 }
+.social li {
+  margin-left: 0;
+}
 
 /* old styles START */
 
