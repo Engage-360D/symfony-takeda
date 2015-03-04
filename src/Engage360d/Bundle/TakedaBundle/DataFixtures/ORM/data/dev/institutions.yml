@@ -1,0 +1,90 @@
+-
+    setName: Поликлиника городская №205 ГБУЗ
+    setSpecialization: Кардиология
+    setAddress: г.Москва г, Профсоюзная ул.,   д.111АМосква
+    setGoogleAddress: Профсоюзная улица (дублер), 111А, Москва, город Москва, Россия
+    setRegion: Россия
+    setParsedTown: Москва
+    setParsedStreet: Профсоюзная ул.
+    setParsedHouse: д. 111
+    setParsedCorpus: корп. A
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 55.631539
+    setLng: 37.522539
+    setPriority: 1
+-
+    setName: ГКБ №79 БУЗ
+    setSpecialization: Кардиология
+    setAddress: г.Москва г, Академика Миллионщикова ул.,   д.1Москва
+    setGoogleAddress: Россия, город Москва, Москва, улица Академика Миллионщикова д.1
+    setRegion: Россия
+    setParsedTown: Москва
+    setParsedStreet: Академика Миллионщикова ул.
+    setParsedHouse: д. 1
+    setParsedCorpus: ""
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 55.673747
+    setLng: 37.654700
+    setPriority: 1
+-
+    setName: ЦКБ УДП РФ ФГУ
+    setSpecialization: Кардиология
+    setAddress: г.Москва г, Маршала Тимошенко ул.,   д.15Москва
+    setGoogleAddress: Россия, город Москва, Москва, улица Маршала Тимошенко д.15
+    setRegion: Россия
+    setParsedTown: Москва
+    setParsedStreet: Маршала Тимошенко ул.
+    setParsedHouse: д. 15
+    setParsedCorpus: ""
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 55.749456
+    setLng: 37.389849
+    setPriority: 1
+-
+    setName: Научно-клинический центр спец.видов мед.помощи и мед.технологий ФМБА ФКУЗ
+    setSpecialization: Кардиология
+    setAddress: г.Москва г, Ореховый б-р,   д.28Москва
+    setGoogleAddress: Россия, город Москва, Москва, Ореховый б-р д.28
+    setRegion: Россия
+    setParsedTown: Москва
+    setParsedStreet: Ореховый б-р
+    setParsedHouse: д. 28
+    setParsedCorpus: ""
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 55.616463
+    setLng: 37.763836
+    setPriority: 1
+-
+    setName: ГКБ №4 ГБУЗ
+    setSpecialization: Кардиология
+    setAddress: г.Москва г, Павловская ул.,  улица д.25Москва
+    setGoogleAddress: Россия, город Москва, Москва, улица Павловская д.25
+    setRegion: Россия
+    setParsedTown: Москва
+    setParsedStreet: Павловская ул.
+    setParsedHouse: д. 25
+    setParsedCorpus: ""
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 55.714277
+    setLng: 37.628712
+    setPriority: 1
+-
+    setName: Поликлиника Больница отделенческой ОАО РЖД НУЗ
+    setSpecialization: Терапия
+    setAddress: г.Киров г, Октябрьский пр-кт,   д.151Волга Вятка
+    setGoogleAddress: Россия, Кировская область, Киров, Октябрьский проспект д.151
+    setRegion: Россия
+    setParsedTown: Киров
+    setParsedStreet: Октябрьский пр-кт
+    setParsedHouse: д. 151
+    setParsedCorpus: ""
+    setParsedBuilding: ""
+    setParsedRegion: ""
+    setLat: 58.58411926
+    setLng: 49.65735050
+    setPriority: 1
