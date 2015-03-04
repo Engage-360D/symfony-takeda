@@ -100,6 +100,20 @@ var SignInForm = React.createClass({
     }.bind(this));
   },
 
+  openOk: function (event) {
+    event.preventDefault();
+    social.openOk(function() {
+      this.props.onAuthDone();
+    }.bind(this));
+  },
+
+  openGoogle: function (event) {
+    event.preventDefault();
+    social.openGoogle(function() {
+      this.props.onAuthDone();
+    }.bind(this));
+  },
+
   renderSocial: function() {
     return (
       <div className="field field_rows" style={{position: 'absolute', marginTop: -10}}>
@@ -107,7 +121,8 @@ var SignInForm = React.createClass({
           <ul className="social social_dark">
             <li><a className="social__vk" href="#" onClick={this.openVk}><i className="icon icon-soc-vk"></i></a></li>
             <li><a className="social__fb" href="#" onClick={this.openFb}><i className="icon icon-soc-fb"></i></a></li>
-            <li><a className="social__ok" href="#"><i className="icon icon-soc-ok"></i></a></li>
+            <li><a className="social__ok" href="#" onClick={this.openOk}><i className="icon icon-soc-ok"></i></a></li>
+            <li><a className="social__gplus" href="#" onClick={this.openGoogle}><i className="icon icon-gplus"></i></a></li>
           </ul>
         </div>
       </div>

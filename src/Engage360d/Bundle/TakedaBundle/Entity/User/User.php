@@ -118,6 +118,34 @@ class User extends BaseUser
     protected $vkontakteAccessToken;
 
     /**
+     * @var string $odnoklassnikiId
+     *
+     * @ORM\Column(name="odnoklassniki_id", type="string", nullable=true)
+     */
+    protected $odnoklassnikiId;
+
+    /**
+     * @var string $odnoklassnikiAccessToken
+     *
+     * @ORM\Column(name="odnoklassniki_access_token", type="string", nullable=true)
+     */
+    protected $odnoklassnikiAccessToken;
+
+    /**
+     * @var string $googleId
+     *
+     * @ORM\Column(name="google_id", type="string", nullable=true)
+     */
+    protected $googleId;
+
+    /**
+     * @var string $googleAccessToken
+     *
+     * @ORM\Column(name="google_access_token", type="string", nullable=true)
+     */
+    protected $googleAccessToken;
+
+    /**
      * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\Pill", mappedBy="user", orphanRemoval=true, cascade={"persist", "remove"})
      */
     protected $pills;
@@ -243,23 +271,7 @@ class User extends BaseUser
         return $this->vkontakteAccessToken;
     }
 
-    public function setOdnoklassnikiId($vkontakteId)
-    {
-    }
-
-    public function getOdnoklassnikiId()
-    {
-    }
-
     public function setOdnoklassnikiData($bdata)
-    {
-    }
-
-    public function setOdnoklassnikiAccessToken($token)
-    {
-    }
-
-    public function getOdnoklassnikieAccessToken()
     {
     }
 
@@ -581,5 +593,91 @@ class User extends BaseUser
     public function getTimelineId()
     {
         return $this->timelineId;
+    }
+
+    /**
+     * @param $odnoklassnikiId
+     * @return $this
+     */
+    public function setOdnoklassnikiId($odnoklassnikiId)
+    {
+        $this->odnoklassnikiId = $odnoklassnikiId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOdnoklassnikiId()
+    {
+        return $this->odnoklassnikiId;
+    }
+
+    /**
+     * @param $odnoklassnikiAccessToken
+     * @return $this
+     */
+    public function setOdnoklassnikiAccessToken($odnoklassnikiAccessToken)
+    {
+        $this->odnoklassnikiAccessToken = $odnoklassnikiAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get odnoklassnikiAccessToken
+     *
+     * @return string 
+     */
+    public function getOdnoklassnikiAccessToken()
+    {
+        return $this->odnoklassnikiAccessToken;
+    }
+
+    /**
+     * Set googleId
+     *
+     * @param string $googleId
+     * @return User
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleId
+     *
+     * @return string 
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Set googleAccessToken
+     *
+     * @param string $googleAccessToken
+     * @return User
+     */
+    public function setGoogleAccessToken($googleAccessToken)
+    {
+        $this->googleAccessToken = $googleAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get googleAccessToken
+     *
+     * @return string 
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->googleAccessToken;
     }
 }

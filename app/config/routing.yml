@@ -26,6 +26,12 @@ facebook_login:
 vkontakte_login:
     pattern: /sign-in/vkontakte
 
+google_login:
+    pattern: /sign-in/google
+
+odnoklassniki_login:
+    pattern: /sign-in/odnoklassniki
+
 engage360d_takeda_sign_out:
     pattern: /sign-out
     defaults:  { _controller: Engage360dTakedaBundle:Account:logout }

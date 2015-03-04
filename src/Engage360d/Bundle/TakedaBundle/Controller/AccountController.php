@@ -190,6 +190,8 @@ class AccountController extends Controller
             "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
             "vkontakteId" => $user->getVkontakteId(),
             "facebookId" => $user->getFacebookId(),
+            "odnoklassnikiId" => $user->getOdnoklassnikiId(),
+            "googleId" => $user->getGoogleId(),
             "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
             "specializationGraduationDate" => $user->getSpecializationGraduationDate() ? $user->getSpecializationGraduationDate()->format(\DateTime::ISO8601) : null,
             "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),

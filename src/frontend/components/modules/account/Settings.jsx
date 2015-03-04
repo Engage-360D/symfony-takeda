@@ -370,6 +370,20 @@ var Settings = React.createClass({
     }.bind(this));
   },
 
+  openOk: function(event) {
+    event.preventDefault();
+    social.openOk(function() {
+      this.onAuthDone();
+    }.bind(this));
+  },
+
+  openGoogle: function(event) {
+    event.preventDefault();
+    social.openGoogle(function() {
+      this.onAuthDone();
+    }.bind(this));
+  },
+
   resetPassword: function() {
     var error = function(res) {
       try {
@@ -424,7 +438,12 @@ var Settings = React.createClass({
                   {!this.props.user.facebookId &&
                     <li><a className="social__fb" href="#" onClick={this.openFb}><i className="icon icon-soc-fb"></i></a></li>
                   }
-                  <li><a className="social__ok" href="#"><i className="icon icon-soc-ok"></i></a></li>
+                  {!this.props.user.odnoklassnikiId &&
+                    <li><a className="social__ok" href="#" onClick={this.openOk}><i className="icon icon-soc-ok"></i></a></li>
+                  }
+                  {!this.props.user.googleId &&
+                    <li><a className="social__gplus" href="#" onClick={this.openGoogle}><i className="icon icon-gplus"></i></a></li>
+                  }
                 </ul>
               </div>
             </div>
@@ -437,6 +456,12 @@ var Settings = React.createClass({
                   }
                   {this.props.user.facebookId &&
                     <li><a className="social__fb" href={"https://facebook.com/" + this.props.user.facebookId} target="blank"><i className="icon icon-soc-fb"></i></a></li>
+                  }
+                  {this.props.user.odnoklassnikiId &&
+                    <li><a className="social__ok" href={"http://ok.ru/profile/" + this.props.user.odnoklassnikiId} target="blank"><i className="icon icon-soc-ok"></i></a></li>
+                  }
+                  {this.props.user.googleId &&
+                  <li><a className="social__gplus" href={"https://plus.google.com/" + this.props.user.googleId + "/posts"} target="blank"><i className="icon icon-gplus"></i></a></li>
                   }
                 </ul>
               </div>

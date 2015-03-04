@@ -25,6 +25,8 @@ use Symfony\Component\Security\Http\SecurityEvents;
 use HWI\Bundle\OAuthBundle\Controller\ConnectController;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\VkontakteResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
+use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\GoogleResourceOwner;
+use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\OdnoklassnikiResourceOwner;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 class SecurityController extends ConnectController
@@ -41,6 +43,8 @@ class SecurityController extends ConnectController
             "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
             "vkontakteId" => $user->getVkontakteId(),
             "facebookId" => $user->getFacebookId(),
+            "odnoklassnikiId" => $user->getOdnoklassnikiId(),
+            "googleId" => $user->getGoogleId(),
             "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
             "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
             "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
@@ -62,21 +66,29 @@ class SecurityController extends ConnectController
 
     public function connectFailureAction(Request $request)
     {
-        $error = $this->getErrorForRequest($request);
-
-        $userInformation = $this
-            ->getResourceOwnerByName($error->getResourceOwnerName())
-            ->getUserInformation($error->getRawToken());
-        $resourceOwner = $this->getResourceOwnerByName($error->getResourceOwnerName());
-
         $auth = [];
 
-        if ($resourceOwner instanceof FacebookResourceOwner) {
-            $auth['facebookId'] = $userInformation->getUsername();
-            $auth['facebookToken'] = $error->getRawToken()['access_token'];
-        } else if ($resourceOwner instanceof VkontakteResourceOwner) {
-            $auth['vkontakteId'] = (string)$userInformation->getUsername();
-            $auth['vkontakteToken'] = $error->getRawToken()['access_token'];
+        $error = $this->getErrorForRequest($request);
+
+        if ($error instanceof AccountNotLinkedException) {
+            $userInformation = $this
+                ->getResourceOwnerByName($error->getResourceOwnerName())
+                ->getUserInformation($error->getRawToken());
+            $resourceOwner = $this->getResourceOwnerByName($error->getResourceOwnerName());
+
+            if ($resourceOwner instanceof FacebookResourceOwner) {
+                $auth['facebookId'] = $userInformation->getUsername();
+                $auth['facebookToken'] = $error->getRawToken()['access_token'];
+            } else if ($resourceOwner instanceof VkontakteResourceOwner) {
+                $auth['vkontakteId'] = (string)$userInformation->getUsername();
+                $auth['vkontakteToken'] = $error->getRawToken()['access_token'];
+            } else if ($resourceOwner instanceof OdnoklassnikiResourceOwner) {
+                $auth['odnoklassnikiId'] = (string)$userInformation->getUsername();
+                $auth['odnoklassnikiToken'] = $error->getRawToken()['access_token'];
+            } else if ($resourceOwner instanceof GoogleResourceOwner) {
+                $auth['googleId'] = (string)$userInformation->getUsername();
+                $auth['googleToken'] = $error->getRawToken()['access_token'];
+            }
         }
 
         $regions = $this->container->get('doctrine')->getRepository('Engage360dTakedaBundle:Region\Region')->findAll();

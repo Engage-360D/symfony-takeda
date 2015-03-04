@@ -36,6 +36,8 @@ security:
                 resource_owners:
                     facebook:      facebook_login
                     vkontakte:     vkontakte_login
+                    google:        google_login
+                    odnoklassniki: odnoklassniki_login
                 login_path:        /sign-in
                 failure_path:      engage360d_oauth_connect_failure
                 use_forward:       false

@@ -42,6 +42,22 @@
           "type": "string"
         },
 
+        "odnoklassnikiId": {
+          "type": "string"
+        },
+
+        "odnoklassnikiToken": {
+          "type": "string"
+        },
+
+        "googleId": {
+          "type": "string"
+        },
+
+        "googleToken": {
+          "type": "string"
+        },
+
         "specializationGraduationDate": {
           "description": "Дата выпуска из учебного заведения. Пустое значение если пользователь не доктор.",
           "oneOf": [

@@ -54,6 +54,20 @@
           ]
         },
 
+        "odnoklassnikiId": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
+        "googleId": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "null"}
+          ]
+        },
+
         "specializationGraduationDate": {
           "description": "Дата выпуска из учебного заведения. Пустое значение если пользователь не доктор.",
           "oneOf": [
@@ -147,6 +161,8 @@
 
         "vkontakteId",
         "facebookId",
+        "odnoklassnikiId",
+        "googleId",
 
         "specializationExperienceYears",
         "specializationGraduationDate",

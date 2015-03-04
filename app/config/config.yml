@@ -225,6 +225,17 @@ hwi_oauth:
             type:                vkontakte
             client_id:           "%vkontakte_client_id%"
             client_secret:       "%vkontakte_client_secret%"
+        google:
+            type:                google
+            client_id:           "%google_client_id%"
+            client_secret:       "%google_client_secret%"
+            scope:               "email profile"
+        odnoklassniki:
+            type:                odnoklassniki
+            client_id:           "%odnoklassniki_client_id%"
+            client_secret:       "%odnoklassniki_client_secret%"
+            options:
+                application_key: "%odnoklassniki_application_key%"
 
 fos_elastica:
     serializer: ~

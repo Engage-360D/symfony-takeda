@@ -112,21 +112,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        if (isset($data->data->facebookId)) {
-            $accessToken = isset($data->data->facebookToken) ? $data->data->facebookToken : "";
-
-            if ($data->data->facebookId !== $this->getFacebookId($accessToken)) {
-                return $this->getErrorResponse("Provided facebookToken is not valid", 400);
-            }
-        }
-
-        if (isset($data->data->vkontakteId)) {
-            $accessToken = isset($data->data->vkontakteToken) ? $data->data->vkontakteToken : "";
-
-            if (!$this->isVkontakteCredentialsValid($data->data->vkontakteId, $accessToken)) {
-                return $this->getErrorResponse("Provided vkontakteId (or vkontakteToken) is not valid", 400);
-            }
-        }
+        $this->assertSocialCredentialsIsValid($data);
 
         $user = $this->populateEntity(new User(), $data, ["region" => Region::REPOSITORY]);
 

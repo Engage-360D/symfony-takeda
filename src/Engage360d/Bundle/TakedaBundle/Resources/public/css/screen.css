@@ -207,6 +207,7 @@ button { background: none; }
 .social .social__vk:hover { background: #6082a7; }
 .social .social__fb:hover { background: #3c5b97; }
 .social .social__ok:hover { background: #f4863f; }
+.social .social__gplus:hover { background: #c24232; }
 
 .subscribe { margin-bottom: 12px; padding: 11px 0 12px; }
 .subscribe input { padding: 0 25px 0 6px; }

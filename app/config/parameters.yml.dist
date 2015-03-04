@@ -29,6 +29,13 @@ parameters:
     vkontakte_client_id: 4672457
     vkontakte_client_secret: 17L45R2M1u2EMROP1jhE
 
+    google_client_id: 777555608048-ad2e7m4mfcn8vm9ug9olrfof0brjbvcb.apps.googleusercontent.com
+    google_client_secret: JX-Ia1ideXlsn1rlO7AehAa2
+
+    odnoklassniki_client_id: 1126090240
+    odnoklassniki_client_secret: 48E60A55CB4CF49C3E5D3762
+    odnoklassniki_application_key: CBAHMPBEEBABABABA
+
     api.base_url: "http://localhost/api/v1"
 
     engage360d.oauth.default_target_path: /oauth/connect/success
