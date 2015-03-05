@@ -2,12 +2,35 @@
 
 {% block title %}Полезно знать{% endblock %}
 
+{% block meta %}
+    {% if app.request.get('blockId') %}
+        {% set currentBlock = blocks[app.request.get('blockId') - 1] %}
+        {% set image = url('engage360d_takeda_main_mainpage') ~ 'img/main-product.jpg' %}
+        <meta property="og:description" content="{{ currentBlock.title }}" />
+        <meta property="og:image" content="{{ image }}" />
+        <meta name="title" content="{{ block('title') }}" />
+        <meta name="description" content="{{ currentBlock.title }}" />
+        <link rel="image_src" href="{{ image }}" />
+    {% endif %}
+{% endblock %}
+
+{% block og_url %}{%
+    if app.request.get('blockId')
+%}{{
+    url('engage360d_takeda_good_to_know', {'blockId': app.request.get('blockId')}) ~ '#' ~ app.request.get('blockId')
+}}{%
+    else
+%}{{
+    parent()
+}}{%
+    endif
+%}{% endblock %}
+
 {% block section %}
 <style>
   .GoodToKnow {
     margin-top: 30px;
   }
-
 
   .GoodToKnow-Block {
     position: absolute;
@@ -43,6 +66,28 @@
     padding: 13px;
     width: 80%;
   }
+  .GoodToKnow-Share {
+      margin-top: 15px;
+  }
+  .GoodToKnow-Share .social {
+      border-bottom: 0;
+      box-shadow: none;
+  }
+  .GoodToKnow-Share .social .icon {
+      color: #fff;
+  }
+  .GoodToKnow-Share .social a:hover {
+      background: #fff;
+  }
+  .GoodToKnow-Share .social a:hover .icon {
+      color: inherit;
+  }
+  .GoodToKnow-Share .social a:active {
+      background: #fff;
+  }
+  .GoodToKnow-Share .social a:active .icon {
+      color: inherit;
+  }
 </style>
 
 <div class="container">
@@ -59,7 +104,7 @@
   </div>
   <div class="GoodToKnow">
     {% for block in blocks %}
-    <div class="GoodToKnow-Block" style="background: {{ block.color }}">
+    <div id="{{ loop.index }}" class="GoodToKnow-Block" style="background: {{ block.color }}">
       <div class="GoodToKnow-Content">
         <div class="GoodToKnow-Aside">
           <div class="GoodToKnow-Image" style="background-image: url({{ block.image }})">
@@ -75,6 +120,42 @@
             <h2>{{ block.title }}</h2>
             <p>{{ block.content }}</p>
           </div>
+        </div>
+        <div class="GoodToKnow-Share">
+            <ul class="social">
+                {% set url = url('engage360d_takeda_good_to_know', {'blockId': loop.index}) ~ '#' ~ loop.index %}
+                {% set onclick = "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" %}
+                <li><a
+                    class="social__vk"
+                    style="color: {{ block.color }}"
+                    onclick="{{ onclick }}"
+                    href="http://vk.com/share.php?url={{ url|url_encode }}"
+                    target="_blank"><i class="icon icon-soc-vk"></i></a></li>
+                <li><a
+                    class="social__fb"
+                    style="color: {{ block.color }}"
+                    onclick="{{ onclick }}"
+                    href="https://www.facebook.com/sharer/sharer.php?u={{ url|url_encode }}"
+                    target="_blank"><i class="icon icon-soc-fb"></i></a></li>
+                <li><a
+                    class="social__ok"
+                    style="color: {{ block.color }}"
+                    onclick="{{ onclick }}"
+                    href="http://www.ok.ru/dk?{{
+                        {
+                            'st.cmd': 'addShare',
+                            'st.s': '1',
+                            'st._surl': url
+                        }|url_encode
+                    }}"
+                    target="_blank"><i class="icon icon-soc-ok"></i></a></li>
+                <li><a
+                    class="social__gplus"
+                    style="color: {{ block.color }}"
+                    onclick="{{ onclick }}"
+                    href="https://plus.google.com/share?url={{ url|url_encode }}"
+                    target="_blank"><i class="icon icon-gplus"></i></a></li>
+            </ul>
         </div>
       </div>
     </div>

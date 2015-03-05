@@ -92,8 +92,8 @@ engage360d_takeda_press_center_article:
     defaults: { _controller: Engage360dTakedaBundle:PressCenter:article }
 
 engage360d_takeda_good_to_know:
-    path: /good-to-know
-    defaults: { _controller: Engage360dTakedaBundle:Content:goodToKnow }
+    path: /good-to-know/{blockId}
+    defaults: { _controller: Engage360dTakedaBundle:Content:goodToKnow, blockId: 0 }
 
 engage360d_takeda_about:
     path: /about
