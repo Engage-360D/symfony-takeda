@@ -198,7 +198,7 @@ button { background: none; }
 .social a:hover .icon { color: white; }
 .social .icon { color: #858585; }
 .social .icon-soc-vk { font-size: 17px; }
-.social .icon-soc-fb { font-size: 28px; }
+.social .icon-soc-fb, .social .icon-gplus { font-size: 28px; }
 .social .icon-soc-ok { font-size: 26px; }
 .social.social_gray { height: auto; border: none; box-shadow: none; text-align: center; }
 .social.social_gray li { width: 52px; margin: 0; }
