@@ -140,12 +140,12 @@ var DateInput = React.createClass({
         <div className="dp__date">
           <div className="dp__row">
             <div className="dp__cell">
-              <button className="dp__up" onClick={subtractMonth} style={{display: months[0].isBefore(this.props.min) ? 'none' : 'inline'}}>
+              <button className="dp__up" onClick={subtractDay} style={{display: days[0].isBefore(this.props.min) ? 'none' : 'inline'}}>
                 <i className="icon icon-arr-top"></i>
               </button>
             </div>
             <div className="dp__cell">
-              <button className="dp__up" onClick={subtractDay} style={{display: days[0].isBefore(this.props.min) ? 'none' : 'inline'}}>
+              <button className="dp__up" onClick={subtractMonth} style={{display: months[0].isBefore(this.props.min) ? 'none' : 'inline'}}>
                 <i className="icon icon-arr-top"></i>
               </button>
             </div>
@@ -156,28 +156,28 @@ var DateInput = React.createClass({
             </div>
           </div>
           <div className="dp__row">
-            <div className="dp__cell">{months[0].format('M')}</div>
             <div className="dp__cell">{days[0].format('DD')}</div>
+            <div className="dp__cell">{months[0].format('MM')}</div>
             <div className="dp__cell">{years[0].format('YYYY')}</div>
           </div>
           <div className="dp__row is-active">
-            <div className="dp__cell">{months[1].format('M')}</div>
             <div className="dp__cell">{days[1].format('DD')}</div>
+            <div className="dp__cell">{months[1].format('MM')}</div>
             <div className="dp__cell">{years[1].format('YYYY')}</div>
           </div>
           <div className="dp__row">
-            <div className="dp__cell">{months[2].format('M')}</div>
             <div className="dp__cell">{days[2].format('DD')}</div>
+            <div className="dp__cell">{months[2].format('MM')}</div>
             <div className="dp__cell">{years[2].format('YYYY')}</div>
           </div>
           <div className="dp__row">
             <div className="dp__cell">
-              <button className="dp__down" onClick={addMonth} style={{display: months[2].isAfter(this.props.max) ? 'none' : 'inline'}}>
+              <button className="dp__down" onClick={addDay} style={{display: days[2].isAfter(this.props.max) ? 'none' : 'inline'}}>
                 <i className="icon icon-arr-down"></i>
               </button>
             </div>
             <div className="dp__cell">
-              <button className="dp__down" onClick={addDay} style={{display: days[2].isAfter(this.props.max) ? 'none' : 'inline'}}>
+              <button className="dp__down" onClick={addMonth} style={{display: months[2].isAfter(this.props.max) ? 'none' : 'inline'}}>
                 <i className="icon icon-arr-down"></i>
               </button>
             </div>
