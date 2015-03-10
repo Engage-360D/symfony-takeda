@@ -921,6 +921,72 @@ input::-webkit-inner-spin-button {
   margin-left: 0;
 }
 
+.range.has-null-value {
+  width: 80%;
+  float: right;
+}
+
+.range .range__null {
+  position: absolute;
+  width: 26%;
+  left: -26%;
+}
+
+.range .range__null span {
+  position: absolute;
+  left: -35px;
+}
+
+.range .range__null i {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 32px;
+  margin-left: 1px;
+  vertical-align: top;
+  border-bottom: 2px solid black;
+}
+
+.range .range__null i:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  height: 4px;
+  left: 0;
+  background: #000000;
+}
+
+.range .range__null i:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -10px;
+  height: 2px;
+  width: 10px;
+  background: #000000;
+}
+
+.range .range__val {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  background: #2269c8;
+  border-radius: 50%;
+  line-height: 27px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 2;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }

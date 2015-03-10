@@ -223,7 +223,7 @@ var RiskAnalysis = React.createClass({
                 </div>
                 <div className="field">
                   <div className="field__label">Уровень общего холестирина</div>
-                  <Range valueLink={this.linkState('cholesterolLevel')} min={3} max={9} step={0.5} />
+                  <Range valueLink={this.linkState('cholesterolLevel')} min={3} max={9} step={0.5} nullValueLabel="Не знаю" />
                 </div>
                 {this.state.cholesterolLevel >= 5 &&
                 <div className="field field_radio-row">
