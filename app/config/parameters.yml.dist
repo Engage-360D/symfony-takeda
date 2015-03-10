@@ -36,6 +36,9 @@ parameters:
     odnoklassniki_client_secret: 48E60A55CB4CF49C3E5D3762
     odnoklassniki_application_key: CBAHMPBEEBABABABA
 
+    twitter_consumer_key: nTR107drUJGhp7ARODDWvOSOB
+    twitter_consumer_secret: 21N2adxIeKSlErrVohsZFxYnXluB3IUjjN29JdK2zsx2lz5Vx0
+
     api.base_url: "http://localhost/api/v1"
 
     engage360d.oauth.default_target_path: /oauth/connect/success

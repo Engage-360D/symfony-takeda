@@ -92,6 +92,7 @@ class PressCenterController extends Controller
                 "news" => $news,
                 "opinions" => $opinions,
                 "weekSummary" => $weekSummary,
+                "lastTweet" => $this->getLastTweet(),
             ]
         );
     }
@@ -133,5 +134,49 @@ class PressCenterController extends Controller
                 "recentArticles" => $recentArticles,
             ]
         );
+    }
+
+    private function getLastTweet() {
+
+        // Get token
+        $credentials = base64_encode(sprintf(
+            "%s:%s",
+            urlencode($this->container->getParameter('twitter_consumer_key')),
+            urlencode($this->container->getParameter('twitter_consumer_secret'))
+        ));
+        $buzz = $this->get('buzz');
+        $buzz->post(
+            'https://api.twitter.com/oauth2/token',
+            ['Authorization' => 'Basic ' . $credentials],
+            'grant_type=client_credentials'
+        );
+        $data = json_decode($buzz->getLastResponse()->getContent(), true);
+        if (!isset($data['access_token'])) {
+            return null;
+        }
+        $token = $data['access_token'];
+
+        // Get id of the last tweet which belongs to Cardiomagnyl
+        $buzz->get(
+            'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=Cardiomagnyl&count=1',
+            ['Authorization' => 'Bearer ' . $token]
+        );
+        $data = json_decode($buzz->getLastResponse()->getContent(), true);
+        if (!isset($data[0]['id'])) {
+            return null;
+        }
+        $lastTweetId = $data[0]['id'];
+
+        // Get html of the last tweet
+        $buzz->get(
+            'https://api.twitter.com/1.1/statuses/oembed.json?url=https://twitter.com/Interior/status/' . $lastTweetId,
+            ['Authorization' => 'Bearer ' . $token]
+        );
+        $data = json_decode($buzz->getLastResponse()->getContent(), true);
+        if (!isset($data['html'])) {
+            return null;
+        }
+
+        return $data['html'];
     }
 }

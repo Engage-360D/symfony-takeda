@@ -2,6 +2,19 @@
 
 {% block title %}Пресс-центр{% endblock %}
 
+{% block body %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=719836064773926&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    {{ parent() }}
+{% endblock %}
+
 {% block section %}
 <!-- container -->
 <div class="container">
@@ -46,11 +59,9 @@
             </ul>
             <div class="soc-widget__in">
                 <div class="soc-widget__item">
-                    <img src="http://placehold.it/380x160" alt="">
+                    <div class="fb-like-box" data-href="https://www.facebook.com/CardiomagnylDev" data-width="455" data-height="217" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
                 </div>
-                <div class="soc-widget__item" style="display: none">
-                    <img src="http://placehold.it/380x160" alt="">
-                </div>
+                <div class="soc-widget__item soc-widget__item__tw" style="display: none">{{ lastTweet|raw }}</div>
             </div>
         </div>
     </div>
@@ -67,5 +78,23 @@
         takeda.render(takeda.OpinionList, 'OpinionList', {
             opinions: {{ opinions | serialize | raw }}
         });
+    </script>
+    <script>
+        (function () {
+            var $ = takeda.$;
+            var buttons = $('.soc-widget__nav li');
+            var widgets = $('.soc-widget__item');
+            buttons.click(function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('.is-active')) {
+                    return;
+                }
+                var index = buttons.index($(this));
+                buttons.eq(index).addClass('is-active');
+                buttons.eq((index + 1) % 2).removeClass('is-active');
+                widgets.eq(index).show();
+                widgets.eq((index + 1) % 2).hide();
+            });
+        }());
     </script>
 {% endblock %}

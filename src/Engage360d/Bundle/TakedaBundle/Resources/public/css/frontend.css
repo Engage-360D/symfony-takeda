@@ -987,6 +987,14 @@ input::-webkit-inner-spin-button {
   z-index: 2;
 }
 
+.soc-widget .soc-widget__in {
+  padding: 1px;
+}
+
+.soc-widget__item__tw iframe {
+  margin: 0 !important;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }
