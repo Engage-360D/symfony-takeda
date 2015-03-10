@@ -21,3 +21,4 @@ app/var/*
 .idea/
 auth.json
 /mongo
+/web/admin/
