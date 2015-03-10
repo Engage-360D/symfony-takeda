@@ -11,6 +11,7 @@
   <meta property="og:url" content="{% block og_url %}{{ url('engage360d_takeda_main_mainpage') }}{% endblock %}" />
   <meta property="og:app_id" content="{{ facebook_client_id }}" />
   {% block meta %}{% endblock %}
+  {% block stylesheets %}{% endblock %}
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/screen.css') }}" />
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/frontend.css') }}" />
   <!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->

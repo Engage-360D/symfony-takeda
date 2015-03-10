@@ -2,6 +2,16 @@
 
 {% block title %}Мои отчеты{% endblock %}
 
+{% block stylesheets %}
+<style>
+    @media print {
+        .aside, .head, .tabs {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block section %}
     <div class="container">
         <div class="head">
