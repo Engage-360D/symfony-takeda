@@ -74,6 +74,13 @@ pageBlockRegistry.addPageBlockComponent({
   component: require("engage-360d-admin/components/pageBlocks/TextPageBlock")
 });
 
+pageBlockRegistry.addPageBlockComponent({
+  type: 'engage360d_takeda.block.map',
+  title: 'Карта',
+  initialJSON: JSON.stringify({}),
+  component: require("./admin/MapBlock")
+});
+
 // Formatters
 formatterFactory.factory('string', require("attreactive-admin/lib/formatter/StringFormatter"));
 formatterFactory.factory('number', require("attreactive-admin/lib/formatter/NumberFormatter"));
