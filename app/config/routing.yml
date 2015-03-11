@@ -13,6 +13,10 @@ engage360d_countries_api:
     resource: "@Engage360dCountriesBundle/Resources/config/routing/api.yml"
     prefix:   /api/v1
 
+engage360d_old_api_pages:
+    type:     rest
+    resource: Engage360d\Bundle\TakedaBundle\Controller\OldApi\PageController
+    prefix: /api/old
 
 # Security routes
 
