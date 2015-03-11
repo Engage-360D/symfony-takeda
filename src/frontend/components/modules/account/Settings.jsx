@@ -121,7 +121,7 @@ var GeneralForm = React.createClass({
     }.bind(this);
     var done = function() {
       this.setState({disabled: false});
-      alert('OK');
+      alert('Ваши данные успешно сохранены');
     }.bind(this);
 
     apiRequest('PUT', '/api/v1/account', {
@@ -252,7 +252,7 @@ var SpecializationForm = React.createClass({
     }.bind(this);
     var done = function() {
       this.setState({disabled: false});
-      alert('OK');
+      alert('Ваши данные успешно сохранены');
     }.bind(this);
 
     apiRequest('PUT', '/api/v1/account', {
@@ -402,7 +402,7 @@ var Settings = React.createClass({
         return error(err);
       }
 
-      alert('OK');
+      alert('На указанный email адрес выслан новый пароль');
     }.bind(this));
   },
 
