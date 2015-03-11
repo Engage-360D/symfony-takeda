@@ -38,6 +38,7 @@ class AccountController extends TakedaJsonApiController
 
     // TODO: update lines above
     const URI_INCIDENTS_POST = 'v1/schemas/incidents/post.json';
+    const URI_REPORTS_SEND_EMAIL_POST = 'v1/schemas/reports/send-email/post.json';
 
     /**
      * @Route("/account", name="api_get_account", methods="GET")
@@ -657,5 +658,50 @@ class AccountController extends TakedaJsonApiController
         $task = $timelineManager->updateTask($id, $data);
 
         return new JsonResponse(["data" => $task], 200);
+    }
+
+    /**
+     * @Route("/account/reports/{reportType}/send-email", name="api_post_account_reports_send_email", methods="POST")
+     */
+    public function postAccountReportsSendEmailAction(Request $request, $reportType)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_REPORTS_SEND_EMAIL_POST);
+
+        $user = $this->getUser();
+
+        if (!$this->get('security.context')->isGranted('ROLE_DOCTOR') && $user->getTestResults()->last()->wasThereIncident()) {
+            throw new HttpException(409, "Go to the doctor!");
+        }
+
+        $reportsManager = $this->get('engage360d_takeda.reports_manager');
+        $reportsManager->init($user);
+
+        $report = $reportsManager->getReport($reportType);
+
+        // TODO consider to put this code into service
+        $subject = "Report";
+        $fromEmail = $this->container->getParameter('mailer_sender_email');
+        if (!$fromEmail) {
+            throw new \RuntimeException("The mandatory parameter 'mailer_sender_email' is not set", 500);
+        }
+        $body = $this->renderView(
+            'Engage360dTakedaBundle:Account:email__report.html.twig',
+            ['report' => $report]
+        );
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($fromEmail)
+            ->setTo($data->data->email)
+            ->setBody($body, 'text/html');
+
+        // With spooling turned off Swift_SwiftException will be caught
+        // by FOSRestBundle Exception Handler and formatted by ExceptionWrapperHandler
+        $this->get('mailer')->send($message);
+
+        return new JsonResponse(["data" => (object) []], 200);
     }
 }

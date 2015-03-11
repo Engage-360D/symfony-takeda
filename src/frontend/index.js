@@ -5,7 +5,6 @@
 module.exports = {
   $: require('jquery'),
   render: require('./render'),
-  moment: require('moment'),
   SignIn: require('./components/modules/signin/SignIn'),
   SignInAfterSocial: require('./components/modules/signin/SignInAfterSocial'),
   RiskAnalysis: require('./components/modules/riskAnalysis/RiskAnalysis'),
@@ -16,5 +15,6 @@ module.exports = {
   Timeline: require('./components/modules/account/Timeline'),
   Diet: require('./components/modules/account/Diet'),
   Institutions: require('./components/modules/intitutions/Institutions'),
-  InstitutionsMap: require('./components/modules/intitutions/InstitutionsMap')
+  InstitutionsMap: require('./components/modules/intitutions/InstitutionsMap'),
+  Report: require('./components/modules/account/Report')
 };

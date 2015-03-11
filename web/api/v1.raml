@@ -367,7 +367,20 @@ traits:
           application/json:
             schema: !include v1/schemas/timelines/tasks/put.json
             example: !include v1/examples/timelines/tasks/put.json
-
+  /reports/{reportType}/send-email:
+    post:
+        is: [ secured ]
+        description: |
+          Отправка на почту отчета.
+        body:
+          application/json:
+            schema: !include v1/schemas/reports/send-email/post.json
+            example: !include v1/examples/reports/send-email/post.json
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include v1/examples/reports/send-email/one.json
 /test-results:
   description: only for Web
   get:
