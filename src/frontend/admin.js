@@ -7,6 +7,7 @@ var i18n = require("attreactive-i18n");
 i18n.locale('ru');
 
 // Rendering dependencies
+var Promise = require('bluebird');
 var React = require("react");
 var Admin = require("engage-360d-admin/components/Admin");
 var $ = require("jquery");
@@ -30,12 +31,19 @@ var apiRequest = require("./utilities/apiRequest");
 // Services
 var authManager = new AuthorizationManager(
   function (credentials) {
-    return apiRequest('POST', '/api/v1/tokens', {
+    return Promise.resolve(apiRequest('POST', '/api/v1/tokens', {
       email: credentials._username,
       plainPassword: credentials._password
-    }, function () {});
-  },
-  require("./admin/lib/authorizationStorage")
+    }, function () {}))
+      .then(function(output) {
+        var token = output.data.id;
+        var user = output.linked.users[0];
+        return {
+          userFullName: [user.firstname, user.lastname].join(' '),
+          token: token
+        };
+      });
+  }
 );
 var router = new Router();
 var adminSetup = new AdminSetup(authManager, router);
@@ -96,7 +104,7 @@ $(document).ajaxComplete(function(event, jqXHR, ajaxOptions) {
 adminResourceFactory.factory('pages', {
   title: 'Страницы',
   rest: {
-    baseUrl: '/api/v1/pages',
+    baseUrl: '/api/old/pages',
   },
   meta: {
     icon: 'file-text-o'
@@ -150,7 +158,8 @@ adminResourceFactory.factory('pages', {
       format: 'boolean'
     },
     pageBlocks: {
-      visibleInView: false
+      visibleInView: false,
+      defaultValue: []
     }
   }
 });

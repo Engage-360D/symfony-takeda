@@ -122,7 +122,7 @@ class PageController extends TakedaJsonApiController
         $page = new Page();
 
         $form = $this->createForm(new PageFormType(), $page);
-        $form->submit($request->request->all());
+        $form->submit($request->request->all()['data']);
 
         if (!$form->isValid()) {
             return new JsonResponse($this->getErrorMessages($form), 400);
@@ -169,7 +169,7 @@ class PageController extends TakedaJsonApiController
         }
 
         $form = $this->createForm(new PageFormType(), $page);
-        $form->submit($request->request->all());
+        $form->submit($request->request->all()['data']);
 
         if (!$form->isValid()) {
             return new JsonResponse($this->getErrorMessages($form), 400);
@@ -238,5 +238,19 @@ class PageController extends TakedaJsonApiController
         }
 
         return $errors;
+    }
+
+    protected function getPageArray($page)
+    {
+        return [
+            "id" => (string) $page->getId(),
+            "url" => $page->getUrl(),
+            "title" => $page->getTitle(),
+            "description" => $page->getDescription(),
+            "keywords" => $page->getKeywords(),
+            "isActive" => $page->getIsActive(),
+            "isEditable" => $page->getIsEditable(),
+            "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
+        ];
     }
 }
