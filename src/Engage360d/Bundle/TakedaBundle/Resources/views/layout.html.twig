@@ -65,7 +65,7 @@
             if (progress) return;
             var email = $input.val();
             if (!/.+@.+\..+/.test(email)) {
-              return alert('Неверный адрес электронной почты');
+              return alert('Некорректно указан email адрес');
             }
             progress = true;
             $.post('/api/v1/subscription-contacts', {
