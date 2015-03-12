@@ -5,41 +5,9 @@
 
   "properties": {
     "data": {
-      "$ref": "#/definitions/opinion"
-    },
-
-    "linked": {
       "type": "object",
 
       "properties": {
-        "experts": {
-          "type": "array",
-          "items": {
-            "$ref": "https://cardiomagnyl.ru/api/v1/schemas/experts/one.json#/definitions/expert"
-          }
-        }
-      },
-
-      "required": [
-        "experts"
-      ]
-    }
-  },
-
-  "required": [
-    "data",
-    "linked"
-  ],
-
-  "definitions": {
-    "opinion": {
-      "type": "object",
-
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-
         "title": {
           "type": "string"
         },
@@ -81,7 +49,6 @@
       "additionalProperties": false,
 
       "required": [
-        "id",
         "title",
         "content",
         "viewsCount",
@@ -90,5 +57,9 @@
         "links"
       ]
     }
-  }
+  },
+
+  "required": [
+    "data"
+  ]
 }

@@ -562,7 +562,18 @@ traits:
           application/json:
             schema: !include v1/schemas/opinions/list.json
             example: !include v1/examples/opinions/list.json
-
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/opinions/post.json
+        example: !include v1/examples/opinions/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/opinions/one.json
+            example: !include v1/examples/opinions/one.json
   /{id}:
     get:
       responses:
@@ -571,6 +582,21 @@ traits:
             application/json:
               schema: !include v1/schemas/opinions/one.json
               example: !include v1/examples/opinions/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/opinions/put.json
+          example: !include v1/examples/opinions/put.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/opinions/one.json
+              example: !include v1/examples/opinions/one.json
+    delete:
+      responses:
+        200:
 
 /institution-parsed-towns:
   get:
