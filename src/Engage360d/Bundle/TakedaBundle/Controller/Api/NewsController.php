@@ -7,20 +7,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Engage360d\Bundle\TakedaBundle\Entity\PressCenter\News;
+use Melodia\CatalogBundle\Entity\Record;
 
 class NewsController extends TakedaJsonApiController
 {
-    const URI_NEWS_ONE = '/api/v1/schemas/news/one.json';
-    const URI_NEWS_LIST = '/api/v1/schemas/news/list.json';
+    const URI_NEWS_ONE =  'v1/schemas/news/one.json';
+    const URI_NEWS_LIST = 'v1/schemas/news/list.json';
+    const URI_NEWS_POST = 'v1/schemas/news/post.json';
+    const URI_NEWS_PUT =  'v1/schemas/news/put.json';
 
     /**
      * @Route("/news", name="api_get_news", methods="GET")
      */
     public function getNewsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         // TODO validate parameters?
 
@@ -42,23 +43,10 @@ class NewsController extends TakedaJsonApiController
             $news = $repository->findAllForLast12Months($onlyActive);
         }
 
-        $response = [
+        return [
             "links" => $this->getNewsLink(),
-            "data" => []
+            "data" => array_map([$this, 'getNewsArray'], $news)
         ];
-
-        foreach ($news as $article) {
-            $response["data"][] = $this->getNewsArray($article);
-        }
-
-        // TODO put this check into tests?
-        $validator = $this->getSchemaValidatior(self::URI_NEWS_LIST, (object) $response);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
-        }
-
-        return $response;
     }
 
     /**
@@ -66,9 +54,7 @@ class NewsController extends TakedaJsonApiController
      */
     public function getNewsOneAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $repository = $this->get('doctrine')->getRepository(News::REPOSITORY);
         $article = $repository->findOneById($id);
@@ -77,7 +63,7 @@ class NewsController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return [
             "links" => $this->getNewsLink(),
             "data" => $this->getNewsArray($article),
             "linked" => [
@@ -86,13 +72,87 @@ class NewsController extends TakedaJsonApiController
                 ]
             ]
         ];
+    }
 
-        $validator = $this->getSchemaValidatior(self::URI_NEWS_ONE, (object) $response);
+    /**
+     * @Route("/news", name="api_post_news", methods="POST")
+     */
+    public function postNewsAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
 
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_NEWS_POST);
+
+        $newsArticle = $this->populateEntity(new News(), $data, ["category" => Record::REPOSITORY]);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($newsArticle);
+        $em->flush();
+
+        return new JsonResponse([
+            "links" => $this->getNewsLink(),
+            "data" => $this->getNewsArray($newsArticle),
+            "linked" => [
+                "records" => [
+                    $this->getRecordArray($newsArticle->getCategory())
+                ]
+            ]
+        ], 201);
+    }
+
+    /**
+     * @Route("/news/{id}", name="api_put_news", methods="PUT")
+     */
+    public function putNewsAction(Request $request, $id)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $repository = $this->getDoctrine()->getRepository(News::REPOSITORY);
+        $newsArticle = $repository->findOneById($id);
+
+        if (!$newsArticle) {
+            throw $this->createNotFoundException();
         }
 
-        return $response;
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_NEWS_PUT);
+
+        $newsArticle = $this->populateEntity($newsArticle, $data, ["category" => Record::REPOSITORY]);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($newsArticle);
+        $em->flush();
+
+        return new JsonResponse([
+            "links" => $this->getNewsLink(),
+            "data" => $this->getNewsArray($newsArticle),
+            "linked" => [
+                "records" => [
+                    $this->getRecordArray($newsArticle->getCategory())
+                ]
+            ]
+        ], 200);
+    }
+
+    /**
+     * @Route("/news/{id}", name="api_delete_news", methods="DELETE")
+     */
+    public function deleteNewsAction(Request $request, $id)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $repository = $this->getDoctrine()->getRepository(News::REPOSITORY);
+        $newsArticle = $repository->findOneById($id);
+
+        if (!$newsArticle) {
+            throw $this->createNotFoundException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($newsArticle);
+        $em->flush();
+
+        return new \stdClass();
     }
 }

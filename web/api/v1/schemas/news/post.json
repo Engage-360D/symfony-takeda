@@ -5,41 +5,9 @@
 
   "properties": {
     "data": {
-      "$ref": "#/definitions/news"
-    },
-
-    "linked": {
       "type": "object",
 
       "properties": {
-        "records": {
-          "type": "array",
-          "items": {
-            "$ref": "https://cardiomagnyl.ru/api/v1/schemas/records/one.json#/definitions/record"
-          }
-        }
-      },
-
-      "required": [
-        "records"
-      ]
-    }
-  },
-
-  "required": [
-    "data",
-    "linked"
-  ],
-
-  "definitions": {
-    "news": {
-      "type": "object",
-
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-
         "title": {
           "type": "string"
         },
@@ -77,7 +45,6 @@
       "additionalProperties": false,
 
       "required": [
-        "id",
         "title",
         "content",
         "isActive",
@@ -85,5 +52,9 @@
         "links"
       ]
     }
-  }
+  },
+
+  "required": [
+    "data"
+  ]
 }

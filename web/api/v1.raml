@@ -536,7 +536,18 @@ traits:
           application/json:
             schema: !include v1/schemas/news/list.json
             example: !include v1/examples/news/list.json
-
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/news/post.json
+        example: !include v1/examples/news/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/news/one.json
+            example: !include v1/examples/news/one.json
   /{id}:
     get:
       responses:
@@ -545,6 +556,22 @@ traits:
             application/json:
               schema: !include v1/schemas/news/one.json
               example: !include v1/examples/news/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/news/put.json
+          example: !include v1/examples/news/put.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/news/one.json
+              example: !include v1/examples/news/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:
 
 /opinions:
   description: only for Web
