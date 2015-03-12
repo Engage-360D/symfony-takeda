@@ -19,14 +19,14 @@
     "html-truncate": "~1.0.5",
     "react-select": "~0.3",
 
-    "attreactive-admin": "git+https://github.com/attreactive/attreactive-admin.git#de861ebfabf40e6b0bc2e05ded7b8548d4302c13",
+    "attreactive-admin": "git+https://github.com/attreactive/attreactive-admin.git#a907cd4b803345b3055c542cf4eb28ce28ea8e74",
     "attreactive-auth": "git+https://github.com/attreactive/attreactive-auth.git#9b8236075f81189d397aab017fa6db15cc8e7bcc",
     "attreactive-i18n": "git+https://github.com/attreactive/attreactive-i18n.git#e3e3f79363829d8a5da6488f381e117ba97a03f7",
     "attreactive-menu": "git+https://github.com/attreactive/attreactive-menu.git#268ab049d129cc78dc2dcb718d6413309aa9ef0a",
     "attreactive-mixins": "git+https://github.com/attreactive/attreactive-mixins.git#feaa293aa411d3b9ede669b6d29e1480e55755be",
     "attreactive-router": "git+https://github.com/attreactive/attreactive-router.git#62024a02e9e4a29f8b8af2a6a970f82ecf5e534c",
     "attreactive-validator": "git+https://github.com/attreactive/attreactive-validator.git#cbc54f17f8ab65d73644dea831517acc89d34808",
-    "engage-360d-admin": "git+https://github.com/attreactive/engage-360d-admin.git#6bd0efeb2585e0d34fc48628091325285a7466b5",
+    "engage-360d-admin": "git+https://github.com/attreactive/engage-360d-admin.git#7bc79cf5c003b1a3a1861da33b1ae37ecc18b68a",
     "engage-360d-block": "git+https://github.com/attreactive/engage-360d-block.git#bfe368cff8e10b3c38b794fd89efaa49e48b7f77",
     "engage-360d-spin": "git+https://github.com/attreactive/engage-360d-spin.git#21499ca468e0fe741fafe21fd4d29336599b7410"
 

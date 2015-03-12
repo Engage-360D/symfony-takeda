@@ -59,10 +59,12 @@ adminResourceFactory.setDefaultFormComponent(require("engage-360d-admin/componen
 
 // Form fields
 formComponentMatcher.registerComponent('input', require("engage-360d-admin/components/form/Input"));
+formComponentMatcher.registerComponent('number-input', require("engage-360d-admin/components/form/NumberInput"));
 formComponentMatcher.registerComponent('checkbox', require("engage-360d-admin/components/form/Checkbox"));
 formComponentMatcher.registerComponent('password', require("engage-360d-admin/components/form/PasswordInput"));
 formComponentMatcher.registerComponent('file', require("engage-360d-admin/components/form/FileInput"));
 formComponentMatcher.registerComponent('many-to-many-select', require("engage-360d-admin/components/form/ManyToManySelect"));
+formComponentMatcher.registerComponent('many-to-one-select', require("engage-360d-admin/components/form/ManyToOneSelect"));
 formComponentMatcher.registerComponent('ckeditor', require("engage-360d-admin/components/form/CKEditor"));
 formComponentMatcher.registerComponent('date-time-picker', require("engage-360d-admin/components/form/DateTimePicker"));
 
@@ -96,7 +98,9 @@ router.add('/', function() {
 // Menu
 var menu = [
   {title: 'Содержимое сайта', menu: menuFactory([
-    {url: '/pages/', title: 'Страницы', icon: 'file-text-o'}
+    {url: '/pages/', title: 'Страницы', icon: 'file-text-o'},
+    {url: '/regions/', title: 'Регионы', icon: 'list'},
+    {url: '/users/', title: 'Пользователи', icon: 'users'}
   ])}
 ];
 
@@ -104,6 +108,158 @@ $(document).ajaxComplete(function(event, jqXHR, ajaxOptions) {
   if (jqXHR.status == 401) {
     localStorage.removeItem('attreactive-auth/payload');
     window.location.href = window.location.pathname;
+  }
+});
+
+// Regions
+adminResourceFactory.factory('regions', {
+  title: 'Регионы',
+  jsonApi: '/api/v1/regions',
+  stringify: 'name',
+  meta: {
+    icon: 'list'
+  },
+  properties: {
+    name: {
+      title: 'Название',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Название не может быть пустым'
+      },
+      linkable: true
+    }
+  }
+});
+
+// Users
+adminResourceFactory.factory('users', {
+  title: 'Пользователи',
+  jsonApi: '/api/v1/users',
+  stringify: 'email',
+  meta: {
+    icon: 'users'
+  },
+  properties: {
+    email: {
+      title: 'E-mail',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty(),
+        email: validationConstraints.email()
+      },
+      errorMessages: {
+        notEmpty: 'E-mail не может быть пустым',
+        email: 'Не правильный формат e-mail'
+      },
+      linkable: true
+    },
+    plainPassword: {
+      title: 'Пароль',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Пароль не может быть пустым'
+      },
+      visibleInListing: false,
+      visibleInView: false,
+      visibleInEditForm: false,
+      component: 'password'
+    },
+    firstname: {
+      title: 'Имя',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Имя не может быть пустым'
+      }
+    },
+    lastname: {
+      title: 'Фамилия',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Фамилия не может быть пустой'
+      }
+    },
+    birthday: {
+      title: 'Дата рождения',
+      format: 'date',
+      component: 'date-time-picker',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Дата рождения не может быть пустой'
+      }
+    },
+    isDoctor: {
+      title: 'Доктор?',
+      format: 'boolean',
+      component: 'checkbox',
+      visibleInView: false,
+      visibleInListing: false,
+      visibleInEditForm: false,
+      defaultValue: false
+    },
+    specializationExperienceYears: {
+      title: 'Стаж',
+      format: 'number',
+      component: 'number-input',
+      visibleInListing: false
+    },
+    specializationGraduationDate: {
+      title: 'Год окончания',
+      format: 'date',
+      component: 'date-time-picker',
+      visibleInListing: false
+    },
+    specializationInstitutionAddress: {
+      title: 'Адрес',
+      visibleInListing: false
+    },
+    specializationInstitutionName: {
+      title: 'Учебное заведение',
+      visibleInListing: false
+    },
+    specializationInstitutionPhone: {
+      title: 'Телефон',
+      visibleInListing: false
+    },
+    specializationName: {
+      title: 'Основная специализация',
+      visibleInListing: false
+    },
+    isSubscribed: {
+      title: 'Подписан на рассылку',
+      format: 'boolean',
+      component: 'checkbox',
+      visibleInListing: false,
+      visibleInCreateForm: true,
+      visibleInView: false,
+      defaultValue: true
+    },
+    // isEnabled: {
+    //   title: 'Активен',
+    //   format: 'boolean',
+    //   component: 'checkbox',
+    //   defaultValue: true
+    // },
+    region: {
+      title: 'Регион',
+      format: 'many-to-one',
+      component: 'many-to-one-select',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Регион не может быть пустым'
+      },
+      dependency: 'regions'
+    }
   }
 });
 
