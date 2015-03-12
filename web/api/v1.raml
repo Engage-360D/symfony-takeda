@@ -340,6 +340,14 @@ traits:
           example: !include v1/examples/incidents/post.json
       responses:
         201:
+    get:
+      is: [ secured ]
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/incidents/list.json
+              example: !include v1/examples/incidents/list.json
   /pills:
     get:
       is: [ secured ]

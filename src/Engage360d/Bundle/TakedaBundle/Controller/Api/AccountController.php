@@ -445,7 +445,6 @@ class AccountController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $data = $this->getData($request);
-
         $this->assertDataMatchesSchema($data, self::URI_INCIDENTS_POST);
 
         $user = $this->getUser();
@@ -461,6 +460,28 @@ class AccountController extends TakedaJsonApiController
         $em->flush();
 
         return new JsonResponse(new \stdClass(), 201);
+    }
+
+    /**
+     * @Route("/account/incidents", name="api_get_account_incidents", methods="GET")
+     */
+    public function getAccountIncidentsAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $user = $this->getUser();
+        $lastTestResult = $user->getTestResults()->last();
+        if (!$lastTestResult) {
+            throw new HttpException(409, "First take the test.");
+        }
+
+        return [
+            "data" => [
+                "hadBypassSurgery" => $lastTestResult->getHadBypassSurgery(),
+                "hadHeartAttackOrStroke" => $lastTestResult->getHadHeartAttackOrStroke(),
+                "hasDiabetes" => $lastTestResult->getHasDiabetes(),
+            ]
+        ];
     }
 
     /**
