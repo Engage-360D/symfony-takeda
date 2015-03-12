@@ -62,7 +62,7 @@ var RiskAnalysis = React.createClass({
 
   getInitialFormState: function() {
     return riskAnalysisForm({
-      birthday: null,
+      birthday: this.props.user ? moment(this.props.user.birthday) : null,
       growth: null,
       weight: null
     }).markBlured('birthday');
