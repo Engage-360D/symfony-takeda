@@ -605,6 +605,19 @@ traits:
           application/json:
             schema: !include v1/schemas/experts/list.json
             example: !include v1/examples/experts/list.json
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/experts/post.json
+        example: !include v1/examples/experts/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/experts/one.json
+            example: !include v1/examples/experts/one.json
+
   /{id}:
     get:
       responses:
@@ -613,6 +626,22 @@ traits:
             application/json:
               schema: !include v1/schemas/experts/one.json
               example: !include v1/examples/experts/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/experts/put.json
+          example: !include v1/examples/experts/put.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/experts/one.json
+              example: !include v1/examples/experts/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:
 
 /records:
   description: only for Web

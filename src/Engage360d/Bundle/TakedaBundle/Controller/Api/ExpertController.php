@@ -10,37 +10,24 @@ use Engage360d\Bundle\TakedaBundle\Entity\PressCenter\Expert;
 
 class ExpertController extends TakedaJsonApiController
 {
-    const URI_EXPERTS_ONE = '/api/v1/schemas/experts/one.json';
-    const URI_EXPERTS_LIST = '/api/v1/schemas/experts/list.json';
+    const URI_EXPERTS_ONE =  'v1/schemas/experts/one.json';
+    const URI_EXPERTS_LIST = 'v1/schemas/experts/list.json';
+    const URI_EXPERTS_POST = 'v1/schemas/experts/post.json';
+    const URI_EXPERTS_PUT =  'v1/schemas/experts/put.json';
 
     /**
      * @Route("/experts", name="api_get_experts", methods="GET")
      */
     public function getExpertsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $repository = $this->get('doctrine')->getRepository(Expert::REPOSITORY);
         $experts = $repository->findAll();
 
-        $response = [
-            "data" => []
+        return [
+            "data" => array_map([$this, 'getExpertArray'], $experts)
         ];
-
-        foreach ($experts as $expert) {
-            $response["data"][] = $this->getExpertArray($expert);
-        }
-
-        // TODO put this check into tests?
-        $validator = $this->getSchemaValidatior(self::URI_EXPERTS_LIST, (object) $response);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
-        }
-
-        return $response;
     }
 
     /**
@@ -48,9 +35,7 @@ class ExpertController extends TakedaJsonApiController
      */
     public function getExpertAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $repository = $this->get('doctrine')->getRepository(Expert::REPOSITORY);
         $expert = $repository->findOneById($id);
@@ -59,16 +44,74 @@ class ExpertController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return [
             "data" => $this->getExpertArray($expert),
         ];
+    }
 
-        $validator = $this->getSchemaValidatior(self::URI_EXPERTS_ONE, (object) $response);
+    /**
+     * @Route("/experts", name="api_post_experts", methods="POST")
+     */
+    public function postExpertAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
 
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_EXPERTS_POST);
+
+        $expert = $this->populateEntity(new Expert(), $data);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($expert);
+        $em->flush();
+
+        return new JsonResponse(["data" => $this->getExpertArray($expert)], 201);
+    }
+
+    /**
+     * @Route("/experts/{id}", name="api_put_experts", methods="PUT")
+     */
+    public function putExpertAction(Request $request, $id)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $repository = $this->get('doctrine')->getRepository(Expert::REPOSITORY);
+        $expert = $repository->findOneById($id);
+
+        if (!$expert) {
+            throw $this->createNotFoundException();
         }
 
-        return $response;
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_EXPERTS_PUT);
+
+        $expert = $this->populateEntity($expert, $data);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($expert);
+        $em->flush();
+
+        return ["data" => $this->getExpertArray($expert)];
+    }
+
+    /**
+     * @Route("/experts/{id}", name="api_delete_experts", methods="DELETE")
+     */
+    public function deleteExpertAction(Request $request, $id)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $repository = $this->get('doctrine')->getRepository(Expert::REPOSITORY);
+        $expert = $repository->findOneById($id);
+
+        if (!$expert) {
+            throw $this->createNotFoundException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($expert);
+        $em->flush();
+
+        return new \stdClass();
     }
 }
