@@ -215,6 +215,15 @@ traits:
 
 /account:
   description: for Web and Mobile
+  get:
+    is: [ secured ]
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/users/one.json
+            example: !include v1/examples/users/one.json
+
   put:
     is: [ secured ]
     description: |
