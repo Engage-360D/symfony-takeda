@@ -360,4 +360,12 @@ class TakedaJsonApiController extends JsonApiController
             ]
         ];
     }
+
+    protected function getRegionArray($region)
+    {
+        return [
+            "id" => (String) $region->getId(),
+            "name" => $region->getName(),
+        ];
+    }
 }

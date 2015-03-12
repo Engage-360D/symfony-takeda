@@ -71,6 +71,18 @@ traits:
           application/json:
             schema: !include v1/schemas/regions/list.json
             example: !include v1/examples/regions/list.json
+  post:
+    is: [ secured, admin-only ]
+    body:
+      application/json:
+        schema: !include v1/schemas/regions/post.json
+        example: !include v1/examples/regions/post.json
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include v1/schemas/regions/one.json
+            example: !include v1/examples/regions/one.json
   /{id}:
     get:
       responses:
@@ -79,6 +91,22 @@ traits:
             application/json:
               schema: !include v1/schemas/regions/one.json
               example: !include v1/examples/regions/one.json
+    put:
+      is: [ secured, admin-only ]
+      body:
+        application/json:
+          schema: !include v1/schemas/regions/put.json
+          example: !include v1/examples/regions/put.json
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include v1/schemas/regions/one.json
+              example: !include v1/examples/regions/one.json
+    delete:
+      is: [ secured, admin-only ]
+      responses:
+        200:
 
 /users:
   get:
