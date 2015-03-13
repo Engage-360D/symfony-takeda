@@ -743,6 +743,17 @@ traits:
 
 /records:
   description: only for Web
+  get:
+    queryParameters:
+      catalogId:
+        description: |
+         Record category identifier.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include v1/schemas/records/list.json
+            example: !include v1/examples/records/list.json
   /{id}:
     get:
       responses:

@@ -256,6 +256,7 @@ class TakedaJsonApiController extends JsonApiController
             "id" => (string) $record->getId(),
             "data" => $record->getData(),
             "keyword" => $record->getKeyword(),
+            "order" => $record->getOrder(),
         ];
     }
 

@@ -101,6 +101,10 @@ var menu = [
     {url: '/pages/', title: 'Страницы', icon: 'file-text-o'},
     {url: '/regions/', title: 'Регионы', icon: 'list'},
     {url: '/users/', title: 'Пользователи', icon: 'users'}
+  ])},
+  {title: 'Новости', menu: menuFactory([
+    {url: '/news-categories/', title: 'Типы новостей', icon: 'tags'},
+    {url: '/news/', title: 'Новости', icon: 'list'},
   ])}
 ];
 
@@ -108,6 +112,131 @@ $(document).ajaxComplete(function(event, jqXHR, ajaxOptions) {
   if (jqXHR.status == 401) {
     localStorage.removeItem('attreactive-auth/payload');
     window.location.href = window.location.pathname;
+  }
+});
+
+var catalogs = [
+  {
+    id: 'NewsCategories',
+    factoryId: 'news-categories',
+    name: 'Типы новостей',
+    icon: 'tags',
+    keyword: {
+      isVisible: false
+    }
+  }
+];
+
+catalogs.forEach(function (catalog) {
+  adminResourceFactory.factory(catalog.factoryId, {
+    title: catalog.name,
+    rest: {
+      baseUrl: '/api/v1/records',
+      defaultQuery: {
+        catalogId: catalog.id
+      },
+      defaultData: {
+        catalog: catalog.id
+      }
+    },
+    stringify: 'data',
+    meta: {
+      icon: catalog.icon
+    },
+    properties: {
+      data: {
+        visibleInForm: false,
+        title: 'Название',
+        constraints: {
+          notEmpty: validationConstraints.notEmpty()
+        },
+        errorMessages: {
+          notEmpty: 'Название не может быть пустым'
+        },
+        // linkable: true
+      },
+      order: {
+        visibleInForm: false,
+        title: 'Общий порядковый номер',
+        format: 'number',
+        constraints: {
+          notEmpty: validationConstraints.notEmpty()
+        },
+        errorMessages: {
+          notEmpty: 'Общий порядковый номер не может быть пустым'
+        }
+      },
+      keyword: {
+        title: catalog.keyword.title,
+        constraints: {
+          notEmpty: validationConstraints.notEmpty()
+        },
+        errorMessages: {
+          notEmpty: catalog.keyword.title + ' не может быть пустым'
+        },
+        visibleInForm: catalog.keyword.isVisible,
+        visibleInListing: catalog.keyword.isVisible,
+        visibleInView: catalog.keyword.isVisible
+      }
+    }
+  });
+});
+
+// News
+adminResourceFactory.factory('news', {
+  title: 'Новости',
+  jsonApi: '/api/v1/news',
+  stringify: 'title',
+  meta: {
+    icon: 'list'
+  },
+  properties: {
+    title: {
+      title: 'Название',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Название не может быть пустым'
+      },
+      linkable: true
+    },
+    content: {
+      title: 'Содержание',
+      component: 'ckeditor',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Содержание не может быть пустым'
+      },
+      visibleInListing: false,
+      visibleInView: false
+    },
+    isActive: {
+      title: 'Активен',
+      format: 'boolean',
+      component: 'checkbox',
+      defaultValue: true
+    },
+    createdAt: {
+      title: 'Дата создания',
+      format: 'date',
+      component: 'date-time-picker',
+      visibleInListing: false
+    },
+    category: {
+      title: 'Категория',
+      format: 'many-to-one',
+      component: 'many-to-one-select',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Категория не может быть пустым'
+      },
+      dependency: 'news-categories'
+    }
   }
 });
 
