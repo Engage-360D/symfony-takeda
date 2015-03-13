@@ -988,7 +988,7 @@ input::-webkit-inner-spin-button {
 }
 
 .soc-widget .soc-widget__in {
-  padding: 1px;
+  padding: 0px;
 }
 
 .soc-widget__item__tw iframe {
@@ -1016,6 +1016,10 @@ input::-webkit-inner-spin-button {
   border-style: solid;
   border-width: 9px 0 0 9px;
   border-color: transparent transparent transparent #cdcdcd;
+}
+
+.soc-widget__in {
+  overflow: hidden;
 }
 
 /* old styles START */
