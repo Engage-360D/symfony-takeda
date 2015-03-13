@@ -12,13 +12,34 @@
     <!-- nav -->
     <nav class="nav">
       <ul>
-        <li><a href="{{ path('engage360d_takeda_account_recommendations') }}">Личный кабинет<i class="icon icon-user"></i></a></li>
-        <li><a href="{{ path('engage360d_takeda_about') }}">Препарат</a></li>
-        <li><a href="/factors">Предрасполагающие факторы</a></li>
-        <li><a href="{{ path('engage360d_takeda_good_to_know') }}">Полезно знать</a></li>
-        <li><a href="{{ path('engage360d_takeda_risk_analysis') }}">Анализ рисков</a></li>
-        <li><a href="{{ path('engage360d_takeda_institutions') }}">Поиск учереждений</a></li>
-        <li><a href="{{ path('engage360d_takeda_press_center') }}">Пресс-центр</a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_account_recommendations') }}"
+                    class="{% if app.request.getRequestUri starts with '/account' %}is-active{% endif %}"
+            >Личный кабинет<i class="icon icon-user"></i></a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_about') }}"
+                    class="{% if app.request.getRequestUri == path('engage360d_takeda_about') %}is-active{% endif %}"
+            >Препарат</a></li>
+        <li><a
+                    href="/factors"
+                    class="{% if app.request.getRequestUri starts with '/factors' %}is-active{% endif %}"
+            >Предрасполагающие факторы</a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_good_to_know') }}"
+                    class="{% if app.request.getRequestUri starts with path('engage360d_takeda_good_to_know') %}is-active{% endif %}"
+            >Полезно знать</a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_risk_analysis') }}"
+                    class="{% if app.request.getRequestUri starts with path('engage360d_takeda_risk_analysis') %}is-active{% endif %}"
+            >Анализ рисков</a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_institutions') }}"
+                    class="{% if app.request.getRequestUri starts with path('engage360d_takeda_institutions') %}is-active{% endif %}"
+            >Поиск учереждений</a></li>
+        <li><a
+                    href="{{ path('engage360d_takeda_press_center') }}"
+                    class="{% if app.request.getRequestUri starts with path('engage360d_takeda_press_center') %}is-active{% endif %}"
+            >Пресс-центр</a></li>
       </ul>
     </nav>
     <!-- search-form -->
@@ -28,8 +49,8 @@
     </form>
     <!-- links -->
     <ul class="links">
-      <li><a href="/about/about">О компании</a></li>
-      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/about/about" class="{% if app.request.getRequestUri starts with '/about' and app.request.getRequestUri != path('engage360d_takeda_about') %}is-active{% endif %}">О компании</a></li>
+      <li><a href="/contacts" class="{% if app.request.getRequestUri == '/contacts' %}is-active{% endif %}">Контакты</a></li>
     </ul>
     <!-- app -->
     <ul class="links-app">

@@ -1022,6 +1022,11 @@ input::-webkit-inner-spin-button {
   overflow: hidden;
 }
 
+.links .is-active, .nav .is-active {
+  background: #1077e0;
+  color: white;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }
