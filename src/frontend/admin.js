@@ -59,6 +59,7 @@ adminResourceFactory.setDefaultFormComponent(require("engage-360d-admin/componen
 
 // Form fields
 formComponentMatcher.registerComponent('input', require("engage-360d-admin/components/form/Input"));
+formComponentMatcher.registerComponent('textarea', require("engage-360d-admin/components/form/Textarea"));
 formComponentMatcher.registerComponent('number-input', require("engage-360d-admin/components/form/NumberInput"));
 formComponentMatcher.registerComponent('checkbox', require("engage-360d-admin/components/form/Checkbox"));
 formComponentMatcher.registerComponent('password', require("engage-360d-admin/components/form/PasswordInput"));
@@ -105,6 +106,10 @@ var menu = [
   {title: 'Новости', menu: menuFactory([
     {url: '/news-categories/', title: 'Типы новостей', icon: 'tags'},
     {url: '/news/', title: 'Новости', icon: 'list'},
+  ])},
+  {title: 'Мнения экспертов', menu: menuFactory([
+    {url: '/experts/', title: 'Эксперты', icon: 'tags'},
+    {url: '/opinions/', title: 'Мнения', icon: 'list'},
   ])}
 ];
 
@@ -180,6 +185,113 @@ catalogs.forEach(function (catalog) {
       }
     }
   });
+});
+
+// Experts
+adminResourceFactory.factory('experts', {
+  title: 'Эксперты',
+  jsonApi: '/api/v1/experts',
+  stringify: 'name',
+  meta: {
+    icon: 'list'
+  },
+  properties: {
+    name: {
+      title: 'Имя',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Имя не может быть пустым'
+      },
+      linkable: true
+    },
+    photoUri: {
+      title: 'Ссылка на фото',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Ссылка на фото не может быть пустым'
+      },
+      visibleInListing: false
+    },
+    description: {
+      title: 'Описание',
+      component: 'textarea',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Описание не может быть пустым'
+      },
+      visibleInListing: false
+    }
+  }
+});
+
+// Opinions
+adminResourceFactory.factory('opinions', {
+  title: 'Мнения',
+  jsonApi: '/api/v1/opinions',
+  stringify: 'title',
+  meta: {
+    icon: 'list'
+  },
+  properties: {
+    title: {
+      title: 'Название',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Название не может быть пустым'
+      },
+      linkable: true
+    },
+    content: {
+      title: 'Содержание',
+      component: 'ckeditor',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Содержание не может быть пустым'
+      },
+      visibleInListing: false,
+      visibleInView: false
+    },
+    viewsCount: {
+      title: 'Просмотров',
+      format: 'number',
+      component: 'number-input',
+      defaultValue: 0
+    },
+    isActive: {
+      title: 'Активен',
+      format: 'boolean',
+      component: 'checkbox',
+      defaultValue: true
+    },
+    createdAt: {
+      title: 'Дата создания',
+      format: 'date',
+      component: 'date-time-picker',
+      visibleInListing: false
+    },
+    expert: {
+      title: 'Эксперт',
+      format: 'many-to-one',
+      component: 'many-to-one-select',
+      constraints: {
+        notEmpty: validationConstraints.notEmpty()
+      },
+      errorMessages: {
+        notEmpty: 'Эксперт не может быть пустым'
+      },
+      dependency: 'experts'
+    }
+  }
 });
 
 // News
