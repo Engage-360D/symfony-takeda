@@ -5,9 +5,9 @@
     <div class="h">Другие болезни группы риска</div>
     <div class="diseases__list">
         <ul>
-            {% for item in diseaseFooterMenu %}
+            {% for item in factorsFooterMenu %}
                 <li><a class="link link_black" href="{{ item.url }}"><span>{{ item.title }}</span><i class="icon icon-arr-circle-right"></i><i class="icon icon-arr-circle-right-fill"></i></a></li>
-                {% if loop.index > diseaseFooterMenu|length / 2 %}
+                {% if loop.index > factorsFooterMenu|length / 2 %}
                     </ul><ul>
                 {% endif %}
             {% endfor %}

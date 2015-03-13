@@ -18,22 +18,22 @@ class PageController extends Controller
             throw $this->createNotFoundException();
         }
 
-        // Disease info page
-        if (preg_match("/^disease\\/[^\\/]+/", $url, $matches)) {
+        // Factors info page
+        if (preg_match("/^factors\\/[^\\/]+/", $url, $matches)) {
             $categoryUrl = $matches[0];
-            $diseaseFooterMenu = [];
-            $diseaseArticles = [];
+            $factorsFooterMenu = [];
+            $factorsArticles = [];
 
             $pages = $this->getDoctrine()
                 ->getRepository(Page::REPOSITORY)
-                ->findByUrlPart('/disease/');
+                ->findByUrlPart('/factors/');
 
             foreach ($pages as $p) {
                 if (
                         strpos($p->getUrl(), $categoryUrl) === false &&
-                        preg_match("/^\\/disease\\/[^\\/]+$/", $p->getUrl())
+                        preg_match("/^\\/factors\\/[^\\/]+$/", $p->getUrl())
                 ) {
-                    $diseaseFooterMenu[] = [
+                    $factorsFooterMenu[] = [
                         "url" => $p->getUrl(),
                         "title" => $p->getTitle(),
                     ];
@@ -41,19 +41,19 @@ class PageController extends Controller
                         strpos($p->getUrl(), $categoryUrl) !== false &&
                         $p->getUrl() !== '/' . $url
                 ) {
-                    $diseaseArticles[] = [
+                    $factorsArticles[] = [
                         "url" => $p->getUrl(),
                         "title" => $p->getTitle(),
                     ];
                 }
             }
 
-            return $this->render('Engage360dTakedaBundle:Page:disease.info.html.twig',
+            return $this->render('Engage360dTakedaBundle:Page:factors.info.html.twig',
                 [
                     'page' => $page,
                     'blocks' => $page->getPageBlocks(),
-                    'diseaseArticles' => $diseaseArticles,
-                    'diseaseFooterMenu' => $diseaseFooterMenu,
+                    'factorsArticles' => $factorsArticles,
+                    'factorsFooterMenu' => $factorsFooterMenu,
                 ]
             );
         }

@@ -26,10 +26,10 @@
             </div>
             <div class="details__right">
                 <!-- h -->
-                {% if diseaseArticles|length > 0 %}
+                {% if factorsArticles|length > 0 %}
                     <div class="h h_2">Статьи по теме:</div>
                     <ul class="details__links">
-                        {% for article in diseaseArticles %}
+                        {% for article in factorsArticles %}
                             <li>
                                 <a class="link link_black" href="{{ article.url }}">
                                     <span>{{ article.title }}</span>
@@ -48,5 +48,5 @@
             {% endif %}
         {% endfor %}
     </div>
-    {% include "Engage360dTakedaBundle:Page:disease.footer.menu.html.twig" %}
+    {% include "Engage360dTakedaBundle:Page:factors.footer.menu.html.twig" %}
 {% endblock %}
