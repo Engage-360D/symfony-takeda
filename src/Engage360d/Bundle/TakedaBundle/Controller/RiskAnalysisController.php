@@ -9,7 +9,7 @@ class RiskAnalysisController extends Controller
 {
     public function indexAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!($user instanceof UserInterface)) {
             $user = null;

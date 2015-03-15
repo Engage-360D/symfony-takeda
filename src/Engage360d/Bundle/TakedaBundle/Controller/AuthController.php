@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function signinAction()
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if ($user instanceof UserInterface) {
             return $this->redirect($this->generateUrl('engage360d_takeda_account_recommendations'));

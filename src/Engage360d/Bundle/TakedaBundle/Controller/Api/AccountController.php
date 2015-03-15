@@ -45,15 +45,11 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
+
+        $user = $this->getUser();
 
         $response = [
             "links" => $this->getUsersRegionLink(),
@@ -68,12 +64,6 @@ class AccountController extends TakedaJsonApiController
      */
     public function putAccountAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
@@ -96,6 +86,8 @@ class AccountController extends TakedaJsonApiController
         }
 
         $this->assertSocialCredentialsIsValid($data);
+
+        $user = $this->getUser();
 
         $oldEmail = $user->getEmail();
         $user = $this->populateEntity($user, $data, ["region" => Region::REPOSITORY]);
@@ -127,11 +119,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function postAccountTestResultAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
+        $user = $this->getUser();
 
         // Note, that a user with ROLE_ADMIN is always granted a role ROLE_DOCTOR.
         // See role_hierarchy in security settings.
@@ -192,16 +180,11 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultAction(Request $request)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
 
+        $user = $this->getUser();
         $testResults = $user->getTestResults()->toArray();
 
         // TODO check whether $sinceDate is in ISO8601 format?
@@ -244,7 +227,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultDietRecommendationsAction(Request $request, $id)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
             return $elem->getId() == $id;
@@ -299,12 +282,6 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultSendEmailAction(Request $request, $id)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
@@ -325,6 +302,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
+        $user = $this->getUser();
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
             return $elem->getId() == $id;
         })->first();
@@ -362,16 +340,11 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultPagesRecommendationAction(Request $request, $id, $recommendation)
     {
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if (!$user instanceof UserInterface) {
-            return new JsonResponse("Unauthorized", 401);
-        }
-
         if (!$this->isContentTypeValid($request)) {
             return $this->getInvalidContentTypeResponse();
         }
 
+        $user = $this->getUser();
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
             return $elem->getId() == $id;
         })->first();
@@ -493,7 +466,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         $pills = $user->getPills()->toArray();
 
         $response = [
@@ -570,7 +543,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
         foreach ($user->getPills() as $p) {
             if ($p->getId() == $id) {
                 $pill = $p;
@@ -604,7 +577,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $pill = null;
         foreach ($user->getPills()->toArray() as $p) {
@@ -635,7 +608,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getInvalidContentTypeResponse();
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $timelineManager = $this->get('engage360d_takeda.timeline_manager');
         $timelineManager->setUser($user);
@@ -671,7 +644,7 @@ class AccountController extends TakedaJsonApiController
             return $this->getErrorResponse($validator->getErrors(), 400);
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         $timelineManager = $this->get('engage360d_takeda.timeline_manager');
         $timelineManager->setUser($user);

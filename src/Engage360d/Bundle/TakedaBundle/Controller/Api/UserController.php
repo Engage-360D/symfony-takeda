@@ -27,7 +27,7 @@ class UserController extends TakedaJsonApiController
     public function getUsersAction(Request $request)
     {
         // access control lets here only authorized users
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->getErrorResponse("Forbidden", 403);
@@ -62,7 +62,7 @@ class UserController extends TakedaJsonApiController
     public function getUserAction(Request $request, $id)
     {
         // access control lets here only authorized users
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->getErrorResponse("Forbidden", 403);
@@ -146,7 +146,7 @@ class UserController extends TakedaJsonApiController
     public function putUserAction(Request $request, $id)
     {
         // access control lets here only authorized users
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->getErrorResponse("Forbidden", 403);
@@ -210,7 +210,7 @@ class UserController extends TakedaJsonApiController
     public function deleteUserAction(Request $request, $id)
     {
         // access control lets here only authorized users
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->getErrorResponse("Forbidden", 403);
@@ -241,7 +241,7 @@ class UserController extends TakedaJsonApiController
     function postUserResetPasswordAction(Request $request, $id)
     {
         // access control lets here only authorized users
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->getErrorResponse("Forbidden", 403);
