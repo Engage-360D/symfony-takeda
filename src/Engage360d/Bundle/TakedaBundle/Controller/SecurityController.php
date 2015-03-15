@@ -169,7 +169,7 @@ class SecurityController extends ConnectController
             if ($defaultTargetPath) {
                 $session->set($sessionKey, $defaultTargetPath);
             } else {
-                return new ParameterNotFoundException();
+                throw new ParameterNotFoundException('engage360d.oauth.default_target_path');
             }
         }
 
