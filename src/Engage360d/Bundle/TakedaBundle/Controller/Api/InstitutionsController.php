@@ -6,15 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\Institution;
 
 class InstitutionsController extends TakedaJsonApiController
 {
-    // const URI_REGIONS_ONE = '/api/v1/schemas/regions/one.json';
-    // const URI_REGIONS_LIST = '/api/v1/schemas/regions/list.json';
-
     /**
      * @Route("/institution-specializations", name="api_get_institution_specializations", methods="GET")
      */
@@ -54,9 +49,7 @@ class InstitutionsController extends TakedaJsonApiController
      */
     public function getInstitutionsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $parsedTown = $request->query->get("parsedTown");
         $specialization = $request->query->get("specialization");
@@ -98,9 +91,7 @@ class InstitutionsController extends TakedaJsonApiController
      */
     public function getInstitutionAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $institution = $this->get('doctrine')->getRepository(Institution::REPOSITORY)
             ->findOneById($id);

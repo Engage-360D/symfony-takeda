@@ -4,8 +4,6 @@ namespace Engage360d\Bundle\TakedaBundle\Controller;
 
 use Engage360d\Bundle\JsonApiBundle\Controller\JsonApiController;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TakedaJsonApiController extends JsonApiController

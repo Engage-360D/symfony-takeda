@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 
 class RegionController extends TakedaJsonApiController

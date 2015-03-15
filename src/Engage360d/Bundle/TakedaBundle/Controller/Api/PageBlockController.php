@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Melodia\PageBundle\Entity\PageBlock;
 
 
@@ -37,11 +35,9 @@ class PageBlockController extends TakedaJsonApiController
             $pageBlocks = $repository->findAll();
         }
 
-        $response = [
+        return new JsonResponse([
             "data"  => array_map([$this, 'getPageBlockArray'], $pageBlocks),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -59,11 +55,9 @@ class PageBlockController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return new JsonResponse([
             "data"  => $this->getPageBlockArray($pageBlock),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -74,7 +68,6 @@ class PageBlockController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $data = $this->getData($request);
-
         $this->assertDataMatchesSchema($data, self::URI_PAGE_BLOCKS_POST);
 
         $pageBlock = $this->populateEntity(new Pageblock(), $data);
@@ -94,7 +87,6 @@ class PageBlockController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $data = $this->getData($request);
-
         $this->assertDataMatchesSchema($data, self::URI_PAGE_BLOCKS_PUT);
 
         $pageBlock = $this->getDoctrine()

@@ -17,9 +17,7 @@ class RecordController extends TakedaJsonApiController
      */
     public function getRecordsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $catalogId = $request->query->get('catalogId');
 
@@ -40,9 +38,7 @@ class RecordController extends TakedaJsonApiController
      */
     public function getRecordAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $repository = $this->get('doctrine')->getRepository(Record::REPOSITORY);
         $record = $repository->findOneById($id);

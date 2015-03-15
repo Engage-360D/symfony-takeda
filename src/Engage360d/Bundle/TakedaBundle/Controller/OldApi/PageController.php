@@ -68,12 +68,10 @@ class PageController extends TakedaJsonApiController
         $pages = $this->getDoctrine()->getRepository(Page::REPOSITORY)
             ->findSubset($page, $limit, array(), $where);
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPageLink(),
             "data"  => array_map([$this, 'getPageArray'], $pages),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -98,15 +96,13 @@ class PageController extends TakedaJsonApiController
             return new JsonResponse(null, 404);
         }
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPageLink(),
             "data"  => $this->getPageArray($page),
             "linked" => [
                 "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
             ]
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -132,15 +128,13 @@ class PageController extends TakedaJsonApiController
         $entityManager->persist($page);
         $entityManager->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPageLink(),
             "data"  => $this->getPageArray($page),
             "linked" => [
                 "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
             ]
-        ];
-
-        return new JsonResponse($response, 201);
+        ], 201);
     }
 
     /**
@@ -179,15 +173,13 @@ class PageController extends TakedaJsonApiController
         $entityManager->persist($page);
         $entityManager->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPageLink(),
             "data"  => $this->getPageArray($page),
             "linked" => [
                 "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
             ]
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**

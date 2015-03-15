@@ -36,12 +36,10 @@ class PageController extends TakedaJsonApiController
             $pages = $repository->findAll();
         }
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPageLink(),
             "data"  => array_map([$this, 'getPageArray'], $pages),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -59,11 +57,9 @@ class PageController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return new JsonResponse([
             "data"  => $this->getPageArray($page),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -74,7 +70,6 @@ class PageController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $data = $this->getData($request);
-
         $this->assertDataMatchesSchema($data, self::URI_PAGES_POST);
 
         $page = $this->populateEntity(new Page(), $data, ["pageBlocks" => PageBlock::REPOSITORY]);
@@ -96,7 +91,6 @@ class PageController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $data = $this->getData($request);
-
         $this->assertDataMatchesSchema($data, self::URI_PAGES_PUT);
 
         $page = $this->getDoctrine()

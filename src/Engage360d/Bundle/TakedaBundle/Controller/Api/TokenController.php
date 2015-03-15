@@ -7,15 +7,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 
 class TokenController extends TakedaJsonApiController
 {
-    const URI_TOKEN_ONE = '/api/v1/schemas/tokens/one.json';
-    const URI_TOKEN_POST = '/api/v1/schemas/tokens/post.json';
-    const URI_TOKEN_POST_FACEBOOK = '/api/v1/schemas/tokens/facebook/post.json';
-    const URI_TOKEN_POST_VK = '/api/v1/schemas/tokens/vk/post.json';
+    const URI_TOKEN_ONE = 'v1/schemas/tokens/one.json';
+    const URI_TOKEN_POST = 'v1/schemas/tokens/post.json';
+    const URI_TOKEN_POST_FACEBOOK = 'v1/schemas/tokens/facebook/post.json';
+    const URI_TOKEN_POST_VK = 'v1/schemas/tokens/vk/post.json';
 
     protected function getTokenResource($token, $user)
     {
@@ -46,26 +44,10 @@ class TokenController extends TakedaJsonApiController
         $email = null;
         $plainPassword = null;
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        // Handle json request
-        $body = $request->getContent();
-        $data = json_decode($body);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TOKEN_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TOKEN_POST);
 
         $email = $data->data->email;
         $plainPassword = $data->data->plainPassword;
@@ -108,26 +90,10 @@ class TokenController extends TakedaJsonApiController
      */
     public function tokensFacebookAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        // Handle json request
-        $body = $request->getContent();
-        $data = json_decode($body);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TOKEN_POST_FACEBOOK
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TOKEN_POST_FACEBOOK);
 
         $accessToken = $data->data->access_token;
 
@@ -161,26 +127,10 @@ class TokenController extends TakedaJsonApiController
      */
     public function tokensVkAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        // Handle json request
-        $body = $request->getContent();
-        $data = json_decode($body);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TOKEN_POST_VK
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TOKEN_POST_VK);
 
         $vkontakteId = $data->data->user_id;
         $accessToken = $data->data->access_token;

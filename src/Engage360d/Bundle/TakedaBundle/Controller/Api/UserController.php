@@ -7,8 +7,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 use Engage360d\Bundle\SecurityBundle\Event\UserEvent;
@@ -16,10 +14,10 @@ use Engage360d\Bundle\SecurityBundle\Engage360dSecurityEvents;
 
 class UserController extends TakedaJsonApiController
 {
-    const URI_USERS_LIST = '/api/v1/schemas/users/list.json';
-    const URI_USERS_ONE = '/api/v1/schemas/users/one.json';
-    const URI_USERS_POST = '/api/v1/schemas/users/post.json';
-    const URI_USERS_PUT = '/api/v1/schemas/users/put.json';
+    const URI_USERS_LIST = 'v1/schemas/users/list.json';
+    const URI_USERS_ONE =  'v1/schemas/users/one.json';
+    const URI_USERS_POST = 'v1/schemas/users/post.json';
+    const URI_USERS_PUT =  'v1/schemas/users/put.json';
 
     /**
      * @Route("/users", name="api_get_users", methods="GET")
@@ -33,9 +31,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse("Forbidden", 403);
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $limit = $request->query->get("limit");
         $page = $request->query->get("page");
@@ -48,12 +44,10 @@ class UserController extends TakedaJsonApiController
             $users = $repository->findAll();
         }
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => array_map([$this, 'getUserArray'], $users)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -68,9 +62,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse("Forbidden", 403);
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->get('doctrine')->getRepository(User::REPOSITORY)
             ->findOneById($id);
@@ -79,12 +71,10 @@ class UserController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => $this->getUserArray($user)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -92,25 +82,10 @@ class UserController extends TakedaJsonApiController
      */
     public function postUserAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_USERS_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_USERS_POST);
 
         $this->assertSocialCredentialsIsValid($data);
 
@@ -132,12 +107,10 @@ class UserController extends TakedaJsonApiController
         $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
         $this->container->get("security.context")->setToken($t);
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => $this->getUserArray($user)
-        ];
-
-        return new JsonResponse($response, 201);
+        ], 201);
     }
 
     /**
@@ -152,9 +125,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse("Forbidden", 403);
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->get('doctrine')->getRepository(User::REPOSITORY)
             ->findOneById($id);
@@ -163,21 +134,8 @@ class UserController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_USERS_PUT
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_USERS_PUT);
 
         $oldEmail = $user->getEmail();
         $user = $this->populateEntity($user, $data, ["region" => Region::REPOSITORY]);
@@ -196,12 +154,10 @@ class UserController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => $this->getUserArray($user)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -216,9 +172,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse("Forbidden", 403);
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $em = $this->get('doctrine')->getManager();
 
@@ -247,9 +201,7 @@ class UserController extends TakedaJsonApiController
             return $this->getErrorResponse("Forbidden", 403);
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->get('doctrine')->getRepository(User::REPOSITORY)
             ->findOneById($id);

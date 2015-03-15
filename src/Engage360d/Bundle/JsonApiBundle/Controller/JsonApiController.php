@@ -80,12 +80,6 @@ class JsonApiController extends Controller
         return new JsonResponse(["errors" => $errors], $code);
     }
 
-    // TODO remove
-    protected function getInvalidContentTypeResponse()
-    {
-        return $this->getErrorResponse(sprintf("The expected content type is \"%s\"", self::CONTENT_TYPE), 400);
-    }
-
     protected function populateEntity($entity, $data, $mappings = [])
     {
         // TODO check that $entity is doctrine entity

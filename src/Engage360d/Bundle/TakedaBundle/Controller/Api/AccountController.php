@@ -4,21 +4,10 @@ namespace Engage360d\Bundle\TakedaBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\Post;
-use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Engage360d\Bundle\TakedaBundle\Entity\TestResult;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JsonSchema\Validator;
-use JsonSchema\Uri\UriRetriever;
 use Engage360d\Bundle\TakedaBundle\Entity\User\User;
 use Engage360d\Bundle\TakedaBundle\Entity\Region\Region;
 use Engage360d\Bundle\TakedaBundle\Entity\Pill;
@@ -28,15 +17,13 @@ use Engage360d\Bundle\TakedaBundle\Utils\Timeline;
 
 class AccountController extends TakedaJsonApiController
 {
-    const URI_USER_PUT = '/api/v1/schemas/users/put.json';
-    const URI_TEST_RESULTS_POST = '/api/v1/schemas/test-results/post.json';
-    const URI_USER_RESET_PASSWORD_POST = '/api/v1/schemas/users/reset-password/post.json';
-    const URI_TEST_RESULTS_SEND_EMAIL_POST = '/api/v1/schemas/test-results/send-email/post.json';
-    const URI_PILLS_POST = '/api/v1/schemas/pills/post.json';
-    const URI_PILLS_PUT = '/api/v1/schemas/pills/put.json';
-    const URI_TIMELINE_TASKS_PUT = '/api/v1/schemas/timelines/tasks/put.json';
-
-    // TODO: update lines above
+    const URI_USER_PUT = 'v1/schemas/users/put.json';
+    const URI_TEST_RESULTS_POST = 'v1/schemas/test-results/post.json';
+    const URI_USER_RESET_PASSWORD_POST = 'v1/schemas/users/reset-password/post.json';
+    const URI_TEST_RESULTS_SEND_EMAIL_POST = 'v1/schemas/test-results/send-email/post.json';
+    const URI_PILLS_POST = 'v1/schemas/pills/post.json';
+    const URI_PILLS_PUT = 'v1/schemas/pills/put.json';
+    const URI_TIMELINE_TASKS_PUT = 'v1/schemas/timelines/tasks/put.json';
     const URI_INCIDENTS_POST = 'v1/schemas/incidents/post.json';
     const URI_REPORTS_SEND_EMAIL_POST = 'v1/schemas/reports/send-email/post.json';
 
@@ -45,18 +32,14 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => $this->getUserArray($user)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -64,26 +47,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function putAccountAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        // TODO put all occurrences of this code into getSchemaValidator($shcemaFile, $data) method
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_USER_PUT
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_USER_PUT);
 
         $this->assertSocialCredentialsIsValid($data);
 
@@ -106,12 +73,10 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getUsersRegionLink(),
             "data" => $this->getUserArray($user)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -119,6 +84,11 @@ class AccountController extends TakedaJsonApiController
      */
     public function postAccountTestResultAction(Request $request)
     {
+        $this->assertContentTypeIsValid($request);
+
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TEST_RESULTS_POST);
+
         $user = $this->getUser();
 
         // Note, that a user with ROLE_ADMIN is always granted a role ROLE_DOCTOR.
@@ -137,26 +107,6 @@ class AccountController extends TakedaJsonApiController
             }
         }
 
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
-
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TEST_RESULTS_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
-
         $testResult = new TestResult;
         foreach ($data->data as $property => $value) {
             $method = 'set' . ucfirst($property);
@@ -168,11 +118,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($testResult);
         $em->flush();
 
-        $response = [
+        return new JsonResponse([
             "data" => $this->getTestResultArray($testResult)
-        ];
-
-        return new JsonResponse($response, 201);
+        ], 201);
     }
 
     /**
@@ -180,9 +128,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
         $testResults = $user->getTestResults()->toArray();
@@ -206,11 +152,9 @@ class AccountController extends TakedaJsonApiController
             $testResults = array_values($testResults);
         }
 
-        $response = [
+        return new JsonResponse([
             "data" => array_map([$this, 'getTestResultArray'], $testResults)
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -219,6 +163,7 @@ class AccountController extends TakedaJsonApiController
     public function getAccountTestResultDietQuestionsAction(Request $request, $id)
     {
         $questions = $this->container->getParameter('engage360d_diet_questions');
+
         return new JsonResponse($questions, 200);
     }
 
@@ -282,25 +227,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultSendEmailAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TEST_RESULTS_SEND_EMAIL_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TEST_RESULTS_SEND_EMAIL_POST);
 
         $user = $this->getUser();
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
@@ -340,9 +270,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTestResultPagesRecommendationAction(Request $request, $id, $recommendation)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
         $testResult = $user->getTestResults()->filter(function ($elem) use ($id) {
@@ -373,26 +301,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function accountResetPasswordAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        // TODO put all occurrences of this code into getSchemaValidator($shcemaFile, $data) method
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_USER_RESET_PASSWORD_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_USER_RESET_PASSWORD_POST);
 
         $user = $this->get('doctrine')->getManager()
             ->getRepository(User::REPOSITORY)
@@ -462,19 +374,15 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountPillsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
         $pills = $user->getPills()->toArray();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPillLink(),
             "data" => array_map([$this, 'getPillArray'], $pills),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -482,25 +390,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function postAccountPillsAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_PILLS_POST
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_PILLS_POST);
 
         $pill = new Pill();
         $this->populateEntity($pill, $data);
@@ -510,12 +403,10 @@ class AccountController extends TakedaJsonApiController
         $em->persist($pill);
         $em->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPillLink(),
             "data" => $this->getPillArray($pill),
-        ];
-
-        return new JsonResponse($response, 201);
+        ], 201);
     }
 
     /**
@@ -523,25 +414,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function putAccountPillsAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_PILLS_PUT
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_PILLS_PUT);
 
         $user = $this->getUser();
         foreach ($user->getPills() as $p) {
@@ -560,12 +436,10 @@ class AccountController extends TakedaJsonApiController
         $em->persist($pill);
         $em->flush();
 
-        $response = [
+        return new JsonResponse([
             "links" => $this->getPillLink(),
             "data" => $this->getPillArray($pill),
-        ];
-
-        return new JsonResponse($response, 200);
+        ], 200);
     }
 
     /**
@@ -573,9 +447,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function deleteAccountPillAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
 
@@ -604,9 +476,7 @@ class AccountController extends TakedaJsonApiController
      */
     public function getAccountTimelineAction(Request $request)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
         $user = $this->getUser();
 
@@ -624,25 +494,10 @@ class AccountController extends TakedaJsonApiController
      */
     public function putAccountTimelineTaskAction(Request $request, $id)
     {
-        if (!$this->isContentTypeValid($request)) {
-            return $this->getInvalidContentTypeResponse();
-        }
+        $this->assertContentTypeIsValid($request);
 
-        $json = $request->getContent();
-        $data = json_decode($json);
-
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            self::URI_TIMELINE_TASKS_PUT
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 400);
-        }
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TIMELINE_TASKS_PUT);
 
         $user = $this->getUser();
 
