@@ -14,7 +14,7 @@ class RecordController extends TakedaJsonApiController
     const URI_RECORDS_LIST = '/api/v1/schemas/records/list.json';
 
     /**
-     * @Route("/records/", name="api_get_records", methods="GET")
+     * @Route("/records", name="api_get_records", methods="GET")
      */
     public function getRecordsAction(Request $request)
     {
