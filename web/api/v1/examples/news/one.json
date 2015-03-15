@@ -22,7 +22,8 @@
       {
         "id": "1",
         "data": "Профилактика",
-        "keyword": "is-green"
+        "keyword": "is-green",
+        "order": 1
       }
     ]
   }

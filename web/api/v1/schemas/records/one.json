@@ -28,6 +28,10 @@
 
         "keyword": {
           "type": "string"
+        },
+
+        "order": {
+          "type": "integer"
         }
       },
 
@@ -36,7 +40,8 @@
       "required": [
         "id",
         "data",
-        "keyword"
+        "keyword",
+        "order"
       ]
     }
   }

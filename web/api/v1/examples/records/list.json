@@ -3,7 +3,8 @@
     {
       "id": "1",
       "data": "Лечение",
-      "keyword": "is-blue"
+      "keyword": "is-blue",
+      "order": 1
     }
   ]
 }
