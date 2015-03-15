@@ -43,10 +43,9 @@ class NewsController extends TakedaJsonApiController
             $news = $repository->findAllForLast12Months($onlyActive);
         }
 
-        return [
-            "links" => $this->getNewsLink(),
-            "data" => array_map([$this, 'getNewsArray'], $news)
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getNewsListResource($news);
     }
 
     /**
@@ -57,21 +56,15 @@ class NewsController extends TakedaJsonApiController
         $this->assertContentTypeIsValid($request);
 
         $repository = $this->get('doctrine')->getRepository(News::REPOSITORY);
-        $article = $repository->findOneById($id);
+        $newsArticle = $repository->findOneById($id);
 
-        if (!$article) {
+        if (!$newsArticle) {
             throw $this->createNotFoundException();
         }
 
-        return [
-            "links" => $this->getNewsLink(),
-            "data" => $this->getNewsArray($article),
-            "linked" => [
-                "records" => [
-                    $this->getRecordArray($article->getCategory())
-                ]
-            ]
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getNewsResource($newsArticle);
     }
 
     /**
@@ -90,15 +83,9 @@ class NewsController extends TakedaJsonApiController
         $em->persist($newsArticle);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getNewsLink(),
-            "data" => $this->getNewsArray($newsArticle),
-            "linked" => [
-                "records" => [
-                    $this->getRecordArray($newsArticle->getCategory())
-                ]
-            ]
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getNewsResource($newsArticle), 201);
     }
 
     /**
@@ -124,15 +111,9 @@ class NewsController extends TakedaJsonApiController
         $em->persist($newsArticle);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getNewsLink(),
-            "data" => $this->getNewsArray($newsArticle),
-            "linked" => [
-                "records" => [
-                    $this->getRecordArray($newsArticle->getCategory())
-                ]
-            ]
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getNewsResource($newsArticle), 200);
     }
 
     /**

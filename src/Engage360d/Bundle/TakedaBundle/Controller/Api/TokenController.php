@@ -15,27 +15,6 @@ class TokenController extends TakedaJsonApiController
     const URI_TOKEN_POST_FACEBOOK = 'v1/schemas/tokens/facebook/post.json';
     const URI_TOKEN_POST_VK = 'v1/schemas/tokens/vk/post.json';
 
-    protected function getTokenResource($token, $user)
-    {
-        return [
-            "links" => [
-                "tokens.user" => [
-                    "href" => $this->getBaseUrl() . "/users/{tokens.user}",
-                    "type" => "users"
-                ]
-            ],
-            "data" => [
-                "id" => $token,
-                "links" => [
-                    "user" => (String) $user->getId()
-                ]
-            ],
-            "linked" => [
-                "users" => [$this->getUserArray($user)]
-            ]
-        ];
-    }
-
     /**
      * @Route("/tokens", name="api_post_token", methods="POST")
      */
@@ -81,7 +60,9 @@ class TokenController extends TakedaJsonApiController
 
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
-        return new JsonResponse($this->getTokenResource($token, $user), 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTokenResource($token, $user), 201);
     }
 
     /**
@@ -118,7 +99,9 @@ class TokenController extends TakedaJsonApiController
 
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
-        return new JsonResponse($this->getTokenResource($token, $user), 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTokenResource($token, $user), 201);
     }
 
     /**
@@ -154,6 +137,8 @@ class TokenController extends TakedaJsonApiController
 
         $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
 
-        return new JsonResponse($this->getTokenResource($token, $user), 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTokenResource($token, $user), 201);
     }
 }

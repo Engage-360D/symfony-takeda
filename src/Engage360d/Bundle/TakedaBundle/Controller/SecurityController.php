@@ -34,29 +34,7 @@ class SecurityController extends ConnectController
     public function connectSuccessAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        // TODO refactor
-        $user = [
-            "id" => (String) $user->getId(),
-            "email" => $user->getEmail(),
-            "firstname" => $user->getFirstname(),
-            "lastname" => $user->getLastname(),
-            "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-            "vkontakteId" => $user->getVkontakteId(),
-            "facebookId" => $user->getFacebookId(),
-            "odnoklassnikiId" => $user->getOdnoklassnikiId(),
-            "googleId" => $user->getGoogleId(),
-            "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-            "specializationGraduationDate" => $user->getSpecializationGraduationDate(),
-            "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-            "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-            "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-            "specializationName" => $user->getSpecializationName(),
-            "roles" => $user->getRoles(),
-            "isEnabled" => $user->getEnabled(),
-            "links" => [
-                "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
-            ]
-        ];
+        $user = $this->container->get('engage360d_takeda.json_api_response')->getUserArray($user);
 
         return $this->container->get('templating')->renderResponse(
             'Engage360dTakedaBundle:Security:connect.success.html.twig',

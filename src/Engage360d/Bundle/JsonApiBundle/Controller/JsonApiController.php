@@ -127,9 +127,4 @@ class JsonApiController extends Controller
 
         return $entity;
     }
-
-    protected function getBaseUrl()
-    {
-        return $this->container->getParameter('api.base_url');
-    }
 }

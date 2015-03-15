@@ -25,9 +25,9 @@ class ExpertController extends TakedaJsonApiController
         $repository = $this->get('doctrine')->getRepository(Expert::REPOSITORY);
         $experts = $repository->findAll();
 
-        return [
-            "data" => array_map([$this, 'getExpertArray'], $experts)
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getExpertListResource($experts);
     }
 
     /**
@@ -44,9 +44,9 @@ class ExpertController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        return [
-            "data" => $this->getExpertArray($expert),
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getExpertResource($expert);
     }
 
     /**
@@ -65,7 +65,9 @@ class ExpertController extends TakedaJsonApiController
         $em->persist($expert);
         $em->flush();
 
-        return new JsonResponse(["data" => $this->getExpertArray($expert)], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getExpertResource($expert), 201);
     }
 
     /**
@@ -91,7 +93,9 @@ class ExpertController extends TakedaJsonApiController
         $em->persist($expert);
         $em->flush();
 
-        return ["data" => $this->getExpertArray($expert)];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getExpertResource($expert);
     }
 
     /**

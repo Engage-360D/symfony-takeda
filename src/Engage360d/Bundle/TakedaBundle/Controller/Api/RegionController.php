@@ -33,9 +33,9 @@ class RegionController extends TakedaJsonApiController
             $regions = $repository->findAll();
         }
 
-        return [
-            "data" => array_map([$this, 'getRegionArray'], $regions)
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getRegionListResource($regions);
     }
 
     /**
@@ -52,9 +52,9 @@ class RegionController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        return [
-            "data" => $this->getRegionArray($region)
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getRegionResource($region);
     }
 
     /**
@@ -73,7 +73,9 @@ class RegionController extends TakedaJsonApiController
         $em->persist($region);
         $em->flush();
 
-        return new JsonResponse(["data" => $this->getRegionArray($region)], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getRegionResource($region), 201);
     }
 
     /**
@@ -99,7 +101,9 @@ class RegionController extends TakedaJsonApiController
         $em->persist($region);
         $em->flush();
 
-        return new JsonResponse(["data" => $this->getRegionArray($region)], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getRegionResource($region);
     }
 
     /**

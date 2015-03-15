@@ -36,10 +36,9 @@ class AccountController extends TakedaJsonApiController
 
         $user = $this->getUser();
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => $this->getUserArray($user)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserResource($user), 200);
     }
 
     /**
@@ -73,10 +72,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => $this->getUserArray($user)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserResource($user), 200);
     }
 
     /**
@@ -118,9 +116,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($testResult);
         $em->flush();
 
-        return new JsonResponse([
-            "data" => $this->getTestResultArray($testResult)
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTestResultResource($testResult), 201);
     }
 
     /**
@@ -152,9 +150,9 @@ class AccountController extends TakedaJsonApiController
             $testResults = array_values($testResults);
         }
 
-        return new JsonResponse([
-            "data" => array_map([$this, 'getTestResultArray'], $testResults)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTestResultListResource($testResults), 200);
     }
 
     /**
@@ -379,10 +377,9 @@ class AccountController extends TakedaJsonApiController
         $user = $this->getUser();
         $pills = $user->getPills()->toArray();
 
-        return new JsonResponse([
-            "links" => $this->getPillLink(),
-            "data" => array_map([$this, 'getPillArray'], $pills),
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPillListResource($pills), 200);
     }
 
     /**
@@ -403,10 +400,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($pill);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getPillLink(),
-            "data" => $this->getPillArray($pill),
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPillResource($pill), 201);
     }
 
     /**
@@ -436,10 +432,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($pill);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getPillLink(),
-            "data" => $this->getPillArray($pill),
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPillResource($pill), 200);
     }
 
     /**
@@ -468,7 +463,7 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse(null, 200);
+        return new JsonResponse(new \stdClass(), 200);
     }
 
     /**

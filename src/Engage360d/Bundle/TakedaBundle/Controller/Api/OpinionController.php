@@ -30,10 +30,9 @@ class OpinionController extends TakedaJsonApiController
         $repository = $this->getDoctrine()->getRepository(Opinion::REPOSITORY);
         $opinions = $repository->findAllForLast12Months($onlyActive);
 
-        return [
-            "links" => $this->getOpinionLink(),
-            "data" => array_map([$this, 'getOpinionArray'], $opinions)
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getOpinionListResource($opinions);
     }
 
     /**
@@ -50,15 +49,9 @@ class OpinionController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        return [
-            "links" => $this->getOpinionLink(),
-            "data" => $this->getOpinionArray($opinion),
-            "linked" => [
-                "experts" => [
-                    $this->getExpertArray($opinion->getExpert())
-                ]
-            ]
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getOpinionResource($opinion);
     }
 
     /**
@@ -77,15 +70,9 @@ class OpinionController extends TakedaJsonApiController
         $em->persist($opinion);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getOpinionLink(),
-            "data" => $this->getOpinionArray($opinion),
-            "linked" => [
-                "experts" => [
-                    $this->getExpertArray($opinion->getExpert())
-                ]
-            ]
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getOpinionResource($opinion), 201);
     }
 
     /**
@@ -111,15 +98,9 @@ class OpinionController extends TakedaJsonApiController
         $em->persist($opinion);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getOpinionLink(),
-            "data" => $this->getOpinionArray($opinion),
-            "linked" => [
-                "experts" => [
-                    $this->getExpertArray($opinion->getExpert())
-                ]
-            ]
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getOpinionResource($opinion), 200);
     }
 
     /**

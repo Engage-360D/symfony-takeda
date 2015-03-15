@@ -38,7 +38,10 @@ class AccountController extends Controller
     public function recommendationsAction()
     {
         $user = $this->getUser();
-        $testResults = array_map([$this, 'getTestResultArray'], $user->getTestResults()->toArray());
+        $testResults = array_map(
+            [$this->get('engage360d_takeda.json_api_response'), 'getTestResultArray'],
+            $user->getTestResults()->toArray()
+        );
 
         if (count($testResults) === 0) {
           return $this->redirect($this->generateUrl('engage360d_takeda_risk_analysis'));
@@ -93,7 +96,7 @@ class AccountController extends Controller
     public function settingsAction()
     {
         return $this->render('Engage360dTakedaBundle:Account:settings.html.twig', [
-            'user' => $this->getUserArray($this->getUser()),
+            'user' => $this->get('engage360d_takeda.json_api_response')->getUserArray($this->getUser()),
             'regions' => $this->getDoctrine()->getRepository('Engage360dTakedaBundle:Region\Region')->findAll()
         ]);
     }
@@ -120,7 +123,10 @@ class AccountController extends Controller
         $context->setSerializeNull(true);
         $timeline = $serializer->serialize($timeline, 'json', $context);
 
-        $pills = array_map([$this, 'getPillArray'], $user->getPills()->toArray());
+        $pills = array_map(
+            [$this->get('engage360d_takeda.json_api_response'), 'getPillArray'],
+            $user->getPills()->toArray()
+        );
         $context = new SerializationContext();
         $context->setSerializeNull(true);
         $pills = $serializer->serialize($pills, 'json', $context);
@@ -178,120 +184,4 @@ class AccountController extends Controller
 
         return $this->redirect($this->generateUrl('engage360d_takeda_main_mainpage'));
     }
-
-    // TODO: refactor me please
-    protected function getUserArray($user)
-    {
-        return [
-            "id" => (String) $user->getId(),
-            "email" => $user->getEmail(),
-            "firstname" => $user->getFirstname(),
-            "lastname" => $user->getLastname(),
-            "birthday" => $user->getBirthday()->format(\DateTime::ISO8601),
-            "vkontakteId" => $user->getVkontakteId(),
-            "facebookId" => $user->getFacebookId(),
-            "odnoklassnikiId" => $user->getOdnoklassnikiId(),
-            "googleId" => $user->getGoogleId(),
-            "specializationExperienceYears" => $user->getSpecializationExperienceYears(),
-            "specializationGraduationDate" => $user->getSpecializationGraduationDate() ? $user->getSpecializationGraduationDate()->format(\DateTime::ISO8601) : null,
-            "specializationInstitutionAddress" => $user->getSpecializationInstitutionAddress(),
-            "specializationInstitutionName" => $user->getSpecializationInstitutionName(),
-            "specializationInstitutionPhone" => $user->getSpecializationInstitutionPhone(),
-            "specializationName" => $user->getSpecializationName(),
-            "roles" => $user->getRoles(),
-            "isEnabled" => $user->getEnabled(),
-            "links" => [
-                "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
-            ],
-        ];
-    }
-
-    // TODO: refactor me please
-    public function getTestResultArray($testResult)
-    {
-        $recommendations = $testResult->getRecommendations();
-        unset($recommendations['pages']);
-
-        return [
-            "id" => (String) $testResult->getId(),
-            "sex" => $testResult->getSex(),
-            "birthday" => $testResult->getBirthday()->format(\DateTime::ISO8601),
-            "growth" => $testResult->getGrowth(),
-            "weight" => $testResult->getWeight(),
-            "isSmoker" => $testResult->getIsSmoker(),
-            "cholesterolLevel" => $testResult->getCholesterolLevel(),
-            "isCholesterolDrugsConsumer" => $testResult->getIsCholesterolDrugsConsumer(),
-            "hasDiabetes" => $testResult->getHasDiabetes(),
-            "hadSugarProblems" => $testResult->getHadSugarProblems(),
-            "isSugarDrugsConsumer" => $testResult->getIsSugarDrugsConsumer(),
-            "arterialPressure" => $testResult->getArterialPressure(),
-            "isArterialPressureDrugsConsumer" => $testResult->getIsArterialPressureDrugsConsumer(),
-            "physicalActivityMinutes"  => $testResult->getPhysicalActivityMinutes(),
-            "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
-            "hadBypassSurgery" => $testResult->getHadBypassSurgery(),
-            "isAddingExtraSalt" => $testResult->getIsAddingExtraSalt(),
-            "isAcetylsalicylicDrugsConsumer" => $testResult->getIsAcetylsalicylicDrugsConsumer(),
-            "bmi" => $testResult->getBmi(),
-            "score" => $testResult->getScore(),
-            "recommendations" => $recommendations,
-        ];
-    }
-
-    // TODO refactor
-    protected function getPillArray($pill)
-    {
-        return [
-            "id" => (string) $pill->getId(),
-            "name" => $pill->getName(),
-            "quantity" => $pill->getQuantity(),
-            "repeat" => $pill->getRepeat(),
-            "time" => $pill->getTime()->format('H:i:s'),
-            "sinceDate" => $pill->getSinceDate()->format(\DateTime::ISO8601),
-            "tillDate" => $pill->getTillDate()->format(\DateTime::ISO8601),
-            "links" => [
-                "user" => (string) $pill->getUser()->getId()
-            ]
-        ];
-    }
-
-//    public function failureLoginAction(Request $request)
-//    {
-//        $response = array();
-//        $request = $this->getRequest();
-//        $session = $request->getSession();
-//
-//        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-//            $error = $request->attributes->get(
-//                SecurityContext::AUTHENTICATION_ERROR
-//            );
-//        } else {
-//            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-//        }
-//
-//        if ($error instanceof BadCredentialsException) {
-//            $user = $this->container
-//                ->get('engage360d_security.manager.user')
-//                ->findUserByUsernameOrEmail($error->getToken()->getUsername());
-//
-//            if (null === $user) {
-//                $response['username'] = $this->get('translator')->trans('error.invalid.username');
-//            } else {
-//                $response['password'] = $this->get('translator')->trans('error.invalid.password');
-//            }
-//        } else {
-//            $response['error'] = $error->getMessage();
-//        }
-//
-//        return new JsonResponse($response, 401);
-//    }
-//
-//    protected function authenticateUser(UserInterface $user)
-//    {
-//        $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
-//        $this->container->get("security.context")->setToken($token);
-//
-//        $request = $this->container->get("request");
-//        $event = new InteractiveLoginEvent($request, $token);
-//        $this->container->get("event_dispatcher")->dispatch("security.interactive_login", $event);
-//    }
 }

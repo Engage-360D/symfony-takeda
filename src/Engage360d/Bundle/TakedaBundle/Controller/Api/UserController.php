@@ -44,10 +44,9 @@ class UserController extends TakedaJsonApiController
             $users = $repository->findAll();
         }
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => array_map([$this, 'getUserArray'], $users)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserListResource($users), 200);
     }
 
     /**
@@ -71,10 +70,9 @@ class UserController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => $this->getUserArray($user)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserResource($user), 200);
     }
 
     /**
@@ -107,10 +105,9 @@ class UserController extends TakedaJsonApiController
         $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
         $this->container->get("security.context")->setToken($t);
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => $this->getUserArray($user)
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserResource($user), 201);
     }
 
     /**
@@ -154,10 +151,9 @@ class UserController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse([
-            "links" => $this->getUsersRegionLink(),
-            "data" => $this->getUserArray($user)
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getUserResource($user), 200);
     }
 
     /**

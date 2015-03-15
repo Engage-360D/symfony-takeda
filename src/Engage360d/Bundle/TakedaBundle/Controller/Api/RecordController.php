@@ -28,9 +28,9 @@ class RecordController extends TakedaJsonApiController
           $records = $repository->findAll();
         }
 
-        return [
-            "data" => array_map([$this, 'getRecordArray'], $records),
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getRecordListResource($records);
     }
 
     /**
@@ -47,8 +47,8 @@ class RecordController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        return [
-            "data" => $this->getRecordArray($record),
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getRecordResource($record);
     }
 }

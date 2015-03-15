@@ -68,10 +68,9 @@ class PageController extends TakedaJsonApiController
         $pages = $this->getDoctrine()->getRepository(Page::REPOSITORY)
             ->findSubset($page, $limit, array(), $where);
 
-        return new JsonResponse([
-            "links" => $this->getPageLink(),
-            "data"  => array_map([$this, 'getPageArray'], $pages),
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPageListResource($pages), 200);
     }
 
     /**
@@ -96,13 +95,9 @@ class PageController extends TakedaJsonApiController
             return new JsonResponse(null, 404);
         }
 
-        return new JsonResponse([
-            "links" => $this->getPageLink(),
-            "data"  => $this->getPageArray($page),
-            "linked" => [
-                "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
-            ]
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPageResource($page), 200);
     }
 
     /**
@@ -128,13 +123,9 @@ class PageController extends TakedaJsonApiController
         $entityManager->persist($page);
         $entityManager->flush();
 
-        return new JsonResponse([
-            "links" => $this->getPageLink(),
-            "data"  => $this->getPageArray($page),
-            "linked" => [
-                "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
-            ]
-        ], 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPageResource($page), 201);
     }
 
     /**
@@ -173,13 +164,9 @@ class PageController extends TakedaJsonApiController
         $entityManager->persist($page);
         $entityManager->flush();
 
-        return new JsonResponse([
-            "links" => $this->getPageLink(),
-            "data"  => $this->getPageArray($page),
-            "linked" => [
-                "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
-            ]
-        ], 200);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getPageResource($page), 200);
     }
 
     /**
@@ -230,19 +217,5 @@ class PageController extends TakedaJsonApiController
         }
 
         return $errors;
-    }
-
-    protected function getPageArray($page)
-    {
-        return [
-            "id" => (string) $page->getId(),
-            "url" => $page->getUrl(),
-            "title" => $page->getTitle(),
-            "description" => $page->getDescription(),
-            "keywords" => $page->getKeywords(),
-            "isActive" => $page->getIsActive(),
-            "isEditable" => $page->getIsEditable(),
-            "pageBlocks" => array_map([$this, 'getPageBlockArray'], $page->getPageBlocks()->toArray())
-        ];
     }
 }

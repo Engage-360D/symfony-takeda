@@ -15,6 +15,11 @@ services:
         arguments:
           - @request_stack
 
+    engage360d_takeda.json_api_response:
+        class: Engage360d\Bundle\TakedaBundle\Services\JsonApiResponse
+        calls:
+            - [setContainer, [@service_container]]
+
     # Listeners/Subscribers
 
     engage360d_takeda.listener.reset_password:
