@@ -10,21 +10,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TakedaJsonApiController extends JsonApiController
 {
-    // TODO remove
-    protected function getSchemaValidatior($schemaFile, \stdClass $data)
-    {
-        $retriever = new UriRetriever();
-        $schema = $retriever->retrieve(
-            'file://' . $this->get('kernel')->getRootDir() . '/../web' .
-            $schemaFile
-        );
-
-        $validator = new Validator();
-        $validator->check($data, $schema);
-
-        return $validator;
-    }
-
     public function assertSocialCredentialsIsValid($data)
     {
         if (isset($data->data->facebookId)) {

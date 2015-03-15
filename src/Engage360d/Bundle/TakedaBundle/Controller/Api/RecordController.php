@@ -3,15 +3,14 @@
 namespace Engage360d\Bundle\TakedaBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Melodia\CatalogBundle\Entity\Record;
 
 class RecordController extends TakedaJsonApiController
 {
-    const URI_RECORDS_ONE = '/api/v1/schemas/records/one.json';
-    const URI_RECORDS_LIST = '/api/v1/schemas/records/list.json';
+    const URI_RECORDS_ONE =  'v1/schemas/records/one.json';
+    const URI_RECORDS_LIST = 'v1/schemas/records/list.json';
 
     /**
      * @Route("/records", name="api_get_records", methods="GET")
@@ -31,17 +30,9 @@ class RecordController extends TakedaJsonApiController
           $records = $repository->findAll();
         }
 
-        $response = [
+        return [
             "data" => array_map([$this, 'getRecordArray'], $records),
         ];
-
-        $validator = $this->getSchemaValidatior(self::URI_RECORDS_LIST, (object) $response);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
-        }
-
-        return $response;
     }
 
     /**
@@ -60,16 +51,8 @@ class RecordController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
-        $response = [
+        return [
             "data" => $this->getRecordArray($record),
         ];
-
-        $validator = $this->getSchemaValidatior(self::URI_RECORDS_ONE, (object) $response);
-
-        if (!$validator->isValid()) {
-            return $this->getErrorResponse($validator->getErrors(), 500);
-        }
-
-        return $response;
     }
 }
