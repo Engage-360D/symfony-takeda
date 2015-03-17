@@ -24,6 +24,23 @@ class InstitutionRepository extends JsonApiRepository
         return $parsedTowns;
     }
 
+    public function findParsedTownByCoords($lat, $lng)
+    {
+        $parsedTown = $this->createQueryBuilder('i')
+            ->select('i.parsedTown')
+            ->where('i.lat != 0')
+            ->andWhere('i.lng != 0')
+            ->andWhere('i.parsedTown != \'\'')
+            ->orderBy('ABS(i.lat - :lat) + ABS(i.lng - :lng)', 'ASC')
+            ->setMaxResults(1)
+            ->setParameter('lat', $lat)
+            ->setParameter('lng', $lng)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $parsedTown;
+    }
+
     public function findSpecializations()
     {
         $specializations = $this->createQueryBuilder('i')

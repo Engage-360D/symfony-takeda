@@ -28,6 +28,19 @@ class InstitutionsController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/institution-parsed-towns/{lat},{lng}", name="api_get_institution_parsed_town", methods="GET")
+     */
+    public function getInstitutionParsedTown($lat, $lng)
+    {
+        $repo = $this->getDoctrine()->getRepository(Institution::REPOSITORY);
+        $parsedTowns = $repo->findParsedTownByCoords($lat, $lng);
+
+        return [
+            'data' => ['id' => $parsedTowns],
+        ];
+    }
+
+    /**
      * @Route("/institution-parsed-towns", name="api_get_institution_parsed_towns", methods="GET")
      */
     public function getInstitutionParsedTowns()
