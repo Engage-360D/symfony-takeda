@@ -84,6 +84,18 @@ pageBlockRegistry.addPageBlockComponent({
   component: require("./admin/MapBlock")
 });
 
+pageBlockRegistry.addPageBlockComponent({
+  type: 'engage360d_takeda.block.good_to_know',
+  title: 'Полезно знать',
+  initialJSON: JSON.stringify({
+    color: '',
+    image: '',
+    title: '',
+    content: ''
+  }),
+  component: require("./admin/GoodToKnowBlock")
+});
+
 // Formatters
 formatterFactory.factory('string', require("attreactive-admin/lib/formatter/StringFormatter"));
 formatterFactory.factory('number', require("attreactive-admin/lib/formatter/NumberFormatter"));
