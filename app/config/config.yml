@@ -304,6 +304,7 @@ sonata_block:
     blocks:
         sonata.block.service.text:
         engage360d_takeda.block.map:
+        engage360d_takeda.block.good_to_know:
 
 engage360d_subscription:
   api_key: %unisender_key%

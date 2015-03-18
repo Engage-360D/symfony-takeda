@@ -118,6 +118,14 @@ services:
 
     # Bocks
 
+    engage360d_takeda.block.good_to_know:
+        class: Engage360d\Bundle\TakedaBundle\Block\GoodToKnow
+        arguments:
+            - engage360d_takeda.block.good_to_know
+            - @templating
+        tags:
+            - { name: sonata.block }
+
     engage360d_takeda.block.map:
         class: Engage360d\Bundle\TakedaBundle\Block\Map
         arguments:

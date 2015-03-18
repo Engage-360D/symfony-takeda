@@ -1,0 +1,56 @@
+<div id="{{ blockId }}" class="GoodToKnow-Block" style="background: {{ color }}">
+  <div class="GoodToKnow-Content">
+    <div class="GoodToKnow-Aside">
+      <div class="GoodToKnow-Image" style="background-image: url({{ image }})">
+      </div>
+      {#
+      <button class="GoodToKnow-Button">
+        Поделиться
+      </button>
+      #}
+    </div>
+    <div class="GoodToKnow-Section">
+      <div class="content">
+        <h2>{{ title }}</h2>
+        <p>{{ content }}</p>
+      </div>
+    </div>
+    <div class="GoodToKnow-Share">
+      <ul class="social">
+        {% set url = url('engage360d_takeda_good_to_know', {'blockId': blockId}) ~ '#' ~ blockId %}
+        {% set onclick = "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" %}
+        <li><a
+               class="social__vk"
+               style="color: {{ color }}"
+               onclick="{{ onclick }}"
+               href="http://vk.com/share.php?url={{ url|url_encode }}"
+               target="_blank"><i class="icon icon-soc-vk"></i></a></li>
+        <li><a
+               class="social__fb"
+               style="color: {{ color }}"
+               onclick="{{ onclick }}"
+               href="https://www.facebook.com/sharer/sharer.php?u={{ url|url_encode }}"
+               target="_blank"><i class="icon icon-soc-fb"></i></a></li>
+        <li><a
+               class="social__ok"
+               style="color: {{ color }}"
+               onclick="{{ onclick }}"
+               href="http://www.ok.ru/dk?{{
+                     {
+                     'st.cmd': 'addShare',
+                     'st.s': '1',
+                     'st._surl': url
+                     }|url_encode
+                     }}"
+               target="_blank"><i class="icon icon-soc-ok"></i></a></li>
+        <li><a
+               class="social__gplus"
+               style="color: {{ color }}"
+               onclick="{{ onclick }}"
+               href="https://plus.google.com/share?url={{ url|url_encode }}"
+               target="_blank"><i class="icon icon-gplus"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div style="height: 275px"></div>
