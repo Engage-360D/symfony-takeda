@@ -10,7 +10,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 
 class GoodToKnow extends BaseBlockService
 {
-    private static $blockId = 0;
+    private static $blockId = 1;
 
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
