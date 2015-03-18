@@ -78,6 +78,30 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/reset", name="api_post_account_reset", methods="POST")
+     */
+    public function postAccountResetAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $user = $this->getUser();
+
+        $user->getTestResults()->clear();
+        $user->getPills()->clear();
+
+        $timelineManager = $this->get('engage360d_takeda.timeline_manager');
+        $timelineManager->setUser($user);
+        $timelineManager->removeTimeline();
+        $user->setTimelineId(null);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return new JsonResponse("Account has been reset.", 200);
+    }
+
+    /**
      * @Route("/account/test-results", name="api_post_account_test_results", methods="POST")
      */
     public function postAccountTestResultAction(Request $request)
