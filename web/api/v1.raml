@@ -212,6 +212,35 @@ traits:
             application/json:
               schema: !include v1/schemas/tokens/one.json
               example: !include v1/examples/tokens/one.json
+  /odnoklassniki:
+    post:
+      description: |
+        Аутентификация пользователя через ok.ru.
+      body:
+        application/json:
+          schema: !include v1/schemas/tokens/odnoklassniki/post.json
+          example: !include v1/examples/tokens/odnoklassniki/post.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/tokens/one.json
+              example: !include v1/examples/tokens/one.json
+
+  /google:
+    post:
+      description: |
+        Аутентификация пользователя через google.com.
+      body:
+        application/json:
+          schema: !include v1/schemas/tokens/google/post.json
+          example: !include v1/examples/tokens/google/post.json
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include v1/schemas/tokens/one.json
+              example: !include v1/examples/tokens/one.json
 
 /account:
   description: for Web and Mobile

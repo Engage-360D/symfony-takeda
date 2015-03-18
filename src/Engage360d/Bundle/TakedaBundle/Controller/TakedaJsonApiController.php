@@ -37,7 +37,7 @@ class TakedaJsonApiController extends JsonApiController
         if (isset($data->data->googleId)) {
             $accessToken = isset($data->data->googleToken) ? $data->data->googleToken : "";
 
-            if (!$this->isGoogleCredentialsValid($accessToken)) {
+            if (!$this->isGoogleCredentialsValid($data->data->googleId, $accessToken)) {
                 throw new HttpException(400, "Provided googleToken is not valid");
             }
         }
@@ -103,14 +103,14 @@ class TakedaJsonApiController extends JsonApiController
         $body = $response->getContent();
         $data = json_decode($body);
 
-        if (isset($data->error_code)) {
+        if (isset($data->error_code) || !isset($data->uid)) {
             return false;
         }
 
-        return true;
+        return $data->uid == $odnoklassnikiId;
     }
 
-    public function isGoogleCredentialsValid($accessToken)
+    public function isGoogleCredentialsValid($googleId, $accessToken)
     {
         $buzz = $this->container->get('buzz');
 
@@ -126,10 +126,10 @@ class TakedaJsonApiController extends JsonApiController
         $body = $response->getContent();
         $data = json_decode($body);
 
-        if (isset($data->error)) {
+        if (isset($data->error) || !isset($data->id)) {
             return false;
         }
 
-        return true;
+        return $data->id == $googleId;
     }
 }

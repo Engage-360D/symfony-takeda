@@ -14,6 +14,8 @@ class TokenController extends TakedaJsonApiController
     const URI_TOKEN_POST = 'v1/schemas/tokens/post.json';
     const URI_TOKEN_POST_FACEBOOK = 'v1/schemas/tokens/facebook/post.json';
     const URI_TOKEN_POST_VK = 'v1/schemas/tokens/vk/post.json';
+    const URI_TOKEN_POST_OK = 'v1/schemas/tokens/odnoklassniki/post.json';
+    const URI_TOKEN_POST_GOOGLE = 'v1/schemas/tokens/google/post.json';
 
     /**
      * @Route("/tokens", name="api_post_token", methods="POST")
@@ -126,6 +128,82 @@ class TokenController extends TakedaJsonApiController
         $user = $this->get('doctrine')
             ->getRepository('Engage360dTakedaBundle:User\User')
             ->findOneBy(array('vkontakteId' => $vkontakteId));
+
+        if (!$user) {
+            return $this->getErrorResponse("The user is not registered", 400);
+        }
+
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
+
+        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
+
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTokenResource($token, $user), 201);
+    }
+
+    /**
+     * Sign in through ok.ru
+     * @Route("/tokens/odnoklassniki", name="api_post_token_odnoklassniki", methods="POST")
+     */
+    public function tokensOdnoklassnikiAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TOKEN_POST_OK);
+
+        $odnoklassnikiId = $data->data->user_id;
+        $accessToken = $data->data->access_token;
+
+        // verify that token is valid
+        if (!$this->isOdnoklassnikiCredentialsValid($odnoklassnikiId, $accessToken)) {
+            return $this->getErrorResponse("Bad credentials", 400);
+        }
+
+        $user = $this->get('doctrine')
+            ->getRepository('Engage360dTakedaBundle:User\User')
+            ->findOneBy(array('odnoklassnikiId' => $odnoklassnikiId));
+
+        if (!$user) {
+            return $this->getErrorResponse("The user is not registered", 400);
+        }
+
+        // authenticate user
+        $t = new UsernamePasswordToken($user, null, "main", $user->getRoles());
+        $this->container->get("security.context")->setToken($t);
+
+        $token = $this->get('lexik_jwt_authentication.jwt_manager')->create($user);
+
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getTokenResource($token, $user), 201);
+    }
+
+    /**
+     * Sign in through google.com
+     * @Route("/tokens/google", name="api_post_token_google", methods="POST")
+     */
+    public function tokensGoogleAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_TOKEN_POST_GOOGLE);
+
+        $googleId = $data->data->user_id;
+        $accessToken = $data->data->access_token;
+
+        // verify that token is valid
+        if (!$this->isGoogleCredentialsValid($googleId, $accessToken)) {
+            return $this->getErrorResponse("Bad credentials", 400);
+        }
+
+        $user = $this->get('doctrine')
+            ->getRepository('Engage360dTakedaBundle:User\User')
+            ->findOneBy(array('googleId' => $googleId));
 
         if (!$user) {
             return $this->getErrorResponse("The user is not registered", 400);
