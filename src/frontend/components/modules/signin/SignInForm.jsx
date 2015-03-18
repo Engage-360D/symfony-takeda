@@ -25,7 +25,7 @@ var SignInForm = React.createClass({
 
   getInitialFormState: function() {
     return signInForm({
-      email: '',
+      email: this.props.auth && this.props.auth.email || '',
       plainPassword: ''
     });
   },

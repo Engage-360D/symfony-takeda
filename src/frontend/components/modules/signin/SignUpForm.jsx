@@ -22,9 +22,9 @@ var SignUpForm = React.createClass({
 
   getInitialFormState: function() {
     var form = signUpForm({
-      firstname: '',
-      lastname: '',
-      email: '',
+      firstname: this.props.auth && this.props.auth.firstname || '',
+      lastname: this.props.auth && this.props.auth.lastname || '',
+      email: this.props.auth && this.props.auth.email || '',
       plainPassword: '',
       birthday: '',
       region: null,

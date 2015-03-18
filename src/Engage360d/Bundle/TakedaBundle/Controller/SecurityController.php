@@ -67,6 +67,18 @@ class SecurityController extends ConnectController
                 $auth['googleId'] = (string)$userInformation->getUsername();
                 $auth['googleToken'] = $error->getRawToken()['access_token'];
             }
+
+            $name = $userInformation->getRealName();
+            $email = $userInformation->getEmail();
+
+            $name = $name ?: '';
+            $name = explode(" ", $name);
+            $firstname = array_pop($name);
+            $lastname = implode(" ", $name);
+
+            $auth['firstname'] = $firstname;
+            $auth['lastname'] = $lastname;
+            $auth['email'] = $email ?: '';
         }
 
         $regions = $this->container->get('doctrine')->getRepository('Engage360dTakedaBundle:Region\Region')->findAll();
