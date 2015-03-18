@@ -1733,12 +1733,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Engage-360D/SubscriptionBundle.git",
-                "reference": "889a23e50dd41ec8e86b36ed61ba91896737acdf"
+                "reference": "dd30182374abea7c8256829684abd2b577a7640c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Engage-360D/SubscriptionBundle/zipball/889a23e50dd41ec8e86b36ed61ba91896737acdf",
-                "reference": "889a23e50dd41ec8e86b36ed61ba91896737acdf",
+                "url": "https://api.github.com/repos/Engage-360D/SubscriptionBundle/zipball/dd30182374abea7c8256829684abd2b577a7640c",
+                "reference": "dd30182374abea7c8256829684abd2b577a7640c",
                 "shasum": ""
             },
             "require": {
@@ -1794,7 +1794,7 @@
                 "source": "https://github.com/Engage-360D/SubscriptionBundle/tree/master",
                 "issues": "https://github.com/Engage-360D/SubscriptionBundle/issues"
             },
-            "time": "2015-02-24 10:30:11"
+            "time": "2015-03-18 12:41:21"
         },
         {
             "name": "facebook/php-sdk",
