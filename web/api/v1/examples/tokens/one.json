@@ -22,6 +22,8 @@
       "birthday": "1991-01-19T00:00:00+0000",
       "vkontakteId": null,
       "facebookId": null,
+      "odnoklassnikiId": null,
+      "googleId": null,
       "specializationExperienceYears": null,
       "specializationGraduationDate": null,
       "specializationInstitutionAddress": null,
