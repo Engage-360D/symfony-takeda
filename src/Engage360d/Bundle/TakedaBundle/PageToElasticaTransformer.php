@@ -31,6 +31,7 @@ class PageToElasticaTransformer implements ModelToElasticaTransformerInterface
             $json = json_decode($pageBlock->getJson());
             switch ($pageBlock->getType()) {
                 case 'sonata.block.service.text':
+                case 'engage360d_takeda.block.good_to_know':
                     $content .= " " . rip_tags($json->content);
                     break;
             }
