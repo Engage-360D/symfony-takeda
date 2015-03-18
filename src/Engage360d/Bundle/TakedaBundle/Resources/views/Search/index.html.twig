@@ -11,6 +11,11 @@
       <div class="head__city">
         {% include "Engage360dTakedaBundle::geo_ip_city.html.twig" %}
       </div>
+      {% if app.user %}
+      <div class="head__out">
+        <a href="/sign-out">Выход</a>
+      </div>
+      {% endif %}
     </div>
     <div class="head__left">
       <!-- h -->

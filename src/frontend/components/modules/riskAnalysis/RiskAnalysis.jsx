@@ -303,21 +303,7 @@ var RiskAnalysis = React.createClass({
       content = this.renderFirstStep();
     }
 
-    return (
-      <div className="container">
-        <div className="head">
-          <div className="head__right">
-            <div className="head__city">
-              <a href="/institutions"><i className="icon icon-marker"></i><span>{this.props.geoIPCity}</span></a>
-            </div>
-          </div>
-          <div className="head__left">
-            <div className="h">Анализ риска</div>
-          </div>
-        </div>
-        {content}
-      </div>
-    );
+    return content;
   }
 });
 

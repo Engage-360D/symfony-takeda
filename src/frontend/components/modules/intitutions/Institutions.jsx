@@ -168,17 +168,7 @@ var Institutions = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
-        <div className="head">
-          <div className="head__right">
-            <div className="head__city">
-              <a href="/institutions"><i className="icon icon-marker"></i><span>{this.props.geoIPCity}</span></a>
-            </div>
-          </div>
-          <div className="head__left">
-            <div className="h">Компания Такеда</div>
-          </div>
-        </div>
+      <div>
         <div className="map">
           <div ref="map" style={{width: '100%', height: 500}} />
         </div>
