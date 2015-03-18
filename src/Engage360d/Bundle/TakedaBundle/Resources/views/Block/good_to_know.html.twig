@@ -17,7 +17,7 @@
     </div>
     <div class="GoodToKnow-Share">
       <ul class="social">
-        {% set url = url('engage360d_takeda_good_to_know', {'blockId': blockId}) ~ '#' ~ blockId %}
+        {% set url = url('engage360d_takeda_good_to_know') ~ '?blockId=' ~ blockId ~ '#' ~ blockId %}
         {% set onclick = "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" %}
         <li><a
                class="social__vk"
