@@ -30,6 +30,45 @@ var SignInForm = React.createClass({
     });
   },
 
+  resetPassword: function(event) {
+    event.preventDefault();
+
+    if (this.state.signInProcess) {
+      return;
+    }
+
+    if (this.state.formState.validity.email.invalid) {
+      this.state.formState.changed.push('email');
+      this.state.formState = this.state.formState.markBlured('email');
+      return this.forceUpdate();
+    }
+
+    var error = function(res) {
+      this.setState({signInProcess: false});
+      try {
+        alert(res.responseJSON.errors[0].title);
+      } catch(e) {
+        alert('Unknown error');
+      }
+    }.bind(this);
+    var done = function() {
+      alert('Новый пароль выслан на электнонную почту');
+      this.setState({signInProcess: false});
+    }.bind(this);
+
+    this.setState({signInProcess: true});
+
+    apiRequest('POST', '/api/v1/account/reset-password', {
+      email: this.state.formState.data.email
+    }, function(err, data) {
+      if (err) {
+        return error(err);
+      }
+
+      return done();
+    });
+  },
+
   signIn: function(event) {
     event.preventDefault();
 
@@ -151,7 +190,7 @@ var SignInForm = React.createClass({
         {!this.props.hideSocial && this.renderSocial()}
         <div className="field field_right">
           <div className="field__in">
-            <a className="link link_black" href="#"><span>Забыли пароль</span><i className="icon icon-arr-circle-right"></i><i className="icon icon-arr-circle-right-fill"></i></a>
+            <a className="link link_black" href="#" onClick={this.resetPassword}><span>Забыли пароль</span><i className="icon icon-arr-circle-right"></i><i className="icon icon-arr-circle-right-fill"></i></a>
           </div>
         </div>
         <div className="btn-center">
