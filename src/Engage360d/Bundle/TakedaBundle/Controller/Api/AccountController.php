@@ -309,8 +309,10 @@ class AccountController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
         $page = $recommendations['pages'][$recommendation];
-        $page = $this->getPageRecommendationArray($page);
+        $page = $jsonApiResponse->getPageRecommendationArray($page);
         $page['id'] = $id . "_" . $recommendation;
 
         return new JsonResponse(array(
