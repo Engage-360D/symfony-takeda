@@ -178,16 +178,16 @@ var NewsList = React.createClass({
 
     if (this.state.page < this.getPageNum(articles)) {
       nextPageButton = (
-        <button className="post__next">
-          <i className="icon icon-arr-right" onClick={this.showNextPage.bind(this, articles)}></i>
+        <button className="post__next" onClick={this.showNextPage.bind(this, articles)}>
+          <i className="icon icon-arr-right"></i>
         </button>
       );
     }
 
     if (this.state.page > 1) {
       prevPageButton = (
-        <button className="post__prev">
-          <i className="icon icon-arr-left" onClick={this.showPrevPage}></i>
+        <button className="post__prev" onClick={this.showPrevPage}>
+          <i className="icon icon-arr-left"></i>
         </button>
       );
     }
