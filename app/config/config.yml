@@ -309,3 +309,22 @@ sonata_block:
 engage360d_subscription:
   api_key: %unisender_key%
   default_list_id: %unisender_list%
+
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        file_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/uploads/files
+    filesystems:
+        files_fs:
+            adapter:    file_adapter
+
+vich_uploader:
+    db_driver: orm
+    storage:   gaufrette
+    mappings:
+        file:
+            uri_prefix:         /uploads/files
+            upload_destination: files_fs
+            directory_namer: melodia_file.directory_namer

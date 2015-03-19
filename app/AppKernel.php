@@ -44,9 +44,11 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
 
             // our project bundles
-
+            new Melodia\FileBundle\MelodiaFileBundle(),
             new Melodia\UtilBundle\MelodiaUtilBundle(),
             new Melodia\PageBundle\MelodiaPageBundle(),
             new Melodia\CatalogBundle\MelodiaCatalogBundle(),

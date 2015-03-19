@@ -54,7 +54,8 @@
         "phpunit/phpunit": "~4.2",
         "melodia/catalog-bundle": "dev-master",
         "doctrine/mongodb-odm": "dev-master",
-        "doctrine/mongodb-odm-bundle": "dev-master"
+        "doctrine/mongodb-odm-bundle": "dev-master",
+        "melodia/file-bundle": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -113,6 +114,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Engage-360D/SubscriptionBundle.git"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/melodia/MelodiaFileBundle.git"
         }
     ],
     "minimum-stability": "stable",

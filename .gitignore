@@ -22,3 +22,4 @@ app/var/*
 auth.json
 /mongo
 /web/admin/
+/web/uploads/

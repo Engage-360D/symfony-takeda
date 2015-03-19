@@ -18,6 +18,11 @@ engage360d_old_api_pages:
     resource: Engage360d\Bundle\TakedaBundle\Controller\OldApi\PageController
     prefix: /api/old
 
+melodia_file_api:
+    type:     rest
+    resource: Engage360d\Bundle\TakedaBundle\Controller\OldApi\FileController
+    prefix:   /api/old
+
 # Security routes
 
 hwi_oauth_login:
