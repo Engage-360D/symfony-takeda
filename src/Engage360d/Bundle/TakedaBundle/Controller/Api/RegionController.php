@@ -124,6 +124,6 @@ class RegionController extends TakedaJsonApiController
         $em->remove($region);
         $em->flush();
 
-        return new \stdClass();
+        return ["data" => (object) []];
     }
 }

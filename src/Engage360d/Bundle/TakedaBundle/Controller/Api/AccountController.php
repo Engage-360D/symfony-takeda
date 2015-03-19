@@ -98,7 +98,7 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse("Account has been reset.", 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**
@@ -340,7 +340,7 @@ class AccountController extends TakedaJsonApiController
                 ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
         }
 
-        return new JsonResponse(["data" => []], 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**
@@ -489,7 +489,7 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse(new \stdClass(), 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**

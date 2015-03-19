@@ -116,6 +116,6 @@ class ExpertController extends TakedaJsonApiController
         $em->remove($expert);
         $em->flush();
 
-        return new \stdClass();
+        return ["data" => (object) []];
     }
 }

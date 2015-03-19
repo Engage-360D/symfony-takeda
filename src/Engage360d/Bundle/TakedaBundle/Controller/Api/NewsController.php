@@ -134,6 +134,6 @@ class NewsController extends TakedaJsonApiController
         $em->remove($newsArticle);
         $em->flush();
 
-        return new \stdClass();
+        return ["data" => (object) []];
     }
 }

@@ -182,7 +182,7 @@ class UserController extends TakedaJsonApiController
         $em->remove($user);
         $em->flush();
 
-        return new JsonResponse(null, 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**
@@ -210,6 +210,6 @@ class UserController extends TakedaJsonApiController
         $this->get('event_dispatcher')
             ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
 
-        return new JsonResponse("The password has been reset.", 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 }
