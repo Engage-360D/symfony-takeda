@@ -368,7 +368,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse(new \stdClass(), 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getIncidentsResource($lastTestResult), 201);
     }
 
     /**
@@ -384,13 +386,9 @@ class AccountController extends TakedaJsonApiController
             throw new HttpException(409, "First take the test.");
         }
 
-        return [
-            "data" => [
-                "hadBypassSurgery" => $lastTestResult->getHadBypassSurgery(),
-                "hadHeartAttackOrStroke" => $lastTestResult->getHadHeartAttackOrStroke(),
-                "hasDiabetes" => $lastTestResult->getHasDiabetes(),
-            ]
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getIncidentsResource($lastTestResult);
     }
 
     /**
