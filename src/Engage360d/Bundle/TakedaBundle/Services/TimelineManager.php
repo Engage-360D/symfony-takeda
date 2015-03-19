@@ -48,6 +48,12 @@ class TimelineManager
         return $db->selectCollection(self::COLLECTION_NAME);
     }
 
+    public function removeTimeline()
+    {
+        $collection = $this->getCollection();
+        $collection->remove(["_id" => new \MongoId($this->user->getTimelineId())]);
+    }
+
     public function getTimeline()
     {
         if ($this->user->getTestResults()->isEmpty()) {

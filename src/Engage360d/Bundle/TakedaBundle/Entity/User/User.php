@@ -92,7 +92,7 @@ class User extends BaseUser
     private $specializationInstitutionName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\TestResult", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Engage360d\Bundle\TakedaBundle\Entity\TestResult", mappedBy="user", orphanRemoval=true, cascade={"persist", "remove"})
      */
     protected $testResults;
 

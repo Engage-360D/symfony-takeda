@@ -406,4 +406,15 @@ class JsonApiResponse extends ContainerAware
             "data" => array_map([$this, 'getRegionArray'], $regions)
         ];
     }
+
+    public function getIncidentsResource($testResult)
+    {
+        return [
+            "data" => [
+                "hadBypassSurgery" => $testResult->getHadBypassSurgery(),
+                "hadHeartAttackOrStroke" => $testResult->getHadHeartAttackOrStroke(),
+                "hasDiabetes" => $testResult->getHasDiabetes(),
+            ]
+        ];
+    }
 }

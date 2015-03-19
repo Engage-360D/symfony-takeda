@@ -121,6 +121,6 @@ class OpinionController extends TakedaJsonApiController
         $em->remove($opinion);
         $em->flush();
 
-        return new \stdClass();
+        return ["data" => (object) []];
     }
 }

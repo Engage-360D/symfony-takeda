@@ -13,9 +13,9 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Engage360d\Bundle\RestBundle\Controller\RestController;
 use Melodia\PageBundle\Entity\Page;
 use Melodia\PageBundle\Form\Type\PageFormType;
-use Engage360d\Bundle\TakedaBundle\Controller\TakedaJsonApiController;
 use Symfony\Component\Form\Form;
 
 /**
@@ -23,7 +23,7 @@ use Symfony\Component\Form\Form;
  *
  * @author Alexey Ryzhkov <alioch@yandex.ru>
  */
-class PageController extends TakedaJsonApiController
+class PageController extends RestController
 {
     /**
      * @ApiDoc(
@@ -196,26 +196,5 @@ class PageController extends TakedaJsonApiController
         $entityManager->flush();
 
         return new JsonResponse(new \stdClass(), 200);
-    }
-
-    protected function getErrorMessages(Form $form)
-    {
-        $errors = array();
-
-        foreach ($form->getErrors() as $key => $error) {
-            $errors[] = $error->getMessage();
-        }
-
-        foreach ($form->all() as $child) {
-            if (!$child->isValid()) {
-                $errors[$child->getName()] = $this->getErrorMessages($child);
-            }
-        }
-
-        foreach ($form->getExtraData() as $key => $extraField) {
-            $errors[$key] = "Extra field";
-        }
-
-        return $errors;
     }
 }

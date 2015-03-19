@@ -78,6 +78,30 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/reset", name="api_post_account_reset", methods="POST")
+     */
+    public function postAccountResetAction(Request $request)
+    {
+        $this->assertContentTypeIsValid($request);
+
+        $user = $this->getUser();
+
+        $user->getTestResults()->clear();
+        $user->getPills()->clear();
+
+        $timelineManager = $this->get('engage360d_takeda.timeline_manager');
+        $timelineManager->setUser($user);
+        $timelineManager->removeTimeline();
+        $user->setTimelineId(null);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return new JsonResponse(["data" => (object) []], 200);
+    }
+
+    /**
      * @Route("/account/test-results", name="api_post_account_test_results", methods="POST")
      */
     public function postAccountTestResultAction(Request $request)
@@ -285,8 +309,10 @@ class AccountController extends TakedaJsonApiController
             throw $this->createNotFoundException();
         }
 
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
         $page = $recommendations['pages'][$recommendation];
-        $page = $this->getPageRecommendationArray($page);
+        $page = $jsonApiResponse->getPageRecommendationArray($page);
         $page['id'] = $id . "_" . $recommendation;
 
         return new JsonResponse(array(
@@ -314,7 +340,7 @@ class AccountController extends TakedaJsonApiController
                 ->dispatch(Engage360dSecurityEvents::RESETTING_USER_PASSWORD, $event);
         }
 
-        return new JsonResponse(["data" => []], 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**
@@ -342,7 +368,9 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse(new \stdClass(), 201);
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return new JsonResponse($jsonApiResponse->getIncidentsResource($lastTestResult), 201);
     }
 
     /**
@@ -358,13 +386,9 @@ class AccountController extends TakedaJsonApiController
             throw new HttpException(409, "First take the test.");
         }
 
-        return [
-            "data" => [
-                "hadBypassSurgery" => $lastTestResult->getHadBypassSurgery(),
-                "hadHeartAttackOrStroke" => $lastTestResult->getHadHeartAttackOrStroke(),
-                "hasDiabetes" => $lastTestResult->getHasDiabetes(),
-            ]
-        ];
+        $jsonApiResponse = $this->get('engage360d_takeda.json_api_response');
+
+        return $jsonApiResponse->getIncidentsResource($lastTestResult);
     }
 
     /**
@@ -463,7 +487,7 @@ class AccountController extends TakedaJsonApiController
         $em->persist($user);
         $em->flush();
 
-        return new JsonResponse(new \stdClass(), 200);
+        return new JsonResponse(["data" => (object) []], 200);
     }
 
     /**

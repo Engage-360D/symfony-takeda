@@ -267,6 +267,13 @@ traits:
           application/json:
             schema: !include v1/schemas/users/one.json
             example: !include v1/examples/users/one.json
+  /reset:
+    post:
+      description: |
+        Сброс аккаунта: удаление результатов теста, таблеток, таймлайна и проч.
+      responses:
+        200:
+
   /reset-password:
     post:
       description: |
