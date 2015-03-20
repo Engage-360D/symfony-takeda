@@ -417,4 +417,24 @@ class JsonApiResponse extends ContainerAware
             ]
         ];
     }
+
+    public function getFileArray($file)
+    {
+        return [
+            "id" => (string) $file->getId(),
+            "url" => $file->getFileUri(),
+        ];
+    }
+
+    public function getFileResource($file)
+    {
+        return ["data" => $this->getFileArray($file)];
+    }
+
+    public function getFileListResource($files)
+    {
+        return [
+            "data" => array_map([$this, 'getFileArray'], $files)
+        ];
+    }
 }

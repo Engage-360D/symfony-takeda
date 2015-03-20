@@ -6,6 +6,8 @@ var React = require('react');
 var truncate = require('html-truncate');
 var moment = require('moment');
 var DateInput = require('../../form/DateInput');
+var NextPageButton = require('./NextPageButton');
+var PrevPageButton = require('./PrevPageButton');
 
 var NewsList = React.createClass({
   getInitialState: function() {
@@ -147,8 +149,6 @@ var NewsList = React.createClass({
     var firstRow = [];
     var secondRow = [];
     var i;
-    var nextPageButton = <div/>;
-    var prevPageButton = <div />;
     var dateLink = {
         value: this.state.filterByDate,
         requestChange: function(newDate) {
@@ -176,22 +176,6 @@ var NewsList = React.createClass({
       }
     }
 
-    if (this.state.page < this.getPageNum(articles)) {
-      nextPageButton = (
-        <button className="post__next" onClick={this.showNextPage.bind(this, articles)}>
-          <i className="icon icon-arr-right"></i>
-        </button>
-      );
-    }
-
-    if (this.state.page > 1) {
-      prevPageButton = (
-        <button className="post__prev" onClick={this.showPrevPage}>
-          <i className="icon icon-arr-left"></i>
-        </button>
-      );
-    }
-
     return (
       <div>
         <div className="h-wrap">
@@ -200,8 +184,12 @@ var NewsList = React.createClass({
           <DateInput valueLink={dateLink} />
         </div>
         <div className="post">
-          {nextPageButton}
-          {prevPageButton}
+          {this.state.page < this.getPageNum(articles) ?
+            <NextPageButton onClick={this.showNextPage.bind(this, articles)} /> : <div/>
+          }
+          {this.state.page > 1 ?
+            <PrevPageButton onClick={this.showPrevPage} /> : <div/>
+          }
           <div className="post__table">
             <div className="post__row">{firstRow.map(this.renderArticle)}</div>
             <div className="post__row post__row_down">{secondRow.map(this.renderArticle)}</div>

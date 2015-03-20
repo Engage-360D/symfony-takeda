@@ -4,6 +4,8 @@
 
 var React = require('react');
 var truncate = require('html-truncate');
+var NextPageButton = require('./NextPageButton');
+var PrevPageButton = require('./PrevPageButton');
 
 var OpinionList = React.createClass({
   getInitialState: function() {
@@ -119,8 +121,6 @@ var OpinionList = React.createClass({
     var firstRow = [];
     var secondRow = [];
     var i;
-    var nextPageButton = <div />;
-    var prevPageButton = <div />;
 
     if (this.state.isOrderedByViewsCount) {
       opinions.sort(function (a, b) {
@@ -136,22 +136,6 @@ var OpinionList = React.createClass({
       }
     }
 
-    if (this.state.page < this.getPageNum(opinions)) {
-      nextPageButton = (
-        <button className="post__next">
-          <i className="icon icon-arr-right" onClick={this.showNextPage.bind(this, opinions)}></i>
-        </button>
-      );
-    }
-
-    if (this.state.page > 1) {
-      prevPageButton = (
-        <button className="post__prev">
-          <i className="icon icon-arr-left" onClick={this.showPrevPage}></i>
-        </button>
-      );
-    }
-
     return (
       <div>
         <div className="post">
@@ -162,8 +146,12 @@ var OpinionList = React.createClass({
               <a href="#" onClick={this.resetSorting} className={!this.state.isOrderedByViewsCount ? "is-active" : ""}>новые</a>
             </div>
           </div>
-          {prevPageButton}
-          {nextPageButton}
+          {this.state.page < this.getPageNum(opinions) ?
+            <NextPageButton onClick={this.showNextPage.bind(this, opinions)} /> : <div/>
+          }
+          {this.state.page > 1 ?
+            <PrevPageButton onClick={this.showPrevPage} /> : <div/>
+          }
           <div className="post__table">
             <div className="post__row">{firstRow.map(this.renderOpinion)}</div>
             <div className="post__row post__row_down">{secondRow.map(this.renderOpinion)}</div>
