@@ -43,6 +43,10 @@ security:
                 use_forward:       false
                 oauth_user_provider:
                     service: engage360d_security.oauth.provider
+            lexik_jwt:
+                query_parameter:            # check token in query string parameter
+                    enabled: true
+                    name:    token
 
     access_control:
 
