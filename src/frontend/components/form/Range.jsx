@@ -85,7 +85,7 @@ var Range = React.createClass({
   _getPercentage: function() {
     var size = this.props.max - this.props.min;
 
-    return this.getValue() !== null ?
+    return this.getValue() ?
       (this.getValue() - this.props.min) / size * 100 : -26;
   },
 
