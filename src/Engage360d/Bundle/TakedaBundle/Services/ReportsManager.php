@@ -322,7 +322,7 @@ class ReportsManager
                     $this->isEnoughtExercisePerWeek($value) : $value == 100,
             ];
 
-            $timestamp = strtotime("+1 week", $this->getWeekTimestamp($week, $year));
+            $timestamp = strtotime("+1 week", $timestamp);
         }
 
         return $data;
