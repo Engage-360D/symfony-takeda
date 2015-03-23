@@ -17,11 +17,11 @@ use Engage360d\Bundle\TakedaBundle\Helpers;
  */
 class ReportsManager
 {
-    const TYPE_EXERCISE          = 'exercise';
-    const TYPE_DIET              = 'diet';
-    const TYPE_PILLS             = 'pills';
-    const TYPE_ISR               = 'isr';
     const TYPE_SCORE             = 'score';
+    const TYPE_ISR               = 'isr';
+    const TYPE_EXERCISE          = 'exercise';
+    const TYPE_PILLS             = 'pills';
+    const TYPE_DIET              = 'diet';
     const TYPE_ARTERIAL_PRESSURE = 'arterialPressure';
     const TYPE_WEIGHT            = 'weight';
     const TYPE_CHOLESTEROL_LEVEL = 'cholesterolLevel';
@@ -509,6 +509,53 @@ class ReportsManager
     /**
      * @param $weekNum
      * @param null $year
+     * @return float|int
+     */
+    public function getIsrWeekValue($weekNum, $year = null)
+    {
+        if (!$year) {
+            $year = date("Y");
+        }
+
+        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
+        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
+
+        $tasksByDay = [];
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            $dateStr = substr($task["id"], 0, 8);
+            if (
+                (new \DateTime($dateStr))->format('U') >= $mondayTimestamp &&
+                (new \DateTime($dateStr))->format('U') < $nextMondayTimestamp
+            ) {
+                if (!isset($tasksByDay[$dateStr])) {
+                    $tasksByDay[$dateStr] = [];
+                }
+                if ($task["type"] === TimelineManager::TYPE_PILL) {
+                    if (!isset($tasksByDay[$dateStr][TimelineManager::TYPE_PILL])) {
+                        $tasksByDay[$dateStr][TimelineManager::TYPE_PILL] = 1;
+                    }
+                    $tasksByDay[$dateStr][TimelineManager::TYPE_PILL] *= (int) $task["isCompleted"];
+                } else {
+                    $tasksByDay[$dateStr][$task["type"]] = (int) $task["isCompleted"];
+                }
+            }
+        }
+
+        if (empty($tasksByDay)) {
+            return 0;
+        }
+
+        $isrValue = 0;
+        foreach ($tasksByDay as $day) {
+            $isrValue += array_sum(array_values($day)) / count($day);
+        }
+
+        return round($isrValue / count($tasksByDay), 2) * 100;
+    }
+
+    /**
+     * @param $weekNum
+     * @param null $year
      * @return int
      */
     public function getExerciseWeekValue($weekNum, $year = null)
@@ -532,87 +579,6 @@ class ReportsManager
         }
 
         return $exerciseValue;
-    }
-
-    public function getWeightWeekValue($weekNum, $year = null)
-    {
-        if (!$year) {
-            $year = date("Y");
-        }
-
-        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
-        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
-
-        $weight = 0;
-        foreach ($this->timeline["linked"]["tasks"] as $task) {
-            if (
-                $task["type"] === TimelineManager::TYPE_WEIGHT &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
-            ) {
-                $weight += $task["weight"];
-            }
-        }
-
-        return $weight;
-    }
-
-
-    public function getArterialPressureWeekValue($weekNum, $year = null)
-    {
-        if (!$year) {
-            $year = date("Y");
-        }
-
-        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
-        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
-
-        $value = 0;
-        foreach ($this->timeline["linked"]["tasks"] as $task) {
-            if (
-                $task["type"] === TimelineManager::TYPE_ARTERIAL_PRESSURE &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
-            ) {
-                $value += $task["arterialPressure"];
-            }
-        }
-
-        return $value;
-    }
-
-    /**
-     * @param $weekNum
-     * @param null $year
-     * @return float|int
-     */
-    public function getDietWeekValue($weekNum, $year = null)
-    {
-        if (!$year) {
-            $year = date("Y");
-        }
-
-        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
-        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
-
-        $dietValue = 0;
-        $daysCount = 0;
-        foreach ($this->timeline["linked"]["tasks"] as $task) {
-            if (
-                $task["type"] === TimelineManager::TYPE_DIET &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
-                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
-            ) {
-                $dietValue += (int) $task["isCompleted"];
-                $daysCount += 1;
-            }
-        }
-
-        if (!$dietValue || !$daysCount) {
-            return 0;
-        }
-
-        return round($dietValue / $daysCount, 2) * 100;
     }
 
     /**
@@ -657,7 +623,7 @@ class ReportsManager
      * @param null $year
      * @return float|int
      */
-    public function getIsrWeekValue($weekNum, $year = null)
+    public function getDietWeekValue($weekNum, $year = null)
     {
         if (!$year) {
             $year = date("Y");
@@ -666,36 +632,70 @@ class ReportsManager
         $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
         $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
 
-        $tasksByDay = [];
+        $dietValue = 0;
+        $daysCount = 0;
         foreach ($this->timeline["linked"]["tasks"] as $task) {
-            $dateStr = substr($task["id"], 0, 8);
             if (
-                (new \DateTime($dateStr))->format('U') >= $mondayTimestamp &&
-                (new \DateTime($dateStr))->format('U') < $nextMondayTimestamp
+                $task["type"] === TimelineManager::TYPE_DIET &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
             ) {
-                if (!isset($tasksByDay[$dateStr])) {
-                    $tasksByDay[$dateStr] = [];
-                }
-                if ($task["type"] === TimelineManager::TYPE_PILL) {
-                    if (!isset($tasksByDay[$dateStr][TimelineManager::TYPE_PILL])) {
-                        $tasksByDay[$dateStr][TimelineManager::TYPE_PILL] = 1;
-                    }
-                    $tasksByDay[$dateStr][TimelineManager::TYPE_PILL] *= (int) $task["isCompleted"];
-                } else {
-                    $tasksByDay[$dateStr][$task["type"]] = (int) $task["isCompleted"];
-                }
+                $dietValue += (int) $task["isCompleted"];
+                $daysCount += 1;
             }
         }
 
-        if (empty($tasksByDay)) {
+        if (!$dietValue || !$daysCount) {
             return 0;
         }
 
-        $isrValue = 0;
-        foreach ($tasksByDay as $day) {
-            $isrValue += array_sum(array_values($day)) / count($day);
+        return round($dietValue / $daysCount, 2) * 100;
+    }
+
+
+    public function getArterialPressureWeekValue($weekNum, $year = null)
+    {
+        if (!$year) {
+            $year = date("Y");
         }
 
-        return round($isrValue / count($tasksByDay), 2) * 100;
+        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
+        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
+
+        $value = 0;
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if (
+                $task["type"] === TimelineManager::TYPE_ARTERIAL_PRESSURE &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
+            ) {
+                $value += $task["arterialPressure"];
+            }
+        }
+
+        return $value;
+    }
+
+    public function getWeightWeekValue($weekNum, $year = null)
+    {
+        if (!$year) {
+            $year = date("Y");
+        }
+
+        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
+        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
+
+        $weight = 0;
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if (
+                $task["type"] === TimelineManager::TYPE_WEIGHT &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
+            ) {
+                $weight += $task["weight"];
+            }
+        }
+
+        return $weight;
     }
 }
