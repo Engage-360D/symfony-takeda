@@ -433,6 +433,16 @@ traits:
         is: [ secured ]
         responses:
           200:
+  /isr:
+    get:
+      is: [ secured ]
+      description: |
+        Получение значения ИСР данного пользователя.
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include v1/examples/reports/isr/one.json
   /timeline:
     get:
       is: [ secured ]

@@ -112,6 +112,23 @@ class AccountController extends TakedaJsonApiController
     }
 
     /**
+     * @Route("/account/isr", name="api_get_account_isr", methods="GET")
+     */
+    public function getAccountIsrAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        $reportsManager = $this->get('engage360d_takeda.reports_manager');
+        $reportsManager->init($user);
+
+        return [
+            "data" => [
+                "id" => (string) $reportsManager->getIsrCurrentValue()
+            ]
+        ];
+    }
+
+    /**
      * @Route("/account/test-results", name="api_post_account_test_results", methods="POST")
      */
     public function postAccountTestResultAction(Request $request)
