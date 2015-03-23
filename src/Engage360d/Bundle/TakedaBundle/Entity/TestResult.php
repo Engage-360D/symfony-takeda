@@ -203,9 +203,16 @@ class TestResult
         return $this->user;
     }
 
-    public function getBmi()
+    public function getBmi($weight = null, $growth = null)
     {
-        return round($this->weight / pow($this->growth / 100, 2), 1);
+        if (!$weight) {
+            $weight = $this->weight;
+        }
+        if (!$growth) {
+            $growth = $this->growth;
+        }
+
+        return round($weight / pow($growth / 100, 2), 1);
     }
 
     public function getCreatedAt()

@@ -14,6 +14,14 @@
 
         "exerciseMins": {
           "type": "integer"
+        },
+
+        "weight": {
+          "type": "number"
+        },
+
+        "arterialPressure": {
+          "type": "number"
         }
       },
 

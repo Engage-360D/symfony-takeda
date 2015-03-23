@@ -147,19 +147,16 @@ class ReportsManager
                 "value" => $this->getDietWeekValue(date("W")) . $this->getReportItemUnit(self::TYPE_DIET),
                 "statusClass" => $this->getStatusClass(self::TYPE_DIET),
             ],
-
-            // TODO when weekly task will be ready, get arterialPressure and weight
-            // from user's properties which will hold its current values
             [
                 "title" => $this->getReportItemTitle(self::TYPE_ARTERIAL_PRESSURE),
                 "uri" => self::TYPE_ARTERIAL_PRESSURE,
-                "value" => $this->lastTestResult->getArterialPressure(),
+                "value" => $this->getArterialPressureCurrentValue(),
                 "statusClass" => $this->getStatusClass(self::TYPE_ARTERIAL_PRESSURE),
             ],
             [
                 "title" => $this->getReportItemTitle(self::TYPE_WEIGHT),
                 "uri" => self::TYPE_WEIGHT,
-                "value" => $this->lastTestResult->getWeight() . $this->getReportItemUnit(self::TYPE_WEIGHT),
+                "value" => $this->getWeightCurrentValue() . $this->getReportItemUnit(self::TYPE_WEIGHT),
                 "statusClass" => $this->getStatusClass(self::TYPE_WEIGHT),
             ],
 
@@ -326,8 +323,8 @@ class ReportsManager
     {
         switch ($reportType) {
             case self::TYPE_SCORE:
-            case self::TYPE_ARTERIAL_PRESSURE:
-            case self::TYPE_WEIGHT:
+//            case self::TYPE_ARTERIAL_PRESSURE:
+//            case self::TYPE_WEIGHT:
             case self::TYPE_CHOLESTEROL_LEVEL:
                 $period = self::PERIOD_FORMAT_MONTH;
                 break;
@@ -392,11 +389,15 @@ class ReportsManager
         $startOfLastWeek = strtotime("-1 week", strtotime(date("Y\\WW")));
         $previousValue = $this->$methodName(date("W", $startOfLastWeek), date("Y", $startOfLastWeek));
 
-        if ($currentValue == 0 && $previousValue == 0) {
+        if ($currentValue == 0 || $previousValue == 0 || $currentValue == $previousValue) {
             return self::STATUS_NULL;
         }
 
-        return $currentValue >= $previousValue ? self::STATUS_OK : self::STATUS_BAD;
+        if ($activityName === TimelineManager::TYPE_WEIGHT) {
+            return $currentValue > $previousValue ? self::STATUS_BAD : self::STATUS_OK;
+        }
+
+        return $currentValue > $previousValue ? self::STATUS_OK : self::STATUS_BAD;
     }
 
     /**
@@ -440,12 +441,12 @@ class ReportsManager
 
     public function getArterialPressureCurrentValue()
     {
-        return $this->lastTestResult->getArterialPressure();
+        return $this->getArterialPressureWeekValue(date('W'));
     }
 
     public function getWeightCurrentValue()
     {
-        return $this->lastTestResult->getWeight();
+        return $this->getWeightWeekValue(date('W'));
     }
 
     public function getCholesterolLevelCurrentValue()
@@ -479,6 +480,53 @@ class ReportsManager
         }
 
         return $exerciseValue;
+    }
+
+    public function getWeightWeekValue($weekNum, $year = null)
+    {
+        if (!$year) {
+            $year = date("Y");
+        }
+
+        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
+        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
+
+        $weight = 0;
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if (
+                $task["type"] === TimelineManager::TYPE_WEIGHT &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
+            ) {
+                $weight += $task["weight"];
+            }
+        }
+
+        return $weight;
+    }
+
+
+    public function getArterialPressureWeekValue($weekNum, $year = null)
+    {
+        if (!$year) {
+            $year = date("Y");
+        }
+
+        $mondayTimestamp = $this->getWeekTimestamp($weekNum, $year);
+        $nextMondayTimestamp = strtotime("+1 week", $mondayTimestamp);
+
+        $value = 0;
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if (
+                $task["type"] === TimelineManager::TYPE_ARTERIAL_PRESSURE &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') >= $mondayTimestamp &&
+                (new \DateTime(substr($task["id"], 0, 8)))->format('U') < $nextMondayTimestamp
+            ) {
+                $value += $task["arterialPressure"];
+            }
+        }
+
+        return $value;
     }
 
     /**

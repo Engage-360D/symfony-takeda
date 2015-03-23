@@ -15,8 +15,12 @@ class TimelineManager
     const TYPE_EXERCISE = 'exercise';
     const TYPE_DIET = 'diet';
     const TYPE_PILL = 'pill';
+    const TYPE_ARTERIAL_PRESSURE = 'arterialPressure';
+    const TYPE_WEIGHT = 'weight';
 
     const EXERCISE_DAILY_RECOMMENDED_DURATION = 30;
+    const BMI_UPPER_NORMAL_LIMIT = 25;
+    const ARTERIAL_PRESSURE_UPPER_NORMAL_LIMIT = 140;
 
     private $container = null;
     private $user = null;
@@ -90,19 +94,21 @@ class TimelineManager
 
     public function generateTimeline()
     {
-        $firstTestResult = $this->user->getTestResults()->first();
-
-        $timelineDate = $firstTestResult->getCreatedAt();
-        $timelineDate->setTime(0, 0, 0);
-
-        $today = new \DateTime();
-
         $timeline = [
             "data" => [],
             "linked" => [
                 "tasks" => []
             ]
         ];
+
+        $firstTestResult = $this->user->getTestResults()->first();
+        $lastTestResult = $this->user->getTestResults()->last();
+
+        $startDate = $firstTestResult->getCreatedAt();
+        $startDate->setTime(0, 0, 0);
+
+        $today = new \DateTime();
+        $timelineDate = clone $startDate;
 
         while ($timelineDate->format('U') <= $today->format('U')) {
             $date = [
@@ -129,6 +135,30 @@ class TimelineManager
                 "isCompleted" => null,
             ];
 
+            // Weekly tasks
+            if (
+                $timelineDate->diff($startDate, true)->d > 0 &&
+                $timelineDate->diff($startDate, true)->d % 7 === 0
+            ) {
+                $taskId = $timelineDate->format('Ymd') . '03';
+                $date["links"]["tasks"][] = $taskId;
+                $timeline["linked"]["tasks"][] = [
+                    "id" => $taskId,
+                    "type" => "arterialPressure",
+                    "arterialPressure" => 0,
+                    "isCompleted" => null,
+                ];
+
+                $taskId = $timelineDate->format('Ymd') . '04';
+                $date["links"]["tasks"][] = $taskId;
+                $timeline["linked"]["tasks"][] = [
+                    "id" => $taskId,
+                    "type" => "weight",
+                    "weight" => 0,
+                    "isCompleted" => null,
+                ];
+            }
+
             foreach ($this->user->getPills() as $index => $pill) {
                 if (
                     $timelineDate->format('U') >= $pill->getSinceDate()->format('U') &&
@@ -144,7 +174,7 @@ class TimelineManager
                     // to make the latter unequivocally map to the former.
                     // For example, using index here may result in confusion,
                     // when we delete a pill, then add a new one, and then update the timeline.
-                    $taskId = $timelineDate->format('Ymd') . str_pad(($pill->getId() + 2), 2, '0', STR_PAD_LEFT);
+                    $taskId = $timelineDate->format('Ymd') . str_pad(($pill->getId() + 10), 2, '0', STR_PAD_LEFT);
                     $date["links"]["tasks"][] = $taskId;
                     $timeline["linked"]["tasks"][] = [
                         "id" => $taskId,
@@ -244,6 +274,25 @@ class TimelineManager
         return $timeline;
     }
 
+    private function assertTaskDataIsValid($task, $data)
+    {
+        if (isset($data->data->isCompleted) && !in_array($task["type"], [self::TYPE_PILL, self::TYPE_DIET])) {
+            throw new HttpException(400, sprintf("You can't pass 'isCompleted' when type is '%s'", $task["type"]));
+        }
+        if (isset($data->data->exerciseMins) && $task["type"] !== self::TYPE_EXERCISE) {
+            throw new HttpException(400, sprintf("Field 'exerciseMins' is allowed only in tasks w/ type '%s'", self::TYPE_EXERCISE));
+        }
+        if (isset($data->data->weight) && $task["type"] !== self::TYPE_WEIGHT) {
+            throw new HttpException(400, sprintf("Field 'weight' is allowed only in tasks w/ type '%s'", self::TYPE_WEIGHT));
+        }
+        if (isset($data->data->arterialPressure) && $task["type"] !== self::TYPE_ARTERIAL_PRESSURE) {
+            throw new HttpException(400, sprintf("Field 'arterialPressure' is allowed only in tasks w/ type '%s'", self::TYPE_ARTERIAL_PRESSURE));
+        }
+        if ($task["isCompleted"] !== null) {
+            throw new HttpException(409, "You can't change the task that's already been completed");
+        }
+    }
+
     public function updateTask($id, $data)
     {
         $timeline = $this->getTimeline();
@@ -252,16 +301,7 @@ class TimelineManager
 
         $timeline["linked"]["tasks"] = array_map(function ($task) use($id, $data, &$selectedTask) {
             if ($task["id"] === $id) {
-                // Handle invalid data
-                if (isset($data->data->isCompleted) && $task["type"] === self::TYPE_EXERCISE) {
-                    throw new HttpException(400, sprintf("Task w/ type '%s' requires only one field -- 'exerciseMins'", self::TYPE_EXERCISE));
-                }
-                if (isset($data->data->exerciseMins) && $task["type"] !== self::TYPE_EXERCISE) {
-                    throw new HttpException(400, sprintf("Field 'exerciseMins' is allowed only in tasks w/ type '%s'", self::TYPE_EXERCISE));
-                }
-                if ($task["isCompleted"] !== null) {
-                    throw new HttpException(409, "You can't change the task that's already been completed");
-                }
+                $this->assertTaskDataIsValid($task, $data);
 
                 // Write data
                 if (isset($data->data->isCompleted)) {
@@ -270,6 +310,15 @@ class TimelineManager
                 if (isset($data->data->exerciseMins)) {
                     $task["exerciseMins"] = $data->data->exerciseMins;
                     $task["isCompleted"] = $this->isExerciseCompleted($data->data->exerciseMins);
+                }
+                if (isset($data->data->arterialPressure)) {
+                    $task["arterialPressure"] = $data->data->arterialPressure;
+                    $task["isCompleted"] = $task["arterialPressure"] < self::ARTERIAL_PRESSURE_UPPER_NORMAL_LIMIT;
+                }
+                if (isset($data->data->weight)) {
+                    $task["weight"] = $data->data->weight;
+                    $lastTestResult = $this->user->getTestResults()->last();
+                    $task["isCompleted"] = $lastTestResult->getBmi($task["weight"]) < self::BMI_UPPER_NORMAL_LIMIT;
                 }
 
                 $selectedTask = $task;

@@ -1027,6 +1027,15 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 
+.weight__value, .arterial-pressure__value {
+  font-size: 18px;
+}
+
+.weight__units {
+  font-size: 14px;
+  padding-left: 10px;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }

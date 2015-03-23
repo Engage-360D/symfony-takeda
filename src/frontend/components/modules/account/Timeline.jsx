@@ -12,6 +12,8 @@ var React = require('react/addons');
 var cx = React.addons.classSet;
 var moment = require('moment');
 var RadioGroup = require('../../form/RadioGroup');
+var Range = require('../../form/Range');
+var NumberInput = require('../../form/NumberInput');
 var apiRequest = require('../../../utilities/apiRequest');
 var utils = require('../../../utilities/misc');
 var capitaliseFirstLetter = utils.capitaliseFirstLetter;
@@ -45,6 +47,55 @@ var CellExercise = React.createClass({
             </button>
           </div>
           <div className="time__size">{inflectMinutes(this.props.task.exerciseMins)}</div>
+        </div>
+      </div>
+    );
+  }
+});
+
+var CellArterialPressure = React.createClass({
+  render: function () {
+    var fieldClass = cx({
+      'field': true,
+      'field_radio-list': true,
+      'is-error': this.props.task.isCompleted === false
+    });
+
+    return (
+      <div className="timeline__cell">
+        <div className={fieldClass} style={{width: "50%"}}>
+          {this.props.task.isCompleted === null ?
+            <Range valueLink={this.props.valueLink} min={80} max={200} /> :
+            <p className="field__label arterial-pressure__value">{this.props.task.arterialPressure}</p>
+          }
+        </div>
+      </div>
+    );
+  }
+});
+
+var CellWeight = React.createClass({
+  render: function () {
+    var fieldClass = cx({
+      'field': true,
+      'field_radio-list': true,
+      'is-error': this.props.task.isCompleted === false
+    });
+
+    return (
+      <div className="timeline__cell">
+        <div className={fieldClass} style={{width: "50%"}}>
+          {this.props.task.isCompleted === null ?
+            (
+            <div>
+                <div className="field__in">
+                <NumberInput valueLink={this.props.valueLink} />
+                <div className="field__info">кг</div>
+              </div>
+            </div>
+            ) :
+            <p className="field__label weight__value">{this.props.task.weight} <span className="weight__units">кг</span></p>
+            }
         </div>
       </div>
     );
@@ -164,6 +215,8 @@ var Task = React.createClass({
     TYPE_EXERCISE: 'exercise',
     TYPE_DIET: 'diet',
     TYPE_PILL: 'pill',
+    TYPE_ARTERIAL_PRESSURE: 'arterialPressure',
+    TYPE_WEIGHT: 'weight',
 
     getTitle: function (task) {
       var name = '';
@@ -177,6 +230,12 @@ var Task = React.createClass({
           break;
         case Task.TYPE_PILL:
           name = 'Прием таблеток';
+          break;
+        case Task.TYPE_ARTERIAL_PRESSURE:
+          name = 'Артериальное давление в мм рт. ст.';
+          break;
+        case Task.TYPE_WEIGHT:
+          name = 'Вес';
           break;
       }
 
@@ -218,6 +277,8 @@ var Task = React.createClass({
     return {
       exerciseMins: this.props.task.exerciseMins || 0,
       isCompleted: this.props.task.type === Task.TYPE_DIET ? null : false,
+      weight: this.props.task.weight || null,
+      arterialPressure: this.props.task.arterialPressure || 120,
       isSubmitting: false
     };
   },
@@ -233,6 +294,10 @@ var Task = React.createClass({
 
     if (this.props.task.type === Task.TYPE_EXERCISE) {
       data.exerciseMins = this.state.exerciseMins;
+    } else if (this.props.task.type === Task.TYPE_ARTERIAL_PRESSURE) {
+      data.arterialPressure = this.state.arterialPressure;
+    } else if (this.props.task.type === Task.TYPE_WEIGHT) {
+      data.weight = this.state.weight;
     } else {
       if (this.state.isCompleted === null) {
         return;
@@ -298,6 +363,30 @@ var Task = React.createClass({
           />
         );
         break;
+      case Task.TYPE_ARTERIAL_PRESSURE:
+        cell = (
+          <CellArterialPressure {...this.props}
+            valueLink={{
+              value: this.state.arterialPressure,
+              requestChange: function (value) {
+                this.setState({arterialPressure: value});
+              }.bind(this)
+            }}
+          />
+        );
+        break;
+      case Task.TYPE_WEIGHT:
+        cell = (
+          <CellWeight {...this.props}
+            valueLink={{
+              value: this.state.weight,
+              requestChange: function (value) {
+                this.setState({weight: value});
+              }.bind(this)
+            }}
+          />
+        );
+        break;
       default:
         cell = <div />;
         break;
@@ -312,7 +401,7 @@ var Task = React.createClass({
           </div>
         </div>
         {cell}
-        <StatusButton task={this.props.task} onClick={this.submitTask.bind(this)} />
+        <StatusButton task={this.props.task} onClick={this.submitTask} />
       </div>
     );
   }
@@ -455,7 +544,7 @@ var Timeline = React.createClass({
       <div>
         {this.renderTabs()}
         {tasksByDay.map(function (tasks) {
-          return <Day tasks={tasks} pills={this.props.pills} cb={this.markTaskAsCompleted.bind(this)} />;
+          return <Day tasks={tasks} pills={this.props.pills} cb={this.markTaskAsCompleted} />;
         }.bind(this))}
       </div>
     );
