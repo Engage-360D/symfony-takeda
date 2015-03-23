@@ -237,6 +237,10 @@ class ReportsManager
     {
         if ($this->getPeriodFormat($reportType) === self::PERIOD_FORMAT_MONTH) {
             return $this->getTestData($reportType);
+        } else if ($reportType === self::TYPE_WEIGHT) {
+            return $this->getWeightData();
+        } else if ($reportType === self::TYPE_ARTERIAL_PRESSURE) {
+            return $this->getArterialPressureData();
         } else {
             return $this->getTimelineData($reportType);
         }
@@ -264,6 +268,38 @@ class ReportsManager
             ];
 
             $lastValue = $value;
+        }
+
+        return $data;
+    }
+
+    public function getWeightData()
+    {
+        $data = [];
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if ($task["type"] === TimelineManager::TYPE_WEIGHT) {
+                $data[] = [
+                    'date' => $this->timelineManager->getTaskDateStr($task),
+                    'value' => $task["weight"],
+                    'isDynamicPositive' => $task['isCompleted']
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+    public function getArterialPressureData()
+    {
+        $data = [];
+        foreach ($this->timeline["linked"]["tasks"] as $task) {
+            if ($task["type"] === TimelineManager::TYPE_ARTERIAL_PRESSURE) {
+                $data[] = [
+                    'date' => $this->timelineManager->getTaskDateStr($task),
+                    'value' => $task["arterialPressure"],
+                    'isDynamicPositive' => $task['isCompleted']
+                ];
+            }
         }
 
         return $data;
@@ -441,12 +477,28 @@ class ReportsManager
 
     public function getArterialPressureCurrentValue()
     {
-        return $this->getArterialPressureWeekValue(date('W'));
+        $value = 0;
+        foreach (array_reverse($this->timeline["linked"]["tasks"]) as $task) {
+            if ($task["type"] === TimelineManager::TYPE_ARTERIAL_PRESSURE) {
+                $value = $task["arterialPressure"];
+                break;
+            }
+        }
+
+        return $value;
     }
 
     public function getWeightCurrentValue()
     {
-        return $this->getWeightWeekValue(date('W'));
+        $value = 0;
+        foreach (array_reverse($this->timeline["linked"]["tasks"]) as $task) {
+            if ($task["type"] === TimelineManager::TYPE_WEIGHT) {
+                $value = $task["weight"];
+                break;
+            }
+        }
+
+        return $value;
     }
 
     public function getCholesterolLevelCurrentValue()

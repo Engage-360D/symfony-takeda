@@ -195,7 +195,7 @@ class TimelineManager
         return $timeline;
     }
 
-    private function getTaskDateStr($task)
+    public function getTaskDateStr($task)
     {
         return sprintf(
             "%s-%s-%s",
