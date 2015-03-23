@@ -268,9 +268,14 @@ traits:
             schema: !include v1/schemas/users/one.json
             example: !include v1/examples/users/one.json
   /reset:
+    is: [ secured ]
     post:
       description: |
         Сброс аккаунта: удаление результатов теста, таблеток, таймлайна и проч.
+      body:
+        application/json:
+          schema: !include v1/schemas/users/reset/post.json
+          example: !include v1/examples/users/reset/post.json
       responses:
         200:
 

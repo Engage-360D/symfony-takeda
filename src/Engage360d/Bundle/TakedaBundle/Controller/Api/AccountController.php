@@ -20,6 +20,7 @@ class AccountController extends TakedaJsonApiController
     const URI_USER_PUT = 'v1/schemas/users/put.json';
     const URI_TEST_RESULTS_POST = 'v1/schemas/test-results/post.json';
     const URI_USER_RESET_PASSWORD_POST = 'v1/schemas/users/reset-password/post.json';
+    const URI_USER_RESET_POST = 'v1/schemas/users/reset/post.json';
     const URI_TEST_RESULTS_SEND_EMAIL_POST = 'v1/schemas/test-results/send-email/post.json';
     const URI_PILLS_POST = 'v1/schemas/pills/post.json';
     const URI_PILLS_PUT = 'v1/schemas/pills/put.json';
@@ -84,7 +85,16 @@ class AccountController extends TakedaJsonApiController
     {
         $this->assertContentTypeIsValid($request);
 
+        $data = $this->getData($request);
+        $this->assertDataMatchesSchema($data, self::URI_USER_RESET_POST);
+
         $user = $this->getUser();
+
+        $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+        $password = $encoder->encodePassword($data->data->plainPassword, $user->getSalt());
+        if ($user->getPassword() !== $password) {
+            return $this->getErrorResponse("Bad credentials", 400);
+        }
 
         $user->getTestResults()->clear();
         $user->getPills()->clear();
