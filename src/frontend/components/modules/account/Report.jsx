@@ -120,18 +120,17 @@ var Report = React.createClass({
         left: '5%'
       },
       tooltip: {trigger: 'none'},
-      axes: {
-        x: {
-          0: { side: 'top', label: 'February'}
-        }
-      },
       bar: { groupWidth: "96%" },
+      hAxis: {
+        title: "Месяц"
+      },
       vAxis: {
         minValue: 0
       }
     };
     if (this.props.report.periodFormat === Report.PERIOD_FORMAT_WEEK) {
       options.vAxis.maxValue = 100;
+      options.hAxis.title = "Неделя";
     }
     new google
       .visualization
