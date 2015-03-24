@@ -1036,6 +1036,41 @@ input::-webkit-inner-spin-button {
   padding-left: 10px;
 }
 
+.legal {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 220px;
+  width: 1220px;
+  min-height: 85px;
+  background: #35373a;
+  border: #2b2b2b 1px solid;
+}
+
+.legal p {
+  color: #e1e1e1;
+  margin-left: 30px;
+}
+
+.legal__note {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+@media (max-width: 1024px) {
+  .legal {
+    width: 804px;
+  }
+  .legal p {
+    margin-left: 15px;
+  }
+}
+
+.section {
+  margin-bottom: 85px;
+}
+
 /* old styles START */
 
 .activity { background: #e8e8e8; }
