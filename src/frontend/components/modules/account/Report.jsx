@@ -169,7 +169,8 @@ var Report = React.createClass({
   handlePeriodButtonClick: function (newPeriod, event) {
     event.preventDefault();
     this.setState({
-      currentPeriod: newPeriod
+      currentPeriod: newPeriod,
+      currentPage: 0
     }, function () {
       this.drawChart();
     });
