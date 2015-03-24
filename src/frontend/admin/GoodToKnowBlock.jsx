@@ -39,8 +39,7 @@ var GoodToKnowBlock = React.createClass({
               <div className="row">
                 <label className="col-sm-3 control-label">Изображение</label>
                 <div className="col-sm-6">
-                  {/*<FileInput valueLink={linkState('image')} className="mb15" adminSetup={this.props.adminSetup} />*/}
-                  <input type="text" className="form-control mb15" valueLink={linkState('image')} />
+                  <FileInput valueLink={linkState('image')} className="mb15" adminSetup={this.props.adminSetup} />
                 </div>
               </div>
               <div className="row">
