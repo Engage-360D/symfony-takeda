@@ -307,7 +307,11 @@ class ReportsManager
 
     public function getTimelineData($reportType)
     {
-        $timestamp = $this->getBeginningOfTimeline()->format('U');
+        $startDate = $this->getBeginningOfTimeline();
+        $timestamp = $this->getWeekTimestamp(
+            $startDate->format('W'),
+            $startDate->format('Y')
+        );
 
         $data = [];
         while ($timestamp < time()) {
