@@ -104,6 +104,8 @@ class AccountController extends TakedaJsonApiController
         $timelineManager->removeTimeline();
         $user->setTimelineId(null);
 
+        $user->setResetAt(new \DateTime());
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();

@@ -165,6 +165,13 @@ class User extends BaseUser
     private $createdAt;
 
     /**
+     * @var datetime $resetAt
+     *
+     * @ORM\Column(name="reset_at", type="datetime", nullable=true)
+     */
+    private $resetAt;
+
+    /**
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     private $deletedAt;
@@ -514,6 +521,29 @@ class User extends BaseUser
     public function getSpecializationGraduationDate()
     {
         return $this->specializationGraduationDate;
+    }
+
+    /**
+     * Set resetAt
+     *
+     * @param \DateTime $resetAt
+     * @return User
+     */
+    public function setResetAt($resetAt)
+    {
+        $this->resetAt = $resetAt;
+
+        return $this;
+    }
+
+    /**
+     * Get resetAt
+     *
+     * @return \DateTime
+     */
+    public function getResetAt()
+    {
+        return $this->resetAt;
     }
 
     /**

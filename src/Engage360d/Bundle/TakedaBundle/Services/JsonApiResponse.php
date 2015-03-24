@@ -59,6 +59,7 @@ class JsonApiResponse extends ContainerAware
             "specializationName" => $user->getSpecializationName(),
             "roles" => $user->getRoles(),
             "isEnabled" => $user->getEnabled(),
+            "resetAt" => $user->getResetAt()->format(\DateTime::ISO8601),
             "links" => [
                 "region" => $user->getRegion() ? (String) $user->getRegion()->getId() : null
             ],

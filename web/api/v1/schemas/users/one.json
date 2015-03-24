@@ -132,6 +132,13 @@
           "type": "boolean"
         },
 
+        "resetAt": {
+          "oneOf": [
+            {"type": "string", "format": "date-time"},
+            {"type": "null"}
+          ]
+        },
+
         "links": {
           "type": "object",
 
@@ -173,6 +180,8 @@
 
         "roles",
         "isEnabled",
+
+        "resetAt",
 
         "links"
       ]

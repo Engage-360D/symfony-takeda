@@ -23,6 +23,7 @@
       "specializationName": null,
       "roles": ["ROLE_USER"],
       "isEnabled": true,
+      "resetAt": "2015-03-24T00:00:00+0000",
       "links": {
         "region": "1"
       }
