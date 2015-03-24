@@ -169,7 +169,11 @@ var Report = React.createClass({
 
   handlePeriodButtonClick: function (newPeriod, event) {
     event.preventDefault();
-    this.setState({currentPeriod: newPeriod});
+    this.setState({
+      currentPeriod: newPeriod
+    }, function () {
+      this.drawChart();
+    });
   },
 
   handleEmailButtonClick: function (event) {
@@ -191,7 +195,7 @@ var Report = React.createClass({
   },
 
   isThisFirstPage: function () {
-    return this.state.currentPage === 0;
+    return this.getChartData(this.state.currentPage - 1).length === 1;
   },
 
   isThisLastPage: function () {
