@@ -80,7 +80,11 @@ var Report = React.createClass({
     }
 
     for (i = 0; i < reportData.length; i++) {
-      currentDate = moment(reportData[i].date).add(1, 'second');
+      // Add 4 days to the beginning of the week to correctly
+      // determine to which period it belongs. Consider this date,
+      // 29.12.2014. According to ISO 8601, it is week 01, i.e. the week
+      // with 4th January in it. So it belongs to 2015 rather than 2014.
+      currentDate = moment(reportData[i].date).add(4, 'day');
       if (currentDate.isBetween(startDate, endDate, 'second')) {
         data.push([
           currentDate.format(this.props.report.periodFormat),
