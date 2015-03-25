@@ -54,28 +54,32 @@ var Report = React.createClass({
     google.setOnLoadCallback(this.drawChart);
   },
 
-  getChartData: function (currentPage, currentPeriod) {
-    var data = [["Month", "Value", { role: "style" }]];
+  getData: function (currentPage, currentPeriod) {
+    var chartData = [["Month", "Value", { role: "style" }]];
     var startDate;
     var endDate;
     var currentDate;
     var currentPage = currentPage || this.state.currentPage;
     var currentPeriod = currentPeriod || this.state.currentPeriod;
     var reportData = this.props.report.data;
+    var vAxisTitle = '';
     var i;
 
     switch (currentPeriod) {
       case Report.PERIOD_MONTH:
         startDate = moment().startOf('month').add(currentPage, 'month');
         endDate = startDate.clone().add(1, 'month');
+        vAxisTitle = startDate.format('MMMM') + ' ' + startDate.format('GGGG') + ' г.';
         break;
       case Report.PERIOD_QUARTER:
         startDate = moment().startOf('quarter').add(currentPage, 'quarter');
         endDate = startDate.clone().add(1, 'quarter');
+        vAxisTitle = startDate.format('Q') + '-й квартал ' + startDate.format('GGGG') + ' г.';
         break;
       case Report.PERIOD_YEAR:
         startDate = moment().startOf('year').add(currentPage, 'year');
         endDate = startDate.clone().add(1, 'year');
+        vAxisTitle = startDate.format('GGGG') + ' г.';
         break;
     }
 
@@ -86,7 +90,7 @@ var Report = React.createClass({
       // with 4th January in it. So it belongs to 2015 rather than 2014.
       currentDate = moment(reportData[i].date).add(4, 'day');
       if (currentDate.isBetween(startDate, endDate, 'second')) {
-        data.push([
+        chartData.push([
           currentDate.format(this.props.report.periodFormat),
           Math.round(Number(reportData[i].value)),
           Report.getColor(reportData[i].isDynamicPositive)
@@ -94,16 +98,19 @@ var Report = React.createClass({
       }
     }
 
-    return data;
+    return {
+      vAxisTitle: vAxisTitle,
+      chartData: chartData
+    };
   },
 
   drawChart: function () {
     if (this.props.report.data.length === 0) {
       return;
     }
-    var data = this.getChartData();
+    var data = this.getData();
     var view = new google.visualization.DataView(
-      google.visualization.arrayToDataTable(data)
+      google.visualization.arrayToDataTable(data.chartData)
     );
     view.setColumns([
       0,
@@ -126,7 +133,7 @@ var Report = React.createClass({
       tooltip: {trigger: 'none'},
       bar: { groupWidth: "96%" },
       hAxis: {
-        title: "Месяц"
+        title: data.vAxisTitle
       },
       vAxis: {
         minValue: 0
@@ -134,7 +141,6 @@ var Report = React.createClass({
     };
     if (this.props.report.periodFormat === Report.PERIOD_FORMAT_WEEK) {
       options.vAxis.maxValue = 100;
-      options.hAxis.title = "Неделя";
     }
     new google
       .visualization
@@ -199,11 +205,11 @@ var Report = React.createClass({
   },
 
   isThisFirstPage: function () {
-    return this.getChartData(this.state.currentPage - 1).length === 1;
+    return this.getData(this.state.currentPage - 1).chartData.length === 1;
   },
 
   isThisLastPage: function () {
-    return this.getChartData(this.state.currentPage + 1).length === 1;
+    return this.getData(this.state.currentPage + 1).chartData.length === 1;
   },
 
   render: function () {
