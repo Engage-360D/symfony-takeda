@@ -185,6 +185,8 @@ class ReportsManager
             "periodFormat" => $this->getPeriodFormat($reportType),
             "data" => $this->getData($reportType),
             "isWarningVisible" => $this->getIsWarningVisible($reportType),
+            "isQuarterPeriodVisible" => $this->getBeginningOfTimeline()->diff(new \DateTime(), true)->m > 1,
+            "isYearPeriodVisible" => $this->getBeginningOfTimeline()->diff(new \DateTime(), true)->m > 3,
             "valueNote" => $reportType === self::TYPE_ISR ? $this->getValueNote() : "",
         ];
 

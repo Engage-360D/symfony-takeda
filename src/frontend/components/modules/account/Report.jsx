@@ -271,14 +271,18 @@ var Report = React.createClass({
                 className={this.state.currentPeriod === Report.PERIOD_MONTH && 'is-active'}
               >месяц</a>
             }
-            <a href="#"
-              onClick={this.handlePeriodButtonClick.bind(this, Report.PERIOD_QUARTER)}
-              className={this.state.currentPeriod === Report.PERIOD_QUARTER && 'is-active'}
-            >квартал</a>
-            <a href="#"
-              onClick={this.handlePeriodButtonClick.bind(this, Report.PERIOD_YEAR)}
-              className={this.state.currentPeriod === Report.PERIOD_YEAR && 'is-active'}
-            >год</a>
+            {this.props.report.isQuarterPeriodVisible &&
+              <a href="#"
+                onClick={this.handlePeriodButtonClick.bind(this, Report.PERIOD_QUARTER)}
+                className={this.state.currentPeriod === Report.PERIOD_QUARTER && 'is-active'}
+              >квартал</a>
+            }
+            {this.props.report.isYearPeriodVisible &&
+              <a href="#"
+                onClick={this.handlePeriodButtonClick.bind(this, Report.PERIOD_YEAR)}
+                className={this.state.currentPeriod === Report.PERIOD_YEAR && 'is-active'}
+              >год</a>
+            }
           </div>
         </div>
         <div className="graph">
