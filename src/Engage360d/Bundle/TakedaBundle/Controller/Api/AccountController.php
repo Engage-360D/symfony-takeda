@@ -584,16 +584,27 @@ class AccountController extends TakedaJsonApiController
         if (!$fromEmail) {
             throw new \RuntimeException("The mandatory parameter 'mailer_sender_email' is not set", 500);
         }
+
+        $message = \Swift_Message::newInstance();
+        $imageUrl = $message->embed(
+            \Swift_Image::newInstance(
+                base64_decode(
+                    str_replace("data:image/png;base64,", "", $data->data->imageUrl)
+                ),
+                "chart.png",
+                "application/octet-stream"
+            )
+        );
+
         $body = $this->renderView(
             'Engage360dTakedaBundle:Account:email__report.html.twig',
             [
                 'report' => $report,
-                'imageUrl' => $data->data->imageUrl
+                'imageUrl' => $imageUrl
             ]
         );
 
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
+        $message->setSubject($subject)
             ->setFrom($fromEmail)
             ->setTo($data->data->email)
             ->setBody($body, 'text/html');

@@ -206,7 +206,12 @@ var Report = React.createClass({
       imageUrl: chart.getImageURI()
     }, function(err, data) {
       if (err) {
-        return alert('Ошибка отправки сообщения. Пожалуйста, попробуйте еще раз через некоторое время.');
+        this.setState({
+          isSendingEmail: false
+        }, function () {
+          alert('Ошибка отправки сообщения. Пожалуйста, попробуйте еще раз через некоторое время.');
+        });
+        return;
       }
 
       this.setState({
