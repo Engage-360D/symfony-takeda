@@ -11,13 +11,17 @@
         "email": {
           "type": "string",
           "format": "email"
+        },
+        "imageUrl": {
+          "type": "string"
         }
       },
 
       "additionalProperties": false,
 
       "required": [
-        "email"
+        "email",
+        "imageUrl"
       ]
     }
   },

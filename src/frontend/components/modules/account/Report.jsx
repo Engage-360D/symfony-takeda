@@ -12,6 +12,8 @@ var moment = require('moment');
 var LinkedStateMixin = require('react/lib/LinkedStateMixin');
 var apiRequest = require('../../../utilities/apiRequest');
 
+var chart;
+
 var Report = React.createClass({
 
   mixins: [LinkedStateMixin],
@@ -46,7 +48,8 @@ var Report = React.createClass({
       currentPeriod: this.props.report.periodFormat === Report.PERIOD_FORMAT_WEEK ?
           Report.PERIOD_MONTH : Report.PERIOD_QUARTER,
       mail: '',
-      mailPopupOpened: false
+      mailPopupOpened: false,
+      isSendingEmail: false
     };
   },
 
@@ -142,10 +145,10 @@ var Report = React.createClass({
     if (this.props.report.periodFormat === Report.PERIOD_FORMAT_WEEK) {
       options.vAxis.maxValue = 100;
     }
-    new google
-      .visualization
-      .ColumnChart(document.getElementById('google-chart'))
-      .draw(view, options);
+
+    chart = new google.visualization
+      .ColumnChart(document.getElementById('google-chart'));
+    chart.draw(view, options);
   },
 
   handlePrintButtonClick: function (event) {
@@ -192,15 +195,27 @@ var Report = React.createClass({
   },
 
   sendEmail: function () {
+    if (this.state.isSendingEmail) {
+      return;
+    }
+
+    this.setState({isSendingEmail: true});
+
     apiRequest('POST', '/api/v1/account/reports/'+this.props.reportType+'/send-email', {
-      email: this.state.mail
+      email: this.state.mail,
+      imageUrl: chart.getImageURI()
     }, function(err, data) {
       if (err) {
         return alert('Ошибка отправки сообщения. Пожалуйста, попробуйте еще раз через некоторое время.');
       }
 
-      alert('Сообщение успешно отправлено.');
-      this.setState({mail: '', mailPopupOpened: false});
+      this.setState({
+        mail: '',
+        mailPopupOpened: false,
+        isSendingEmail: false
+      }, function () {
+        alert('Сообщение успешно отправлено.');
+      });
     }.bind(this));
   },
 
@@ -213,7 +228,7 @@ var Report = React.createClass({
   },
 
   render: function () {
-    var disabled = !/^.+@.+\..{2,}$/.test(this.state.mail);
+    var disabled = !/^.+@.+\..{2,}$/.test(this.state.mail) || this.state.isSendingEmail;
 
     return (
       <div className="report">

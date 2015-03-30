@@ -586,7 +586,10 @@ class AccountController extends TakedaJsonApiController
         }
         $body = $this->renderView(
             'Engage360dTakedaBundle:Account:email__report.html.twig',
-            ['report' => $report]
+            [
+                'report' => $report,
+                'imageUrl' => $data->data->imageUrl
+            ]
         );
 
         $message = \Swift_Message::newInstance()
