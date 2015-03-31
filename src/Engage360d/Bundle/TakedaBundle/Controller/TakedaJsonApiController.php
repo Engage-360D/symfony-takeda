@@ -62,7 +62,7 @@ class TakedaJsonApiController extends JsonApiController
     {
         $buzz = $this->container->get('buzz');
         $response = $buzz->get(sprintf(
-            'https://api.vk.com/method/users.isAppUser?v=5.27&user_id=%s&access_token=%s',
+            'https://api.vk.com/method/users.isAppUser?v=4.104&user_id=%s&access_token=%s',
             $vkontakteId,
             urlencode($accessToken)
         ));
