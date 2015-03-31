@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <title>Кардиомагнил - {% block title %}{% endblock %}</title>
   <meta name="viewport" content="initial-scale=1" />
-  <meta property="og:title" content="Кардиомагнил - {{ block('title') }}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Кардиомагнил" />
-  <meta property="og:url" content="{% block og_url %}{{ url('engage360d_takeda_main_mainpage') }}{% endblock %}" />
   <meta property="og:app_id" content="{{ facebook_client_id }}" />
-  {% block meta %}{% endblock %}
+  {% block meta %}
+      <meta property="og:url" content="{% block og_url %}{{ url('engage360d_takeda_main_mainpage') }}{% endblock %}" />
+      <meta property="og:title" content="Кардиомагнил - {{ block('title') }}" />
+  {% endblock %}
   {% block stylesheets %}{% endblock %}
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/screen.css') }}" />
   <link rel="stylesheet" href="{{ asset('bundles/engage360dtakeda/css/frontend.css') }}" />

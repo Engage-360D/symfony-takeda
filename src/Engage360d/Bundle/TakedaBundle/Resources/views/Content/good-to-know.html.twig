@@ -6,6 +6,7 @@
     {% if app.request.get('blockId') %}
         {% set currentBlock = blocks[app.request.get('blockId') - 1] %}
         {% set image = url('engage360d_takeda_main_mainpage') ~ 'img/main-product.jpg' %}
+        <meta name="og:title" content="{{ block('title') }}" />
         <meta property="og:description" content="{{ currentBlock.title }}" />
         <meta property="og:image" content="{{ image }}" />
         <meta name="title" content="{{ block('title') }}" />
