@@ -74,7 +74,7 @@ class TakedaJsonApiController extends JsonApiController
         $body = $response->getContent();
         $data = json_decode($body);
 
-        if (!isset($data->response) || $data->response !== 1) {
+        if (!isset($data->response) || $data->response != 1) {
             return false;
         }
 
