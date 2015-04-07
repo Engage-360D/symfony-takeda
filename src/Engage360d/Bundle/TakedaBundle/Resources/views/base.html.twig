@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Кардиомагнил - {% block title %}{% endblock %}</title>
-  <meta name="viewport" content="initial-scale=1" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Кардиомагнил" />
   <meta property="og:app_id" content="{{ facebook_client_id }}" />
@@ -21,5 +20,24 @@
 <body>
   {% block body %}{% endblock %}
   {% block scripts %}{% endblock %}
+  <script>
+    (function(){
+      var $ = takeda.$;
+
+      $(function(){
+        var $aside = $('.aside');
+        var $legal = $('.legal');
+
+        function scrollFixedElements() {
+          var left = $(this).scrollLeft();
+          $aside.css('left', -left);
+          $legal.css('left', 220-left);
+        }
+
+        scrollFixedElements();
+        $(window).scroll(scrollFixedElements);
+      });
+    })();
+    </script>
 </body>
 </html>

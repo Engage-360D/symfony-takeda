@@ -78,27 +78,27 @@ var InstitutionsMap = React.createClass({
         this.setState({zoom: zoom});
       }
 
-      $(node).find('.ymaps-2-1-20-map').css({
+      $(node).find('.ymaps-2-1-23-map').css({
         'background': 'transparent'
       });
-      $(node).find('.ymaps-2-1-20-events-pane').css({
+      $(node).find('.ymaps-2-1-23-events-pane').css({
         'border-radius': '100%'
       });
-      $(node).find('.ymaps-2-1-20-ground-pane').css({
+      $(node).find('.ymaps-2-1-23-ground-pane').css({
         'width': '100%',
         'height': '100%',
         'border-radius': '100%',
         'overflow': 'hidden'
       });
       setTimeout(function() {
-        $(node).find('.ymaps-2-1-20-places-pane').css({
+        $(node).find('.ymaps-2-1-23-places-pane').css({
           'width': '100%',
           'height': '100%',
           'border-radius': '100%',
           'overflow': 'hidden'
         });
       }, 10);
-      $(node).find('.ymaps-2-1-20-copyright').css({
+      $(node).find('.ymaps-2-1-23-copyright').css({
         'position': 'absolute',
         'top': '-45px',
         'left': '135px'

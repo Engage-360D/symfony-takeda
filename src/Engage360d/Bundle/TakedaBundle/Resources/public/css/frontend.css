@@ -1068,7 +1068,7 @@ input::-webkit-inner-spin-button {
 }
 
 .section {
-  margin-bottom: 85px;
+  padding-bottom: 85px;
 }
 
 /* old styles START */
