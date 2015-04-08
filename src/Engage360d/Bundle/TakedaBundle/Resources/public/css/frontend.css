@@ -1115,3 +1115,7 @@ input::-webkit-inner-spin-button {
 .info__md-title .ico-md { position: absolute; top: -1px; left: 0; }
 
 /* old styles END */
+
+.map .map__container-in {
+  overflow: hidden;
+}
