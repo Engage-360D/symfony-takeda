@@ -26,7 +26,7 @@
     "attreactive-mixins": "git+https://github.com/attreactive/attreactive-mixins.git#feaa293aa411d3b9ede669b6d29e1480e55755be",
     "attreactive-router": "git+https://github.com/attreactive/attreactive-router.git#62024a02e9e4a29f8b8af2a6a970f82ecf5e534c",
     "attreactive-validator": "git+https://github.com/attreactive/attreactive-validator.git#cbc54f17f8ab65d73644dea831517acc89d34808",
-    "engage-360d-admin": "git+https://github.com/attreactive/engage-360d-admin.git#a2ba008d3d678f6c93fbd82bb4b9e6f7462d8b8e",
+    "engage-360d-admin": "git+https://github.com/attreactive/engage-360d-admin.git#becd1bc6536074a0ad2bb282615b94eb3abd926b",
     "engage-360d-block": "git+https://github.com/attreactive/engage-360d-block.git#bfe368cff8e10b3c38b794fd89efaa49e48b7f77",
     "engage-360d-spin": "git+https://github.com/attreactive/engage-360d-spin.git#21499ca468e0fe741fafe21fd4d29336599b7410"
 

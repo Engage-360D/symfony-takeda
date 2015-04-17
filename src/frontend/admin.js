@@ -66,13 +66,18 @@ formComponentMatcher.registerComponent('password', require("engage-360d-admin/co
 formComponentMatcher.registerComponent('file', require("engage-360d-admin/components/form/FileInput"));
 formComponentMatcher.registerComponent('many-to-many-select', require("engage-360d-admin/components/form/ManyToManySelect"));
 formComponentMatcher.registerComponent('many-to-one-select', require("engage-360d-admin/components/form/ManyToOneSelect"));
-formComponentMatcher.registerComponent('ckeditor', require("engage-360d-admin/components/form/CKEditor"));
+formComponentMatcher.registerComponent('ckeditor', require("./admin/CKEditor"));
 formComponentMatcher.registerComponent('date-time-picker', require("engage-360d-admin/components/form/DateTimePicker"));
 
 // Page Blocks
 pageBlockRegistry.addPageBlockComponent({
   type: 'sonata.block.service.text',
   title: 'Текстовый блок',
+  meta: {
+    fileBrowser: "/filebrowser/plugin.js",
+    fileBrowserBrowseUrl: "/fileman/index.html",
+    fileBrowserImageBrowseUrl: "/fileman/index.html?type=image"
+  },
   initialJSON: JSON.stringify({content: ''}),
   component: require("engage-360d-admin/components/pageBlocks/TextPageBlock")
 });
