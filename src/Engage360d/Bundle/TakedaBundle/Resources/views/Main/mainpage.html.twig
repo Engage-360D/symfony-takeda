@@ -67,40 +67,7 @@
         </div>
       </div>
     </div>
-    <!-- 2 -->
-    <div class="main__item main__item_2">
-      <div class="main__item-in">
-        <!-- h -->
-        <div class="h">Статистика по заболевениям сердечно-сосудистой системы</div>
-        <!-- l -->
-        <div class="l">
-          <div class="l__column">
-            <!-- field -->
-            <div class="field field_rows field_radio-list">
-              <div class="field__label">Группы риска сердечно-сосудистых<br>заболеваний:</div>
-              <div class="field__in">
-                <label class="field__radio"><input type="radio" name="type1" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
-                <label class="field__radio"><input type="radio" name="type1"><span>Мужчины в возрасте 50- 60 лет</span></label>
-                <label class="field__radio"><input type="radio" name="type1"><span>Женщины в возрасте 50 - 60 лет</span></label>
-              </div>
-            </div>
-          </div>
-          <div class="l__column">
-            <!-- field -->
-            <div class="field field_rows field_radio-list">
-              <div class="field__label">Статистика по вторичной<br>профилактике:</div>
-              <div class="field__in">
-                <label class="field__radio"><input type="radio" name="type2" checked=""><span>Мужчины и женщины в возрасте 60 - 70 лет</span></label>
-                <label class="field__radio"><input type="radio" name="type2"><span>Мужчины в возрасте 50- 60 лет</span></label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="main__graph">
-          <img src="/bundles/engage360dtakeda/img/main-stats.png" alt="">
-        </div>
-      </div>
-    </div>
+    {{ render(controller("Engage360dTakedaBundle:Main:graphBlock")) }}
     {{ render(controller("Engage360dTakedaBundle:Institutions:mapBlock")) }}
   </div>
 </div>

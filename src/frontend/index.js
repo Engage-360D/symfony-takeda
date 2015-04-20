@@ -5,6 +5,7 @@
 module.exports = {
   $: require('jquery'),
   render: require('./render'),
+  Graph: require('./components/modules/graph/Graph'),
   SignIn: require('./components/modules/signin/SignIn'),
   SignInAfterSocial: require('./components/modules/signin/SignInAfterSocial'),
   RiskAnalysis: require('./components/modules/riskAnalysis/RiskAnalysis'),
