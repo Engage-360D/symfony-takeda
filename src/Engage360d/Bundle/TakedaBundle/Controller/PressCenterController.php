@@ -40,7 +40,7 @@ class PressCenterController extends Controller
             return [
                 "id" => (string) $opinion->getId(),
                 "title" => $opinion->getTitle(),
-                "content" => $opinion->getContent(),
+                "content" => strip_tags($opinion->getContent()),
                 "isActive" => $opinion->getIsActive(),
                 "viewsCount" => $opinion->getViewsCount(),
                 "createdAt" => $opinion->getCreatedAt(),
@@ -67,7 +67,7 @@ class PressCenterController extends Controller
             return [
                 "id" => (string) $article->getId(),
                 "title" => $article->getTitle(),
-                "content" => $article->getContent(),
+                "content" => strip_tags($article->getContent()),
                 "isActive" => $article->getIsActive(),
                 "createdAt" => $article->getCreatedAt(),
                 "uri" => $this->get('router')->generate(
