@@ -224,7 +224,7 @@ adminResourceFactory.factory('experts', {
       linkable: true
     },
     photoUri: {
-      title: 'Фото',
+      title: 'Фото (95x95 пикс., не более 1Мб)',
       component: 'file',
       constraints: {
         notEmpty: validationConstraints.notEmpty()
