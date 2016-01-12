@@ -72,17 +72,17 @@ var Report = React.createClass({
       case Report.PERIOD_MONTH:
         startDate = moment().startOf('month').add(currentPage, 'month');
         endDate = startDate.clone().add(1, 'month');
-        vAxisTitle = startDate.format('MMMM') + ' ' + startDate.format('GGGG') + ' г.';
+        vAxisTitle = startDate.format('MMMM') + ' ' + startDate.format('YYYY') + ' г.';
         break;
       case Report.PERIOD_QUARTER:
         startDate = moment().startOf('quarter').add(currentPage, 'quarter');
         endDate = startDate.clone().add(1, 'quarter');
-        vAxisTitle = startDate.format('Q') + '-й квартал ' + startDate.format('GGGG') + ' г.';
+        vAxisTitle = startDate.format('Q') + '-й квартал ' + startDate.format('YYYY') + ' г.';
         break;
       case Report.PERIOD_YEAR:
         startDate = moment().startOf('year').add(currentPage, 'year');
         endDate = startDate.clone().add(1, 'year');
-        vAxisTitle = startDate.format('GGGG') + ' г.';
+        vAxisTitle = startDate.format('YYYY') + ' г.';
         break;
     }
 
